@@ -1,4 +1,4 @@
-{
+data = {
 "2022-09-17 Kristallens_JGP\\Klass_AB": [
 "1.FM_Edvin_Trost_Klass_A_2022-09-17-X.jpg",
 "1.Vidar_Grahn_Klass_B_2022-09-17-X.jpg",
