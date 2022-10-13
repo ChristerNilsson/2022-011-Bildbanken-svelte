@@ -6,13 +6,18 @@
 	const GAP = 5
 	const WIDTH = Math.floor((innerWidth-SCROLLBAR-GAP)/COLS)
 
+	const dirs = data
+	const range = _.range
 	let bigfile = ""
+	let sokruta="Numa"
+	let result = search(sokruta)
+	$: result = search(sokruta)
+	$: placera(result)
 	
 	function assert(a,b) {
 		if (!_.isEqual(a,b)) console.log("Assert failed",a,'!=',b)
 	}
-	const range = _.range
-
+	
 	function spaceShip (a,b) {
 		if (a < b) return -1
 		else if (a == b) return 0
@@ -71,7 +76,9 @@
 	// Uppdaterar x och y för varje bild
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
 	function placera(result) {
-		const cols = _.map(range(COLS), function () {return 100} )
+		const cols = []
+		for (const i in range(COLS)) cols.push(100)
+		// const cols = _.map(range(COLS), function () {return 100} )
 		const textHeights = 75
 		const res = result[2] 
 		for (const bild of res) {
@@ -84,11 +91,6 @@
 			cols[index] += Math.round(WIDTH*bild[5]/bild[4]) + textHeights // h
 		}
 	}
-
-	const dirs = data
-	let sokruta="JGP"
-	const result = search(sokruta)
-	placera(result)
 
 	function tournament(s) {
 		return '2022\\' + s.slice(11).replaceAll('_',' ')
