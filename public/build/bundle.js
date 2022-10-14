@@ -17515,14 +17515,94 @@ var app = (function () {
     const { Object: Object_1, console: console_1 } = globals;
     const file = "src\\App.svelte";
 
-    function get_each_context(ctx, list, i) {
+    function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[17] = list[i];
+    	child_ctx[25] = list[i];
     	return child_ctx;
     }
 
-    // (154:0) {:else}
-    function create_else_block(ctx) {
+    function get_each_context(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[22] = list[i];
+    	return child_ctx;
+    }
+
+    // (232:26) 
+    function create_if_block_4(ctx) {
+    	let div;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			add_location(div, file, 232, 1, 5856);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_4.name,
+    		type: "if",
+    		source: "(232:26) ",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (228:23) 
+    function create_if_block_3(ctx) {
+    	let img;
+    	let img_src_value;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			img = element("img");
+    			if (!src_url_equal(img.src, img_src_value = /*bigfile*/ ctx[4])) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", "X");
+    			add_location(img, file, 229, 0, 5782);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, img, anchor);
+
+    			if (!mounted) {
+    				dispose = listen_dev(img, "click", /*göm*/ ctx[9], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*bigfile*/ 16 && !src_url_equal(img.src, img_src_value = /*bigfile*/ ctx[4])) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(img);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_3.name,
+    		type: "if",
+    		source: "(228:23) ",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (213:25) 
+    function create_if_block_2(ctx) {
     	let input;
     	let t0;
     	let div0;
@@ -17536,12 +17616,12 @@ var app = (function () {
     	let each_1_anchor;
     	let mounted;
     	let dispose;
-    	let each_value = /*result*/ ctx[1][2];
-    	validate_each_argument(each_value);
+    	let each_value_1 = /*result*/ ctx[1][2];
+    	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
     	}
 
     	const block = {
@@ -17562,9 +17642,9 @@ var app = (function () {
     			each_1_anchor = empty();
     			attr_dev(input, "placeholder", "Sök");
     			set_style(input, "width", "100%");
-    			add_location(input, file, 155, 1, 4232);
-    			add_location(div0, file, 156, 1, 4299);
-    			add_location(div1, file, 157, 1, 4323);
+    			add_location(input, file, 214, 1, 5269);
+    			add_location(div0, file, 215, 1, 5336);
+    			add_location(div1, file, 216, 1, 5360);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -17584,7 +17664,7 @@ var app = (function () {
     			insert_dev(target, each_1_anchor, anchor);
 
     			if (!mounted) {
-    				dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[7]);
+    				dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[12]);
     				mounted = true;
     			}
     		},
@@ -17596,8 +17676,126 @@ var app = (function () {
     			if (dirty & /*result*/ 2 && t1_value !== (t1_value = /*result*/ ctx[1][0] + "")) set_data_dev(t1, t1_value);
     			if (dirty & /*result*/ 2 && t3_value !== (t3_value = /*result*/ ctx[1][1] + "")) set_data_dev(t3, t3_value);
 
-    			if (dirty & /*result, prettyPath, prettyFilename, getPath, WIDTH, GAP, visa*/ 58) {
-    				each_value = /*result*/ ctx[1][2];
+    			if (dirty & /*result, prettyPath, prettyFilename, getPath, WIDTH, GAP, visa*/ 450) {
+    				each_value_1 = /*result*/ ctx[1][2];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_1.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(input);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div0);
+    			if (detaching) detach_dev(t2);
+    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(t4);
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2.name,
+    		type: "if",
+    		source: "(213:25) ",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (183:0) {#if state == INITIAL}
+    function create_if_block(ctx) {
+    	let div0;
+    	let t0_value = /*stack*/ ctx[3].join(" ") + "";
+    	let t0;
+    	let t1;
+    	let div1;
+    	let button;
+    	let t3;
+    	let t4_value = /*path*/ ctx[2][/*path*/ ctx[2].length - 1][/*stack*/ ctx[3][/*stack*/ ctx[3].length - 1]] + "";
+    	let t4;
+    	let t5;
+    	let each_1_anchor;
+    	let mounted;
+    	let dispose;
+    	let each_value = lodash.keys(lodash.last(/*path*/ ctx[2]));
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div0 = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			div1 = element("div");
+    			button = element("button");
+    			button.textContent = "Back";
+    			t3 = space();
+    			t4 = text(t4_value);
+    			t5 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    			add_location(div0, file, 184, 1, 4653);
+    			add_location(button, file, 189, 2, 4697);
+    			add_location(div1, file, 188, 1, 4689);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div0, anchor);
+    			append_dev(div0, t0);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, button);
+    			insert_dev(target, t3, anchor);
+    			insert_dev(target, t4, anchor);
+    			insert_dev(target, t5, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", /*back*/ ctx[10], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*stack*/ 8 && t0_value !== (t0_value = /*stack*/ ctx[3].join(" ") + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*path, stack*/ 12 && t4_value !== (t4_value = /*path*/ ctx[2][/*path*/ ctx[2].length - 1][/*stack*/ ctx[3][/*stack*/ ctx[3].length - 1]] + "")) set_data_dev(t4, t4_value);
+
+    			if (dirty & /*drillDown, _, path*/ 2052) {
+    				each_value = lodash.keys(lodash.last(/*path*/ ctx[2]));
     				validate_each_argument(each_value);
     				let i;
 
@@ -17621,12 +17819,12 @@ var app = (function () {
     			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(input);
-    			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div0);
-    			if (detaching) detach_dev(t2);
+    			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(t3);
     			if (detaching) detach_dev(t4);
+    			if (detaching) detach_dev(t5);
     			destroy_each(each_blocks, detaching);
     			if (detaching) detach_dev(each_1_anchor);
     			mounted = false;
@@ -17636,76 +17834,31 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block.name,
-    		type: "else",
-    		source: "(154:0) {:else}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (152:0) {#if bigfile != ""}
-    function create_if_block(ctx) {
-    	let img;
-    	let img_src_value;
-    	let mounted;
-    	let dispose;
-
-    	const block = {
-    		c: function create() {
-    			img = element("img");
-    			if (!src_url_equal(img.src, img_src_value = /*bigfile*/ ctx[2])) attr_dev(img, "src", img_src_value);
-    			attr_dev(img, "alt", "X");
-    			add_location(img, file, 152, 1, 4177);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, img, anchor);
-
-    			if (!mounted) {
-    				dispose = listen_dev(img, "click", /*göm*/ ctx[6], false, false, false);
-    				mounted = true;
-    			}
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*bigfile*/ 4 && !src_url_equal(img.src, img_src_value = /*bigfile*/ ctx[2])) {
-    				attr_dev(img, "src", img_src_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(img);
-    			mounted = false;
-    			dispose();
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(152:0) {#if bigfile != \\\"\\\"}",
+    		source: "(183:0) {#if state == INITIAL}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (160:1) {#each result[2] as item}
-    function create_each_block(ctx) {
+    // (219:1) {#each result[2] as item}
+    function create_each_block_1(ctx) {
     	let div3;
     	let img;
     	let img_src_value;
     	let t0;
     	let div0;
-    	let t1_value = /*prettyFilename*/ ctx[4](/*item*/ ctx[17][2]) + "";
+    	let t1_value = /*prettyFilename*/ ctx[7](/*item*/ ctx[25][2]) + "";
     	let t1;
     	let t2;
     	let div1;
-    	let t3_value = prettyPath(/*item*/ ctx[17][2]) + "";
+    	let t3_value = prettyPath(/*item*/ ctx[25][2]) + "";
     	let t3;
     	let t4;
     	let div2;
-    	let t5_value = /*item*/ ctx[17][1] + "";
+    	let t5_value = /*item*/ ctx[25][1] + "";
     	let t5;
     	let t6;
     	let t7;
@@ -17727,21 +17880,21 @@ var app = (function () {
     			t5 = text(t5_value);
     			t6 = text(" © Lars OA Hedlund");
     			t7 = space();
-    			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[3](/*item*/ ctx[17][2], "small"))) attr_dev(img, "src", img_src_value);
+    			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[6](/*item*/ ctx[25][2], "small"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "width", WIDTH - GAP);
     			attr_dev(img, "alt", "X");
-    			add_location(img, file, 161, 3, 4463);
+    			add_location(img, file, 220, 3, 5500);
     			attr_dev(div0, "class", "info");
-    			add_location(div0, file, 162, 3, 4547);
+    			add_location(div0, file, 221, 3, 5584);
     			attr_dev(div1, "class", "info");
-    			add_location(div1, file, 163, 3, 4600);
+    			add_location(div1, file, 222, 3, 5637);
     			attr_dev(div2, "class", "info");
-    			add_location(div2, file, 164, 3, 4649);
+    			add_location(div2, file, 223, 3, 5686);
     			attr_dev(div3, "class", "item");
     			set_style(div3, "position", "absolute");
-    			set_style(div3, "left", /*item*/ ctx[17][6 - 1] + "px");
-    			set_style(div3, "top", /*item*/ ctx[17][7 - 1] + "px");
-    			add_location(div3, file, 160, 2, 4376);
+    			set_style(div3, "left", /*item*/ ctx[25][6 - 1] + "px");
+    			set_style(div3, "top", /*item*/ ctx[25][7 - 1] + "px");
+    			add_location(div3, file, 219, 2, 5413);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -17759,25 +17912,25 @@ var app = (function () {
     			append_dev(div3, t7);
 
     			if (!mounted) {
-    				dispose = listen_dev(img, "click", /*visa*/ ctx[5], false, false, false);
+    				dispose = listen_dev(img, "click", /*visa*/ ctx[8], false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*result*/ 2 && !src_url_equal(img.src, img_src_value = /*getPath*/ ctx[3](/*item*/ ctx[17][2], "small"))) {
+    			if (dirty & /*result*/ 2 && !src_url_equal(img.src, img_src_value = /*getPath*/ ctx[6](/*item*/ ctx[25][2], "small"))) {
     				attr_dev(img, "src", img_src_value);
     			}
 
-    			if (dirty & /*result*/ 2 && t1_value !== (t1_value = /*prettyFilename*/ ctx[4](/*item*/ ctx[17][2]) + "")) set_data_dev(t1, t1_value);
-    			if (dirty & /*result*/ 2 && t3_value !== (t3_value = prettyPath(/*item*/ ctx[17][2]) + "")) set_data_dev(t3, t3_value);
-    			if (dirty & /*result*/ 2 && t5_value !== (t5_value = /*item*/ ctx[17][1] + "")) set_data_dev(t5, t5_value);
+    			if (dirty & /*result*/ 2 && t1_value !== (t1_value = /*prettyFilename*/ ctx[7](/*item*/ ctx[25][2]) + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*result*/ 2 && t3_value !== (t3_value = prettyPath(/*item*/ ctx[25][2]) + "")) set_data_dev(t3, t3_value);
+    			if (dirty & /*result*/ 2 && t5_value !== (t5_value = /*item*/ ctx[25][1] + "")) set_data_dev(t5, t5_value);
 
     			if (dirty & /*result*/ 2) {
-    				set_style(div3, "left", /*item*/ ctx[17][6 - 1] + "px");
+    				set_style(div3, "left", /*item*/ ctx[25][6 - 1] + "px");
     			}
 
     			if (dirty & /*result*/ 2) {
-    				set_style(div3, "top", /*item*/ ctx[17][7 - 1] + "px");
+    				set_style(div3, "top", /*item*/ ctx[25][7 - 1] + "px");
     			}
     		},
     		d: function destroy(detaching) {
@@ -17789,9 +17942,164 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(219:1) {#each result[2] as item}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (206:4) {:else}
+    function create_else_block(ctx) {
+    	let button;
+    	let t_value = /*key*/ ctx[22] + "";
+    	let t;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			button = element("button");
+    			t = text(t_value);
+    			add_location(button, file, 206, 5, 5148);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, button, anchor);
+    			append_dev(button, t);
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", /*drillDown*/ ctx[11], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*path*/ 4 && t_value !== (t_value = /*key*/ ctx[22] + "")) set_data_dev(t, t_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(button);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block.name,
+    		type: "else",
+    		source: "(206:4) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (204:4) {#if _.isNumber(key)}
+    function create_if_block_1(ctx) {
+    	let button;
+    	let t_value = lodash.last(/*path*/ ctx[2])[/*key*/ ctx[22]] + "";
+    	let t;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			button = element("button");
+    			t = text(t_value);
+    			add_location(button, file, 204, 5, 5071);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, button, anchor);
+    			append_dev(button, t);
+
+    			if (!mounted) {
+    				dispose = listen_dev(button, "click", /*drillDown*/ ctx[11], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*path*/ 4 && t_value !== (t_value = lodash.last(/*path*/ ctx[2])[/*key*/ ctx[22]] + "")) set_data_dev(t, t_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(button);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(204:4) {#if _.isNumber(key)}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (201:2) {#each _.keys(_.last(path)) as key }
+    function create_each_block(ctx) {
+    	let div;
+    	let t0_value = /*key*/ ctx[22] + "";
+    	let t0;
+    	let t1;
+    	let show_if;
+    	let t2;
+
+    	function select_block_type_1(ctx, dirty) {
+    		if (dirty & /*path*/ 4) show_if = null;
+    		if (show_if == null) show_if = !!lodash.isNumber(/*key*/ ctx[22]);
+    		if (show_if) return create_if_block_1;
+    		return create_else_block;
+    	}
+
+    	let current_block_type = select_block_type_1(ctx, -1);
+    	let if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			if_block.c();
+    			t2 = space();
+    			add_location(div, file, 201, 3, 5024);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t0);
+    			append_dev(div, t1);
+    			if_block.m(div, null);
+    			append_dev(div, t2);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*path*/ 4 && t0_value !== (t0_value = /*key*/ ctx[22] + "")) set_data_dev(t0, t0_value);
+
+    			if (current_block_type === (current_block_type = select_block_type_1(ctx, dirty)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(div, t2);
+    				}
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(160:1) {#each result[2] as item}",
+    		source: "(201:2) {#each _.keys(_.last(path)) as key }",
     		ctx
     	});
 
@@ -17802,42 +18110,37 @@ var app = (function () {
     	let if_block_anchor;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*bigfile*/ ctx[2] != "") return create_if_block;
-    		return create_else_block;
+    		if (/*state*/ ctx[5] == INITIAL) return create_if_block;
+    		if (/*state*/ ctx[5] == SMALL) return create_if_block_2;
+    		if (/*state*/ ctx[5] == BIG) return create_if_block_3;
+    		if (/*state*/ ctx[5] == BIGGER) return create_if_block_4;
     	}
 
     	let current_block_type = select_block_type(ctx);
-    	let if_block = current_block_type(ctx);
+    	let if_block = current_block_type && current_block_type(ctx);
 
     	const block = {
     		c: function create() {
-    			if_block.c();
+    			if (if_block) if_block.c();
     			if_block_anchor = empty();
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			if_block.m(target, anchor);
+    			if (if_block) if_block.m(target, anchor);
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
-    				if_block.p(ctx, dirty);
-    			} else {
-    				if_block.d(1);
-    				if_block = current_block_type(ctx);
-
-    				if (if_block) {
-    					if_block.c();
-    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
-    				}
-    			}
+    			if (if_block) if_block.p(ctx, dirty);
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if_block.d(detaching);
+    			if (if_block) {
+    				if_block.d(detaching);
+    			}
+
     			if (detaching) detach_dev(if_block_anchor);
     		}
     	};
@@ -17853,6 +18156,10 @@ var app = (function () {
     	return block;
     }
 
+    const INITIAL = 0;
+    const SMALL = 2;
+    const BIG = 3;
+    const BIGGER = 4;
     const SCROLLBAR = 12;
     const WIDTH = 432;
     const GAP = 5;
@@ -17885,12 +18192,19 @@ var app = (function () {
     	return s.replaceAll('_', ' '); // .replace('\\',' ')
     }
 
+    function isArray(arr) {
+    	return 'length' in arr;
+    }
+
     function instance($$self, $$props, $$invalidate) {
     	let COLS;
     	let result;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
+    	let state = INITIAL;
     	console.log(data);
+    	const path = [data]; // drillDown
+    	const stack = ["Home"];
     	const dirs = data;
     	let trippel = { res: [], stat: {}, total: 0 };
     	const range = lodash.range;
@@ -17918,15 +18232,9 @@ var app = (function () {
 
     	function search(data, words, path = []) {
     		words = words.split(" ");
-
-    		// console.log('search',data,words,path)
     		trippel = { res: [], stat: {}, total: 0 };
-
     		recursiveSearch(data, words, path);
-
-    		// console.log('trippel',trippel)
     		trippel.res.sort(comp);
-
     		const keys = Object.keys(trippel.stat);
     		keys.sort(comp2);
     		const st = [];
@@ -17942,7 +18250,7 @@ var app = (function () {
 
     	// nu rekursiv pga varierande djup i trädet
     	function recursiveSearch(data, words, path = []) {
-    		// s är söksträngen
+    		// words är de sökta orden
     		for (const key in data) {
     			const newPath = path.concat([key]);
 
@@ -17976,7 +18284,7 @@ var app = (function () {
     		}
     	}
 
-    	// Räknar ut vilken swimlane som är lämpligast.
+    	// Räknar ut vilken swim-lane som är lämpligast.
     	// Uppdaterar x och y för varje bild
     	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
     	function placera(result) {
@@ -17987,7 +18295,7 @@ var app = (function () {
     		const res = result[2];
 
     		for (const bild of res) {
-    			console.log('bild', bild);
+    			// console.log('bild',bild)
     			let index = 0; // sök fram index för minsta kolumnen
 
     			for (const j in range(COLS)) {
@@ -17997,8 +18305,7 @@ var app = (function () {
     			bild[6 - 1] = GAP + WIDTH * index; // x
     			bild[7 - 1] = cols[index]; // y
     			cols[index] += Math.round(WIDTH * bild[5 - 1] / bild[4 - 1]) + textHeights; // h
-    			console.log('bild', bild);
-    		}
+    		} // console.log('bild',bild)
     	}
 
     	function getPath(arr, dir = "small") {
@@ -18025,13 +18332,32 @@ var app = (function () {
     	}
 
     	function visa(event) {
-    		$$invalidate(2, bigfile = event.target.src.replace('small', ''));
+    		$$invalidate(4, bigfile = event.target.src.replace('small', ''));
     	}
 
     	function göm(event) {
-    		$$invalidate(2, bigfile = "");
+    		$$invalidate(4, bigfile = "");
     	}
 
+    	function back(event) {
+    		if (path.length > 1) {
+    			path.pop();
+    			$$invalidate(2, path);
+    			stack.pop();
+    			$$invalidate(3, stack);
+    		}
+    	}
+
+    	function drillDown(event) {
+    		const key = event.srcElement.innerText;
+    		path.push(lodash.last(path)[key]);
+    		$$invalidate(2, path);
+    		stack.push(key);
+    		$$invalidate(3, stack);
+    	}
+
+    	assert(true, isArray([1, 2]));
+    	assert(false, isArray({ a: 1 }));
     	const writable_props = [];
 
     	Object_1.keys($$props).forEach(key => {
@@ -18045,10 +18371,17 @@ var app = (function () {
 
     	$$self.$capture_state = () => ({
     		_: lodash,
+    		INITIAL,
+    		SMALL,
+    		BIG,
+    		BIGGER,
+    		state,
     		SCROLLBAR,
     		WIDTH,
     		GAP,
     		ALFABET,
+    		path,
+    		stack,
     		dirs,
     		trippel,
     		range,
@@ -18067,13 +18400,17 @@ var app = (function () {
     		prettyPath,
     		visa,
     		göm,
+    		back,
+    		drillDown,
+    		isArray,
     		COLS,
     		result
     	});
 
     	$$self.$inject_state = $$props => {
+    		if ('state' in $$props) $$invalidate(5, state = $$props.state);
     		if ('trippel' in $$props) trippel = $$props.trippel;
-    		if ('bigfile' in $$props) $$invalidate(2, bigfile = $$props.bigfile);
+    		if ('bigfile' in $$props) $$invalidate(4, bigfile = $$props.bigfile);
     		if ('sokruta' in $$props) $$invalidate(0, sokruta = $$props.sokruta);
     		if ('COLS' in $$props) COLS = $$props.COLS;
     		if ('result' in $$props) $$invalidate(1, result = $$props.result);
@@ -18098,11 +18435,16 @@ var app = (function () {
     	return [
     		sokruta,
     		result,
+    		path,
+    		stack,
     		bigfile,
+    		state,
     		getPath,
     		prettyFilename,
     		visa,
     		göm,
+    		back,
+    		drillDown,
     		input_input_handler
     	];
     }

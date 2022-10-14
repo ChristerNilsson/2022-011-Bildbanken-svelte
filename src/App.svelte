@@ -1,6 +1,14 @@
 <script>
 	import _ from "lodash"
 
+	const INITIAL = 0
+	const SMALL = 2
+	const BIG = 3
+	const BIGGER = 4
+
+
+	let state = INITIAL
+
 	const SCROLLBAR = 12
 	const WIDTH = 432
 	const GAP = 5
@@ -9,6 +17,10 @@
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
 
 	console.log(data)
+
+	const path = [data] // drillDown
+	const stack = ["Home"]
+	
 	const dirs = data
 	let trippel = {res:[], stat:{}, total:0}
 	const range = _.range
@@ -48,12 +60,10 @@
 
 	function search(data,words,path=[]) {
 		words = words.split(" ")
-		// console.log('search',data,words,path)
 		trippel = {res:[], stat:{}, total:0}
 
 		recursiveSearch(data,words,path)
 
-		// console.log('trippel',trippel)
 		trippel.res.sort(comp)
 
 		const keys = Object.keys(trippel.stat)
@@ -68,7 +78,7 @@
 	}
 
 	// nu rekursiv pga varierande djup i trädet
-	function recursiveSearch (data,words,path=[]) { // s är söksträngen
+	function recursiveSearch (data,words,path=[]) { // words är de sökta orden
 		for (const key in data) {
 			const newPath = path.concat([key])
 			if (Array.isArray(data[key])) {
@@ -96,7 +106,7 @@
 		}
 	}
 
-	// Räknar ut vilken swimlane som är lämpligast.
+	// Räknar ut vilken swim-lane som är lämpligast.
 	// Uppdaterar x och y för varje bild
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
 	function placera(result) {
@@ -106,7 +116,7 @@
 		const textHeights = 75
 		const res = result[2] 
 		for (const bild of res) {
-			console.log('bild',bild)
+			// console.log('bild',bild)
 			let index = 0 // sök fram index för minsta kolumnen
 			for (const j in range(COLS)) {
 				if (cols[j] < cols[index]) index = j
@@ -114,7 +124,7 @@
 			bild[6-1] = GAP + WIDTH*index // x
 			bild[7-1] = cols[index]       // y
 			cols[index] += Math.round(WIDTH*bild[5-1]/bild[4-1]) + textHeights // h
-			console.log('bild',bild)
+			// console.log('bild',bild)
 		}
 	}
 
@@ -147,11 +157,60 @@
 	function visa(event) {bigfile = event.target.src.replace('small','')}
 	function göm(event) {bigfile = ""}
  
+	function back(event) {
+		if (path.length > 1) {
+			path.pop()
+			path = path
+			stack.pop()
+			stack = stack
+		}
+	}
+	function drillDown(event) {
+		const key = event.srcElement.innerText
+		path.push(_.last(path)[key])
+		path = path
+		stack.push(key)
+		stack = stack
+	}
+
+	function isArray (arr) {
+		return 'length' in arr
+	}
+	assert(true,isArray([1,2]))
+	assert(false,isArray({a:1}))
 </script>
 
-{#if bigfile != ""}
-	<img src={bigfile} alt="X" on:click={göm} />
-{:else}
+{#if state == INITIAL}
+
+	<div>
+		{stack.join(" ")}
+	</div>
+
+	<div>
+		<button on:click = {back}>Back</button>
+	</div>
+	{path[path.length-1][stack[stack.length-1]]}
+	<!-- {#if _.isArray(_.last(path)[_.last(stack)])}
+		array
+		{#each _.last(path)[_.last(stack)] as {a,b,c}, index }
+			<div>
+				<button>{'B'+index}</button>
+			</div>
+		{/each}
+	{:else} -->
+		{#each _.keys(_.last(path)) as key }
+			<div>
+				{key}
+				{#if _.isNumber(key)}
+					<button on:click = {drillDown}>{_.last(path)[key]}</button>
+				{:else}
+					<button on:click = {drillDown}>{key}</button>
+				{/if}
+			</div>
+		{/each}
+	<!-- {/if} -->
+
+{:else if state == SMALL}
 
 	<input bind:value={sokruta} placeholder="Sök" style='width:100%'>
 	<div>{result[0]}</div>
@@ -166,4 +225,10 @@
 		</div>
 	{/each}
 
+{:else if state == BIG}
+
+<img src={bigfile} alt="X" on:click={göm} />
+
+{:else if state == BIGGER}
+	<div></div>
 {/if}
