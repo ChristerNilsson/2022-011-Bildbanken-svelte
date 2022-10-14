@@ -17521,7 +17521,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (125:0) {:else}
+    // (126:0) {:else}
     function create_else_block(ctx) {
     	let input;
     	let t0;
@@ -17562,9 +17562,9 @@ var app = (function () {
     			each_1_anchor = empty();
     			attr_dev(input, "placeholder", "Sök");
     			set_style(input, "width", "100%");
-    			add_location(input, file, 126, 1, 3517);
-    			add_location(div0, file, 127, 1, 3584);
-    			add_location(div1, file, 128, 1, 3608);
+    			add_location(input, file, 127, 1, 3536);
+    			add_location(div0, file, 128, 1, 3603);
+    			add_location(div1, file, 129, 1, 3627);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -17638,14 +17638,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(125:0) {:else}",
+    		source: "(126:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (123:0) {#if bigfile != ""}
+    // (124:0) {#if bigfile != ""}
     function create_if_block(ctx) {
     	let img;
     	let img_src_value;
@@ -17657,7 +17657,7 @@ var app = (function () {
     			img = element("img");
     			if (!src_url_equal(img.src, img_src_value = /*bigfile*/ ctx[2])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "X");
-    			add_location(img, file, 123, 1, 3462);
+    			add_location(img, file, 124, 1, 3481);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -17683,14 +17683,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(123:0) {#if bigfile != \\\"\\\"}",
+    		source: "(124:0) {#if bigfile != \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (131:1) {#each result[2] as item}
+    // (132:1) {#each result[2] as item}
     function create_each_block(ctx) {
     	let div3;
     	let img;
@@ -17730,18 +17730,18 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = tournament(/*item*/ ctx[13][2]) + "_files/small/" + /*item*/ ctx[13][3])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "width", WIDTH - GAP);
     			attr_dev(img, "alt", "X");
-    			add_location(img, file, 132, 3, 3744);
+    			add_location(img, file, 133, 3, 3763);
     			attr_dev(div0, "class", "info");
-    			add_location(div0, file, 133, 3, 3851);
+    			add_location(div0, file, 134, 3, 3870);
     			attr_dev(div1, "class", "info");
-    			add_location(div1, file, 134, 3, 3898);
+    			add_location(div1, file, 135, 3, 3917);
     			attr_dev(div2, "class", "info");
-    			add_location(div2, file, 135, 3, 3943);
+    			add_location(div2, file, 136, 3, 3962);
     			attr_dev(div3, "class", "item");
     			set_style(div3, "position", "absolute");
     			set_style(div3, "left", /*item*/ ctx[13][6] + "px");
     			set_style(div3, "top", /*item*/ ctx[13][7] + "px");
-    			add_location(div3, file, 131, 2, 3661);
+    			add_location(div3, file, 132, 2, 3680);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -17791,7 +17791,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(131:1) {#each result[2] as item}",
+    		source: "(132:1) {#each result[2] as item}",
     		ctx
     	});
 
@@ -17904,6 +17904,7 @@ var app = (function () {
     	let result;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
+    	console.log(data);
     	const dirs = data;
     	const range = lodash.range;
     	let bigfile = "";

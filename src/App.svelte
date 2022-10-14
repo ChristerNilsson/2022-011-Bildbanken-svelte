@@ -6,6 +6,7 @@
 	const GAP = 5
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
 
+	console.log(data)
 	const dirs = data
 	const range = _.range
 	let bigfile = ""
@@ -115,7 +116,7 @@
 		return s
 	}
 	function pretty(s) {return s.replaceAll('_', ' ').replace('\\',' ')}
-	function visa(event) {bigfile = event.target.src.replace('small','big')}
+	function visa(event) {bigfile = event.target.src.replace('small','')}
 	function göm(event) {bigfile = ""}
  
 </script>
@@ -130,7 +131,7 @@
 
 	{#each result[2] as item}
 		<div class="item" style="position:absolute; left:{item[6]}px; top:{item[7]}px">
-			<img src={tournament(item[2]) + "_files/small/" + item[3]} width={WIDTH-GAP} alt="X" on:click={visa} />
+			<img src={tournament(item[2]) + "/small/" + item[3]} width={WIDTH-GAP} alt="X" on:click={visa} />
 			<div class="info">{filename(item[3])}</div>
 			<div class="info">{pretty(item[2])}</div>
 			<div class="info">{item[1]} © Lars OA Hedlund</div>
