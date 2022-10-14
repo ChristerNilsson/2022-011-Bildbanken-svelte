@@ -17517,11 +17517,11 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[13] = list[i];
+    	child_ctx[17] = list[i];
     	return child_ctx;
     }
 
-    // (126:0) {:else}
+    // (154:0) {:else}
     function create_else_block(ctx) {
     	let input;
     	let t0;
@@ -17562,9 +17562,9 @@ var app = (function () {
     			each_1_anchor = empty();
     			attr_dev(input, "placeholder", "Sök");
     			set_style(input, "width", "100%");
-    			add_location(input, file, 127, 1, 3536);
-    			add_location(div0, file, 128, 1, 3603);
-    			add_location(div1, file, 129, 1, 3627);
+    			add_location(input, file, 155, 1, 4232);
+    			add_location(div0, file, 156, 1, 4299);
+    			add_location(div1, file, 157, 1, 4323);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -17584,7 +17584,7 @@ var app = (function () {
     			insert_dev(target, each_1_anchor, anchor);
 
     			if (!mounted) {
-    				dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[5]);
+    				dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[7]);
     				mounted = true;
     			}
     		},
@@ -17596,7 +17596,7 @@ var app = (function () {
     			if (dirty & /*result*/ 2 && t1_value !== (t1_value = /*result*/ ctx[1][0] + "")) set_data_dev(t1, t1_value);
     			if (dirty & /*result*/ 2 && t3_value !== (t3_value = /*result*/ ctx[1][1] + "")) set_data_dev(t3, t3_value);
 
-    			if (dirty & /*result, pretty, filename, tournament, WIDTH, GAP, visa*/ 10) {
+    			if (dirty & /*result, prettyPath, prettyFilename, getPath, WIDTH, GAP, visa*/ 58) {
     				each_value = /*result*/ ctx[1][2];
     				validate_each_argument(each_value);
     				let i;
@@ -17638,14 +17638,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(126:0) {:else}",
+    		source: "(154:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (124:0) {#if bigfile != ""}
+    // (152:0) {#if bigfile != ""}
     function create_if_block(ctx) {
     	let img;
     	let img_src_value;
@@ -17657,13 +17657,13 @@ var app = (function () {
     			img = element("img");
     			if (!src_url_equal(img.src, img_src_value = /*bigfile*/ ctx[2])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "X");
-    			add_location(img, file, 124, 1, 3481);
+    			add_location(img, file, 152, 1, 4177);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
 
     			if (!mounted) {
-    				dispose = listen_dev(img, "click", /*göm*/ ctx[4], false, false, false);
+    				dispose = listen_dev(img, "click", /*göm*/ ctx[6], false, false, false);
     				mounted = true;
     			}
     		},
@@ -17683,29 +17683,29 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(124:0) {#if bigfile != \\\"\\\"}",
+    		source: "(152:0) {#if bigfile != \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (132:1) {#each result[2] as item}
+    // (160:1) {#each result[2] as item}
     function create_each_block(ctx) {
     	let div3;
     	let img;
     	let img_src_value;
     	let t0;
     	let div0;
-    	let t1_value = filename(/*item*/ ctx[13][3]) + "";
+    	let t1_value = /*prettyFilename*/ ctx[4](/*item*/ ctx[17][2]) + "";
     	let t1;
     	let t2;
     	let div1;
-    	let t3_value = pretty(/*item*/ ctx[13][2]) + "";
+    	let t3_value = prettyPath(/*item*/ ctx[17][2]) + "";
     	let t3;
     	let t4;
     	let div2;
-    	let t5_value = /*item*/ ctx[13][1] + "";
+    	let t5_value = /*item*/ ctx[17][1] + "";
     	let t5;
     	let t6;
     	let t7;
@@ -17727,21 +17727,21 @@ var app = (function () {
     			t5 = text(t5_value);
     			t6 = text(" © Lars OA Hedlund");
     			t7 = space();
-    			if (!src_url_equal(img.src, img_src_value = tournament(/*item*/ ctx[13][2]) + "_files/small/" + /*item*/ ctx[13][3])) attr_dev(img, "src", img_src_value);
+    			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[3](/*item*/ ctx[17][2], "small"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "width", WIDTH - GAP);
     			attr_dev(img, "alt", "X");
-    			add_location(img, file, 133, 3, 3763);
+    			add_location(img, file, 161, 3, 4463);
     			attr_dev(div0, "class", "info");
-    			add_location(div0, file, 134, 3, 3870);
+    			add_location(div0, file, 162, 3, 4547);
     			attr_dev(div1, "class", "info");
-    			add_location(div1, file, 135, 3, 3917);
+    			add_location(div1, file, 163, 3, 4600);
     			attr_dev(div2, "class", "info");
-    			add_location(div2, file, 136, 3, 3962);
+    			add_location(div2, file, 164, 3, 4649);
     			attr_dev(div3, "class", "item");
     			set_style(div3, "position", "absolute");
-    			set_style(div3, "left", /*item*/ ctx[13][6] + "px");
-    			set_style(div3, "top", /*item*/ ctx[13][7] + "px");
-    			add_location(div3, file, 132, 2, 3680);
+    			set_style(div3, "left", /*item*/ ctx[17][6 - 1] + "px");
+    			set_style(div3, "top", /*item*/ ctx[17][7 - 1] + "px");
+    			add_location(div3, file, 160, 2, 4376);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -17759,25 +17759,25 @@ var app = (function () {
     			append_dev(div3, t7);
 
     			if (!mounted) {
-    				dispose = listen_dev(img, "click", /*visa*/ ctx[3], false, false, false);
+    				dispose = listen_dev(img, "click", /*visa*/ ctx[5], false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*result*/ 2 && !src_url_equal(img.src, img_src_value = tournament(/*item*/ ctx[13][2]) + "_files/small/" + /*item*/ ctx[13][3])) {
+    			if (dirty & /*result*/ 2 && !src_url_equal(img.src, img_src_value = /*getPath*/ ctx[3](/*item*/ ctx[17][2], "small"))) {
     				attr_dev(img, "src", img_src_value);
     			}
 
-    			if (dirty & /*result*/ 2 && t1_value !== (t1_value = filename(/*item*/ ctx[13][3]) + "")) set_data_dev(t1, t1_value);
-    			if (dirty & /*result*/ 2 && t3_value !== (t3_value = pretty(/*item*/ ctx[13][2]) + "")) set_data_dev(t3, t3_value);
-    			if (dirty & /*result*/ 2 && t5_value !== (t5_value = /*item*/ ctx[13][1] + "")) set_data_dev(t5, t5_value);
+    			if (dirty & /*result*/ 2 && t1_value !== (t1_value = /*prettyFilename*/ ctx[4](/*item*/ ctx[17][2]) + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*result*/ 2 && t3_value !== (t3_value = prettyPath(/*item*/ ctx[17][2]) + "")) set_data_dev(t3, t3_value);
+    			if (dirty & /*result*/ 2 && t5_value !== (t5_value = /*item*/ ctx[17][1] + "")) set_data_dev(t5, t5_value);
 
     			if (dirty & /*result*/ 2) {
-    				set_style(div3, "left", /*item*/ ctx[13][6] + "px");
+    				set_style(div3, "left", /*item*/ ctx[17][6 - 1] + "px");
     			}
 
     			if (dirty & /*result*/ 2) {
-    				set_style(div3, "top", /*item*/ ctx[13][7] + "px");
+    				set_style(div3, "top", /*item*/ ctx[17][7 - 1] + "px");
     			}
     		},
     		d: function destroy(detaching) {
@@ -17791,7 +17791,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(132:1) {#each result[2] as item}",
+    		source: "(160:1) {#each result[2] as item}",
     		ctx
     	});
 
@@ -17854,8 +17854,9 @@ var app = (function () {
     }
 
     const SCROLLBAR = 12;
-    const WIDTH = 432; //Math.floor((innerWidth-SCROLLBAR-GAP)/COLS)
+    const WIDTH = 432;
     const GAP = 5;
+    const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     function spaceShip(a, b) {
     	if (a < b) return -1; else if (a == b) return 0;
@@ -17878,25 +17879,10 @@ var app = (function () {
     	}
     }
 
-    function tournament(s) {
-    	return '2022\\' + s.slice(11).replaceAll('_', ' ');
-    }
-
-    function filename(s) {
-    	s = s.replace('.jpg', '');
-    	s = s.replace(/Klass_./i, '');
-    	s = s.replace(/\d\d\d\d-\d\d-\d\d-X-\d/, '');
-    	s = s.replace(/\d\d\d\d-\d\d-\d\d-\d/, '');
-    	s = s.replace(/\d\d\d\d-\d\d-\d\d/, '');
-    	s = s.replace(/Vy-/g, '');
-    	s = s.replaceAll(/_/ig, ' ');
-    	s = s.replaceAll('KSK-JGP', '');
-    	s = s.replaceAll('Minior-Lag-DM', ''); // kan tas från tournament
-    	return s;
-    }
-
-    function pretty(s) {
-    	return s.replaceAll('_', ' ').replace('\\', ' ');
+    function prettyPath(arr) {
+    	arr = arr.slice(1, arr.length - 1);
+    	const s = arr.join(" ");
+    	return s.replaceAll('_', ' '); // .replace('\\',' ')
     }
 
     function instance($$self, $$props, $$invalidate) {
@@ -17906,6 +17892,7 @@ var app = (function () {
     	validate_slots('App', slots, []);
     	console.log(data);
     	const dirs = data;
+    	let trippel = { res: [], stat: {}, total: 0 };
     	const range = lodash.range;
     	let bigfile = "";
     	let sokruta = "Numa";
@@ -17914,15 +17901,12 @@ var app = (function () {
     		if (!lodash.isEqual(a, b)) console.log("Assert failed", a, '!=', b);
     	}
 
-    	function reportWindowSize() {
-    		// COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
-    		//console.log(COLS)
+    	function resize() {
     		($$invalidate(1, result), $$invalidate(0, sokruta));
-
     		placera(result);
     	}
 
-    	window.onresize = reportWindowSize;
+    	window.onresize = resize;
     	assert(spaceShip(1, 2), -1);
     	assert(spaceShip(1, 1), 0);
     	assert(spaceShip(1, 0), 1);
@@ -17932,46 +17916,64 @@ var app = (function () {
     	assert(comp2("B", "A"), 1);
     	assert(comp2("BC", "A"), -1);
 
-    	function search(s) {
-    		console.log('search');
-    		const data = dirs;
-    		const alfabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    		const res = [];
-    		const words = s.split(' ');
-    		const stat = {};
-    		let total = 0;
+    	function search(data, words, path = []) {
+    		words = words.split(" ");
 
-    		for (const tournament in data) {
-    			total += data[tournament].length;
+    		// console.log('search',data,words,path)
+    		trippel = { res: [], stat: {}, total: 0 };
 
-    			for (const [filename, width, height] of data[tournament]) {
-    				let s = '';
+    		recursiveSearch(data, words, path);
 
-    				for (const i in range(words.length)) {
-    					const word = words[i];
-    					if (word == "") continue;
-    					if (tournament.includes(word) || filename.includes(word)) s += alfabet[i];
-    				}
+    		// console.log('trippel',trippel)
+    		trippel.res.sort(comp);
 
-    				if (s.length > 0) {
-    					res.push([-s.length, s, tournament, filename, width, height]);
-    					stat[s] = (stat[s] || 0) + 1;
-    				}
-    			}
-    		}
-
-    		res.sort(comp);
-    		const keys = Object.keys(stat);
+    		const keys = Object.keys(trippel.stat);
     		keys.sort(comp2);
     		const st = [];
     		let antal = 0;
 
     		for (const key of keys) {
-    			st.push(`${key}:${stat[key]}`);
-    			antal += stat[key];
+    			st.push(`${key}:${trippel.stat[key]}`);
+    			antal += trippel.stat[key];
     		}
 
-    		return [st.join(' '), `${antal} av ${total} bilder`, res];
+    		return [st.join(' '), `${antal} av ${trippel.total} bilder`, trippel.res];
+    	}
+
+    	// nu rekursiv pga varierande djup i trädet
+    	function recursiveSearch(data, words, path = []) {
+    		// s är söksträngen
+    		for (const key in data) {
+    			const newPath = path.concat([key]);
+
+    			if (Array.isArray(data[key])) {
+    				trippel.total += data[key].length;
+
+    				for (const [filename, width, height] of data[key]) {
+    					const newPath2 = newPath.concat([filename]);
+    					let s = '';
+
+    					for (const i in range(words.length)) {
+    						const word = words[i];
+    						if (word == "") continue;
+    						let found = false;
+
+    						for (const p of newPath2) {
+    							if (p.includes(word)) found = true;
+    						}
+
+    						if (found) s += ALFABET[i];
+    					}
+
+    					if (s.length > 0) {
+    						trippel.res.push([-s.length, s, newPath2, width, height]);
+    						trippel.stat[s] = (trippel.stat[s] || 0) + 1;
+    					}
+    				}
+    			} else {
+    				recursiveSearch(data[key], words, newPath);
+    			}
+    		}
     	}
 
     	// Räknar ut vilken swimlane som är lämpligast.
@@ -17985,20 +17987,45 @@ var app = (function () {
     		const res = result[2];
 
     		for (const bild of res) {
+    			console.log('bild', bild);
     			let index = 0; // sök fram index för minsta kolumnen
 
     			for (const j in range(COLS)) {
     				if (cols[j] < cols[index]) index = j;
     			}
 
-    			bild[6] = GAP + WIDTH * index; // x
-    			bild[7] = cols[index]; // y
-    			cols[index] += Math.round(WIDTH * bild[5] / bild[4]) + textHeights; // h
+    			bild[6 - 1] = GAP + WIDTH * index; // x
+    			bild[7 - 1] = cols[index]; // y
+    			cols[index] += Math.round(WIDTH * bild[5 - 1] / bild[4 - 1]) + textHeights; // h
+    			console.log('bild', bild);
     		}
     	}
 
+    	function getPath(arr, dir = "small") {
+    		const arr2 = lodash.clone(arr);
+    		arr2[1] = arr2[1].slice(11); // datum bort
+    		if (dir.length > 0) arr2.splice(arr2.length - 1, 0, dir);
+    		return arr2.join("\\");
+    	}
+
+    	function prettyFilename(arr) {
+    		// console.log('prettyFilename',_.last(arr))
+    		let s = lodash.last(arr);
+
+    		s = s.replace('.jpg', '');
+    		s = s.replace(/Klass_./i, '');
+    		s = s.replace(/\d\d\d\d-\d\d-\d\d-X-\d/, '');
+    		s = s.replace(/\d\d\d\d-\d\d-\d\d-\d/, '');
+    		s = s.replace(/\d\d\d\d-\d\d-\d\d/, '');
+    		s = s.replace(/Vy-/g, '');
+    		s = s.replaceAll(/_/ig, ' ');
+    		s = s.replaceAll('KSK-JGP', '');
+    		s = s.replaceAll('Minior-Lag-DM', ''); // kan tas från tournament
+    		return s;
+    	}
+
     	function visa(event) {
-    		$$invalidate(2, bigfile = event.target.src.replace('small', 'big'));
+    		$$invalidate(2, bigfile = event.target.src.replace('small', ''));
     	}
 
     	function göm(event) {
@@ -18021,20 +18048,23 @@ var app = (function () {
     		SCROLLBAR,
     		WIDTH,
     		GAP,
+    		ALFABET,
     		dirs,
+    		trippel,
     		range,
     		bigfile,
     		sokruta,
     		assert,
-    		reportWindowSize,
+    		resize,
     		spaceShip,
     		comp,
     		comp2,
     		search,
+    		recursiveSearch,
     		placera,
-    		tournament,
-    		filename,
-    		pretty,
+    		getPath,
+    		prettyFilename,
+    		prettyPath,
     		visa,
     		göm,
     		COLS,
@@ -18042,6 +18072,7 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
+    		if ('trippel' in $$props) trippel = $$props.trippel;
     		if ('bigfile' in $$props) $$invalidate(2, bigfile = $$props.bigfile);
     		if ('sokruta' in $$props) $$invalidate(0, sokruta = $$props.sokruta);
     		if ('COLS' in $$props) COLS = $$props.COLS;
@@ -18054,8 +18085,7 @@ var app = (function () {
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*sokruta*/ 1) {
-    			//let result = search(sokruta)
-    			$$invalidate(1, result = search(sokruta)); // VIKTIG!
+    			$$invalidate(1, result = search(data, sokruta));
     		}
 
     		if ($$self.$$.dirty & /*result*/ 2) {
@@ -18064,7 +18094,17 @@ var app = (function () {
     	};
 
     	COLS = Math.floor((innerWidth - SCROLLBAR - GAP) / WIDTH);
-    	return [sokruta, result, bigfile, visa, göm, input_input_handler];
+
+    	return [
+    		sokruta,
+    		result,
+    		bigfile,
+    		getPath,
+    		prettyFilename,
+    		visa,
+    		göm,
+    		input_input_handler
+    	];
     }
 
     class App extends SvelteComponentDev {
