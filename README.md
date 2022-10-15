@@ -53,3 +53,67 @@ Filer har *extension* .jpg och .js, övriga är kataloger.
 * Thumbnail: 25 kbyte (t ex 432x300) (1% av högupplöst bild)
 * Databas per bild: 75 byte (filnamn + överordnade katalognamn) (35 ppm av högupplöst bild)
 * Databas för 50k bilder: 4 Mbyte
+
+### Sökning
+
+Sökning genomförs genom att fylla i sökrutan. Dessa ord, avgränsade av blanktecken, matchas mot texterna i kataloger och filnamn. De kombineras automatiskt med OCH och ELLER. Underscore, _, kan användas för att binda ihop ord, t ex Numa_Karlsson, för att slippa en mängd falska Karlsson. (Falska Numor lär det vara mindre risk för).
+
+Sökning görs enbart i de kataloger som framgår av strukturen. Vill man söka på allt, klickar man först på Home. Vill man avgränsa sig till 2022, klickar man först på den katalogen. Vill man enbart söka på "Schack-SM", oavsett år, skriver man "Schack-SM" i sökrutan.
+Sökningen kräver att man anger rätt VERSALER och gemener, t ex ger varken "KARLSSON" eller "karlsson" någon träff, däremot "Karlsson".
+De ord man anger man anger vara delord, även enstaka tecken, och de kan stå var som helst i orden. T ex kommer "sson" att matcha ett antal Karlsson och Nilsson.
+
+### Knappar
+
+#### Horisontala Navigeringsknappar
+Dessa utgörs av Home, 2022 osv. Man hoppar till en katalog närmare *roten* (Home).
+
+#### Vertikala Katalogknappar och Filknappar
+Dessa utgörs av 2022, 2021 osv. Man hoppar till en katalog närmare *löven* (bilderna)
+
+#### Prev (Not implemented)
+I storbildsläget visas föregående bild.
+
+#### Next (Not implemented)
+I storbildsläget visas nästa bild.
+
+#### Play/Pause (Not implemented)
+Markerade bilder visas i ett evigt bildspel.
+
+#### Result (Not implemented)
+För de turneringar där man angett Turneringsnummer, kan man klicka på denna knapp och se resultatsidan direkt.
+
+#### Download (Not implemented)
+De bilder man markerat laddas ner till klientens Download-katalog.
+
+#### Share (Not implemented)
+Aktuell avgränsning, dvs både strukturellt och med sökord, kan hämtas på klippbordet som en [URL](https://en.wikipedia.org/wiki/URL).
+
+#### All (Not implemented)
+Alla bilder markeras.
+
+#### None (Not implemented)
+Alla markeringar tas bort.
+
+### Vad innebär ABC?
+
+* Sökningen visar bilderna med flest träffar först
+* I andra hand prioriteras ord tidigt i söksträngen högre än senare ord
+* T ex visar sökningen "A B" bilder i denna ordning
+	* AB = Båda orden är med
+	* A  = Endast första ordet, A, är med
+	* B  = Endast sista ordet, B, är med
+* AB:2 A:1 B:3 innebär att endast två bilder innehåller båda orden.
+* Totalt har 6 bilder hittats, varav fyra med enbart A eller B.
+
+Sökningen "A B C" visar träffarna i denna ordning:
+```
+ABC = Vitt
+AB  = Gult
+AC  = Magenta
+BC  = Cyan
+A   = Rött
+B   = Grönt
+C   = Blått
+Ingen träff = Svart
+```
+![RGB](RGB.PNG)

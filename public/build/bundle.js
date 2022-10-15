@@ -17539,14 +17539,14 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (221:26) 
+    // (231:26) 
     function create_if_block_6(ctx) {
     	let div;
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			add_location(div, file, 221, 1, 5635);
+    			add_location(div, file, 231, 1, 5815);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -17561,14 +17561,14 @@ var app = (function () {
     		block,
     		id: create_if_block_6.name,
     		type: "if",
-    		source: "(221:26) ",
+    		source: "(231:26) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (219:23) 
+    // (229:23) 
     function create_if_block_5(ctx) {
     	let img;
     	let img_src_value;
@@ -17580,7 +17580,7 @@ var app = (function () {
     			img = element("img");
     			if (!src_url_equal(img.src, img_src_value = /*bigfile*/ ctx[3])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "X");
-    			add_location(img, file, 219, 1, 5546);
+    			add_location(img, file, 229, 1, 5726);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -17610,28 +17610,16 @@ var app = (function () {
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(219:23) ",
+    		source: "(229:23) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (204:25) 
+    // (218:25) 
     function create_if_block_4(ctx) {
-    	let input;
-    	let t0;
-    	let div0;
-    	let t1_value = /*result*/ ctx[1][0] + "";
-    	let t1;
-    	let t2;
-    	let div1;
-    	let t3_value = /*result*/ ctx[1][1] + "";
-    	let t3;
-    	let t4;
     	let each_1_anchor;
-    	let mounted;
-    	let dispose;
     	let each_value_2 = /*result*/ ctx[1][2];
     	validate_each_argument(each_value_2);
     	let each_blocks = [];
@@ -17642,56 +17630,20 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			input = element("input");
-    			t0 = space();
-    			div0 = element("div");
-    			t1 = text(t1_value);
-    			t2 = space();
-    			div1 = element("div");
-    			t3 = text(t3_value);
-    			t4 = space();
-
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
     			each_1_anchor = empty();
-    			attr_dev(input, "placeholder", "Sök");
-    			set_style(input, "width", "100%");
-    			add_location(input, file, 205, 1, 5000);
-    			add_location(div0, file, 206, 1, 5067);
-    			add_location(div1, file, 207, 1, 5091);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, input, anchor);
-    			set_input_value(input, /*sokruta*/ ctx[0]);
-    			insert_dev(target, t0, anchor);
-    			insert_dev(target, div0, anchor);
-    			append_dev(div0, t1);
-    			insert_dev(target, t2, anchor);
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, t3);
-    			insert_dev(target, t4, anchor);
-
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(target, anchor);
     			}
 
     			insert_dev(target, each_1_anchor, anchor);
-
-    			if (!mounted) {
-    				dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[15]);
-    				mounted = true;
-    			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*sokruta*/ 1 && input.value !== /*sokruta*/ ctx[0]) {
-    				set_input_value(input, /*sokruta*/ ctx[0]);
-    			}
-
-    			if (dirty[0] & /*result*/ 2 && t1_value !== (t1_value = /*result*/ ctx[1][0] + "")) set_data_dev(t1, t1_value);
-    			if (dirty[0] & /*result*/ 2 && t3_value !== (t3_value = /*result*/ ctx[1][1] + "")) set_data_dev(t3, t3_value);
-
     			if (dirty[0] & /*result, prettyFilename, getPath, visa*/ 450) {
     				each_value_2 = /*result*/ ctx[1][2];
     				validate_each_argument(each_value_2);
@@ -17717,16 +17669,8 @@ var app = (function () {
     			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(input);
-    			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(div0);
-    			if (detaching) detach_dev(t2);
-    			if (detaching) detach_dev(div1);
-    			if (detaching) detach_dev(t4);
     			destroy_each(each_blocks, detaching);
     			if (detaching) detach_dev(each_1_anchor);
-    			mounted = false;
-    			dispose();
     		}
     	};
 
@@ -17734,14 +17678,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(204:25) ",
+    		source: "(218:25) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (177:0) {#if state == INITIAL}
+    // (191:0) {#if state == INITIAL}
     function create_if_block(ctx) {
     	let div;
     	let t;
@@ -17777,7 +17721,7 @@ var app = (function () {
     			if_block.c();
     			if_block_anchor = empty();
     			set_style(div, "height", "50px");
-    			add_location(div, file, 178, 1, 4426);
+    			add_location(div, file, 192, 1, 4722);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -17840,14 +17784,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(177:0) {#if state == INITIAL}",
+    		source: "(191:0) {#if state == INITIAL}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (210:1) {#each result[2] as {ignore,letters,path,filename,ignore,x,y}}
+    // (220:1) {#each result[2] as {ignore,letters,path,filename,ignore,x,y}}
     function create_each_block_2(ctx) {
     	let div3;
     	let img;
@@ -17887,18 +17831,18 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[6](/*path*/ ctx[4], "small"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "width", WIDTH - GAP);
     			attr_dev(img, "alt", "small");
-    			add_location(img, file, 211, 3, 5252);
+    			add_location(img, file, 221, 3, 5432);
     			attr_dev(div0, "class", "info");
-    			add_location(div0, file, 212, 3, 5354);
+    			add_location(div0, file, 222, 3, 5534);
     			attr_dev(div1, "class", "info");
-    			add_location(div1, file, 213, 3, 5404);
+    			add_location(div1, file, 223, 3, 5584);
     			attr_dev(div2, "class", "info");
-    			add_location(div2, file, 214, 3, 5450);
+    			add_location(div2, file, 224, 3, 5630);
     			attr_dev(div3, "class", "item");
     			set_style(div3, "position", "absolute");
     			set_style(div3, "left", /*x*/ ctx[33] + "px");
     			set_style(div3, "top", /*y*/ ctx[34] + "px");
-    			add_location(div3, file, 210, 2, 5181);
+    			add_location(div3, file, 220, 2, 5361);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -17952,14 +17896,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(210:1) {#each result[2] as {ignore,letters,path,filename,ignore,x,y}}",
+    		source: "(220:1) {#each result[2] as {ignore,letters,path,filename,ignore,x,y}}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (183:3) {:else}
+    // (197:3) {:else}
     function create_else_block_2(ctx) {
     	let button;
     	let t_value = /*key*/ ctx[25] + "";
@@ -17968,14 +17912,14 @@ var app = (function () {
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[12](/*key*/ ctx[25]);
+    		return /*click_handler*/ ctx[13](/*key*/ ctx[25]);
     	}
 
     	const block = {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			add_location(button, file, 183, 4, 4531);
+    			add_location(button, file, 197, 4, 4827);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -18001,14 +17945,14 @@ var app = (function () {
     		block,
     		id: create_else_block_2.name,
     		type: "else",
-    		source: "(183:3) {:else}",
+    		source: "(197:3) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (181:3) {#if key == _.last(stack)}
+    // (195:3) {#if key == _.last(stack)}
     function create_if_block_3(ctx) {
     	let t_value = /*key*/ ctx[25] + "";
     	let t;
@@ -18032,14 +17976,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(181:3) {#if key == _.last(stack)}",
+    		source: "(195:3) {#if key == _.last(stack)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (180:2) {#each stack as key }
+    // (194:2) {#each stack as key }
     function create_each_block_1(ctx) {
     	let show_if;
     	let t;
@@ -18086,14 +18030,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(180:2) {#each stack as key }",
+    		source: "(194:2) {#each stack as key }",
     		ctx
     	});
 
     	return block;
     }
 
-    // (192:1) {:else}
+    // (206:1) {:else}
     function create_else_block(ctx) {
     	let each_1_anchor;
     	let each_value = lodash.keys(lodash.last(/*path*/ ctx[4]));
@@ -18154,14 +18098,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(192:1) {:else}",
+    		source: "(206:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (190:1) {#if _.last(stack).includes('.jpg')}
+    // (204:1) {#if _.last(stack).includes('.jpg')}
     function create_if_block_1(ctx) {
     	let img;
     	let img_src_value;
@@ -18171,7 +18115,7 @@ var app = (function () {
     			img = element("img");
     			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[6](/*stack*/ ctx[2].slice(1), ""))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "big");
-    			add_location(img, file, 190, 2, 4660);
+    			add_location(img, file, 204, 2, 4956);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -18190,14 +18134,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(190:1) {#if _.last(stack).includes('.jpg')}",
+    		source: "(204:1) {#if _.last(stack).includes('.jpg')}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (197:4) {:else}
+    // (211:4) {:else}
     function create_else_block_1(ctx) {
     	let button;
     	let t_value = /*key*/ ctx[25] + "";
@@ -18206,14 +18150,14 @@ var app = (function () {
     	let dispose;
 
     	function click_handler_2() {
-    		return /*click_handler_2*/ ctx[14](/*key*/ ctx[25]);
+    		return /*click_handler_2*/ ctx[15](/*key*/ ctx[25]);
     	}
 
     	const block = {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			add_location(button, file, 197, 5, 4882);
+    			add_location(button, file, 211, 5, 5178);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -18239,14 +18183,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(197:4) {:else}",
+    		source: "(211:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (195:4) {#if _.isNumber(key)}
+    // (209:4) {#if _.isNumber(key)}
     function create_if_block_2(ctx) {
     	let button;
     	let t_value = lodash.last(/*path*/ ctx[4])[/*key*/ ctx[25]] + "";
@@ -18255,14 +18199,14 @@ var app = (function () {
     	let dispose;
 
     	function click_handler_1() {
-    		return /*click_handler_1*/ ctx[13](/*key*/ ctx[25]);
+    		return /*click_handler_1*/ ctx[14](/*key*/ ctx[25]);
     	}
 
     	const block = {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			add_location(button, file, 195, 5, 4799);
+    			add_location(button, file, 209, 5, 5095);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -18288,14 +18232,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(195:4) {#if _.isNumber(key)}",
+    		source: "(209:4) {#if _.isNumber(key)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (193:2) {#each _.keys(_.last(path)) as key }
+    // (207:2) {#each _.keys(_.last(path)) as key }
     function create_each_block(ctx) {
     	let div;
     	let show_if;
@@ -18316,7 +18260,7 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			t = space();
-    			add_location(div, file, 193, 3, 4762);
+    			add_location(div, file, 207, 3, 5058);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -18346,7 +18290,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(193:2) {#each _.keys(_.last(path)) as key }",
+    		source: "(207:2) {#each _.keys(_.last(path)) as key }",
     		ctx
     	});
 
@@ -18354,7 +18298,34 @@ var app = (function () {
     }
 
     function create_fragment(ctx) {
+    	let div;
+    	let input;
+    	let t0;
+    	let button0;
+    	let t2;
+    	let button1;
+    	let t4;
+    	let button2;
+    	let t6;
+    	let button3;
+    	let t8;
+    	let t9_value = /*result*/ ctx[1][0] + "";
+    	let t9;
+    	let t10;
+    	let button4;
+    	let t12;
+    	let button5;
+    	let t14;
+    	let t15_value = /*result*/ ctx[1][1] + "";
+    	let t15;
+    	let t16;
+    	let button6;
+    	let t18;
+    	let button7;
+    	let t20;
     	let if_block_anchor;
+    	let mounted;
+    	let dispose;
 
     	function select_block_type(ctx, dirty) {
     		if (/*state*/ ctx[5] == INITIAL) return create_if_block;
@@ -18368,27 +18339,110 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			div = element("div");
+    			input = element("input");
+    			t0 = space();
+    			button0 = element("button");
+    			button0.textContent = "All";
+    			t2 = space();
+    			button1 = element("button");
+    			button1.textContent = "None";
+    			t4 = space();
+    			button2 = element("button");
+    			button2.textContent = "Download";
+    			t6 = space();
+    			button3 = element("button");
+    			button3.textContent = "Share";
+    			t8 = space();
+    			t9 = text(t9_value);
+    			t10 = space();
+    			button4 = element("button");
+    			button4.textContent = "Prev";
+    			t12 = space();
+    			button5 = element("button");
+    			button5.textContent = "Next";
+    			t14 = space();
+    			t15 = text(t15_value);
+    			t16 = space();
+    			button6 = element("button");
+    			button6.textContent = "Play";
+    			t18 = space();
+    			button7 = element("button");
+    			button7.textContent = "Result";
+    			t20 = space();
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
+    			attr_dev(input, "placeholder", "Sök");
+    			set_style(input, "width", "50%");
+    			add_location(input, file, 177, 1, 4408);
+    			add_location(button0, file, 178, 1, 4474);
+    			add_location(button1, file, 179, 1, 4496);
+    			add_location(button2, file, 180, 1, 4519);
+    			add_location(button3, file, 181, 1, 4546);
+    			add_location(button4, file, 183, 1, 4583);
+    			add_location(button5, file, 184, 1, 4606);
+    			add_location(button6, file, 186, 1, 4642);
+    			add_location(button7, file, 187, 1, 4665);
+    			add_location(div, file, 176, 0, 4401);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, input);
+    			set_input_value(input, /*sokruta*/ ctx[0]);
+    			append_dev(div, t0);
+    			append_dev(div, button0);
+    			append_dev(div, t2);
+    			append_dev(div, button1);
+    			append_dev(div, t4);
+    			append_dev(div, button2);
+    			append_dev(div, t6);
+    			append_dev(div, button3);
+    			append_dev(div, t8);
+    			append_dev(div, t9);
+    			append_dev(div, t10);
+    			append_dev(div, button4);
+    			append_dev(div, t12);
+    			append_dev(div, button5);
+    			append_dev(div, t14);
+    			append_dev(div, t15);
+    			append_dev(div, t16);
+    			append_dev(div, button6);
+    			append_dev(div, t18);
+    			append_dev(div, button7);
+    			insert_dev(target, t20, anchor);
     			if (if_block) if_block.m(target, anchor);
     			insert_dev(target, if_block_anchor, anchor);
+
+    			if (!mounted) {
+    				dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[12]);
+    				mounted = true;
+    			}
     		},
     		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*sokruta*/ 1 && input.value !== /*sokruta*/ ctx[0]) {
+    				set_input_value(input, /*sokruta*/ ctx[0]);
+    			}
+
+    			if (dirty[0] & /*result*/ 2 && t9_value !== (t9_value = /*result*/ ctx[1][0] + "")) set_data_dev(t9, t9_value);
+    			if (dirty[0] & /*result*/ 2 && t15_value !== (t15_value = /*result*/ ctx[1][1] + "")) set_data_dev(t15, t15_value);
     			if (if_block) if_block.p(ctx, dirty);
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(t20);
+
     			if (if_block) {
     				if_block.d(detaching);
     			}
 
     			if (detaching) detach_dev(if_block_anchor);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
@@ -18602,14 +18656,14 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	const click_handler = key => pop(key);
-    	const click_handler_1 = key => push(key);
-    	const click_handler_2 = key => push(key);
-
     	function input_input_handler() {
     		sokruta = this.value;
     		$$invalidate(0, sokruta);
     	}
+
+    	const click_handler = key => pop(key);
+    	const click_handler_1 = key => push(key);
+    	const click_handler_2 = key => push(key);
 
     	$$self.$capture_state = () => ({
     		_: lodash,
@@ -18686,10 +18740,10 @@ var app = (function () {
     		göm,
     		push,
     		pop,
+    		input_input_handler,
     		click_handler,
     		click_handler_1,
-    		click_handler_2,
-    		input_input_handler
+    		click_handler_2
     	];
     }
 

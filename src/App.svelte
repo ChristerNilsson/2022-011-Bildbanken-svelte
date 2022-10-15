@@ -174,6 +174,20 @@
 
 </script>
 
+<div>
+	<input bind:value={sokruta} placeholder="Sök" style='width:50%'>
+	<button>All</button>
+	<button>None</button>
+	<button>Download</button>
+	<button>Share</button>
+	{result[0]}
+	<button>Prev</button>
+	<button>Next</button>
+	{result[1]}
+	<button>Play</button>
+	<button>Result</button>
+</div>
+
 {#if state == INITIAL}
 
 	<div style="height:50px">
@@ -202,10 +216,6 @@
 	{/if}
 
 {:else if state == SMALL}
-
-	<input bind:value={sokruta} placeholder="Sök" style='width:100%'>
-	<div>{result[0]}</div>
-	<div>{result[1]}</div>
 
 	{#each result[2] as {ignore,letters,path,filename,ignore,x,y}}
 		<div class="item" style="position:absolute; left:{x}px; top:{y}px">
