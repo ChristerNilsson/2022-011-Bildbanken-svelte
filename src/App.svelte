@@ -1,3 +1,8 @@
+<!-- 10368
+10369
+https://member.schack.se/ShowTournamentServlet?id=10370
+Minior: 10713 -->
+
 <script>
 	import _ from "lodash"
 
@@ -81,24 +86,23 @@
 	function recursiveSearch (data,words,path=[]) { // words är de sökta orden
 		for (const key in data) {
 			const newPath = path.concat([key])
-			if (Array.isArray(data[key])) {
-				trippel.total += data[key].length
-				for (const [filename,width,height] of data[key]) {
-					const newPath2 = newPath.concat([filename])
-					let s = ''
-					for (const i in range(words.length)) {
-						const word = words[i]
-						if (word == "") continue
-						let found = false
-						for (const p of newPath2) {
-							if (p.includes(word)) found = true
-						}
-						if (found) s += ALFABET[i]
+			if (key.includes('.jpg')) {
+				trippel.total += 1
+				const [width,height] = data[key]
+				const newPath2 = newPath
+				let s = ''
+				for (const i in range(words.length)) {
+					const word = words[i]
+					if (word == "") continue
+					let found = false
+					for (const p of newPath2) {
+						if (p.includes(word)) found = true
 					}
-					if (s.length > 0) {
-						trippel.res.push([-s.length, s, newPath2, width, height])
-						trippel.stat[s] = (trippel.stat[s] || 0) + 1
-					}
+					if (found) s += ALFABET[i]
+				}
+				if (s.length > 0) {
+					trippel.res.push([-s.length, s, newPath2, width, height])
+					trippel.stat[s] = (trippel.stat[s] || 0) + 1
 				}
 			} else {
 				recursiveSearch(data[key], words, newPath)
@@ -116,7 +120,6 @@
 		const textHeights = 75
 		const res = result[2] 
 		for (const bild of res) {
-			// console.log('bild',bild)
 			let index = 0 // sök fram index för minsta kolumnen
 			for (const j in range(COLS)) {
 				if (cols[j] < cols[index]) index = j
@@ -124,7 +127,6 @@
 			bild[6-1] = GAP + WIDTH*index // x
 			bild[7-1] = cols[index]       // y
 			cols[index] += Math.round(WIDTH*bild[5-1]/bild[4-1]) + textHeights // h
-			// console.log('bild',bild)
 		}
 	}
 
@@ -157,14 +159,6 @@
 	function visa(event) {bigfile = event.target.src.replace('small','')}
 	function göm(event) {bigfile = ""}
  
-	function back(event) {
-		if (path.length > 1) {
-			path.pop()
-			path = path
-			stack.pop()
-			stack = stack
-		}
-	}
 	function drillDown(event) {
 		const key = event.srcElement.innerText
 		path.push(_.last(path)[key])
@@ -173,34 +167,35 @@
 		stack = stack
 	}
 
-	function isArray (arr) {
-		return 'length' in arr
+	function pop(key) {
+		while (_.last(stack) != key) {
+			path.pop()
+			path = path
+			stack.pop()
+			stack = stack
+		}
 	}
-	assert(true,isArray([1,2]))
-	assert(false,isArray({a:1}))
+
 </script>
 
 {#if state == INITIAL}
 
-	<div>
-		{stack.join(" ")}
+	<div style="height:50px">
+		{#each stack as key }
+			{#if key == _.last(stack)}
+				{key}
+			{:else}
+				<button on:click={() => pop(key)}>{key}</button>
+			{/if}
+			&nbsp;
+		{/each}
 	</div>
 
-	<div>
-		<button on:click = {back}>Back</button>
-	</div>
-	{path[path.length-1][stack[stack.length-1]]}
-	<!-- {#if _.isArray(_.last(path)[_.last(stack)])}
-		array
-		{#each _.last(path)[_.last(stack)] as {a,b,c}, index }
-			<div>
-				<button>{'B'+index}</button>
-			</div>
-		{/each}
-	{:else} -->
+	{#if _.last(stack).includes('.jpg')}
+		<img src={getPath(stack.slice(1),"")} />
+	{:else}
 		{#each _.keys(_.last(path)) as key }
 			<div>
-				{key}
 				{#if _.isNumber(key)}
 					<button on:click = {drillDown}>{_.last(path)[key]}</button>
 				{:else}
@@ -208,7 +203,7 @@
 				{/if}
 			</div>
 		{/each}
-	<!-- {/if} -->
+	{/if}
 
 {:else if state == SMALL}
 
