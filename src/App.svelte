@@ -1,7 +1,4 @@
-<!-- 10368
-10369
-https://member.schack.se/ShowTournamentServlet?id=10370
-Minior: 10713 -->
+<!-- https://member.schack.se/ShowTournamentServlet?id=10370 -->
 
 <script>
 	import _ from "lodash"
@@ -23,7 +20,7 @@ Minior: 10713 -->
 
 	console.log(data)
 
-	const path = [data] // drillDown
+	const path = [data] // used for navigation
 	const stack = ["Home"]
 	
 	const dirs = data
@@ -110,7 +107,7 @@ Minior: 10713 -->
 		}
 	}
 
-	// Räknar ut vilken swim-lane som är lämpligast.
+	// Räknar ut vilken swimlane som är lämpligast.
 	// Uppdaterar x och y för varje bild
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
 	function placera(result) {
@@ -124,9 +121,9 @@ Minior: 10713 -->
 			for (const j in range(COLS)) {
 				if (cols[j] < cols[index]) index = j
 			}
-			bild[6-1] = GAP + WIDTH*index // x
-			bild[7-1] = cols[index]       // y
-			cols[index] += Math.round(WIDTH*bild[5-1]/bild[4-1]) + textHeights // h
+			bild[5] = GAP + WIDTH*index // x
+			bild[6] = cols[index]       // y
+			cols[index] += Math.round(WIDTH*bild[4]/bild[3]) + textHeights // h/w
 		}
 	}
 
@@ -159,21 +156,20 @@ Minior: 10713 -->
 	function visa(event) {bigfile = event.target.src.replace('small','')}
 	function göm(event) {bigfile = ""}
  
-	function drillDown(event) {
-		const key = event.srcElement.innerText
+	function push(key) {
 		path.push(_.last(path)[key])
-		path = path
 		stack.push(key)
+		path = path
 		stack = stack
 	}
 
 	function pop(key) {
 		while (_.last(stack) != key) {
 			path.pop()
-			path = path
 			stack.pop()
-			stack = stack
 		}
+		path = path
+		stack = stack
 	}
 
 </script>
@@ -185,21 +181,21 @@ Minior: 10713 -->
 			{#if key == _.last(stack)}
 				{key}
 			{:else}
-				<button on:click={() => pop(key)}>{key}</button>
+				<button on:click = {() => pop(key)}>{key}</button>
 			{/if}
 			&nbsp;
 		{/each}
 	</div>
 
 	{#if _.last(stack).includes('.jpg')}
-		<img src={getPath(stack.slice(1),"")} />
+		<img src={getPath(stack.slice(1),"")} alt='big' />
 	{:else}
 		{#each _.keys(_.last(path)) as key }
 			<div>
 				{#if _.isNumber(key)}
-					<button on:click = {drillDown}>{_.last(path)[key]}</button>
+					<button on:click = {() => push(key)}>{_.last(path)[key]}</button>
 				{:else}
-					<button on:click = {drillDown}>{key}</button>
+					<button on:click = {() => push(key)}>{key}</button>
 				{/if}
 			</div>
 		{/each}
@@ -211,19 +207,17 @@ Minior: 10713 -->
 	<div>{result[0]}</div>
 	<div>{result[1]}</div>
 
-	{#each result[2] as item}
-		<div class="item" style="position:absolute; left:{item[6-1]}px; top:{item[7-1]}px">
-			<img src={getPath(item[2],"small")} width={WIDTH-GAP} alt="X" on:click={visa} />
-			<div class="info">{prettyFilename(item[2])}</div>
-			<div class="info">{prettyPath(item[2])}</div>
-			<div class="info">{item[1]} © Lars OA Hedlund</div>
+	{#each result[2] as {ignore,letters,path,filename,ignore,x,y}}
+		<div class="item" style="position:absolute; left:{x}px; top:{y}px">
+			<img src={getPath(path,"small")} width={WIDTH-GAP} alt="small" on:click={visa} on:keydown={visa}/>
+			<div class="info">{prettyFilename(path)}</div>
+			<div class="info">{prettyPath(path)}</div>
+			<div class="info">{letters} © Lars OA Hedlund</div>
 		</div>
 	{/each}
 
 {:else if state == BIG}
-
-<img src={bigfile} alt="X" on:click={göm} />
-
+	<img src={bigfile} alt="X" on:click={göm} on:keydown={göm}/>
 {:else if state == BIGGER}
 	<div></div>
 {/if}
