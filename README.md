@@ -139,3 +139,11 @@ Starta Pythonprogrammet bilder.py. Följande kommer att ske:
 * Cacharna finns pga att det tar cirka 100 ms att skapa en thumbnail.
 * Att skapa om alla cachar tar drygt en timme.
 	* Detta kan framtvingas genom att sätta USE_CACHE = False i bilder.py
+
+### Tidsuppskattningar.
+
+Att söka genom en texten för path + bildtext, tar cirka 4 mikrosekunder.
+Att hämta en bild tar längre tid. Har man sökt fram flera tusen bilder, vill man inte att browsern ska börja ladda hem alla dessa omedelbart.
+Tekniken för att hantera detta benämns *infinite scroll* och bygger på att fånga scroll-händelsen och läsa in några bilder till om bufferten börjar ta slut.
+Två skärmhöjder med bilder är lagom framförhållning för att ligga lite före användaren. Infinite scroll uppfanns av Aza Raskin 2006.
+Just nu läser man in fler och fler bilder. Egentligen bör man kasta bort bilder efterhand som man scrollar neråt, samt läsa in dem på nytt, då användaren scrollar uppåt. Detta är INTE genomfört.

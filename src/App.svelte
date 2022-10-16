@@ -1,6 +1,25 @@
 <!-- https://member.schack.se/ShowTournamentServlet?id=10370 -->
 
 <script>
+
+	////////////////////////////
+
+  let cards = [] // Varje bild tillsammans med tre rader text utgör ett Card.
+	let y = 0 // Anger var scrollern befinner sig just nu.
+	let ymax = 0 // Anger var senast laddade bild befinner sig.
+
+	$: { // infinite scroll
+		// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
+		if (y + 2 * screen.height > ymax) {
+			const n = cards.length
+			cards = cards.concat(result[2].slice(n, n + 20))
+			const latest = _.last(cards)
+			if (n > 0) ymax = latest[4] + latest[6] // y + h
+		}
+	}
+
+	//////////////////////////
+
 	import _ from "lodash"
 
 	const INITIAL = 0
@@ -10,11 +29,10 @@
 
 	let state = INITIAL
 	let count = 0
-	let start = 0
 
 	const SCROLLBAR = 12
 	const WIDTH = 432
-	const GAP = 5
+	const GAP = 2
 	const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
@@ -25,10 +43,12 @@
 	let trippel = {res:[], stat:{}, total:0}
 	const range = _.range
 	let bigfile = ""
-	let sokruta="Numa JGP"
+	let sokruta=""
 	$: result = search(Home,sokruta)
 	
-	$: placera(result)
+	$: { placera(result)
+		result = result
+	}
 
 	function assert(a,b) {
 		if (!_.isEqual(a,b)) console.log("Assert failed",a,'!=',b)
@@ -39,8 +59,8 @@
 		placera(result)
 	}
 
-	window.onresize = resize;
-	
+	window.onresize = resize
+
 	function spaceShip (a,b) {
 		if (a < b) return -1
 		else if (a == b) return 0
@@ -59,7 +79,7 @@
 	assert(comp2("BC","A"),-1)
 
 	function search(Home,words,path="Home") {
-		start = new Date()
+		cards = []
 		count = 0
 		words = words.split(" ")
 		trippel = {res:[], stat:{}, total:0}
@@ -76,33 +96,29 @@
 			st.push(`${key}:${trippel.stat[key]}`) 
 			antal += trippel.stat[key]
 		}
-		start = new Date()-start
 		return [st.join(' '),`${antal} av ${trippel.total} bilder`,trippel.res]
 	}
 
 	// nu rekursiv pga varierande djup i trädet
-	function recursiveSearch (Home,words,path="Home") { // words är de sökta orden
-		for (const key in Home) {
+	function recursiveSearch (node,words,path="Home") { // node är nuvarande katalog. words är de sökta orden
+		for (const key in node) {
 			const newPath = path + "\\" + key
 			if (key.includes('.jpg')) {
 				trippel.total += 1
 				let s = ''
 				for (const i in range(words.length)) {
 					const word = words[i]
-					if (word.length <= 1) continue
+					if (word.length == 0) continue
 					count += 1
-					if (newPath.includes(word)) {
-						s += ALFABET[i]
-						//break
-					}
+					if (newPath.includes(word)) s += ALFABET[i]
 				}
 				if (s.length > 0) {
-					const [width,height] = Home[key]
+					const [width,height] = node[key]
 					trippel.res.push([-s.length, s, newPath, width, height])
 					trippel.stat[s] = (trippel.stat[s] || 0) + 1
 				}
 			} else {
-				recursiveSearch(Home[key], words, newPath)
+				recursiveSearch(node[key], words, newPath)
 			}
 		}
 	}
@@ -115,14 +131,16 @@
 		const cols = []
 		for (const i in range(COLS)) cols.push(100)
 		const textHeights = 75-15
-		const res = result[2] 
-		for (const bild of res) {
+		const res = result[2]
+		for (const i in res) {
+			const bild = res[i]
 			let index = 0 // sök fram index för minsta kolumnen
 			for (const j in range(COLS)) {
 				if (cols[j] < cols[index]) index = j
 			}
 			bild[5] = GAP + WIDTH*index // x
 			bild[6] = cols[index]       // y
+			bild[7] = i
 			cols[index] += Math.round(WIDTH*bild[4]/bild[3]) + textHeights // h/w
 		}
 	}
@@ -134,7 +152,8 @@
 	}
 
 	function prettyFilename(arr) {
-		console.log('prettyFilename')
+		// console.log('prettyFilename',arr)
+		// arr = arr.split("\\")
 		let i = arr.lastIndexOf('\\')
 		let s = arr.slice(i+1)
 		s = s.replace('.jpg','')
@@ -152,6 +171,7 @@
 		s = s.replace('Vy-veckans_bild_','')
 		s = s.replace('Vy-veckans-bild_','')
 		s = s.replace('Vy-Veckans-Bild _','')
+		s = s.replace('Vy-','')
 
 		s = s.replace('schakläger','schackläger')
 		s = s.replace('sgnerer','signerar')
@@ -164,7 +184,7 @@
 	}
 	function prettyPath(arr) {
 		arr = arr.split('\\')
-		arr = arr.slice(1,arr.length-1)
+		arr = arr.slice(2,arr.length-1)
 		const s = arr.join(" ")
 		return s.replaceAll('_', ' ')
 	}
@@ -189,23 +209,15 @@
 
 </script>
 
+<svelte:window bind:scrollY={y} />
+
 <div>
 	<input bind:value={sokruta} placeholder="Sök" style='width:50%'>
 	{result[0]}
 	{result[1]}
-	{start}
 </div>
 
 {#if sokruta == ""}
-
-	<!-- <button>All</button>
-	<button>None</button>
-	<button>Download</button>
-	<button>Share</button>
-	<button>Prev</button>
-	<button>Next</button>
-	<button>Play</button>
-	<button>Result</button> -->
 
 	<div style="height:50px">
 		{#each stack as key }
@@ -234,14 +246,34 @@
 
 {:else}
 
-	{#each result[2].slice(0,100) as [ignore,letters,path,w,h,x,y]}
-		<div class="item" style="position:absolute; left:{x}px; top:{y}px">
+	<div>
+		{#each cards as card}
+			<div class="card" style="position:absolute; left:{card[5]}px; top:{card[6]}px">
+				<img src={getPath(card[2],"small")} width={WIDTH-GAP} alt="small" on:click={visa} on:keydown={visa}/>
+				<div class="info">{card[7] + ' ' + prettyFilename(card[2])}</div>
+				<div class="info">{prettyPath(card[2])}</div>
+				<div class="info">{card[1]} © Lars OA Hedlund</div>
+			</div>
+		{/each}
+	</div>
+
+	<!-- <button>All</button>
+	<button>None</button>
+	<button>Download</button>
+	<button>Share</button>
+	<button>Prev</button>
+	<button>Next</button>
+	<button>Play</button>
+	<button>Result</button> -->
+
+	<!-- {#each result[2].slice(0,500) as [ignore,letters,path,w,h,x,y]}
+		<div class="card" style="position:absolute; left:{x}px; top:{y}px">
 			<img src={getPath(path,"small")} width={WIDTH-GAP} alt="small" on:click={visa} on:keydown={visa}/>
 			<div class="info">{prettyFilename(path)}</div>
 			<div class="info">{prettyPath(path)}</div>
 			<div class="info">{letters} © Lars OA Hedlund</div>
 		</div>
-	{/each}
+	{/each} -->
 {/if}
 
 <!-- {:else if state == BIG}
@@ -252,5 +284,11 @@
 <style>
 	div {
 		font-size: 0.9em;
+	}
+	.card {
+		font-size: 0.9em;
+    width: 432px; 
+    max-height: 800px;
+    /* overflow-x: scroll; */
 	}
 </style>
