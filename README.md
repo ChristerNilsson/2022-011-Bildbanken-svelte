@@ -8,7 +8,7 @@ Denna fil, som egentligen är en [JSON](https://en.wikipedia.org/wiki/JSON)-fil,
 Att krympa bilder är en långsam process, därför cachas lokala bilder.js i varje katalog *small*. 
 Denna katalog innehåller även *thumbnails*, [wikipedia](https://en.wikipedia.org/wiki/Thumbnail).
 
-Pythonprogrammet underhåller denna fil.
+Pythonprogrammet bilder.py underhåller denna fil.
 
 ### Format
 
@@ -40,7 +40,7 @@ database
 	2021
 	2020
 ```
-Filer har *extension* .jpg och .js, övriga är kataloger.
+Filer har *extension* [.jpg](https://en.wikipedia.org/wiki/JPEG) och .js, övriga är kataloger.
 
 * Filen *bilder.js* avspeglar katalogstrukturen.
 * Den är uppbyggd mha *{}*, även kallad [object](https://www.w3schools.com/js/js_objects.asp) i Javascript och [dict](https://python.fandom.com/wiki/Dictionaries) i Python.
@@ -49,6 +49,7 @@ Filer har *extension* .jpg och .js, övriga är kataloger.
 * bilder.js innehåller även *width* och *height* för varje thumbnail. Höjden används för utplacering i rätt [swimlane](https://en.wikipedia.org/wiki/Swimlane), bredderna är samma för alla thumbnails.
 
 ### Ungefärliga filstorlekar
+
 * Högupplöst bild: 2 Mbyte (t ex 2048x1365)
 * Thumbnail: 25 kbyte (t ex 432x300) (1% av högupplöst bild)
 * Databas per bild: 75 byte (filnamn + överordnade katalognamn) (35 ppm av högupplöst bild)
@@ -117,3 +118,24 @@ C   = Blått
 Ingen träff = Svart
 ```
 ![RGB](RGB.PNG)
+
+### bilder.py
+
+Så här uppdaterar man databasen med nya bildsamlingar.
+
+* Skapa de kataloger som behövs. Namnge korrekt. Inga mellanslag.
+	* public
+		* Home
+			* 2022
+				* 2022-09-17_Kristallens_JGP
+					* Klass_AB_T12345
+						* 7.Numa_Karlsson_klass_D_2022-09-17.jpg
+
+Starta Pythonprogrammet bilder.py. Följande kommer att ske:
+* small-katalogerna skapas. Dessa ligger i samma katalog som de stora .jpg-filerna.
+* Thumbnails skapas och läggs i small-katalogen.
+* Cache av bilder.js (med bredd och höjd för varje bild) läggs i small.
+* Alla bilder.js sammanställs till den totala public/Home/bilder.js
+* Cacharna finns pga att det tar cirka 100 ms att skapa en thumbnail.
+* Att skapa om alla cachar tar drygt en timme.
+	* Detta kan framtvingas genom att sätta USE_CACHE = False i bilder.py

@@ -8,8 +8,9 @@
 	const BIG = 3
 	const BIGGER = 4
 
-
 	let state = INITIAL
+	let count = 0
+	let start = 0
 
 	const SCROLLBAR = 12
 	const WIDTH = 432
@@ -18,17 +19,14 @@
 
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
 
-	console.log(data)
-
-	const path = [data] // used for navigation
+	const path  = [Home] // used for navigation
 	const stack = ["Home"]
 	
-	const dirs = data
 	let trippel = {res:[], stat:{}, total:0}
 	const range = _.range
 	let bigfile = ""
-	let sokruta="Numa"
-	$: result = search(data,sokruta)
+	let sokruta="Numa JGP"
+	$: result = search(Home,sokruta)
 	
 	$: placera(result)
 
@@ -60,11 +58,13 @@
 	assert(comp2("B","A"),1)
 	assert(comp2("BC","A"),-1)
 
-	function search(data,words,path=[]) {
+	function search(Home,words,path="Home") {
+		start = new Date()
+		count = 0
 		words = words.split(" ")
 		trippel = {res:[], stat:{}, total:0}
 
-		recursiveSearch(data,words,path)
+		recursiveSearch(Home,words,path)
 
 		trippel.res.sort(comp)
 
@@ -76,33 +76,33 @@
 			st.push(`${key}:${trippel.stat[key]}`) 
 			antal += trippel.stat[key]
 		}
+		start = new Date()-start
 		return [st.join(' '),`${antal} av ${trippel.total} bilder`,trippel.res]
 	}
 
 	// nu rekursiv pga varierande djup i trädet
-	function recursiveSearch (data,words,path=[]) { // words är de sökta orden
-		for (const key in data) {
-			const newPath = path.concat([key])
+	function recursiveSearch (Home,words,path="Home") { // words är de sökta orden
+		for (const key in Home) {
+			const newPath = path + "\\" + key
 			if (key.includes('.jpg')) {
 				trippel.total += 1
-				const [width,height] = data[key]
-				const newPath2 = newPath
 				let s = ''
 				for (const i in range(words.length)) {
 					const word = words[i]
-					if (word == "") continue
-					let found = false
-					for (const p of newPath2) {
-						if (p.includes(word)) found = true
+					if (word.length <= 1) continue
+					count += 1
+					if (newPath.includes(word)) {
+						s += ALFABET[i]
+						//break
 					}
-					if (found) s += ALFABET[i]
 				}
 				if (s.length > 0) {
-					trippel.res.push([-s.length, s, newPath2, width, height])
+					const [width,height] = Home[key]
+					trippel.res.push([-s.length, s, newPath, width, height])
 					trippel.stat[s] = (trippel.stat[s] || 0) + 1
 				}
 			} else {
-				recursiveSearch(data[key], words, newPath)
+				recursiveSearch(Home[key], words, newPath)
 			}
 		}
 	}
@@ -114,7 +114,7 @@
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
 		const cols = []
 		for (const i in range(COLS)) cols.push(100)
-		const textHeights = 75
+		const textHeights = 75-15
 		const res = result[2] 
 		for (const bild of res) {
 			let index = 0 // sök fram index för minsta kolumnen
@@ -128,30 +128,45 @@
 	}
 
 	function getPath(arr,dir="small") {
-		const arr2 = _.clone(arr)
-		arr2[1] = arr2[1].slice(11) // datum bort
-		if (dir.length>0) arr2.splice(arr2.length-1, 0, dir);
-		return arr2.join("\\")
+		arr = arr.split('\\')
+		if (dir.length > 0) arr.splice(arr.length-1, 0, dir);
+		return arr.join("\\")
 	}
 
 	function prettyFilename(arr) {
-		// console.log('prettyFilename',_.last(arr))
-		let s = _.last(arr)
+		console.log('prettyFilename')
+		let i = arr.lastIndexOf('\\')
+		let s = arr.slice(i+1)
 		s = s.replace('.jpg','')
-		s = s.replace(/Klass_./i,'')
-		s = s.replace(/\d\d\d\d-\d\d-\d\d-X-\d/,'')
-		s = s.replace(/\d\d\d\d-\d\d-\d\d-\d/,'')
-		s = s.replace(/\d\d\d\d-\d\d-\d\d/,'')
-		s = s.replace(/Vy-/g,'')
+		// s = s.replace(/Klass_./i,'')
+		// s = s.replace(/\d\d\d\d-\d\d-\d\d-X-\d/,'')
+		// s = s.replace(/\d\d\d\d-\d\d-\d\d-\d/,'')
+		// s = s.replace(/\d\d\d\d-\d\d-\d\d/,'')
+
+		s = s.replace('Vy-Veckans-bild-','')
+		s = s.replace('Vy-Veckans-bild_','')
+		s = s.replace('Vy-Veckans-Bild_','')
+		s = s.replace('Vy-Vexkans_Bild_','')
+		s = s.replace('Vy-Veckans_Bild_','')
+		s = s.replace('Vy-Veckans_bild_','')
+		s = s.replace('Vy-veckans_bild_','')
+		s = s.replace('Vy-veckans-bild_','')
+		s = s.replace('Vy-Veckans-Bild _','')
+
+		s = s.replace('schakläger','schackläger')
+		s = s.replace('sgnerer','signerar')
+		s = s.replace('Salongerrna','Salongerna')
+		
 		s = s.replaceAll(/_/ig,' ')
-		s = s.replaceAll('KSK-JGP','')
-		s = s.replaceAll('Minior-Lag-DM','') // kan tas från tournament
+		// s = s.replaceAll('KSK-JGP','')
+		// s = s.replaceAll('Minior-Lag-DM','') // kan tas från tournament
 		return s
 	}
 	function prettyPath(arr) {
-		arr = arr.slice(1,arr.length-1) 
+		arr = arr.split('\\')
+		arr = arr.slice(1,arr.length-1)
 		const s = arr.join(" ")
-		return s.replaceAll('_', ' ') // .replace('\\',' ')
+		return s.replaceAll('_', ' ')
 	}
 	function visa(event) {bigfile = event.target.src.replace('small','')}
 	function göm(event) {bigfile = ""}
@@ -176,19 +191,21 @@
 
 <div>
 	<input bind:value={sokruta} placeholder="Sök" style='width:50%'>
-	<button>All</button>
+	{result[0]}
+	{result[1]}
+	{start}
+</div>
+
+{#if sokruta == ""}
+
+	<!-- <button>All</button>
 	<button>None</button>
 	<button>Download</button>
 	<button>Share</button>
-	{result[0]}
 	<button>Prev</button>
 	<button>Next</button>
-	{result[1]}
 	<button>Play</button>
-	<button>Result</button>
-</div>
-
-{#if state == INITIAL}
+	<button>Result</button> -->
 
 	<div style="height:50px">
 		{#each stack as key }
@@ -202,7 +219,7 @@
 	</div>
 
 	{#if _.last(stack).includes('.jpg')}
-		<img src={getPath(stack.slice(1),"")} alt='big' />
+		<img src={getPath(stack,"")} alt='big' />
 	{:else}
 		{#each _.keys(_.last(path)) as key }
 			<div>
@@ -215,9 +232,9 @@
 		{/each}
 	{/if}
 
-{:else if state == SMALL}
+{:else}
 
-	{#each result[2] as {ignore,letters,path,filename,ignore,x,y}}
+	{#each result[2].slice(0,100) as [ignore,letters,path,w,h,x,y]}
 		<div class="item" style="position:absolute; left:{x}px; top:{y}px">
 			<img src={getPath(path,"small")} width={WIDTH-GAP} alt="small" on:click={visa} on:keydown={visa}/>
 			<div class="info">{prettyFilename(path)}</div>
@@ -225,9 +242,15 @@
 			<div class="info">{letters} © Lars OA Hedlund</div>
 		</div>
 	{/each}
+{/if}
 
-{:else if state == BIG}
+<!-- {:else if state == BIG}
 	<img src={bigfile} alt="X" on:click={göm} on:keydown={göm}/>
 {:else if state == BIGGER}
-	<div></div>
-{/if}
+	<div></div> -->
+
+<style>
+	div {
+		font-size: 0.9em;
+	}
+</style>
