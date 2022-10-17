@@ -1,5 +1,6 @@
 <script>
 	import _ from "lodash"
+	import Zoom from 'svelte-zoom'
 	export let stack
 	export let path
 	export let getPath

@@ -25,6 +25,7 @@
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "sirv-cli": "^2.0.0",
-    "svelte-infinite-scroll": "^2.0.1"
+    "svelte-infinite-scroll": "^2.0.1",
+    "svelte-zoom": "^1.0.16"
   }
 }

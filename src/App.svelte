@@ -17,21 +17,16 @@
 	}
 
 	let selected = []
+	let zoom = 2
 
 	import _ from "lodash"
 
-	import NavigationDown from "./NavigationDown.svelte"
-	import NavigationUp from "./NavigationUp.svelte"
 	import Card from "./Card.svelte"
 	import Download from "./Download.svelte"
+	import NavigationDown from "./NavigationDown.svelte"
+	import NavigationUp from "./NavigationUp.svelte"
 	import Search from "./Search.svelte"
-	import BiggerPicture from "./BiggerPicture.svelte"
-
-	// const INITIAL = 0
-	// const SMALL = 2
-	// const BIG = 3
-	// const BIGGER = 4
-	// let state = INITIAL
+	import Zoom from 'svelte-zoom'
 
 	let count = 0
 	
@@ -48,7 +43,7 @@
 	
 	let trippel = {res:[], stat:{}, total:0}
 	let bigfile = ""
-	let sokruta = "Numa"
+	let sokruta = ""
 	let result = ["","",[]]
 
 	$: console.log('sokruta',sokruta)
@@ -178,22 +173,20 @@
 		}
 	}
 
-	function göm(event) {
-		console.log('göm')
-		bigfile = ""
-	}
+	function göm(event) {bigfile = ""}
 
 </script>
 
-<svelte:window bind:scrollY={y} on:click={göm} />
+<svelte:window bind:scrollY={y} />
 
 {#if bigfile != ""}
-	<BiggerPicture bind:bigfile />
+	<button on:click={göm}>Exit</button>
+	<Zoom src={bigfile} alt="zoom" bind:this={zoom} />
 {:else}
 	<Search bind:sokruta bind:result />
 	{#if sokruta == ""}
 		<NavigationUp {stack}{pop} />
-		<NavigationDown {stack}{path}{getPath}{push} />
+		<NavigationDown {stack}{path}{getPath}{push} bind:bigfile />
 	{:else}
 		<Download bind:selected {result} />
 		<div>
