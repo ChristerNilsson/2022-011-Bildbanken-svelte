@@ -1,8 +1,4 @@
-<!-- https://member.schack.se/ShowTournamentServlet?id=10370 -->
-
 <script>
-
-	////////////////////////////
 
   let cards = [] // Varje bild tillsammans med tre rader text utgör ett Card.
 	let y = 0 // Anger var scrollern befinner sig just nu.
@@ -18,9 +14,12 @@
 		}
 	}
 
-	//////////////////////////
+	let selected = []
 
 	import _ from "lodash"
+	import JSZip from "jszip"
+	import axios from "axios"
+	import { saveAs } from "file-saver"
 
 	const INITIAL = 0
 	const SMALL = 2
@@ -29,7 +28,7 @@
 
 	let state = INITIAL
 	let count = 0
-
+	
 	const SCROLLBAR = 12
 	const WIDTH = 432
 	const GAP = 2
@@ -46,7 +45,8 @@
 	let sokruta=""
 	$: result = search(Home,sokruta)
 	
-	$: { placera(result)
+	$: { 
+		placera(result)
 		result = result
 	}
 
@@ -99,7 +99,7 @@
 		return [st.join(' '),`${antal} av ${trippel.total} bilder`,trippel.res]
 	}
 
-	// nu rekursiv pga varierande djup i trädet
+	// rekursiv pga varierande djup i trädet
 	function recursiveSearch (node,words,path="Home") { // node är nuvarande katalog. words är de sökta orden
 		for (const key in node) {
 			const newPath = path + "\\" + key
@@ -114,7 +114,7 @@
 				}
 				if (s.length > 0) {
 					const [width,height] = node[key]
-					trippel.res.push([-s.length, s, newPath, width, height])
+					trippel.res.push([-s.length, s, newPath, width, height, 0, 0, 0, false])
 					trippel.stat[s] = (trippel.stat[s] || 0) + 1
 				}
 			} else {
@@ -141,22 +141,22 @@
 			bild[5] = GAP + WIDTH*index // x
 			bild[6] = cols[index]       // y
 			bild[7] = i
+			bild[8] = true // kryssruta
 			cols[index] += Math.round(WIDTH*bild[4]/bild[3]) + textHeights // h/w
 		}
 	}
 
 	function getPath(arr,dir="small") {
-		arr = arr.split('\\')
 		if (dir.length > 0) arr.splice(arr.length-1, 0, dir);
 		return arr.join("\\")
 	}
 
-	function prettyFilename(arr) {
-		// console.log('prettyFilename',arr)
-		// arr = arr.split("\\")
-		let i = arr.lastIndexOf('\\')
-		let s = arr.slice(i+1)
+	function prettyFilename(path) { // Tag bort eventuellt M-nummer
+		let i = path.lastIndexOf('\\')
+		let s = path.slice(i+1)
 		s = s.replace('.jpg','')
+		s = s.replace(/_M\d+/,'')
+
 		// s = s.replace(/Klass_./i,'')
 		// s = s.replace(/\d\d\d\d-\d\d-\d\d-X-\d/,'')
 		// s = s.replace(/\d\d\d\d-\d\d-\d\d-\d/,'')
@@ -182,14 +182,26 @@
 		// s = s.replaceAll('Minior-Lag-DM','') // kan tas från tournament
 		return s
 	}
-	function prettyPath(arr) {
-		arr = arr.split('\\')
-		arr = arr.slice(2,arr.length-1)
-		const s = arr.join(" ")
-		return s.replaceAll('_', ' ')
+	function prettyPath(path) { // Tag bort eventuellt T-nummer
+		path = path.split('\\')
+		path = path.slice(2,path.length-1)
+		path = path.join(" ")
+		path = path.replace(/_T\d+/,'')
+		return path.replaceAll('_', ' ') 
 	}
 	function visa(event) {bigfile = event.target.src.replace('small','')}
 	function göm(event) {bigfile = ""}
+
+	function getNumber(path,letter) { // Används både för T och M-nummer
+		path = path.replace('.jpg','')
+		const arr = path.split('\\')
+		const pos = " MT".indexOf(letter)
+		const cand = arr[arr.length-pos]
+		const arr2 = cand.split('_')
+		const tnummer = _.last(arr2)
+		if (tnummer[0]==letter) return tnummer.slice(1)
+		return ""
+	}
  
 	function push(key) {
 		path.push(_.last(path)[key])
@@ -206,6 +218,42 @@
 		path = path
 		stack = stack
 	}
+
+	function make(value) {
+		console.log('make',selected.length)
+		for (const i in range(selected.length)) {
+			selected[i] = value
+		}
+		console.log('make',selected.length)
+		selected = selected
+	}
+
+	function all() {make(true)}
+	function none() {make(false)}
+
+	function download(item) {
+		return axios.get(item.url, { responseType: "blob" }).then((resp) => {zip.file(item.name, resp.data)})
+	}
+
+	let zip = new JSZip()
+
+	function downloadAll() { // download all files as ZIP archive
+		zip = new JSZip()
+		const fileArr = []
+		for (const i in range(selected.length)) {
+			if (selected[i]==true) {
+				const path = result[2][i][2]
+				const p = path.lastIndexOf("\\")
+				fileArr.push({name:path.slice(p+1), url:path})
+			}
+		}
+		if (fileArr.length == 0) return
+
+		const arrOfFiles = fileArr.map((item) => download(item)) //create array of promises
+		Promise.all(arrOfFiles)
+			.then(() => {zip.generateAsync({ type: "blob" }).then(function (blob) { saveAs(blob, "Bildbanken.zip") })})
+			.catch((err) => {console.log(err)})
+}
 
 </script>
 
@@ -247,24 +295,35 @@
 {:else}
 
 	<div>
-		{#each cards as card}
+		<button on:click = {all}>All</button>
+		<button on:click = {none}>None</button>
+		<button on:click = {downloadAll}>Download</button>
+	</div>
+
+	<div>
+		{#each cards as card,i}
 			<div class="card" style="position:absolute; left:{card[5]}px; top:{card[6]}px">
-				<img src={getPath(card[2],"small")} width={WIDTH-GAP} alt="small" on:click={visa} on:keydown={visa}/>
-				<div class="info">{card[7] + ' ' + prettyFilename(card[2])}</div>
-				<div class="info">{prettyPath(card[2])}</div>
-				<div class="info">{card[1]} © Lars OA Hedlund</div>
+				<img src={getPath(card[2].split("\\"),"small")} width={WIDTH-GAP} alt="small" on:click={visa} on:keydown={visa}/>
+				<div class="info">{card[7] + ' ' + prettyFilename(card[2])}
+					<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(card[2],'M')}">{getNumber(card[2],'M')}</a>
+				</div>
+				<div class="info">{prettyPath(card[2])}
+					<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={getNumber(card[2],'T')}">{getNumber(card[2],'T')}</a>
+				</div>
+				<div class="info">
+					<input type="checkbox" value="" bind:checked={selected[i]}/>
+					
+					{card[1]} © Lars OA Hedlund
+				</div>
 			</div>
 		{/each}
 	</div>
 
-	<!-- <button>All</button>
-	<button>None</button>
-	<button>Download</button>
-	<button>Share</button>
+	<!-- <button>Share</button>
 	<button>Prev</button>
 	<button>Next</button>
 	<button>Play</button>
-	<button>Result</button> -->
+	 -->
 
 	<!-- {#each result[2].slice(0,500) as [ignore,letters,path,w,h,x,y]}
 		<div class="card" style="position:absolute; left:{x}px; top:{y}px">
