@@ -10,23 +10,29 @@
 			const n = cards.length
 			cards = cards.concat(result[2].slice(n, n + 20))
 			const latest = _.last(cards)
-			if (n > 0) ymax = latest[4] + latest[6] // y + h
+			if (n > 0) {
+				ymax = latest[4] + latest[6] // y + h
+			}
 		}
 	}
 
 	let selected = []
 
 	import _ from "lodash"
-	import JSZip from "jszip"
-	import axios from "axios"
-	import { saveAs } from "file-saver"
 
-	const INITIAL = 0
-	const SMALL = 2
-	const BIG = 3
-	const BIGGER = 4
+	import NavigationDown from "./NavigationDown.svelte"
+	import NavigationUp from "./NavigationUp.svelte"
+	import Card from "./Card.svelte"
+	import Download from "./Download.svelte"
+	import Search from "./Search.svelte"
+	import BiggerPicture from "./BiggerPicture.svelte"
 
-	let state = INITIAL
+	// const INITIAL = 0
+	// const SMALL = 2
+	// const BIG = 3
+	// const BIGGER = 4
+	// let state = INITIAL
+
 	let count = 0
 	
 	const SCROLLBAR = 12
@@ -38,11 +44,16 @@
 
 	const path  = [Home] // used for navigation
 	const stack = ["Home"]
+	const range = _.range
 	
 	let trippel = {res:[], stat:{}, total:0}
-	const range = _.range
 	let bigfile = ""
-	let sokruta=""
+	let sokruta = "Numa"
+	let result = ["","",[]]
+
+	$: console.log('sokruta',sokruta)
+	$: console.log('bigfile',bigfile)
+
 	$: result = search(Home,sokruta)
 	
 	$: { 
@@ -77,6 +88,27 @@
 	assert(comp2("AB","AB"),0)
 	assert(comp2("B","A"),1)
 	assert(comp2("BC","A"),-1)
+
+	function getPath(arr,dir="small") {
+		if (dir.length > 0) arr.splice(arr.length-1, 0, dir);
+		return arr.join("\\")
+	}
+
+	function push(key) {
+		path.push(_.last(path)[key])
+		stack.push(key)
+		path = path
+		stack = stack
+	}
+
+	function pop(key) {
+		while (_.last(stack) != key) {
+			path.pop()
+			stack.pop()
+		}
+		path = path
+		stack = stack
+	}
 
 	function search(Home,words,path="Home") {
 		cards = []
@@ -146,208 +178,34 @@
 		}
 	}
 
-	function getPath(arr,dir="small") {
-		if (dir.length > 0) arr.splice(arr.length-1, 0, dir);
-		return arr.join("\\")
+	function göm(event) {
+		console.log('göm')
+		bigfile = ""
 	}
-
-	function prettyFilename(path) { // Tag bort eventuellt M-nummer
-		let i = path.lastIndexOf('\\')
-		let s = path.slice(i+1)
-		s = s.replace('.jpg','')
-		s = s.replace(/_M\d+/,'')
-
-		// s = s.replace(/Klass_./i,'')
-		// s = s.replace(/\d\d\d\d-\d\d-\d\d-X-\d/,'')
-		// s = s.replace(/\d\d\d\d-\d\d-\d\d-\d/,'')
-		// s = s.replace(/\d\d\d\d-\d\d-\d\d/,'')
-
-		s = s.replace('Vy-Veckans-bild-','')
-		s = s.replace('Vy-Veckans-bild_','')
-		s = s.replace('Vy-Veckans-Bild_','')
-		s = s.replace('Vy-Vexkans_Bild_','')
-		s = s.replace('Vy-Veckans_Bild_','')
-		s = s.replace('Vy-Veckans_bild_','')
-		s = s.replace('Vy-veckans_bild_','')
-		s = s.replace('Vy-veckans-bild_','')
-		s = s.replace('Vy-Veckans-Bild _','')
-		s = s.replace('Vy-','')
-
-		s = s.replace('schakläger','schackläger')
-		s = s.replace('sgnerer','signerar')
-		s = s.replace('Salongerrna','Salongerna')
-		
-		s = s.replaceAll(/_/ig,' ')
-		// s = s.replaceAll('KSK-JGP','')
-		// s = s.replaceAll('Minior-Lag-DM','') // kan tas från tournament
-		return s
-	}
-	function prettyPath(path) { // Tag bort eventuellt T-nummer
-		path = path.split('\\')
-		path = path.slice(2,path.length-1)
-		path = path.join(" ")
-		path = path.replace(/_T\d+/,'')
-		return path.replaceAll('_', ' ') 
-	}
-	function visa(event) {bigfile = event.target.src.replace('small','')}
-	function göm(event) {bigfile = ""}
-
-	function getNumber(path,letter) { // Används både för T och M-nummer
-		path = path.replace('.jpg','')
-		const arr = path.split('\\')
-		const pos = " MT".indexOf(letter)
-		const cand = arr[arr.length-pos]
-		const arr2 = cand.split('_')
-		const tnummer = _.last(arr2)
-		if (tnummer[0]==letter) return tnummer.slice(1)
-		return ""
-	}
- 
-	function push(key) {
-		path.push(_.last(path)[key])
-		stack.push(key)
-		path = path
-		stack = stack
-	}
-
-	function pop(key) {
-		while (_.last(stack) != key) {
-			path.pop()
-			stack.pop()
-		}
-		path = path
-		stack = stack
-	}
-
-	function make(value) {
-		console.log('make',selected.length)
-		for (const i in range(selected.length)) {
-			selected[i] = value
-		}
-		console.log('make',selected.length)
-		selected = selected
-	}
-
-	function all() {make(true)}
-	function none() {make(false)}
-
-	function download(item) {
-		return axios.get(item.url, { responseType: "blob" }).then((resp) => {zip.file(item.name, resp.data)})
-	}
-
-	let zip = new JSZip()
-
-	function downloadAll() { // download all files as ZIP archive
-		zip = new JSZip()
-		const fileArr = []
-		for (const i in range(selected.length)) {
-			if (selected[i]==true) {
-				const path = result[2][i][2]
-				const p = path.lastIndexOf("\\")
-				fileArr.push({name:path.slice(p+1), url:path})
-			}
-		}
-		if (fileArr.length == 0) return
-
-		const arrOfFiles = fileArr.map((item) => download(item)) //create array of promises
-		Promise.all(arrOfFiles)
-			.then(() => {zip.generateAsync({ type: "blob" }).then(function (blob) { saveAs(blob, "Bildbanken.zip") })})
-			.catch((err) => {console.log(err)})
-}
 
 </script>
 
-<svelte:window bind:scrollY={y} />
+<svelte:window bind:scrollY={y} on:click={göm} />
 
-<div>
-	<input bind:value={sokruta} placeholder="Sök" style='width:50%'>
-	{result[0]}
-	{result[1]}
-</div>
-
-{#if sokruta == ""}
-
-	<div style="height:50px">
-		{#each stack as key }
-			{#if key == _.last(stack)}
-				{key}
-			{:else}
-				<button on:click = {() => pop(key)}>{key}</button>
-			{/if}
-			&nbsp;
-		{/each}
-	</div>
-
-	{#if _.last(stack).includes('.jpg')}
-		<img src={getPath(stack,"")} alt='big' />
-	{:else}
-		{#each _.keys(_.last(path)) as key }
-			<div>
-				{#if _.isNumber(key)}
-					<button on:click = {() => push(key)}>{_.last(path)[key]}</button>
-				{:else}
-					<button on:click = {() => push(key)}>{key}</button>
-				{/if}
-			</div>
-		{/each}
-	{/if}
-
+{#if bigfile != ""}
+	<BiggerPicture bind:bigfile />
 {:else}
-
-	<div>
-		<button on:click = {all}>All</button>
-		<button on:click = {none}>None</button>
-		<button on:click = {downloadAll}>Download</button>
-	</div>
-
-	<div>
-		{#each cards as card,i}
-			<div class="card" style="position:absolute; left:{card[5]}px; top:{card[6]}px">
-				<img src={getPath(card[2].split("\\"),"small")} width={WIDTH-GAP} alt="small" on:click={visa} on:keydown={visa}/>
-				<div class="info">{card[7] + ' ' + prettyFilename(card[2])}
-					<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(card[2],'M')}">{getNumber(card[2],'M')}</a>
-				</div>
-				<div class="info">{prettyPath(card[2])}
-					<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={getNumber(card[2],'T')}">{getNumber(card[2],'T')}</a>
-				</div>
-				<div class="info">
-					<input type="checkbox" value="" bind:checked={selected[i]}/>
-					
-					{card[1]} © Lars OA Hedlund
-				</div>
-			</div>
-		{/each}
-	</div>
-
-	<!-- <button>Share</button>
-	<button>Prev</button>
-	<button>Next</button>
-	<button>Play</button>
-	 -->
-
-	<!-- {#each result[2].slice(0,500) as [ignore,letters,path,w,h,x,y]}
-		<div class="card" style="position:absolute; left:{x}px; top:{y}px">
-			<img src={getPath(path,"small")} width={WIDTH-GAP} alt="small" on:click={visa} on:keydown={visa}/>
-			<div class="info">{prettyFilename(path)}</div>
-			<div class="info">{prettyPath(path)}</div>
-			<div class="info">{letters} © Lars OA Hedlund</div>
+	<Search bind:sokruta bind:result />
+	{#if sokruta == ""}
+		<NavigationUp {stack}{pop} />
+		<NavigationDown {stack}{path}{getPath}{push} />
+	{:else}
+		<Download bind:selected {result} />
+		<div>
+			{#each cards as card,index}
+				<Card {WIDTH}{GAP}{getPath}{card}{selected}{index} bind:bigfile />
+			{/each}
 		</div>
-	{/each} -->
+	{/if}
 {/if}
-
-<!-- {:else if state == BIG}
-	<img src={bigfile} alt="X" on:click={göm} on:keydown={göm}/>
-{:else if state == BIGGER}
-	<div></div> -->
 
 <style>
 	div {
 		font-size: 0.9em;
-	}
-	.card {
-		font-size: 0.9em;
-    width: 432px; 
-    max-height: 800px;
-    /* overflow-x: scroll; */
 	}
 </style>
