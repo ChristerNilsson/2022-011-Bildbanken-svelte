@@ -107,9 +107,8 @@
 <style>
 	.card {
 		font-size: 0.9em;
-		width: 432px; 
+		width: 450px; 
 		max-height: 800px;
-		/* overflow-x: scroll; */
 	}
 	div {
 		font-size: 0.9em;

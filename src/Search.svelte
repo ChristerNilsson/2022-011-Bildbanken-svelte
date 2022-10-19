@@ -5,9 +5,9 @@
 
 <div>
 	<button on:click={() => sokruta = ""}>Clear</button>
+	{result[1]}
 	<input bind:value={sokruta} placeholder="Sök" style='width:50%'>
 	{result[0]}
-	{result[1]}
 </div>
 
 <style>

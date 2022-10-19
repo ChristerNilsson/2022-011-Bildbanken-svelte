@@ -30,7 +30,7 @@
 	let count = 0
 	
 	const SCROLLBAR = 12
-	const WIDTH = 432
+	const WIDTH = 475
 	const GAP = 2
 	const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -200,8 +200,8 @@
 	function placera(result) {
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
 		const cols = []
-		for (const i in range(COLS)) cols.push(100)
-		const textHeights = 75-15
+		for (const i in range(COLS)) cols.push(80)
+		const textHeights = 60
 		const res = result[2]
 		for (const i in res) {
 			const bild = res[i]

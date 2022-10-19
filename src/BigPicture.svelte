@@ -70,6 +70,10 @@
 
 <div>
 
+	<div>
+		{big.file}
+	</div>
+
 	<img src={big.file} alt=""
 		on:wheel={wheel}
 		on:mousedown={mousedown}
@@ -80,9 +84,9 @@
 		style = "position:absolute; left:{big.left}px; top:{big.top}px;"
 	>
 
-	<button style = "left:0%; top:0%;" >play</button>
 	<button style = "left:96%; top:0%;" on:click={close}>exit</button>
 	<button style = "left:0%; top:96%;">&lt;</button>
+	<button style = "left:50%; top:96%;" >play</button>
 	<button style = "left:96%; top:96%;">&gt;</button>
 
 </div>
@@ -95,6 +99,9 @@
 		position:absolute; 
 		font-size:1em;
 		width:4%;
+	}
+	div {
+		color : white;
 	}
 </style>
 

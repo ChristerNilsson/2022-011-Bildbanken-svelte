@@ -80,20 +80,23 @@ I storbildsläget visas nästa bild.
 #### Play/Pause (Not implemented)
 Markerade bilder visas i ett evigt bildspel.
 
-#### Result (Not implemented)
+#### T-nummer
 För de turneringar där man angett Turneringsnummer, kan man klicka på denna knapp och se resultatsidan direkt.
 
-#### Download (Not implemented)
+#### M-nummer
+För de turneringar där man angett Medlemsnummer, kan man klicka på denna knapp och se personinfo direkt. T ex rating och spelade turneringar.
+
+#### Download
 De bilder man markerat laddas ner till klientens Download-katalog.
+
+#### All
+Alla bilder markeras.
+
+#### None
+Alla markeringar tas bort.
 
 #### Share (Not implemented)
 Aktuell avgränsning, dvs både strukturellt och med sökord, kan hämtas på klippbordet som en [URL](https://en.wikipedia.org/wiki/URL).
-
-#### All (Not implemented)
-Alla bilder markeras.
-
-#### None (Not implemented)
-Alla markeringar tas bort.
 
 ### Vad innebär ABC?
 
@@ -147,3 +150,14 @@ Att hämta en bild tar längre tid. Har man sökt fram flera tusen bilder, vill 
 Tekniken för att hantera detta benämns *infinite scroll* och bygger på att fånga scroll-händelsen och läsa in några bilder till om bufferten börjar ta slut.
 Två skärmhöjder med bilder är lagom framförhållning för att ligga lite före användaren. Infinite scroll uppfanns av Aza Raskin 2006.
 Just nu läser man in fler och fler bilder. Egentligen bör man kasta bort bilder efterhand som man scrollar neråt, samt läsa in dem på nytt, då användaren scrollar uppåt. Detta är INTE genomfört.
+
+### Bildvisaren
+
+* Genom att klicka på en thumbnail kommer man till Bildvisaren. 
+* Med denna kan man zooma in och ut i en bild, mha mushjulet.
+* Även förflyttning fungerar.
+* Knappar finns i de fyra hörnen
+	* Play (Not implemented)
+	* Exit
+	* Prev (Not implemented)
+	* Next (Not implemented)

@@ -22,8 +22,8 @@
 
 <style>
 	button {
-		color:black;
-		margin:2px;
+		/* color:black; */
+		/* margin:2px; */
 		width:99%;
 		text-align:left;
 	}

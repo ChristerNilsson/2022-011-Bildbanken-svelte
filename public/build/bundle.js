@@ -17628,20 +17628,20 @@ var app = (function () {
     			attr_dev(a0, "target", "_blank");
     			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'M'));
     			add_location(a0, file$6, 95, 2, 2617);
-    			attr_dev(div0, "class", "info svelte-1m45u65");
+    			attr_dev(div0, "class", "info svelte-kp1cxo");
     			add_location(div0, file$6, 94, 1, 2554);
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'T'));
     			add_location(a1, file$6, 98, 2, 2809);
-    			attr_dev(div1, "class", "info svelte-1m45u65");
+    			attr_dev(div1, "class", "info svelte-kp1cxo");
     			add_location(div1, file$6, 97, 1, 2766);
     			attr_dev(input, "type", "checkbox");
     			input.__value = "";
     			input.value = input.__value;
     			add_location(input, file$6, 101, 2, 2972);
-    			attr_dev(div2, "class", "info svelte-1m45u65");
+    			attr_dev(div2, "class", "info svelte-kp1cxo");
     			add_location(div2, file$6, 100, 1, 2950);
-    			attr_dev(div3, "class", "card svelte-1m45u65");
+    			attr_dev(div3, "class", "card svelte-kp1cxo");
     			attr_dev(div3, "id", "images");
     			set_style(div3, "position", "absolute");
     			set_style(div3, "left", /*card*/ ctx[4][5] + "px");
@@ -20973,7 +20973,6 @@ var app = (function () {
     const file$5 = "src\\Download.svelte";
 
     function create_fragment$5(ctx) {
-    	let div;
     	let button0;
     	let t1;
     	let button1;
@@ -20984,7 +20983,6 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div = element("div");
     			button0 = element("button");
     			button0.textContent = "All";
     			t1 = space();
@@ -20993,25 +20991,19 @@ var app = (function () {
     			t3 = space();
     			button2 = element("button");
     			button2.textContent = "Download";
-    			attr_dev(button0, "class", "svelte-1p7a3si");
-    			add_location(button0, file$5, 37, 1, 1106);
-    			attr_dev(button1, "class", "svelte-1p7a3si");
-    			add_location(button1, file$5, 38, 1, 1146);
-    			attr_dev(button2, "class", "svelte-1p7a3si");
-    			add_location(button2, file$5, 39, 1, 1188);
-    			attr_dev(div, "class", "svelte-1p7a3si");
-    			add_location(div, file$5, 36, 0, 1098);
+    			add_location(button0, file$5, 36, 0, 1098);
+    			add_location(button1, file$5, 37, 0, 1137);
+    			add_location(button2, file$5, 38, 0, 1178);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, button0);
-    			append_dev(div, t1);
-    			append_dev(div, button1);
-    			append_dev(div, t3);
-    			append_dev(div, button2);
+    			insert_dev(target, button0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, button1, anchor);
+    			insert_dev(target, t3, anchor);
+    			insert_dev(target, button2, anchor);
 
     			if (!mounted) {
     				dispose = [
@@ -21027,7 +21019,11 @@ var app = (function () {
     		i: noop$1,
     		o: noop$1,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(button0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(button1);
+    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(button2);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -21304,7 +21300,7 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			attr_dev(button, "class", "svelte-7m8r1t");
+    			attr_dev(button, "class", "svelte-13a0ax7");
     			add_location(button, file$4, 16, 4, 376);
     		},
     		m: function mount(target, anchor) {
@@ -21354,7 +21350,7 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			attr_dev(button, "class", "svelte-7m8r1t");
+    			attr_dev(button, "class", "svelte-13a0ax7");
     			add_location(button, file$4, 14, 4, 293);
     		},
     		m: function mount(target, anchor) {
@@ -21409,7 +21405,7 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			t = space();
-    			attr_dev(div, "class", "svelte-7m8r1t");
+    			attr_dev(div, "class", "svelte-13a0ax7");
     			add_location(div, file$4, 12, 2, 256);
     		},
     		m: function mount(target, anchor) {
@@ -21634,7 +21630,6 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			attr_dev(button, "class", "svelte-1u8yrf9");
     			add_location(button, file$3, 11, 3, 189);
     		},
     		m: function mount(target, anchor) {
@@ -21771,8 +21766,8 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			set_style(div, "height", "50px");
-    			attr_dev(div, "class", "svelte-1u8yrf9");
+    			set_style(div, "height", "30px");
+    			attr_dev(div, "class", "svelte-4dlxew");
     			add_location(div, file$3, 6, 0, 84);
     		},
     		l: function claim(nodes) {
@@ -21910,12 +21905,12 @@ var app = (function () {
     	let div;
     	let button;
     	let t1;
-    	let input;
+    	let t2_value = /*result*/ ctx[1][1] + "";
     	let t2;
-    	let t3_value = /*result*/ ctx[1][0] + "";
     	let t3;
+    	let input;
     	let t4;
-    	let t5_value = /*result*/ ctx[1][1] + "";
+    	let t5_value = /*result*/ ctx[1][0] + "";
     	let t5;
     	let mounted;
     	let dispose;
@@ -21926,16 +21921,16 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Clear";
     			t1 = space();
+    			t2 = text(t2_value);
+    			t3 = space();
     			input = element("input");
-    			t2 = space();
-    			t3 = text(t3_value);
     			t4 = space();
     			t5 = text(t5_value);
     			add_location(button, file$2, 6, 1, 72);
     			attr_dev(input, "placeholder", "Sök");
     			set_style(input, "width", "50%");
     			attr_dev(input, "class", "svelte-17i7c9r");
-    			add_location(input, file$2, 7, 1, 127);
+    			add_location(input, file$2, 8, 1, 141);
     			attr_dev(div, "class", "svelte-17i7c9r");
     			add_location(div, file$2, 5, 0, 64);
     		},
@@ -21946,10 +21941,10 @@ var app = (function () {
     			insert_dev(target, div, anchor);
     			append_dev(div, button);
     			append_dev(div, t1);
-    			append_dev(div, input);
-    			set_input_value(input, /*sokruta*/ ctx[0]);
     			append_dev(div, t2);
     			append_dev(div, t3);
+    			append_dev(div, input);
+    			set_input_value(input, /*sokruta*/ ctx[0]);
     			append_dev(div, t4);
     			append_dev(div, t5);
 
@@ -21963,12 +21958,13 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
+    			if (dirty & /*result*/ 2 && t2_value !== (t2_value = /*result*/ ctx[1][1] + "")) set_data_dev(t2, t2_value);
+
     			if (dirty & /*sokruta*/ 1 && input.value !== /*sokruta*/ ctx[0]) {
     				set_input_value(input, /*sokruta*/ ctx[0]);
     			}
 
-    			if (dirty & /*result*/ 2 && t3_value !== (t3_value = /*result*/ ctx[1][0] + "")) set_data_dev(t3, t3_value);
-    			if (dirty & /*result*/ 2 && t5_value !== (t5_value = /*result*/ ctx[1][1] + "")) set_data_dev(t5, t5_value);
+    			if (dirty & /*result*/ 2 && t5_value !== (t5_value = /*result*/ ctx[1][0] + "")) set_data_dev(t5, t5_value);
     		},
     		i: noop$1,
     		o: noop$1,
@@ -22073,38 +22069,47 @@ var app = (function () {
     const file$1 = "src\\BigPicture.svelte";
 
     function create_fragment$1(ctx) {
-    	let div;
+    	let div1;
+    	let div0;
+    	let t0_value = /*big*/ ctx[0].file + "";
+    	let t0;
+    	let t1;
     	let img;
     	let img_src_value;
     	let img_width_value;
     	let img_xxxheight_value;
-    	let t0;
-    	let button0;
     	let t2;
-    	let button1;
+    	let button0;
     	let t4;
-    	let button2;
+    	let button1;
     	let t6;
+    	let button2;
+    	let t8;
     	let button3;
     	let mounted;
     	let dispose;
 
     	const block = {
     		c: function create() {
-    			div = element("div");
+    			div1 = element("div");
+    			div0 = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
     			img = element("img");
-    			t0 = space();
-    			button0 = element("button");
-    			button0.textContent = "play";
     			t2 = space();
-    			button1 = element("button");
-    			button1.textContent = "exit";
+    			button0 = element("button");
+    			button0.textContent = "exit";
     			t4 = space();
-    			button2 = element("button");
-    			button2.textContent = "<";
+    			button1 = element("button");
+    			button1.textContent = "<";
     			t6 = space();
+    			button2 = element("button");
+    			button2.textContent = "play";
+    			t8 = space();
     			button3 = element("button");
     			button3.textContent = ">";
+    			attr_dev(div0, "class", "svelte-7skc2t");
+    			add_location(div0, file$1, 72, 1, 1304);
     			if (!src_url_equal(img.src, img_src_value = /*big*/ ctx[0].file)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "");
     			attr_dev(img, "width", img_width_value = /*big*/ ctx[0].width);
@@ -22112,39 +22117,43 @@ var app = (function () {
     			set_style(img, "position", "absolute");
     			set_style(img, "left", /*big*/ ctx[0].left + "px");
     			set_style(img, "top", /*big*/ ctx[0].top + "px");
-    			add_location(img, file$1, 72, 1, 1304);
-    			set_style(button0, "left", "0%");
+    			add_location(img, file$1, 76, 1, 1337);
+    			set_style(button0, "left", "96%");
     			set_style(button0, "top", "0%");
-    			attr_dev(button0, "class", "svelte-1kxxb1l");
-    			add_location(button0, file$1, 82, 1, 1559);
-    			set_style(button1, "left", "96%");
-    			set_style(button1, "top", "0%");
-    			attr_dev(button1, "class", "svelte-1kxxb1l");
-    			add_location(button1, file$1, 83, 1, 1611);
-    			set_style(button2, "left", "0%");
+    			attr_dev(button0, "class", "svelte-7skc2t");
+    			add_location(button0, file$1, 86, 1, 1592);
+    			set_style(button1, "left", "0%");
+    			set_style(button1, "top", "96%");
+    			attr_dev(button1, "class", "svelte-7skc2t");
+    			add_location(button1, file$1, 87, 1, 1661);
+    			set_style(button2, "left", "50%");
     			set_style(button2, "top", "96%");
-    			attr_dev(button2, "class", "svelte-1kxxb1l");
-    			add_location(button2, file$1, 84, 1, 1680);
+    			attr_dev(button2, "class", "svelte-7skc2t");
+    			add_location(button2, file$1, 88, 1, 1713);
     			set_style(button3, "left", "96%");
     			set_style(button3, "top", "96%");
-    			attr_dev(button3, "class", "svelte-1kxxb1l");
-    			add_location(button3, file$1, 85, 1, 1732);
-    			add_location(div, file$1, 70, 0, 1294);
+    			attr_dev(button3, "class", "svelte-7skc2t");
+    			add_location(button3, file$1, 89, 1, 1767);
+    			attr_dev(div1, "class", "svelte-7skc2t");
+    			add_location(div1, file$1, 70, 0, 1294);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, img);
-    			append_dev(div, t0);
-    			append_dev(div, button0);
-    			append_dev(div, t2);
-    			append_dev(div, button1);
-    			append_dev(div, t4);
-    			append_dev(div, button2);
-    			append_dev(div, t6);
-    			append_dev(div, button3);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div0, t0);
+    			append_dev(div1, t1);
+    			append_dev(div1, img);
+    			append_dev(div1, t2);
+    			append_dev(div1, button0);
+    			append_dev(div1, t4);
+    			append_dev(div1, button1);
+    			append_dev(div1, t6);
+    			append_dev(div1, button2);
+    			append_dev(div1, t8);
+    			append_dev(div1, button3);
 
     			if (!mounted) {
     				dispose = [
@@ -22152,13 +22161,15 @@ var app = (function () {
     					listen_dev(img, "mousedown", /*mousedown*/ ctx[2], false, false, false),
     					listen_dev(img, "mousemove", /*mousemove*/ ctx[3], false, false, false),
     					listen_dev(img, "mouseup", /*mouseup*/ ctx[4], false, false, false),
-    					listen_dev(button1, "click", /*close*/ ctx[5], false, false, false)
+    					listen_dev(button0, "click", /*close*/ ctx[5], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
+    			if (dirty & /*big*/ 1 && t0_value !== (t0_value = /*big*/ ctx[0].file + "")) set_data_dev(t0, t0_value);
+
     			if (dirty & /*big*/ 1 && !src_url_equal(img.src, img_src_value = /*big*/ ctx[0].file)) {
     				attr_dev(img, "src", img_src_value);
     			}
@@ -22182,7 +22193,7 @@ var app = (function () {
     		i: noop$1,
     		o: noop$1,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(div1);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -22445,7 +22456,7 @@ var app = (function () {
     			t = space();
     			if_block.c();
     			attr_dev(div, "class", "svelte-p8wta7");
-    			add_location(div, file, 224, 1, 5749);
+    			add_location(div, file, 224, 1, 5745);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -22918,7 +22929,7 @@ var app = (function () {
     }
 
     const SCROLLBAR = 12;
-    const WIDTH = 432;
+    const WIDTH = 475;
     const GAP = 2;
     const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -23116,8 +23127,8 @@ var app = (function () {
     	function placera(result) {
     		COLS = Math.floor((window.innerWidth - SCROLLBAR - GAP) / WIDTH);
     		const cols = [];
-    		for (const i in range(COLS)) cols.push(100);
-    		const textHeights = 75 - 15;
+    		for (const i in range(COLS)) cols.push(80);
+    		const textHeights = 60;
     		const res = result[2];
 
     		for (const i in res) {

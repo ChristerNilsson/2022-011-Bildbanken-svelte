@@ -4,7 +4,7 @@
 	export let pop
 </script>
 
-<div style="height:50px">
+<div style="height:30px">
 	{#each stack as key }
 		{#if key == _.last(stack)}
 			{key}
@@ -16,11 +16,13 @@
 </div>
 
 <style>
-	button {
+	/* button {
 		margin:1px;
 		padding:1px;
-	}
+	} */
 	div {
+		margin:1px;
+		padding:1px;
 		font-size: 0.9em;
 		color:white;
 		background-color: black;
