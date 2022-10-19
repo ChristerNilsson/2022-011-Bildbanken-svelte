@@ -14,3 +14,16 @@
 		&nbsp;
 	{/each}
 </div>
+
+<style>
+	button {
+		margin:1px;
+		padding:1px;
+	}
+	div {
+		font-size: 0.9em;
+		color:white;
+		background-color: black;
+	}
+</style>
+

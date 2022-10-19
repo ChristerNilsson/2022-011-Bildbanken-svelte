@@ -17,16 +17,15 @@
 	}
 
 	let selected = []
-	let zoom = 2
+	let skala = 1
 
 	import _ from "lodash"
-
 	import Card from "./Card.svelte"
 	import Download from "./Download.svelte"
 	import NavigationDown from "./NavigationDown.svelte"
 	import NavigationUp from "./NavigationUp.svelte"
 	import Search from "./Search.svelte"
-	import Zoom from 'svelte-zoom'
+	import BigPicture from "./BigPicture.svelte"
 
 	let count = 0
 	
@@ -42,22 +41,20 @@
 	const range = _.range
 	
 	let trippel = {res:[], stat:{}, total:0}
-	let bigfile = ""
-	let sokruta = ""
+	let sokruta = "Numa"
 	let result = ["","",[]]
-
-	$: console.log('sokruta',sokruta)
-	$: console.log('bigfile',bigfile)
+	let imageLinks = []
+	let big = {file:"", origWidth:1600, origHeight:1311, skala:0, factor:1, left:0, top:0, width:1600, height:1311, x:0, y:0}
+	
+	// $: console.log('big',big)
 
 	$: result = search(Home,sokruta)
-	
+
 	$: { 
 		placera(result)
+		imageLinks = document.querySelectorAll('#images > img')
+		// console.log(imageLinks)
 		result = result
-	}
-
-	function assert(a,b) {
-		if (!_.isEqual(a,b)) console.log("Assert failed",a,'!=',b)
 	}
 
 	function resize() {
@@ -66,6 +63,10 @@
 	}
 
 	window.onresize = resize
+
+	function assert(a,b) {
+		if (!_.isEqual(a,b)) console.log("Assert failed",a,'!=',b)
+	}
 
 	function spaceShip (a,b) {
 		if (a < b) return -1
@@ -84,16 +85,59 @@
 	assert(comp2("B","A"),1)
 	assert(comp2("BC","A"),-1)
 
+	function f(skala,left,x,width) {return Math.round((1-skala) * (x-left))} //         
+	//           skala left x   width
+	assert(  0,f(1.1,  200, 200,400))
+	assert(-20,f(1.1,  200, 400,400))
+	assert(-40,f(1.1,  200, 600,400))
+	assert(  0,f(1.1,    0,   0,400))
+	assert(-20,f(1.1,    0, 200,400))
+	assert(-40,f(1.1,    0, 400,400))
+
+	function g(skala,left,x,width) { return Math.round(((1-skala) * (x-left)))}
+	//           skala left x   width
+	assert(  0,g(1/1.1,200, 200,440))
+	assert( 20,g(1/1.1,180, 400,440))
+	assert( 40,g(1/1.1,160, 600,440))
+	assert(  0,g(1/1.1,  0,   0,440))
+	assert( 20,g(1/1.1,  0, 220,440))
+	assert( 40,g(1/1.1,  0, 440,440))
+
+
 	function getPath(arr,dir="small") {
 		if (dir.length > 0) arr.splice(arr.length-1, 0, dir);
 		return arr.join("\\")
 	}
 
+	function visaBig(width,height,src) {
+		big.state = 0
+		big.smallWidth = width
+		big.smallHeight = height
+
+		big.bigWidth = innerWidth
+		big.bigHeight = innerHeight
+
+		big.skala = 1
+		big.height = big.bigHeight * big.skala
+		big.width  = big.bigWidth  * big.skala
+
+		big.left = 0
+		big.top = 0
+
+		big.file = src
+
+		big = big
+	}
+
 	function push(key) {
-		path.push(_.last(path)[key])
-		stack.push(key)
-		path = path
-		stack = stack
+		if (key.includes('.jpg')) {
+			visaBig(2000,1000,stack.concat(key).join("\\"))
+		} else {
+			path.push(_.last(path)[key])
+			stack.push(key)
+			path = path
+			stack = stack
+		}
 	}
 
 	function pop(key) {
@@ -173,28 +217,25 @@
 		}
 	}
 
-	function göm(event) {bigfile = ""}
-
 </script>
 
-<svelte:window bind:scrollY={y} />
+<svelte:window bind:scrollY={y}/>
 
-{#if bigfile != ""}
-	<button on:click={göm}>Exit</button>
-	<Zoom src={bigfile} alt="zoom" bind:this={zoom} />
-{:else}
-	<Search bind:sokruta bind:result />
-	{#if sokruta == ""}
-		<NavigationUp {stack}{pop} />
-		<NavigationDown {stack}{path}{getPath}{push} bind:bigfile />
-	{:else}
-		<Download bind:selected {result} />
-		<div>
+{#if big.file == ""}
+	<div>
+		<Search bind:sokruta bind:result />
+		{#if sokruta == ""}
+			<NavigationUp {stack}{pop} />
+			<NavigationDown {stack}{path}{getPath}{push} />
+		{:else}
+			<Download bind:selected {result} />
 			{#each cards as card,index}
-				<Card {WIDTH}{GAP}{getPath}{card}{selected}{index} bind:bigfile />
+				<Card {WIDTH}{GAP}{getPath}{card}{selected}{index} bind:big />
 			{/each}
-		</div>
-	{/if}
+		{/if}
+	</div>
+{:else}
+	<BigPicture bind:big />
 {/if}
 
 <style>

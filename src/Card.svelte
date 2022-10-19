@@ -6,14 +6,7 @@
 	export let card
 	export let selected
 	export let index
-	export let bigfile
-
-	function visa(event) {
-		//event.preventDefault()
-		event.stopPropagation()
-		bigfile = event.target.src.replace('small','')
-		console.log('bigfile',bigfile)
-	}
+	export let big
 
 	function getNumber(path,letter) { // Används både för T och M-nummer
 		path = path.replace('.jpg','')
@@ -66,10 +59,39 @@
 		return path.replaceAll('_', ' ') 
 	}
 
+	function visaBig(e) {
+		big.state = 0
+		big.smallWidth = e.target.width
+		big.smallHeight = e.target.height
+
+		big.bigWidth = innerWidth //1600
+		big.bigHeight = innerHeight //1311
+
+		big.skala = 1
+		big.height = big.bigHeight * big.skala
+		big.width  = big.bigWidth  * big.skala
+
+		big.left = 0 //big.width/2 //(innerWidth-big.width)/2
+		big.top = 0 //big.height/2
+
+		big.file = e.target.src.replace("small","")
+
+		big = big
+
+		console.log('visaBig',e)
+		console.log('visaBig',big)
+	}
+
 </script>
 
-<div class="card" style="position:absolute; left:{card[5]}px; top:{card[6]}px">
-	<img src={getPath(card[2].split("\\"),"small")} width={WIDTH-GAP} alt="small" on:click={visa} on:keydown={visa}/>
+<div class="card" id="images" style="position:absolute; left:{card[5]}px; top:{card[6]}px">
+	<img 
+		src = {getPath(card[2].split("\\"),"small")}
+		width = {WIDTH-GAP}
+		alt = ""
+		on:click = {visaBig}
+		on:keydown = {visaBig}
+	/>
 	<div class="info">{card[7] + ' ' + prettyFilename(card[2])}
 		<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(card[2],'M')}">{getNumber(card[2],'M')}</a>
 	</div>
@@ -89,4 +111,10 @@
 		max-height: 800px;
 		/* overflow-x: scroll; */
 	}
+	div {
+		font-size: 0.9em;
+		color:white;
+	}
 </style>
+
+

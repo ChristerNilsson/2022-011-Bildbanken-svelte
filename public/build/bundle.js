@@ -4,12 +4,6 @@ var app = (function () {
     'use strict';
 
     function noop$1() { }
-    function assign(tar, src) {
-        // @ts-ignore
-        for (const k in src)
-            tar[k] = src[k];
-        return tar;
-    }
     function add_location(element, file, line, column, char) {
         element.__svelte_meta = {
             loc: { file, line, column, char }
@@ -40,13 +34,6 @@ var app = (function () {
     }
     function is_empty(obj) {
         return Object.keys(obj).length === 0;
-    }
-    function exclude_internal_props(props) {
-        const result = {};
-        for (const k in props)
-            if (k[0] !== '$')
-                result[k] = props[k];
-        return result;
     }
     function append(target, node) {
         target.appendChild(node);
@@ -85,27 +72,6 @@ var app = (function () {
         else if (node.getAttribute(attribute) !== value)
             node.setAttribute(attribute, value);
     }
-    function set_attributes(node, attributes) {
-        // @ts-ignore
-        const descriptors = Object.getOwnPropertyDescriptors(node.__proto__);
-        for (const key in attributes) {
-            if (attributes[key] == null) {
-                node.removeAttribute(key);
-            }
-            else if (key === 'style') {
-                node.style.cssText = attributes[key];
-            }
-            else if (key === '__value') {
-                node.value = node[key] = attributes[key];
-            }
-            else if (descriptors[key] && descriptors[key].set) {
-                node[key] = attributes[key];
-            }
-            else {
-                attr(node, key, attributes[key]);
-            }
-        }
-    }
     function children(element) {
         return Array.from(element.childNodes);
     }
@@ -120,9 +86,6 @@ var app = (function () {
             node.style.setProperty(key, value, important ? 'important' : '');
         }
     }
-    function toggle_class(element, name, toggle) {
-        element.classList[toggle ? 'add' : 'remove'](name);
-    }
     function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
         const e = document.createEvent('CustomEvent');
         e.initCustomEvent(type, bubbles, cancelable, detail);
@@ -132,23 +95,6 @@ var app = (function () {
     let current_component;
     function set_current_component(component) {
         current_component = component;
-    }
-    function get_current_component() {
-        if (!current_component)
-            throw new Error('Function called outside component initialization');
-        return current_component;
-    }
-    /**
-     * The `onMount` function schedules a callback to run as soon as the component has been mounted to the DOM.
-     * It must be called during the component's initialisation (but doesn't need to live *inside* the component;
-     * it can be called from an external module).
-     *
-     * `onMount` does not run inside a [server-side component](/docs#run-time-server-side-component-api).
-     *
-     * https://svelte.dev/docs#run-time-svelte-onmount
-     */
-    function onMount(fn) {
-        get_current_component().$$.on_mount.push(fn);
     }
 
     const dirty_components = [];
@@ -281,40 +227,6 @@ var app = (function () {
         : typeof globalThis !== 'undefined'
             ? globalThis
             : global);
-
-    function get_spread_update(levels, updates) {
-        const update = {};
-        const to_null_out = {};
-        const accounted_for = { $$scope: 1 };
-        let i = levels.length;
-        while (i--) {
-            const o = levels[i];
-            const n = updates[i];
-            if (n) {
-                for (const key in o) {
-                    if (!(key in n))
-                        to_null_out[key] = 1;
-                }
-                for (const key in n) {
-                    if (!accounted_for[key]) {
-                        update[key] = n[key];
-                        accounted_for[key] = 1;
-                    }
-                }
-                levels[i] = n;
-            }
-            else {
-                for (const key in o) {
-                    accounted_for[key] = 1;
-                }
-            }
-        }
-        for (const key in to_null_out) {
-            if (!(key in update))
-                update[key] = undefined;
-        }
-        return update;
-    }
 
     function bind$1(component, name, callback) {
         const index = component.$$.props[name];
@@ -17665,7 +17577,7 @@ var app = (function () {
     	let t1;
     	let t2;
     	let a0;
-    	let t3_value = /*getNumber*/ ctx[7](/*card*/ ctx[4][2], 'M') + "";
+    	let t3_value = /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'M') + "";
     	let t3;
     	let a0_href_value;
     	let t4;
@@ -17674,7 +17586,7 @@ var app = (function () {
     	let t5;
     	let t6;
     	let a1;
-    	let t7_value = /*getNumber*/ ctx[7](/*card*/ ctx[4][2], 'T') + "";
+    	let t7_value = /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'T') + "";
     	let t7;
     	let a1_href_value;
     	let t8;
@@ -17711,29 +17623,30 @@ var app = (function () {
     			t11 = text(" © Lars OA Hedlund");
     			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[3](/*card*/ ctx[4][2].split("\\"), "small"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "width", img_width_value = /*WIDTH*/ ctx[1] - /*GAP*/ ctx[2]);
-    			attr_dev(img, "alt", "small");
-    			add_location(img, file$6, 71, 1, 2059);
+    			attr_dev(img, "alt", "");
+    			add_location(img, file$6, 87, 1, 2408);
     			attr_dev(a0, "target", "_blank");
-    			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[7](/*card*/ ctx[4][2], 'M'));
-    			add_location(a0, file$6, 73, 2, 2238);
-    			attr_dev(div0, "class", "info");
-    			add_location(div0, file$6, 72, 1, 2175);
+    			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'M'));
+    			add_location(a0, file$6, 95, 2, 2617);
+    			attr_dev(div0, "class", "info svelte-1m45u65");
+    			add_location(div0, file$6, 94, 1, 2554);
     			attr_dev(a1, "target", "_blank");
-    			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[7](/*card*/ ctx[4][2], 'T'));
-    			add_location(a1, file$6, 76, 2, 2430);
-    			attr_dev(div1, "class", "info");
-    			add_location(div1, file$6, 75, 1, 2387);
+    			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'T'));
+    			add_location(a1, file$6, 98, 2, 2809);
+    			attr_dev(div1, "class", "info svelte-1m45u65");
+    			add_location(div1, file$6, 97, 1, 2766);
     			attr_dev(input, "type", "checkbox");
     			input.__value = "";
     			input.value = input.__value;
-    			add_location(input, file$6, 79, 2, 2593);
-    			attr_dev(div2, "class", "info");
-    			add_location(div2, file$6, 78, 1, 2571);
-    			attr_dev(div3, "class", "card svelte-rvxxe4");
+    			add_location(input, file$6, 101, 2, 2972);
+    			attr_dev(div2, "class", "info svelte-1m45u65");
+    			add_location(div2, file$6, 100, 1, 2950);
+    			attr_dev(div3, "class", "card svelte-1m45u65");
+    			attr_dev(div3, "id", "images");
     			set_style(div3, "position", "absolute");
     			set_style(div3, "left", /*card*/ ctx[4][5] + "px");
     			set_style(div3, "top", /*card*/ ctx[4][6] + "px");
-    			add_location(div3, file$6, 70, 0, 1977);
+    			add_location(div3, file$6, 86, 0, 2314);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -17763,8 +17676,8 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(img, "click", /*visa*/ ctx[6], false, false, false),
-    					listen_dev(img, "keydown", /*visa*/ ctx[6], false, false, false),
+    					listen_dev(img, "click", /*visaBig*/ ctx[7], false, false, false),
+    					listen_dev(img, "keydown", /*visaBig*/ ctx[7], false, false, false),
     					listen_dev(input, "change", /*input_change_handler*/ ctx[9])
     				];
 
@@ -17781,16 +17694,16 @@ var app = (function () {
     			}
 
     			if (dirty & /*card*/ 16 && t1_value !== (t1_value = /*card*/ ctx[4][7] + ' ' + prettyFilename(/*card*/ ctx[4][2]) + "")) set_data_dev(t1, t1_value);
-    			if (dirty & /*card*/ 16 && t3_value !== (t3_value = /*getNumber*/ ctx[7](/*card*/ ctx[4][2], 'M') + "")) set_data_dev(t3, t3_value);
+    			if (dirty & /*card*/ 16 && t3_value !== (t3_value = /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'M') + "")) set_data_dev(t3, t3_value);
 
-    			if (dirty & /*card*/ 16 && a0_href_value !== (a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[7](/*card*/ ctx[4][2], 'M'))) {
+    			if (dirty & /*card*/ 16 && a0_href_value !== (a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'M'))) {
     				attr_dev(a0, "href", a0_href_value);
     			}
 
     			if (dirty & /*card*/ 16 && t5_value !== (t5_value = prettyPath(/*card*/ ctx[4][2]) + "")) set_data_dev(t5, t5_value);
-    			if (dirty & /*card*/ 16 && t7_value !== (t7_value = /*getNumber*/ ctx[7](/*card*/ ctx[4][2], 'T') + "")) set_data_dev(t7, t7_value);
+    			if (dirty & /*card*/ 16 && t7_value !== (t7_value = /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'T') + "")) set_data_dev(t7, t7_value);
 
-    			if (dirty & /*card*/ 16 && a1_href_value !== (a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[7](/*card*/ ctx[4][2], 'T'))) {
+    			if (dirty & /*card*/ 16 && a1_href_value !== (a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'T'))) {
     				attr_dev(a1, "href", a1_href_value);
     			}
 
@@ -17880,15 +17793,7 @@ var app = (function () {
     	let { card } = $$props;
     	let { selected } = $$props;
     	let { index } = $$props;
-    	let { bigfile } = $$props;
-
-    	function visa(event) {
-    		//event.preventDefault()
-    		event.stopPropagation();
-
-    		$$invalidate(8, bigfile = event.target.src.replace('small', ''));
-    		console.log('bigfile', bigfile);
-    	}
+    	let { big } = $$props;
 
     	function getNumber(path, letter) {
     		// Används både för T och M-nummer
@@ -17901,6 +17806,23 @@ var app = (function () {
     		const tnummer = lodash.last(arr2);
     		if (tnummer[0] == letter) return tnummer.slice(1);
     		return "";
+    	}
+
+    	function visaBig(e) {
+    		$$invalidate(8, big.state = 0, big);
+    		$$invalidate(8, big.smallWidth = e.target.width, big);
+    		$$invalidate(8, big.smallHeight = e.target.height, big);
+    		$$invalidate(8, big.bigWidth = innerWidth, big); //1600
+    		$$invalidate(8, big.bigHeight = innerHeight, big); //1311
+    		$$invalidate(8, big.skala = 1, big);
+    		$$invalidate(8, big.height = big.bigHeight * big.skala, big);
+    		$$invalidate(8, big.width = big.bigWidth * big.skala, big);
+    		$$invalidate(8, big.left = 0, big); //big.width/2 //(innerWidth-big.width)/2
+    		$$invalidate(8, big.top = 0, big); //big.height/2
+    		$$invalidate(8, big.file = e.target.src.replace("small", ""), big);
+    		$$invalidate(8, big);
+    		console.log('visaBig', e);
+    		console.log('visaBig', big);
     	}
 
     	$$self.$$.on_mount.push(function () {
@@ -17928,12 +17850,12 @@ var app = (function () {
     			console_1$2.warn("<Card> was created without expected prop 'index'");
     		}
 
-    		if (bigfile === undefined && !('bigfile' in $$props || $$self.$$.bound[$$self.$$.props['bigfile']])) {
-    			console_1$2.warn("<Card> was created without expected prop 'bigfile'");
+    		if (big === undefined && !('big' in $$props || $$self.$$.bound[$$self.$$.props['big']])) {
+    			console_1$2.warn("<Card> was created without expected prop 'big'");
     		}
     	});
 
-    	const writable_props = ['WIDTH', 'GAP', 'getPath', 'card', 'selected', 'index', 'bigfile'];
+    	const writable_props = ['WIDTH', 'GAP', 'getPath', 'card', 'selected', 'index', 'big'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1$2.warn(`<Card> was created with unknown prop '${key}'`);
@@ -17951,7 +17873,7 @@ var app = (function () {
     		if ('card' in $$props) $$invalidate(4, card = $$props.card);
     		if ('selected' in $$props) $$invalidate(0, selected = $$props.selected);
     		if ('index' in $$props) $$invalidate(5, index = $$props.index);
-    		if ('bigfile' in $$props) $$invalidate(8, bigfile = $$props.bigfile);
+    		if ('big' in $$props) $$invalidate(8, big = $$props.big);
     	};
 
     	$$self.$capture_state = () => ({
@@ -17962,11 +17884,11 @@ var app = (function () {
     		card,
     		selected,
     		index,
-    		bigfile,
-    		visa,
+    		big,
     		getNumber,
     		prettyFilename,
-    		prettyPath
+    		prettyPath,
+    		visaBig
     	});
 
     	$$self.$inject_state = $$props => {
@@ -17976,7 +17898,7 @@ var app = (function () {
     		if ('card' in $$props) $$invalidate(4, card = $$props.card);
     		if ('selected' in $$props) $$invalidate(0, selected = $$props.selected);
     		if ('index' in $$props) $$invalidate(5, index = $$props.index);
-    		if ('bigfile' in $$props) $$invalidate(8, bigfile = $$props.bigfile);
+    		if ('big' in $$props) $$invalidate(8, big = $$props.big);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -17990,9 +17912,9 @@ var app = (function () {
     		getPath,
     		card,
     		index,
-    		visa,
     		getNumber,
-    		bigfile,
+    		visaBig,
+    		big,
     		input_change_handler
     	];
     }
@@ -18008,7 +17930,7 @@ var app = (function () {
     			card: 4,
     			selected: 0,
     			index: 5,
-    			bigfile: 8
+    			big: 8
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -18067,11 +17989,11 @@ var app = (function () {
     		throw new Error("<Card>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get bigfile() {
+    	get big() {
     		throw new Error("<Card>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set bigfile(value) {
+    	set big(value) {
     		throw new Error("<Card>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -21071,9 +20993,13 @@ var app = (function () {
     			t3 = space();
     			button2 = element("button");
     			button2.textContent = "Download";
+    			attr_dev(button0, "class", "svelte-1p7a3si");
     			add_location(button0, file$5, 37, 1, 1106);
+    			attr_dev(button1, "class", "svelte-1p7a3si");
     			add_location(button1, file$5, 38, 1, 1146);
+    			attr_dev(button2, "class", "svelte-1p7a3si");
     			add_location(button2, file$5, 39, 1, 1188);
+    			attr_dev(div, "class", "svelte-1p7a3si");
     			add_location(div, file$5, 36, 0, 1098);
     		},
     		l: function claim(nodes) {
@@ -21249,599 +21175,8 @@ var app = (function () {
     	}
     }
 
-    class Matrix {
-      constructor(svg) {
-        this.svg = svg || document.createElementNS("http://www.w3.org/2000/svg", "svg");
-
-        this.vtm = this.createSVGMatrix();
-
-        this.x = 0;
-        this.y = 0;
-
-        this.captureScale = 1;
-      }
-
-      clamp(scale, in_x, in_y, ratio) {
-        let xx = (window.innerWidth - ratio.width) / 2;
-        let yy = (window.innerHeight - ratio.height) / 2;
-
-        let limit_max_right_formula = xx * scale + ratio.width * scale - window.innerWidth;
-
-        let same_x = Math.min(this.vtm.e * 1.0, 0);
-        let same_y = Math.min(this.vtm.f * 1.0, 0);
-
-        let value1 = in_x > 0 ? same_x : -(xx * scale);
-        let value2 = in_x > 0 ? same_x : -limit_max_right_formula;
-
-        let limit_x_axis = this.vtm.e;
-        limit_x_axis = Math.max(value2, this.vtm.e);
-        limit_x_axis = Math.min(value1, limit_x_axis);
-
-        let limit_max_bottom_formula = yy * scale + ratio.height * scale - window.innerHeight;
-        let limit_max_top = in_y > 0 ? same_y : -(yy * scale);
-        let limit_max_bottom = in_y > 0 ? same_y : -limit_max_bottom_formula;
-
-        let limit_y_axis = this.vtm.f;
-        limit_y_axis = Math.min(limit_max_top, limit_y_axis);
-        limit_y_axis = Math.max(limit_y_axis, limit_max_bottom);
-
-        this.vtm = this.createSVGMatrix().translate(limit_x_axis, limit_y_axis).scale(Math.max(this.vtm.a, 1));
-      }
-
-      createSVGMatrix() {
-        return this.svg.createSVGMatrix()
-      }
-
-      move(x, y, in_x, in_y, ratio) {
-        this.vtm = this.createSVGMatrix()
-          .translate(this.x - x, this.y - y)
-          .scale(this.vtm.a);
-
-        this.clamp(this.vtm.a, in_x, in_y, ratio);
-        return this.vtm
-      }
-
-      scale(xFactor, yFactor, origin, in_x, in_y, ratio, max, value, dir) {
-        if ((value >= max || this.stop) && dir === 1) {
-          this.stop = true;
-          if (!this.deb) {
-            this.captureScale = this.vtm.a;
-            this.vtm = this.createSVGMatrix()
-              .translate(origin.x, origin.y)
-              .scale(max / this.captureScale)
-              .translate(-origin.x, -origin.y)
-              .translate(this.vtm.e, this.vtm.f)
-              .scale(this.captureScale);
-
-            this.deb = true;
-          }
-          return this.vtm
-        } else {
-          this.stop = false;
-        }
-
-        this.vtm = this.createSVGMatrix()
-          .translate(origin.x, origin.y)
-          .scale(xFactor, yFactor)
-          .translate(-origin.x, -origin.y)
-          .multiply(this.vtm);
-
-        let pre_scale = Math.min(Math.max(1, this.vtm.a), max);
-
-        this.clamp(pre_scale, in_x, in_y, ratio);
-
-        return this.vtm
-      }
-    }
-
-    class MultiTouchVelocity {
-      constructor() {
-        this.touchA = {
-          clientX: 0,
-          clientY: 0,
-          t: 0,
-          velocity: 1,
-        };
-        this.touchB = {
-          clientX: 0,
-          clientY: 0,
-          t: 0,
-          velocity: 1,
-        };
-      }
-      down(touchA, touchB) {
-        this.touchA = { clientX: touchA.clientX, clientY: touchA.clientY, t: Date.now(), velocity: 0 };
-        this.touchB = { clientX: touchB.clientX, clientY: touchB.clientY, t: Date.now(), veloctiy: 0 };
-      }
-      calc(touch, ins) {
-        var new_x = touch.clientX,
-          new_y = touch.clientY,
-          new_t = Date.now();
-
-        var x_dist = new_x - ins.clientX,
-          y_dist = new_y - ins.clientY,
-          interval = new_t - ins.t;
-        var velocity = Math.sqrt(x_dist * x_dist + y_dist * y_dist) / interval;
-        ins.velocity = velocity;
-        // update values:
-        ins.clientX = new_x;
-        ins.clientY = new_y;
-        ins.t = new_t;
-      }
-      getVelocity(touchA, touchB) {
-        this.calc(touchA, this.touchA);
-        this.calc(touchB, this.touchB);
-        return this.touchA.velocity + this.touchB.velocity
-      }
-    }
-
-    function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
-      var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
-
-      return { width: srcWidth * ratio, height: srcHeight * ratio, ratio }
-    }
-
-    function getDistance(touchA, touchB) {
-      return Math.hypot(touchA.pageX - touchB.pageX, touchA.pageY - touchB.pageY)
-    }
-
-    /* node_modules\svelte-zoom\src\index.svelte generated by Svelte v3.51.0 */
-    const file$4 = "node_modules\\svelte-zoom\\src\\index.svelte";
-
-    function create_fragment$4(ctx) {
-    	let img_1;
-    	let mounted;
-    	let dispose;
-    	let img_1_levels = [{ alt: /*alt*/ ctx[0] }, { class: "c-svelteZoom" }, /*$$props*/ ctx[8]];
-    	let img_1_data = {};
-
-    	for (let i = 0; i < img_1_levels.length; i += 1) {
-    		img_1_data = assign(img_1_data, img_1_levels[i]);
-    	}
-
-    	const block = {
-    		c: function create() {
-    			img_1 = element("img");
-    			set_attributes(img_1, img_1_data);
-    			toggle_class(img_1, "c-svelteZoom--contain", /*contain*/ ctx[3]);
-    			toggle_class(img_1, "c-svelteZoom--no-contain", !/*contain*/ ctx[3]);
-    			toggle_class(img_1, "c-svelteZoom--transition", /*smooth*/ ctx[1]);
-    			toggle_class(img_1, "c-svelteZoom--visible", /*contain*/ ctx[3]);
-    			toggle_class(img_1, "c-svelteZoom--hidden", /*contain*/ ctx[3] === null);
-    			toggle_class(img_1, "c-svelteZoom--willChange", /*willChange*/ ctx[4]);
-    			toggle_class(img_1, "svelte-1sywrt4", true);
-    			add_location(img_1, file$4, 43, 0, 795);
-    		},
-    		l: function claim(nodes) {
-    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, img_1, anchor);
-    			/*img_1_binding*/ ctx[11](img_1);
-
-    			if (!mounted) {
-    				dispose = [
-    					listen_dev(img_1, "mousedown", /*mousedown*/ ctx[6], false, false, false),
-    					listen_dev(img_1, "touchstart", /*touchstart*/ ctx[7], false, false, false),
-    					listen_dev(img_1, "load", /*onLoad*/ ctx[5], false, false, false)
-    				];
-
-    				mounted = true;
-    			}
-    		},
-    		p: function update(ctx, dirty) {
-    			set_attributes(img_1, img_1_data = get_spread_update(img_1_levels, [
-    				dirty[0] & /*alt*/ 1 && { alt: /*alt*/ ctx[0] },
-    				{ class: "c-svelteZoom" },
-    				dirty[0] & /*$$props*/ 256 && /*$$props*/ ctx[8]
-    			]));
-
-    			toggle_class(img_1, "c-svelteZoom--contain", /*contain*/ ctx[3]);
-    			toggle_class(img_1, "c-svelteZoom--no-contain", !/*contain*/ ctx[3]);
-    			toggle_class(img_1, "c-svelteZoom--transition", /*smooth*/ ctx[1]);
-    			toggle_class(img_1, "c-svelteZoom--visible", /*contain*/ ctx[3]);
-    			toggle_class(img_1, "c-svelteZoom--hidden", /*contain*/ ctx[3] === null);
-    			toggle_class(img_1, "c-svelteZoom--willChange", /*willChange*/ ctx[4]);
-    			toggle_class(img_1, "svelte-1sywrt4", true);
-    		},
-    		i: noop$1,
-    		o: noop$1,
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(img_1);
-    			/*img_1_binding*/ ctx[11](null);
-    			mounted = false;
-    			run_all(dispose);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_fragment$4.name,
-    		type: "component",
-    		source: "",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    function instance$4($$self, $$props, $$invalidate) {
-    	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots('Src', slots, []);
-    	let { alt } = $$props;
-    	let smooth = true;
-    	let touchScreen = false;
-    	let xY = { initX: 0, initY: 0, newX: 0, newY: 0 };
-    	let ratio, img;
-    	let matrix;
-    	let contain = null;
-    	let willChange = true;
-    	let velocity = new MultiTouchVelocity();
-    	let lastTap = { time: 0, x: 0, y: 0 };
-
-    	let scale = {
-    		scaling: false,
-    		x1: 0,
-    		x2: 0,
-    		y1: 0,
-    		y2: 0,
-    		lastHypo: 0,
-    		originX: 0,
-    		originY: 0,
-    		value: 1,
-    		max: 1
-    	};
-
-    	function fireDown(x, y) {
-    		xY.initX = x;
-    		xY.initY = y;
-    		matrix.x = matrix.vtm.e;
-    		matrix.y = matrix.vtm.f;
-    		$$invalidate(4, willChange = true);
-    	}
-
-    	function fireMove(x, y) {
-    		if (scale.scaling) return;
-    		let in_x = (window.innerWidth - ratio.width * matrix.vtm.a) / 2;
-    		let in_y = (window.innerHeight - ratio.height * matrix.vtm.a) / 2;
-    		xY.newX = xY.initX - x;
-    		xY.newY = xY.initY - y;
-    		const mat = matrix.move(in_x >= 0 ? 0 : xY.newX, in_y >= 0 ? 0 : xY.newY, in_x, in_y, ratio);
-    		$$invalidate(2, img.style.transform = `matrix(${mat.a},${mat.b},${mat.c},${mat.d},${mat.e}, ${mat.f})`, img);
-    	}
-
-    	function fireUp() {
-    		matrix.x -= xY.newX;
-    		matrix.y -= xY.newY;
-    		scale.scaling = false;
-    		scale.lastHypo = 0;
-    		$$invalidate(1, smooth = true);
-    		$$invalidate(4, willChange = false);
-    	}
-
-    	function fireScale(touchA, touchB) {
-    		const xTouch = [Math.min(touchA.pageX, touchB.pageX), Math.max(touchA.pageX, touchB.pageX)];
-    		const yTouch = [Math.min(touchA.pageY, touchB.pageY), Math.max(touchA.pageY, touchB.pageY)];
-    		const W = xTouch[1] - xTouch[0];
-    		const centerX = W / 2 + xTouch[0];
-    		const H = yTouch[1] - yTouch[0];
-    		const centerY = H / 2 + yTouch[0];
-    		scale.originX = centerX;
-    		scale.originY = centerY;
-    		scale.lastHypo = Math.trunc(getDistance(touchA, touchB));
-    		$$invalidate(1, smooth = false);
-    	}
-
-    	function fireTapScale(x, y) {
-    		let scaleVtm = matrix.vtm.a;
-    		let scale_value = scaleVtm > 1 ? scaleVtm - 1 : scale.max / 2.5;
-    		let scale_factor = scaleVtm > 1 ? -1 : 1;
-    		const xFactor = 1 + scale_value * scale_factor;
-    		const yFactor = xFactor * window.innerHeight / window.innerWidth;
-    		let in_x = (window.innerWidth - ratio.width * Math.max(xFactor * scaleVtm, 1)) / 2;
-    		let in_y = (window.innerHeight - ratio.height * Math.max(xFactor * scaleVtm, 1)) / 2;
-
-    		const origin = {
-    			x: in_x > 0 ? window.innerWidth / 2 : x,
-    			y: in_y > 0 ? window.innerHeight / 2 : y
-    		};
-
-    		const mat = matrix.scale(xFactor, yFactor, origin, in_x, in_y, ratio, scale.max, scale.value * xFactor, scale_factor);
-    		scale.value = mat.d;
-    		$$invalidate(2, img.style.transform = `translate(${mat.e}px, ${mat.f}px) scale(${mat.d})`, img);
-    	}
-
-    	function fireScaleMove(touchA, touchB, e) {
-    		const hypo = getDistance(touchA, touchB);
-    		let f = hypo / scale.lastHypo;
-    		f = f >= 1 ? 1 : -1;
-    		const ff = velocity.getVelocity(touchA, touchB) || 1;
-    		const xFactor = 1 + 0.1 * ff * f;
-    		const yFactor = xFactor * window.innerHeight / window.innerWidth;
-    		let in_x = (window.innerWidth - ratio.width * matrix.vtm.a) / 2;
-    		let in_y = (window.innerHeight - ratio.height * matrix.vtm.a) / 2;
-
-    		const origin = {
-    			x: in_x > 0 ? window.innerWidth / 2 : scale.originX,
-    			y: in_y > 0 ? window.innerHeight / 2 : scale.originY
-    		};
-
-    		const mat = matrix.scale(xFactor, yFactor, origin, in_x, in_y, ratio, scale.max, scale.value * xFactor, f);
-    		$$invalidate(2, img.style.transform = `translate(${mat.e}px, ${mat.f}px) scale(${mat.d})`, img);
-    		scale.value = mat.d;
-    		scale.lastHypo = hypo;
-    		scale.scaling = true;
-    	}
-
-    	function fireManualZoom(dir) {
-    		const xFactor = 1 + 0.2 * dir;
-    		const yFactor = xFactor * window.innerHeight / window.innerWidth;
-    		let in_x = (window.innerWidth - ratio.width * matrix.vtm.a) / 2;
-    		let in_y = (window.innerHeight - ratio.height * matrix.vtm.a) / 2;
-
-    		const origin = {
-    			x: window.innerWidth / 2,
-    			y: window.innerHeight / 2
-    		};
-
-    		const mat = matrix.scale(xFactor, yFactor, origin, in_x, in_y, ratio, scale.max, scale.value * xFactor, dir);
-    		$$invalidate(2, img.style.transform = `translate(${mat.e}px,${mat.f}px) scale(${mat.d})`, img);
-    		scale.value = mat.d;
-    	}
-
-    	const zoomIn = () => fireManualZoom(1);
-    	const zoomOut = () => fireManualZoom(-1);
-
-    	function onResize() {
-    		onLoad();
-    		fireDown(0, 0);
-    		fireMove(0, 0);
-    		fireUp();
-    	}
-
-    	function onWheel(e) {
-    		e.preventDefault();
-    		const dir = e.deltaY < 0 ? 1 : -1;
-    		const xFactor = 1 + 0.1 * dir;
-    		const yFactor = xFactor * window.innerHeight / window.innerWidth;
-    		let in_x = (window.innerWidth - ratio.width * matrix.vtm.a) / 2;
-    		let in_y = (window.innerHeight - ratio.height * matrix.vtm.a) / 2;
-
-    		const origin = {
-    			x: in_x > 0 ? window.innerWidth / 2 : e.pageX,
-    			y: in_y > 0 ? window.innerHeight / 2 : e.pageY
-    		};
-
-    		const mat = matrix.scale(xFactor, yFactor, origin, in_x, in_y, ratio, scale.max, scale.value * xFactor, dir);
-    		$$invalidate(2, img.style.transform = `translate(${mat.e}px,${mat.f}px) scale(${mat.d})`, img);
-    		scale.value = mat.d;
-    	}
-
-    	function onLoad() {
-    		const { naturalWidth, naturalHeight } = img;
-    		$$invalidate(3, contain = naturalWidth > window.innerWidth || naturalHeight > window.innerHeight);
-
-    		scale.max = naturalWidth > naturalHeight
-    		? Math.max(naturalWidth / window.innerWidth, 1)
-    		: Math.max(naturalHeight / window.innerHeight, 1);
-
-    		ratio = calculateAspectRatioFit(naturalWidth, naturalHeight, window.innerWidth, window.innerHeight);
-    	}
-
-    	onMount(() => {
-    		matrix = new Matrix();
-    		window.addEventListener("wheel", onWheel, { passive: false });
-    		window.addEventListener("resize", onResize);
-
-    		return () => {
-    			window.removeEventListener("wheel", onWheel);
-    			window.removeEventListener("resize", onResize);
-    		};
-    	});
-
-    	function onTouchStart(e) {
-    		touchScreen = true;
-    		$$invalidate(4, willChange = true);
-    		const isMultiTouch = e.touches.length === 2;
-    		const [touchA, touchB] = e.touches;
-    		scale.scaling = isMultiTouch;
-    		$$invalidate(1, smooth = false);
-
-    		if (isMultiTouch) {
-    			fireScale(touchA, touchB);
-    			velocity.down(touchA, touchB);
-    		} else {
-    			const { pageX, pageY } = touchA;
-    			var now = new Date().getTime();
-
-    			if (now - lastTap.time < 250 && Math.hypot(lastTap.x - pageX, lastTap.y - pageY) <= 20) {
-    				$$invalidate(1, smooth = true);
-    				fireTapScale(pageX, pageY);
-    			} else {
-    				fireDown(pageX, pageY);
-    			}
-
-    			lastTap = { time: now, x: pageX, y: pageY };
-    		}
-
-    		window.removeEventListener("touchmove", onTouchMove);
-    		window.removeEventListener("touchend", onTouchEnd);
-    		window.addEventListener("touchmove", onTouchMove);
-    		window.addEventListener("touchend", onTouchEnd);
-    	}
-
-    	function onTouchMove(e) {
-    		if (scale.scaling) {
-    			const [touchA, touchB] = e.touches;
-    			fireScaleMove(touchA, touchB);
-    		} else {
-    			fireMove(e.touches[0].pageX, e.touches[0].pageY);
-    		}
-    	}
-
-    	function onTouchEnd(e) {
-    		fireUp();
-    		window.removeEventListener("touchmove", onTouchMove);
-    		window.removeEventListener("touchend", onTouchEnd);
-    		window.removeEventListener("touchcancel", onTouchEnd);
-    	}
-
-    	function onMouseDown({ clientX, clientY }) {
-    		if (touchScreen) return;
-    		fireDown(clientX, clientY);
-    		$$invalidate(1, smooth = false);
-    		window.addEventListener("mousemove", onMouseMove);
-    		window.addEventListener("mouseup", onMouseUp);
-    	}
-
-    	function onMouseMove({ clientX, clientY }) {
-    		fireMove(clientX, clientY);
-    	}
-
-    	function onMouseUp() {
-    		window.removeEventListener("mousemove", onMouseMove);
-    		fireUp();
-    	}
-
-    	const mousedown = onMouseDown;
-    	const touchstart = onTouchStart;
-
-    	$$self.$$.on_mount.push(function () {
-    		if (alt === undefined && !('alt' in $$props || $$self.$$.bound[$$self.$$.props['alt']])) {
-    			console.warn("<Src> was created without expected prop 'alt'");
-    		}
-    	});
-
-    	function img_1_binding($$value) {
-    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
-    			img = $$value;
-    			$$invalidate(2, img);
-    		});
-    	}
-
-    	$$self.$$set = $$new_props => {
-    		$$invalidate(8, $$props = assign(assign({}, $$props), exclude_internal_props($$new_props)));
-    		if ('alt' in $$new_props) $$invalidate(0, alt = $$new_props.alt);
-    	};
-
-    	$$self.$capture_state = () => ({
-    		alt,
-    		Matrix,
-    		MultiTouchVelocity,
-    		calculateAspectRatioFit,
-    		getDistance,
-    		onMount,
-    		smooth,
-    		touchScreen,
-    		xY,
-    		ratio,
-    		img,
-    		matrix,
-    		contain,
-    		willChange,
-    		velocity,
-    		lastTap,
-    		scale,
-    		fireDown,
-    		fireMove,
-    		fireUp,
-    		fireScale,
-    		fireTapScale,
-    		fireScaleMove,
-    		fireManualZoom,
-    		zoomIn,
-    		zoomOut,
-    		onResize,
-    		onWheel,
-    		onLoad,
-    		onTouchStart,
-    		onTouchMove,
-    		onTouchEnd,
-    		onMouseDown,
-    		onMouseMove,
-    		onMouseUp,
-    		mousedown,
-    		touchstart
-    	});
-
-    	$$self.$inject_state = $$new_props => {
-    		$$invalidate(8, $$props = assign(assign({}, $$props), $$new_props));
-    		if ('alt' in $$props) $$invalidate(0, alt = $$new_props.alt);
-    		if ('smooth' in $$props) $$invalidate(1, smooth = $$new_props.smooth);
-    		if ('touchScreen' in $$props) touchScreen = $$new_props.touchScreen;
-    		if ('xY' in $$props) xY = $$new_props.xY;
-    		if ('ratio' in $$props) ratio = $$new_props.ratio;
-    		if ('img' in $$props) $$invalidate(2, img = $$new_props.img);
-    		if ('matrix' in $$props) matrix = $$new_props.matrix;
-    		if ('contain' in $$props) $$invalidate(3, contain = $$new_props.contain);
-    		if ('willChange' in $$props) $$invalidate(4, willChange = $$new_props.willChange);
-    		if ('velocity' in $$props) velocity = $$new_props.velocity;
-    		if ('lastTap' in $$props) lastTap = $$new_props.lastTap;
-    		if ('scale' in $$props) scale = $$new_props.scale;
-    	};
-
-    	if ($$props && "$$inject" in $$props) {
-    		$$self.$inject_state($$props.$$inject);
-    	}
-
-    	$$props = exclude_internal_props($$props);
-
-    	return [
-    		alt,
-    		smooth,
-    		img,
-    		contain,
-    		willChange,
-    		onLoad,
-    		mousedown,
-    		touchstart,
-    		$$props,
-    		zoomIn,
-    		zoomOut,
-    		img_1_binding
-    	];
-    }
-
-    class Src extends SvelteComponentDev {
-    	constructor(options) {
-    		super(options);
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, { alt: 0, zoomIn: 9, zoomOut: 10 }, null, [-1, -1]);
-
-    		dispatch_dev("SvelteRegisterComponent", {
-    			component: this,
-    			tagName: "Src",
-    			options,
-    			id: create_fragment$4.name
-    		});
-    	}
-
-    	get alt() {
-    		throw new Error("<Src>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set alt(value) {
-    		throw new Error("<Src>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get zoomIn() {
-    		return this.$$.ctx[9];
-    	}
-
-    	set zoomIn(value) {
-    		throw new Error("<Src>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get zoomOut() {
-    		return this.$$.ctx[10];
-    	}
-
-    	set zoomOut(value) {
-    		throw new Error("<Src>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-    }
-
     /* src\NavigationDown.svelte generated by Svelte v3.51.0 */
-    const file$3 = "src\\NavigationDown.svelte";
+    const file$4 = "src\\NavigationDown.svelte";
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
@@ -21849,7 +21184,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (12:0) {:else}
+    // (11:0) {:else}
     function create_else_block$2(ctx) {
     	let each_1_anchor;
     	let each_value = lodash.keys(lodash.last(/*path*/ ctx[1]));
@@ -21910,14 +21245,14 @@ var app = (function () {
     		block,
     		id: create_else_block$2.name,
     		type: "else",
-    		source: "(12:0) {:else}",
+    		source: "(11:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (10:0) {#if _.last(stack).includes('.jpg')}
+    // (9:0) {#if _.last(stack).includes('.jpg')}
     function create_if_block$2(ctx) {
     	let img;
     	let img_src_value;
@@ -21927,7 +21262,7 @@ var app = (function () {
     			img = element("img");
     			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*stack*/ ctx[0], ""))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "big");
-    			add_location(img, file$3, 10, 1, 196);
+    			add_location(img, file$4, 9, 1, 163);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -21946,14 +21281,14 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(10:0) {#if _.last(stack).includes('.jpg')}",
+    		source: "(9:0) {#if _.last(stack).includes('.jpg')}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (17:3) {:else}
+    // (16:3) {:else}
     function create_else_block_1$1(ctx) {
     	let button;
     	let t_value = /*key*/ ctx[6] + "";
@@ -21969,7 +21304,8 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			add_location(button, file$3, 17, 4, 409);
+    			attr_dev(button, "class", "svelte-7m8r1t");
+    			add_location(button, file$4, 16, 4, 376);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21995,14 +21331,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1$1.name,
     		type: "else",
-    		source: "(17:3) {:else}",
+    		source: "(16:3) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (15:3) {#if _.isNumber(key)}
+    // (14:3) {#if _.isNumber(key)}
     function create_if_block_1$1(ctx) {
     	let button;
     	let t_value = lodash.last(/*path*/ ctx[1])[/*key*/ ctx[6]] + "";
@@ -22018,7 +21354,8 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			add_location(button, file$3, 15, 4, 326);
+    			attr_dev(button, "class", "svelte-7m8r1t");
+    			add_location(button, file$4, 14, 4, 293);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -22044,14 +21381,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(15:3) {#if _.isNumber(key)}",
+    		source: "(14:3) {#if _.isNumber(key)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (13:1) {#each _.keys(_.last(path)) as key }
+    // (12:1) {#each _.keys(_.last(path)) as key }
     function create_each_block$2(ctx) {
     	let div;
     	let show_if;
@@ -22072,7 +21409,8 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			t = space();
-    			add_location(div, file$3, 13, 2, 289);
+    			attr_dev(div, "class", "svelte-7m8r1t");
+    			add_location(div, file$4, 12, 2, 256);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -22102,14 +21440,14 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(13:1) {#each _.keys(_.last(path)) as key }",
+    		source: "(12:1) {#each _.keys(_.last(path)) as key }",
     		ctx
     	});
 
     	return block;
     }
 
-    function create_fragment$3(ctx) {
+    function create_fragment$4(ctx) {
     	let show_if;
     	let if_block_anchor;
 
@@ -22158,7 +21496,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$3.name,
+    		id: create_fragment$4.name,
     		type: "component",
     		source: "",
     		ctx
@@ -22167,7 +21505,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$3($$self, $$props, $$invalidate) {
+    function instance$4($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('NavigationDown', slots, []);
     	let { stack } = $$props;
@@ -22209,7 +21547,7 @@ var app = (function () {
     		if ('push' in $$props) $$invalidate(3, push = $$props.push);
     	};
 
-    	$$self.$capture_state = () => ({ _: lodash, Zoom: Src, stack, path, getPath, push });
+    	$$self.$capture_state = () => ({ _: lodash, stack, path, getPath, push });
 
     	$$self.$inject_state = $$props => {
     		if ('stack' in $$props) $$invalidate(0, stack = $$props.stack);
@@ -22228,13 +21566,13 @@ var app = (function () {
     class NavigationDown extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { stack: 0, path: 1, getPath: 2, push: 3 });
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, { stack: 0, path: 1, getPath: 2, push: 3 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "NavigationDown",
     			options,
-    			id: create_fragment$3.name
+    			id: create_fragment$4.name
     		});
     	}
 
@@ -22272,7 +21610,7 @@ var app = (function () {
     }
 
     /* src\NavigationUp.svelte generated by Svelte v3.51.0 */
-    const file$2 = "src\\NavigationUp.svelte";
+    const file$3 = "src\\NavigationUp.svelte";
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
@@ -22296,7 +21634,8 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			add_location(button, file$2, 11, 3, 189);
+    			attr_dev(button, "class", "svelte-1u8yrf9");
+    			add_location(button, file$3, 11, 3, 189);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -22414,7 +21753,7 @@ var app = (function () {
     	return block;
     }
 
-    function create_fragment$2(ctx) {
+    function create_fragment$3(ctx) {
     	let div;
     	let each_value = /*stack*/ ctx[0];
     	validate_each_argument(each_value);
@@ -22433,7 +21772,8 @@ var app = (function () {
     			}
 
     			set_style(div, "height", "50px");
-    			add_location(div, file$2, 6, 0, 84);
+    			attr_dev(div, "class", "svelte-1u8yrf9");
+    			add_location(div, file$3, 6, 0, 84);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -22480,7 +21820,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$2.name,
+    		id: create_fragment$3.name,
     		type: "component",
     		source: "",
     		ctx
@@ -22489,7 +21829,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$2($$self, $$props, $$invalidate) {
+    function instance$3($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('NavigationUp', slots, []);
     	let { stack } = $$props;
@@ -22535,13 +21875,13 @@ var app = (function () {
     class NavigationUp extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { stack: 0, pop: 1 });
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { stack: 0, pop: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "NavigationUp",
     			options,
-    			id: create_fragment$2.name
+    			id: create_fragment$3.name
     		});
     	}
 
@@ -22564,47 +21904,61 @@ var app = (function () {
 
     /* src\Search.svelte generated by Svelte v3.51.0 */
 
-    const file$1 = "src\\Search.svelte";
+    const file$2 = "src\\Search.svelte";
 
-    function create_fragment$1(ctx) {
+    function create_fragment$2(ctx) {
     	let div;
-    	let input;
-    	let t0;
-    	let t1_value = /*result*/ ctx[1][0] + "";
+    	let button;
     	let t1;
+    	let input;
     	let t2;
-    	let t3_value = /*result*/ ctx[1][1] + "";
+    	let t3_value = /*result*/ ctx[1][0] + "";
     	let t3;
+    	let t4;
+    	let t5_value = /*result*/ ctx[1][1] + "";
+    	let t5;
     	let mounted;
     	let dispose;
 
     	const block = {
     		c: function create() {
     			div = element("div");
+    			button = element("button");
+    			button.textContent = "Clear";
+    			t1 = space();
     			input = element("input");
-    			t0 = space();
-    			t1 = text(t1_value);
     			t2 = space();
     			t3 = text(t3_value);
+    			t4 = space();
+    			t5 = text(t5_value);
+    			add_location(button, file$2, 6, 1, 72);
     			attr_dev(input, "placeholder", "Sök");
     			set_style(input, "width", "50%");
-    			add_location(input, file$1, 6, 1, 72);
-    			add_location(div, file$1, 5, 0, 64);
+    			attr_dev(input, "class", "svelte-17i7c9r");
+    			add_location(input, file$2, 7, 1, 127);
+    			attr_dev(div, "class", "svelte-17i7c9r");
+    			add_location(div, file$2, 5, 0, 64);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
+    			append_dev(div, button);
+    			append_dev(div, t1);
     			append_dev(div, input);
     			set_input_value(input, /*sokruta*/ ctx[0]);
-    			append_dev(div, t0);
-    			append_dev(div, t1);
     			append_dev(div, t2);
     			append_dev(div, t3);
+    			append_dev(div, t4);
+    			append_dev(div, t5);
 
     			if (!mounted) {
-    				dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[2]);
+    				dispose = [
+    					listen_dev(button, "click", /*click_handler*/ ctx[2], false, false, false),
+    					listen_dev(input, "input", /*input_input_handler*/ ctx[3])
+    				];
+
     				mounted = true;
     			}
     		},
@@ -22613,21 +21967,21 @@ var app = (function () {
     				set_input_value(input, /*sokruta*/ ctx[0]);
     			}
 
-    			if (dirty & /*result*/ 2 && t1_value !== (t1_value = /*result*/ ctx[1][0] + "")) set_data_dev(t1, t1_value);
-    			if (dirty & /*result*/ 2 && t3_value !== (t3_value = /*result*/ ctx[1][1] + "")) set_data_dev(t3, t3_value);
+    			if (dirty & /*result*/ 2 && t3_value !== (t3_value = /*result*/ ctx[1][0] + "")) set_data_dev(t3, t3_value);
+    			if (dirty & /*result*/ 2 && t5_value !== (t5_value = /*result*/ ctx[1][1] + "")) set_data_dev(t5, t5_value);
     		},
     		i: noop$1,
     		o: noop$1,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$1.name,
+    		id: create_fragment$2.name,
     		type: "component",
     		source: "",
     		ctx
@@ -22636,7 +21990,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$1($$self, $$props, $$invalidate) {
+    function instance$2($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Search', slots, []);
     	let { sokruta } = $$props;
@@ -22657,6 +22011,8 @@ var app = (function () {
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Search> was created with unknown prop '${key}'`);
     	});
+
+    	const click_handler = () => $$invalidate(0, sokruta = "");
 
     	function input_input_handler() {
     		sokruta = this.value;
@@ -22679,19 +22035,19 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [sokruta, result, input_input_handler];
+    	return [sokruta, result, click_handler, input_input_handler];
     }
 
     class Search extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { sokruta: 0, result: 1 });
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { sokruta: 0, result: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "Search",
     			options,
-    			id: create_fragment$1.name
+    			id: create_fragment$2.name
     		});
     	}
 
@@ -22712,6 +22068,258 @@ var app = (function () {
     	}
     }
 
+    /* src\BigPicture.svelte generated by Svelte v3.51.0 */
+
+    const file$1 = "src\\BigPicture.svelte";
+
+    function create_fragment$1(ctx) {
+    	let div;
+    	let img;
+    	let img_src_value;
+    	let img_width_value;
+    	let img_xxxheight_value;
+    	let t0;
+    	let button0;
+    	let t2;
+    	let button1;
+    	let t4;
+    	let button2;
+    	let t6;
+    	let button3;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			img = element("img");
+    			t0 = space();
+    			button0 = element("button");
+    			button0.textContent = "play";
+    			t2 = space();
+    			button1 = element("button");
+    			button1.textContent = "exit";
+    			t4 = space();
+    			button2 = element("button");
+    			button2.textContent = "<";
+    			t6 = space();
+    			button3 = element("button");
+    			button3.textContent = ">";
+    			if (!src_url_equal(img.src, img_src_value = /*big*/ ctx[0].file)) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", "");
+    			attr_dev(img, "width", img_width_value = /*big*/ ctx[0].width);
+    			attr_dev(img, "xxxheight", img_xxxheight_value = /*big*/ ctx[0].height);
+    			set_style(img, "position", "absolute");
+    			set_style(img, "left", /*big*/ ctx[0].left + "px");
+    			set_style(img, "top", /*big*/ ctx[0].top + "px");
+    			add_location(img, file$1, 72, 1, 1304);
+    			set_style(button0, "left", "0%");
+    			set_style(button0, "top", "0%");
+    			attr_dev(button0, "class", "svelte-1kxxb1l");
+    			add_location(button0, file$1, 82, 1, 1559);
+    			set_style(button1, "left", "96%");
+    			set_style(button1, "top", "0%");
+    			attr_dev(button1, "class", "svelte-1kxxb1l");
+    			add_location(button1, file$1, 83, 1, 1611);
+    			set_style(button2, "left", "0%");
+    			set_style(button2, "top", "96%");
+    			attr_dev(button2, "class", "svelte-1kxxb1l");
+    			add_location(button2, file$1, 84, 1, 1680);
+    			set_style(button3, "left", "96%");
+    			set_style(button3, "top", "96%");
+    			attr_dev(button3, "class", "svelte-1kxxb1l");
+    			add_location(button3, file$1, 85, 1, 1732);
+    			add_location(div, file$1, 70, 0, 1294);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, img);
+    			append_dev(div, t0);
+    			append_dev(div, button0);
+    			append_dev(div, t2);
+    			append_dev(div, button1);
+    			append_dev(div, t4);
+    			append_dev(div, button2);
+    			append_dev(div, t6);
+    			append_dev(div, button3);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(img, "wheel", /*wheel*/ ctx[1], false, false, false),
+    					listen_dev(img, "mousedown", /*mousedown*/ ctx[2], false, false, false),
+    					listen_dev(img, "mousemove", /*mousemove*/ ctx[3], false, false, false),
+    					listen_dev(img, "mouseup", /*mouseup*/ ctx[4], false, false, false),
+    					listen_dev(button1, "click", /*close*/ ctx[5], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*big*/ 1 && !src_url_equal(img.src, img_src_value = /*big*/ ctx[0].file)) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+
+    			if (dirty & /*big*/ 1 && img_width_value !== (img_width_value = /*big*/ ctx[0].width)) {
+    				attr_dev(img, "width", img_width_value);
+    			}
+
+    			if (dirty & /*big*/ 1 && img_xxxheight_value !== (img_xxxheight_value = /*big*/ ctx[0].height)) {
+    				attr_dev(img, "xxxheight", img_xxxheight_value);
+    			}
+
+    			if (dirty & /*big*/ 1) {
+    				set_style(img, "left", /*big*/ ctx[0].left + "px");
+    			}
+
+    			if (dirty & /*big*/ 1) {
+    				set_style(img, "top", /*big*/ ctx[0].top + "px");
+    			}
+    		},
+    		i: noop$1,
+    		o: noop$1,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			mounted = false;
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$1.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$1($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('BigPicture', slots, []);
+    	let { big } = $$props;
+    	big.backup = document.body.style;
+    	document.body.style = "height:100%; overflow:hidden; background-color:black;";
+
+    	window.onscroll = e => {
+    		e.preventDefault();
+    		e.stopPropagation();
+    		return false;
+    	};
+
+    	function wheel(e) {
+    		e.preventDefault();
+    		e.stopPropagation();
+    		const x = e.x; // musens position
+    		const y = e.y;
+
+    		function f(skala, left, x) {
+    			return (1 - skala) * (x - left);
+    		}
+
+    		let faktor = 1.1;
+    		if (e.deltaY > 0) faktor = 1 / 1.1;
+    		$$invalidate(0, big.left += f(faktor, big.left, x), big);
+    		$$invalidate(0, big.top += f(faktor, big.top, y), big);
+    		$$invalidate(0, big.skala *= faktor, big);
+    		$$invalidate(0, big.width = big.skala * big.bigWidth, big);
+    		$$invalidate(0, big.height = big.skala * big.bigHeight, big);
+    		$$invalidate(0, big);
+    		return false;
+    	}
+
+    	function mousedown(e) {
+    		e.preventDefault();
+    		e.stopPropagation();
+    		if (e.x < 10 && e.y < 10) return;
+    		$$invalidate(0, big.state = 1, big);
+    		$$invalidate(0, big.startX = e.x, big);
+    		$$invalidate(0, big.startY = e.y, big);
+    		$$invalidate(0, big);
+    	}
+
+    	function mousemove(e) {
+    		if (big.state == 0) return;
+    		$$invalidate(0, big.left += e.x - big.startX, big);
+    		$$invalidate(0, big.top += e.y - big.startY, big);
+    		$$invalidate(0, big.startX = e.x, big);
+    		$$invalidate(0, big.startY = e.y, big);
+    		$$invalidate(0, big);
+    	}
+
+    	function mouseup(e) {
+    		$$invalidate(0, big.state = 0, big);
+    		$$invalidate(0, big);
+    	}
+
+    	function close() {
+    		$$invalidate(0, big.file = "", big);
+    		document.body.style = "margin:0; padding:0; background-color:black;";
+    	} // todo Återställ även scrollposition!
+
+    	$$self.$$.on_mount.push(function () {
+    		if (big === undefined && !('big' in $$props || $$self.$$.bound[$$self.$$.props['big']])) {
+    			console.warn("<BigPicture> was created without expected prop 'big'");
+    		}
+    	});
+
+    	const writable_props = ['big'];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<BigPicture> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ('big' in $$props) $$invalidate(0, big = $$props.big);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		big,
+    		wheel,
+    		mousedown,
+    		mousemove,
+    		mouseup,
+    		close
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ('big' in $$props) $$invalidate(0, big = $$props.big);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [big, wheel, mousedown, mousemove, mouseup, close];
+    }
+
+    class BigPicture extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { big: 0 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "BigPicture",
+    			options,
+    			id: create_fragment$1.name
+    		});
+    	}
+
+    	get big() {
+    		throw new Error("<BigPicture>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set big(value) {
+    		throw new Error("<BigPicture>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
     /* src\App.svelte generated by Svelte v3.51.0 */
 
     const { Object: Object_1, console: console_1, window: window_1 } = globals;
@@ -22724,43 +22332,106 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (185:0) {:else}
-    function create_else_block(ctx) {
+    // (237:0) {:else}
+    function create_else_block_1(ctx) {
+    	let bigpicture;
+    	let updating_big;
+    	let current;
+
+    	function bigpicture_big_binding(value) {
+    		/*bigpicture_big_binding*/ ctx[16](value);
+    	}
+
+    	let bigpicture_props = {};
+
+    	if (/*big*/ ctx[7] !== void 0) {
+    		bigpicture_props.big = /*big*/ ctx[7];
+    	}
+
+    	bigpicture = new BigPicture({ props: bigpicture_props, $$inline: true });
+    	binding_callbacks.push(() => bind$1(bigpicture, 'big', bigpicture_big_binding));
+
+    	const block = {
+    		c: function create() {
+    			create_component(bigpicture.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(bigpicture, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const bigpicture_changes = {};
+
+    			if (!updating_big && dirty[0] & /*big*/ 128) {
+    				updating_big = true;
+    				bigpicture_changes.big = /*big*/ ctx[7];
+    				add_flush_callback(() => updating_big = false);
+    			}
+
+    			bigpicture.$set(bigpicture_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(bigpicture.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(bigpicture.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(bigpicture, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block_1.name,
+    		type: "else",
+    		source: "(237:0) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (224:0) {#if big.file == ""}
+    function create_if_block(ctx) {
+    	let div;
     	let search_1;
     	let updating_sokruta;
     	let updating_result;
     	let t;
     	let current_block_type_index;
     	let if_block;
-    	let if_block_anchor;
     	let current;
 
     	function search_1_sokruta_binding(value) {
-    		/*search_1_sokruta_binding*/ ctx[15](value);
+    		/*search_1_sokruta_binding*/ ctx[12](value);
     	}
 
     	function search_1_result_binding(value) {
-    		/*search_1_result_binding*/ ctx[16](value);
+    		/*search_1_result_binding*/ ctx[13](value);
     	}
 
     	let search_1_props = {};
 
-    	if (/*sokruta*/ ctx[3] !== void 0) {
-    		search_1_props.sokruta = /*sokruta*/ ctx[3];
+    	if (/*sokruta*/ ctx[2] !== void 0) {
+    		search_1_props.sokruta = /*sokruta*/ ctx[2];
     	}
 
-    	if (/*result*/ ctx[4] !== void 0) {
-    		search_1_props.result = /*result*/ ctx[4];
+    	if (/*result*/ ctx[3] !== void 0) {
+    		search_1_props.result = /*result*/ ctx[3];
     	}
 
     	search_1 = new Search({ props: search_1_props, $$inline: true });
     	binding_callbacks.push(() => bind$1(search_1, 'sokruta', search_1_sokruta_binding));
     	binding_callbacks.push(() => bind$1(search_1, 'result', search_1_result_binding));
-    	const if_block_creators = [create_if_block_1, create_else_block_1];
+    	const if_block_creators = [create_if_block_1, create_else_block];
     	const if_blocks = [];
 
     	function select_block_type_1(ctx, dirty) {
-    		if (/*sokruta*/ ctx[3] == "") return 0;
+    		if (/*sokruta*/ ctx[2] == "") return 0;
     		return 1;
     	}
 
@@ -22769,30 +22440,32 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			create_component(search_1.$$.fragment);
     			t = space();
     			if_block.c();
-    			if_block_anchor = empty();
+    			attr_dev(div, "class", "svelte-p8wta7");
+    			add_location(div, file, 224, 1, 5749);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(search_1, target, anchor);
-    			insert_dev(target, t, anchor);
-    			if_blocks[current_block_type_index].m(target, anchor);
-    			insert_dev(target, if_block_anchor, anchor);
+    			insert_dev(target, div, anchor);
+    			mount_component(search_1, div, null);
+    			append_dev(div, t);
+    			if_blocks[current_block_type_index].m(div, null);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
     			const search_1_changes = {};
 
-    			if (!updating_sokruta && dirty[0] & /*sokruta*/ 8) {
+    			if (!updating_sokruta && dirty[0] & /*sokruta*/ 4) {
     				updating_sokruta = true;
-    				search_1_changes.sokruta = /*sokruta*/ ctx[3];
+    				search_1_changes.sokruta = /*sokruta*/ ctx[2];
     				add_flush_callback(() => updating_sokruta = false);
     			}
 
-    			if (!updating_result && dirty[0] & /*result*/ 16) {
+    			if (!updating_result && dirty[0] & /*result*/ 8) {
     				updating_result = true;
-    				search_1_changes.result = /*result*/ ctx[4];
+    				search_1_changes.result = /*result*/ ctx[3];
     				add_flush_callback(() => updating_result = false);
     			}
 
@@ -22820,7 +22493,7 @@ var app = (function () {
     				}
 
     				transition_in(if_block, 1);
-    				if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				if_block.m(div, null);
     			}
     		},
     		i: function intro(local) {
@@ -22835,76 +22508,9 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(search_1, detaching);
-    			if (detaching) detach_dev(t);
-    			if_blocks[current_block_type_index].d(detaching);
-    			if (detaching) detach_dev(if_block_anchor);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_else_block.name,
-    		type: "else",
-    		source: "(185:0) {:else}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (182:0) {#if bigfile != ""}
-    function create_if_block(ctx) {
-    	let button;
-    	let t1;
-    	let zoom_1;
-    	let current;
-    	let mounted;
-    	let dispose;
-    	let zoom_1_props = { src: /*bigfile*/ ctx[2], alt: "zoom" };
-    	zoom_1 = new Src({ props: zoom_1_props, $$inline: true });
-    	/*zoom_1_binding*/ ctx[14](zoom_1);
-
-    	const block = {
-    		c: function create() {
-    			button = element("button");
-    			button.textContent = "Exit";
-    			t1 = space();
-    			create_component(zoom_1.$$.fragment);
-    			add_location(button, file, 182, 1, 4510);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, button, anchor);
-    			insert_dev(target, t1, anchor);
-    			mount_component(zoom_1, target, anchor);
-    			current = true;
-
-    			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*göm*/ ctx[11], false, false, false);
-    				mounted = true;
-    			}
-    		},
-    		p: function update(ctx, dirty) {
-    			const zoom_1_changes = {};
-    			if (dirty[0] & /*bigfile*/ 4) zoom_1_changes.src = /*bigfile*/ ctx[2];
-    			zoom_1.$set(zoom_1_changes);
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(zoom_1.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(zoom_1.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(button);
-    			if (detaching) detach_dev(t1);
-    			/*zoom_1_binding*/ ctx[14](null);
-    			destroy_component(zoom_1, detaching);
-    			mounted = false;
-    			dispose();
+    			if (detaching) detach_dev(div);
+    			destroy_component(search_1);
+    			if_blocks[current_block_type_index].d();
     		}
     	};
 
@@ -22912,29 +22518,29 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(182:0) {#if bigfile != \\\"\\\"}",
+    		source: "(224:0) {#if big.file == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (190:1) {:else}
-    function create_else_block_1(ctx) {
+    // (230:2) {:else}
+    function create_else_block(ctx) {
     	let download;
     	let updating_selected;
     	let t;
-    	let div;
+    	let each_1_anchor;
     	let current;
 
     	function download_selected_binding(value) {
-    		/*download_selected_binding*/ ctx[18](value);
+    		/*download_selected_binding*/ ctx[14](value);
     	}
 
-    	let download_props = { result: /*result*/ ctx[4] };
+    	let download_props = { result: /*result*/ ctx[3] };
 
-    	if (/*selected*/ ctx[5] !== void 0) {
-    		download_props.selected = /*selected*/ ctx[5];
+    	if (/*selected*/ ctx[4] !== void 0) {
+    		download_props.selected = /*selected*/ ctx[4];
     	}
 
     	download = new Download({ props: download_props, $$inline: true });
@@ -22955,39 +22561,37 @@ var app = (function () {
     		c: function create() {
     			create_component(download.$$.fragment);
     			t = space();
-    			div = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div, "class", "svelte-p8wta7");
-    			add_location(div, file, 191, 2, 4809);
+    			each_1_anchor = empty();
     		},
     		m: function mount(target, anchor) {
     			mount_component(download, target, anchor);
     			insert_dev(target, t, anchor);
-    			insert_dev(target, div, anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div, null);
+    				each_blocks[i].m(target, anchor);
     			}
 
+    			insert_dev(target, each_1_anchor, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
     			const download_changes = {};
-    			if (dirty[0] & /*result*/ 16) download_changes.result = /*result*/ ctx[4];
+    			if (dirty[0] & /*result*/ 8) download_changes.result = /*result*/ ctx[3];
 
-    			if (!updating_selected && dirty[0] & /*selected*/ 32) {
+    			if (!updating_selected && dirty[0] & /*selected*/ 16) {
     				updating_selected = true;
-    				download_changes.selected = /*selected*/ ctx[5];
+    				download_changes.selected = /*selected*/ ctx[4];
     				add_flush_callback(() => updating_selected = false);
     			}
 
     			download.$set(download_changes);
 
-    			if (dirty[0] & /*cards, selected, bigfile*/ 37) {
+    			if (dirty[0] & /*cards, selected, big*/ 145) {
     				each_value = /*cards*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -23002,7 +22606,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div, null);
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
     					}
     				}
 
@@ -23038,59 +22642,46 @@ var app = (function () {
     		d: function destroy(detaching) {
     			destroy_component(download, detaching);
     			if (detaching) detach_dev(t);
-    			if (detaching) detach_dev(div);
     			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block_1.name,
+    		id: create_else_block.name,
     		type: "else",
-    		source: "(190:1) {:else}",
+    		source: "(230:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (187:1) {#if sokruta == ""}
+    // (227:2) {#if sokruta == ""}
     function create_if_block_1(ctx) {
     	let navigationup;
     	let t;
     	let navigationdown;
-    	let updating_bigfile;
     	let current;
 
     	navigationup = new NavigationUp({
     			props: {
-    				stack: /*stack*/ ctx[8],
-    				pop: /*pop*/ ctx[10]
+    				stack: /*stack*/ ctx[6],
+    				pop: /*pop*/ ctx[9]
     			},
     			$$inline: true
     		});
 
-    	function navigationdown_bigfile_binding(value) {
-    		/*navigationdown_bigfile_binding*/ ctx[17](value);
-    	}
-
-    	let navigationdown_props = {
-    		stack: /*stack*/ ctx[8],
-    		path: /*path*/ ctx[7],
-    		getPath,
-    		push: /*push*/ ctx[9]
-    	};
-
-    	if (/*bigfile*/ ctx[2] !== void 0) {
-    		navigationdown_props.bigfile = /*bigfile*/ ctx[2];
-    	}
-
     	navigationdown = new NavigationDown({
-    			props: navigationdown_props,
+    			props: {
+    				stack: /*stack*/ ctx[6],
+    				path: /*path*/ ctx[5],
+    				getPath,
+    				push: /*push*/ ctx[8]
+    			},
     			$$inline: true
     		});
-
-    	binding_callbacks.push(() => bind$1(navigationdown, 'bigfile', navigationdown_bigfile_binding));
 
     	const block = {
     		c: function create() {
@@ -23106,18 +22697,11 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const navigationup_changes = {};
-    			if (dirty[0] & /*stack*/ 256) navigationup_changes.stack = /*stack*/ ctx[8];
+    			if (dirty[0] & /*stack*/ 64) navigationup_changes.stack = /*stack*/ ctx[6];
     			navigationup.$set(navigationup_changes);
     			const navigationdown_changes = {};
-    			if (dirty[0] & /*stack*/ 256) navigationdown_changes.stack = /*stack*/ ctx[8];
-    			if (dirty[0] & /*path*/ 128) navigationdown_changes.path = /*path*/ ctx[7];
-
-    			if (!updating_bigfile && dirty[0] & /*bigfile*/ 4) {
-    				updating_bigfile = true;
-    				navigationdown_changes.bigfile = /*bigfile*/ ctx[2];
-    				add_flush_callback(() => updating_bigfile = false);
-    			}
-
+    			if (dirty[0] & /*stack*/ 64) navigationdown_changes.stack = /*stack*/ ctx[6];
+    			if (dirty[0] & /*path*/ 32) navigationdown_changes.path = /*path*/ ctx[5];
     			navigationdown.$set(navigationdown_changes);
     		},
     		i: function intro(local) {
@@ -23142,21 +22726,21 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(187:1) {#if sokruta == \\\"\\\"}",
+    		source: "(227:2) {#if sokruta == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (193:3) {#each cards as card,index}
+    // (232:3) {#each cards as card,index}
     function create_each_block(ctx) {
     	let card;
-    	let updating_bigfile;
+    	let updating_big;
     	let current;
 
-    	function card_bigfile_binding(value) {
-    		/*card_bigfile_binding*/ ctx[19](value);
+    	function card_big_binding(value) {
+    		/*card_big_binding*/ ctx[15](value);
     	}
 
     	let card_props = {
@@ -23164,16 +22748,16 @@ var app = (function () {
     		GAP,
     		getPath,
     		card: /*card*/ ctx[29],
-    		selected: /*selected*/ ctx[5],
+    		selected: /*selected*/ ctx[4],
     		index: /*index*/ ctx[31]
     	};
 
-    	if (/*bigfile*/ ctx[2] !== void 0) {
-    		card_props.bigfile = /*bigfile*/ ctx[2];
+    	if (/*big*/ ctx[7] !== void 0) {
+    		card_props.big = /*big*/ ctx[7];
     	}
 
     	card = new Card({ props: card_props, $$inline: true });
-    	binding_callbacks.push(() => bind$1(card, 'bigfile', card_bigfile_binding));
+    	binding_callbacks.push(() => bind$1(card, 'big', card_big_binding));
 
     	const block = {
     		c: function create() {
@@ -23186,12 +22770,12 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const card_changes = {};
     			if (dirty[0] & /*cards*/ 1) card_changes.card = /*card*/ ctx[29];
-    			if (dirty[0] & /*selected*/ 32) card_changes.selected = /*selected*/ ctx[5];
+    			if (dirty[0] & /*selected*/ 16) card_changes.selected = /*selected*/ ctx[4];
 
-    			if (!updating_bigfile && dirty[0] & /*bigfile*/ 4) {
-    				updating_bigfile = true;
-    				card_changes.bigfile = /*bigfile*/ ctx[2];
-    				add_flush_callback(() => updating_bigfile = false);
+    			if (!updating_big && dirty[0] & /*big*/ 128) {
+    				updating_big = true;
+    				card_changes.big = /*big*/ ctx[7];
+    				add_flush_callback(() => updating_big = false);
     			}
 
     			card.$set(card_changes);
@@ -23214,7 +22798,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(193:3) {#each cards as card,index}",
+    		source: "(232:3) {#each cards as card,index}",
     		ctx
     	});
 
@@ -23235,12 +22819,12 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
-    	add_render_callback(/*onwindowscroll*/ ctx[13]);
-    	const if_block_creators = [create_if_block, create_else_block];
+    	add_render_callback(/*onwindowscroll*/ ctx[11]);
+    	const if_block_creators = [create_if_block, create_else_block_1];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*bigfile*/ ctx[2] != "") return 0;
+    		if (/*big*/ ctx[7].file == "") return 0;
     		return 1;
     	}
 
@@ -23265,7 +22849,7 @@ var app = (function () {
     					scrolling = true;
     					clearTimeout(scrolling_timeout);
     					scrolling_timeout = setTimeout(clear_scrolling, 100);
-    					/*onwindowscroll*/ ctx[13]();
+    					/*onwindowscroll*/ ctx[11]();
     				});
 
     				mounted = true;
@@ -23359,6 +22943,14 @@ var app = (function () {
     	}
     }
 
+    function f(skala, left, x, width) {
+    	return Math.round((1 - skala) * (x - left));
+    } //         
+
+    function g(skala, left, x, width) {
+    	return Math.round((1 - skala) * (x - left));
+    }
+
     function getPath(arr, dir = "small") {
     	if (dir.length > 0) arr.splice(arr.length - 1, 0, dir);
     	return arr.join("\\");
@@ -23372,26 +22964,41 @@ var app = (function () {
     	let y = 0; // Anger var scrollern befinner sig just nu.
     	let ymax = 0; // Anger var senast laddade bild befinner sig.
     	let selected = [];
-    	let zoom = 2;
+    	let skala = 1;
     	let count = 0;
     	const path = [Home]; // used for navigation
     	const stack = ["Home"];
     	const range = lodash.range;
     	let trippel = { res: [], stat: {}, total: 0 };
-    	let bigfile = "";
-    	let sokruta = "";
+    	let sokruta = "Numa";
     	let result = ["", "", []];
+    	let imageLinks = [];
+
+    	let big = {
+    		file: "",
+    		origWidth: 1600,
+    		origHeight: 1311,
+    		skala: 0,
+    		factor: 1,
+    		left: 0,
+    		top: 0,
+    		width: 1600,
+    		height: 1311,
+    		x: 0,
+    		y: 0
+    	};
+
+    	function resize() {
+    		($$invalidate(3, result), $$invalidate(2, sokruta));
+    		placera(result);
+    	}
+
+    	window.onresize = resize;
 
     	function assert(a, b) {
     		if (!lodash.isEqual(a, b)) console.log("Assert failed", a, '!=', b);
     	}
 
-    	function resize() {
-    		($$invalidate(4, result), $$invalidate(3, sokruta));
-    		placera(result);
-    	}
-
-    	window.onresize = resize;
     	assert(spaceShip(1, 2), -1);
     	assert(spaceShip(1, 1), 0);
     	assert(spaceShip(1, 0), 1);
@@ -23401,11 +23008,48 @@ var app = (function () {
     	assert(comp2("B", "A"), 1);
     	assert(comp2("BC", "A"), -1);
 
+    	//           skala left x   width
+    	assert(0, f(1.1, 200, 200));
+
+    	assert(-20, f(1.1, 200, 400));
+    	assert(-40, f(1.1, 200, 600));
+    	assert(0, f(1.1, 0, 0));
+    	assert(-20, f(1.1, 0, 200));
+    	assert(-40, f(1.1, 0, 400));
+
+    	//           skala left x   width
+    	assert(0, g(1 / 1.1, 200, 200));
+
+    	assert(20, g(1 / 1.1, 180, 400));
+    	assert(40, g(1 / 1.1, 160, 600));
+    	assert(0, g(1 / 1.1, 0, 0));
+    	assert(20, g(1 / 1.1, 0, 220));
+    	assert(40, g(1 / 1.1, 0, 440));
+
+    	function visaBig(width, height, src) {
+    		$$invalidate(7, big.state = 0, big);
+    		$$invalidate(7, big.smallWidth = width, big);
+    		$$invalidate(7, big.smallHeight = height, big);
+    		$$invalidate(7, big.bigWidth = innerWidth, big);
+    		$$invalidate(7, big.bigHeight = innerHeight, big);
+    		$$invalidate(7, big.skala = 1, big);
+    		$$invalidate(7, big.height = big.bigHeight * big.skala, big);
+    		$$invalidate(7, big.width = big.bigWidth * big.skala, big);
+    		$$invalidate(7, big.left = 0, big);
+    		$$invalidate(7, big.top = 0, big);
+    		$$invalidate(7, big.file = src, big);
+    		$$invalidate(7, big);
+    	}
+
     	function push(key) {
-    		path.push(lodash.last(path)[key]);
-    		stack.push(key);
-    		$$invalidate(7, path);
-    		$$invalidate(8, stack);
+    		if (key.includes('.jpg')) {
+    			visaBig(2000, 1000, stack.concat(key).join("\\"));
+    		} else {
+    			path.push(lodash.last(path)[key]);
+    			stack.push(key);
+    			$$invalidate(5, path);
+    			$$invalidate(6, stack);
+    		}
     	}
 
     	function pop(key) {
@@ -23414,8 +23058,8 @@ var app = (function () {
     			stack.pop();
     		}
 
-    		$$invalidate(7, path);
-    		$$invalidate(8, stack);
+    		$$invalidate(5, path);
+    		$$invalidate(6, stack);
     	}
 
     	function search(Home, words, path = "Home") {
@@ -23492,10 +23136,6 @@ var app = (function () {
     		}
     	}
 
-    	function göm(event) {
-    		$$invalidate(2, bigfile = "");
-    	}
-
     	const writable_props = [];
 
     	Object_1.keys($$props).forEach(key => {
@@ -23506,36 +23146,29 @@ var app = (function () {
     		$$invalidate(1, y = window_1.pageYOffset);
     	}
 
-    	function zoom_1_binding($$value) {
-    		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
-    			zoom = $$value;
-    			$$invalidate(6, zoom);
-    		});
-    	}
-
     	function search_1_sokruta_binding(value) {
     		sokruta = value;
-    		$$invalidate(3, sokruta);
+    		$$invalidate(2, sokruta);
     	}
 
     	function search_1_result_binding(value) {
     		result = value;
-    		($$invalidate(4, result), $$invalidate(3, sokruta));
-    	}
-
-    	function navigationdown_bigfile_binding(value) {
-    		bigfile = value;
-    		$$invalidate(2, bigfile);
+    		($$invalidate(3, result), $$invalidate(2, sokruta));
     	}
 
     	function download_selected_binding(value) {
     		selected = value;
-    		$$invalidate(5, selected);
+    		$$invalidate(4, selected);
     	}
 
-    	function card_bigfile_binding(value) {
-    		bigfile = value;
-    		$$invalidate(2, bigfile);
+    	function card_big_binding(value) {
+    		big = value;
+    		$$invalidate(7, big);
+    	}
+
+    	function bigpicture_big_binding(value) {
+    		big = value;
+    		$$invalidate(7, big);
     	}
 
     	$$self.$capture_state = () => ({
@@ -23543,14 +23176,14 @@ var app = (function () {
     		y,
     		ymax,
     		selected,
-    		zoom,
+    		skala,
     		_: lodash,
     		Card,
     		Download,
     		NavigationDown,
     		NavigationUp,
     		Search,
-    		Zoom: Src,
+    		BigPicture,
     		count,
     		SCROLLBAR,
     		WIDTH,
@@ -23560,35 +23193,39 @@ var app = (function () {
     		stack,
     		range,
     		trippel,
-    		bigfile,
     		sokruta,
     		result,
-    		assert,
+    		imageLinks,
+    		big,
     		resize,
+    		assert,
     		spaceShip,
     		comp,
     		comp2,
+    		f,
+    		g,
     		getPath,
+    		visaBig,
     		push,
     		pop,
     		search,
     		recursiveSearch,
     		placera,
-    		göm,
     		COLS
     	});
 
     	$$self.$inject_state = $$props => {
     		if ('cards' in $$props) $$invalidate(0, cards = $$props.cards);
     		if ('y' in $$props) $$invalidate(1, y = $$props.y);
-    		if ('ymax' in $$props) $$invalidate(12, ymax = $$props.ymax);
-    		if ('selected' in $$props) $$invalidate(5, selected = $$props.selected);
-    		if ('zoom' in $$props) $$invalidate(6, zoom = $$props.zoom);
+    		if ('ymax' in $$props) $$invalidate(10, ymax = $$props.ymax);
+    		if ('selected' in $$props) $$invalidate(4, selected = $$props.selected);
+    		if ('skala' in $$props) skala = $$props.skala;
     		if ('count' in $$props) count = $$props.count;
     		if ('trippel' in $$props) trippel = $$props.trippel;
-    		if ('bigfile' in $$props) $$invalidate(2, bigfile = $$props.bigfile);
-    		if ('sokruta' in $$props) $$invalidate(3, sokruta = $$props.sokruta);
-    		if ('result' in $$props) $$invalidate(4, result = $$props.result);
+    		if ('sokruta' in $$props) $$invalidate(2, sokruta = $$props.sokruta);
+    		if ('result' in $$props) $$invalidate(3, result = $$props.result);
+    		if ('imageLinks' in $$props) imageLinks = $$props.imageLinks;
+    		if ('big' in $$props) $$invalidate(7, big = $$props.big);
     		if ('COLS' in $$props) COLS = $$props.COLS;
     	};
 
@@ -23597,18 +23234,22 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty[0] & /*sokruta*/ 8) {
-    			$$invalidate(4, result = search(Home, sokruta));
+    		if ($$self.$$.dirty[0] & /*sokruta*/ 4) {
+    			// $: console.log('big',big)
+    			$$invalidate(3, result = search(Home, sokruta));
     		}
 
-    		if ($$self.$$.dirty[0] & /*result*/ 16) {
+    		if ($$self.$$.dirty[0] & /*result*/ 8) {
     			{
     				placera(result);
-    				($$invalidate(4, result), $$invalidate(3, sokruta));
+    				imageLinks = document.querySelectorAll('#images > img');
+
+    				// console.log(imageLinks)
+    				($$invalidate(3, result), $$invalidate(2, sokruta));
     			}
     		}
 
-    		if ($$self.$$.dirty[0] & /*y, ymax, cards, result*/ 4115) {
+    		if ($$self.$$.dirty[0] & /*y, ymax, cards, result*/ 1035) {
     			{
     				// infinite scroll
     				// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
@@ -23618,18 +23259,10 @@ var app = (function () {
     					const latest = lodash.last(cards);
 
     					if (n > 0) {
-    						$$invalidate(12, ymax = latest[4] + latest[6]); // y + h
+    						$$invalidate(10, ymax = latest[4] + latest[6]); // y + h
     					}
     				}
     			}
-    		}
-
-    		if ($$self.$$.dirty[0] & /*sokruta*/ 8) {
-    			console.log('sokruta', sokruta);
-    		}
-
-    		if ($$self.$$.dirty[0] & /*bigfile*/ 4) {
-    			console.log('bigfile', bigfile);
     		}
     	};
 
@@ -23638,24 +23271,21 @@ var app = (function () {
     	return [
     		cards,
     		y,
-    		bigfile,
     		sokruta,
     		result,
     		selected,
-    		zoom,
     		path,
     		stack,
+    		big,
     		push,
     		pop,
-    		göm,
     		ymax,
     		onwindowscroll,
-    		zoom_1_binding,
     		search_1_sokruta_binding,
     		search_1_result_binding,
-    		navigationdown_bigfile_binding,
     		download_selected_binding,
-    		card_bigfile_binding
+    		card_big_binding,
+    		bigpicture_big_binding
     	];
     }
 

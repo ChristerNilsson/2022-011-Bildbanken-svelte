@@ -39,3 +39,15 @@
 	<button on:click = {none}>None</button>
 	<button on:click = {downloadAll}>Download</button>
 </div>
+
+<style>
+	button {
+		color:black;
+		margin:4px;
+	}
+	div {
+		font-size: 0.9em;
+		color:white;
+		/* background-color: black; */
+	}
+</style>

@@ -1,6 +1,5 @@
 <script>
 	import _ from "lodash"
-	import Zoom from 'svelte-zoom'
 	export let stack
 	export let path
 	export let getPath
@@ -20,3 +19,18 @@
 		</div>
 	{/each}
 {/if}
+
+<style>
+	button {
+		color:black;
+		margin:2px;
+		width:99%;
+		text-align:left;
+	}
+
+	div {
+		font-size: 0.9em;
+		color:white;
+		background-color: black;
+	}
+</style>
