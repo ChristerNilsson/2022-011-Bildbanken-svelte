@@ -108,7 +108,7 @@
 <style>
 	.card {
 		font-size: 0.9em;
-		width: 450px; 
+		width: 475px; 
 		max-height: 800px;
 	}
 	div {

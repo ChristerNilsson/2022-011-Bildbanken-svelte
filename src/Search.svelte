@@ -1,13 +1,14 @@
 <script>
 	export let sokruta
-	export let result
+	export let text0
+	export let text1
 </script>
 
 <div>
 	<button on:click={() => sokruta = ""}>Clear</button>
-	{result[1]}
+	{text0}
 	<input bind:value={sokruta} placeholder="Enter case sensitive words separated by spaces. Combine_words_like_this." style='width:50%'>
-	{result[0]}
+	{text1}
 </div>
 
 <style>

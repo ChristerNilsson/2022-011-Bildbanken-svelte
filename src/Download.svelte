@@ -5,9 +5,9 @@
 	import { saveAs } from "file-saver"
 
 	export let selected
-	export let result
+	export let images
 
-	function make(value) { selected = _.map(result[2], () => value) }
+	function make(value) { selected = _.map(images, () => value) }
 	function download(item) { return axios.get(item.url, { responseType: "blob" }).then((resp) => {zip.file(item.name, resp.data)}) }
 
 	let zip = null
@@ -19,7 +19,7 @@
 		const fileArr = []
 		for (const i in _.range(selected.length)) {
 			if (selected[i]==true) {
-				const path = result[2][i][2]
+				const path = images[i][2]
 				const p = path.lastIndexOf("\\")
 				fileArr.push({name:path.slice(p+1), url:path})
 			}

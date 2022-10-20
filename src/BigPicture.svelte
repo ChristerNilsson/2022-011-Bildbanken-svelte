@@ -1,8 +1,7 @@
 <script>
 	export let big
 
-	big.backup = document.body.style
-	document.body.style = "height:100%; overflow:hidden; background-color:black;"
+	document.body.style = "height:100%; overflow:hidden; background-color:black; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
 
 	window.onscroll = (e)=> {
 		e.preventDefault()
@@ -61,8 +60,9 @@
 	}
 
 	function close() {
-		big.file=""
-		document.body.style ="margin:0; padding:0; background-color:black;"
+		big.file = ""
+		big = big
+		document.body.style ="margin:0; padding:0; background-color:black; margin:1; padding:0; background-color:black; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
 		// todo Återställ även scrollposition!
 	}
 
@@ -74,20 +74,20 @@
 		{big.file}
 	</div>
 
+	<button style = "left:0%;  top:5%;">&lt;</button>
+	<button style = "left:33%; top:5%;">play</button>
+	<button style = "left:66%; top:5%;">&gt;</button>
+	
 	<img src={big.file} alt=""
 		on:wheel={wheel}
 		on:mousedown={mousedown}
 		on:mousemove={mousemove}
 		on:mouseup={mouseup}
 		width = {big.width}
-		xxxheight = {big.height} 
 		style = "position:absolute; left:{big.left}px; top:{big.top}px;"
 	>
+	<button style = "left:95%; top:5%;" on:click={close}>exit</button>
 
-	<button style = "left:96%; top:0%;" on:click={close}>exit</button>
-	<button style = "left:0%; top:96%;">&lt;</button>
-	<button style = "left:50%; top:96%;" >play</button>
-	<button style = "left:96%; top:96%;">&gt;</button>
 
 </div>
 
@@ -95,7 +95,7 @@
 	button {
 		border: 1px solid grey;
 		color : grey;
-		background-color: transparent;
+		background-color: transparent; 
 		position:absolute; 
 		font-size:1em;
 		width:4%;

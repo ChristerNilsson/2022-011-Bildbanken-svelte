@@ -8,7 +8,7 @@
 		// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
 		if (y + 2 * screen.height > ymax) {
 			const n = cards.length
-			cards = cards.concat(result[2].slice(n, n + 20))
+			cards = cards.concat(images.slice(n, n + 20))
 			const latest = _.last(cards)
 			if (n > 0) {
 				ymax = latest[4] + latest[6] // y + h
@@ -40,26 +40,30 @@
 	const stack = ["Home"]
 	const range = _.range
 	
-	let trippel = {res:[], stat:{}, total:0}
+	let res=[]
+	let stat={}
+	let total=0
+
 	let sokruta = "Numa"
-	let result = ["","",[]]
-	let imageLinks = []
 	let big = {file:"", origWidth:1600, origHeight:1311, skala:0, factor:1, left:0, top:0, width:1600, height:1311, x:0, y:0}
 	
 	// $: console.log('big',big)
+	let text0 = ""
+	let text1 = ""
+	let images = []
 
-	$: result = search(Home,sokruta)
+	$: [text0,text1,images] = search(Home,sokruta)
 
 	$: { 
-		placera(result)
-		imageLinks = document.querySelectorAll('#images > img')
-		// console.log(imageLinks)
-		result = result
+		placera(images)
+		console.log('images',images)
+		images = images
 	}
 
 	function resize() {
-		result = result
-		placera(result)
+		console.log('resize')
+		placera(images)
+		images = images
 	}
 
 	window.onresize = resize
@@ -93,16 +97,6 @@
 	assert(  0,f(1.1,    0,   0,400))
 	assert(-20,f(1.1,    0, 200,400))
 	assert(-40,f(1.1,    0, 400,400))
-
-	function g(skala,left,x,width) { return Math.round(((1-skala) * (x-left)))}
-	//           skala left x   width
-	assert(  0,g(1/1.1,200, 200,440))
-	assert( 20,g(1/1.1,180, 400,440))
-	assert( 40,g(1/1.1,160, 600,440))
-	assert(  0,g(1/1.1,  0,   0,440))
-	assert( 20,g(1/1.1,  0, 220,440))
-	assert( 40,g(1/1.1,  0, 440,440))
-
 
 	function getPath(arr,dir="small") {
 		if (dir.length > 0) arr.splice(arr.length-1, 0, dir);
@@ -153,21 +147,24 @@
 		cards = []
 		count = 0
 		words = words.split(" ")
-		trippel = {res:[], stat:{}, total:0}
+
+		res=[]
+		stat={}
+		total=0
 
 		recursiveSearch(Home,words,path)
 
-		trippel.res.sort(comp)
+		res.sort(comp)
 
-		const keys = Object.keys(trippel.stat)
+		const keys = Object.keys(stat)
 		keys.sort(comp2) 
 		const st = []
 		let antal = 0
 		for (const key of keys) {
-			st.push(`${key}:${trippel.stat[key]}`) 
-			antal += trippel.stat[key]
+			st.push(`${key}:${stat[key]}`) 
+			antal += stat[key]
 		}
-		return [st.join(' '),`${antal} of ${trippel.total} pictures`,trippel.res]
+		return [st.join(' '),`${antal} of ${total} pictures`,res]
 	}
 
 	// rekursiv pga varierande djup i trädet
@@ -175,7 +172,7 @@
 		for (const key in node) {
 			const newPath = path + "\\" + key
 			if (key.includes('.jpg')) {
-				trippel.total += 1
+				total += 1
 				let s = ''
 				for (const i in range(words.length)) {
 					const word = words[i]
@@ -185,8 +182,8 @@
 				}
 				if (s.length > 0) {
 					const [width,height] = node[key]
-					trippel.res.push([-s.length, s, newPath, width, height, 0, 0, 0, false])
-					trippel.stat[s] = (trippel.stat[s] || 0) + 1
+					res.push([-s.length, s, newPath, width, height, 0, 0, 0, false])
+					stat[s] = (stat[s] || 0) + 1
 				}
 			} else {
 				recursiveSearch(node[key], words, newPath)
@@ -197,12 +194,12 @@
 	// Räknar ut vilken swimlane som är lämpligast.
 	// Uppdaterar x och y för varje bild
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
-	function placera(result) {
+	function placera(images) {
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
 		const cols = []
 		for (const i in range(COLS)) cols.push(80)
 		const textHeights = 60
-		const res = result[2]
+		const res = images
 		for (const i in res) {
 			const bild = res[i]
 			let index = 0 // sök fram index för minsta kolumnen
@@ -215,6 +212,7 @@
 			bild[8] = true // kryssruta
 			cols[index] += Math.round(WIDTH*bild[4]/bild[3]) + textHeights // h/w
 		}
+		images = images
 	}
 
 </script>
@@ -223,12 +221,12 @@
 
 {#if big.file == ""}
 	<div>
-		<Search bind:sokruta bind:result />
+		<Search bind:sokruta bind:text0 bind:text1 />
 		{#if sokruta == ""}
 			<NavigationHorisontal {stack}{pop} />
 			<NavigationVertical {stack}{path}{getPath}{push} />
 		{:else}
-			<Download bind:selected {result} />
+			<Download bind:selected {images} />
 			{#each cards as card,index}
 				<Card {WIDTH}{GAP}{getPath}{card}{selected}{index} bind:big />
 			{/each}

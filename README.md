@@ -161,3 +161,10 @@ Just nu läser man in fler och fler bilder. Egentligen bör man kasta bort bilde
 	* Exit
 	* Prev (Not implemented)
 	* Next (Not implemented)
+
+### FAQ
+```
+Q: Varför utnyttjas inte hela skärmen för bilderna?
+A: Kontrollera att browserns Zoom är inställd på 100%
+```
+
