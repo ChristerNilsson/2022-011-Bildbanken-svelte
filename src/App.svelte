@@ -22,8 +22,8 @@
 	import _ from "lodash"
 	import Card from "./Card.svelte"
 	import Download from "./Download.svelte"
-	import NavigationDown from "./NavigationDown.svelte"
-	import NavigationUp from "./NavigationUp.svelte"
+	import NavigationVertical from "./NavigationVertical.svelte"
+	import NavigationHorisontal from "./NavigationHorisontal.svelte"
 	import Search from "./Search.svelte"
 	import BigPicture from "./BigPicture.svelte"
 
@@ -167,7 +167,7 @@
 			st.push(`${key}:${trippel.stat[key]}`) 
 			antal += trippel.stat[key]
 		}
-		return [st.join(' '),`${antal} av ${trippel.total} bilder`,trippel.res]
+		return [st.join(' '),`${antal} of ${trippel.total} pictures`,trippel.res]
 	}
 
 	// rekursiv pga varierande djup i trädet
@@ -225,8 +225,8 @@
 	<div>
 		<Search bind:sokruta bind:result />
 		{#if sokruta == ""}
-			<NavigationUp {stack}{pop} />
-			<NavigationDown {stack}{path}{getPath}{push} />
+			<NavigationHorisontal {stack}{pop} />
+			<NavigationVertical {stack}{path}{getPath}{push} />
 		{:else}
 			<Download bind:selected {result} />
 			{#each cards as card,index}

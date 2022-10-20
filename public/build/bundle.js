@@ -17573,7 +17573,7 @@ var app = (function () {
     	let img_width_value;
     	let t0;
     	let div0;
-    	let t1_value = /*card*/ ctx[4][7] + ' ' + prettyFilename(/*card*/ ctx[4][2]) + "";
+    	let t1_value = prettyFilename(/*card*/ ctx[4][2]) + "";
     	let t1;
     	let t2;
     	let a0;
@@ -17591,11 +17591,14 @@ var app = (function () {
     	let a1_href_value;
     	let t8;
     	let div2;
-    	let input;
+    	let t9_value = /*card*/ ctx[4][7] + "";
     	let t9;
-    	let t10_value = /*card*/ ctx[4][1] + "";
     	let t10;
+    	let input;
     	let t11;
+    	let t12_value = /*card*/ ctx[4][1] + "";
+    	let t12;
+    	let t13;
     	let mounted;
     	let dispose;
 
@@ -17617,30 +17620,32 @@ var app = (function () {
     			t7 = text(t7_value);
     			t8 = space();
     			div2 = element("div");
+    			t9 = text(t9_value);
+    			t10 = space();
     			input = element("input");
-    			t9 = space();
-    			t10 = text(t10_value);
-    			t11 = text(" © Lars OA Hedlund");
+    			t11 = space();
+    			t12 = text(t12_value);
+    			t13 = text(" © Lars OA Hedlund");
     			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[3](/*card*/ ctx[4][2].split("\\"), "small"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "width", img_width_value = /*WIDTH*/ ctx[1] - /*GAP*/ ctx[2]);
     			attr_dev(img, "alt", "");
     			add_location(img, file$6, 87, 1, 2408);
     			attr_dev(a0, "target", "_blank");
     			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'M'));
-    			add_location(a0, file$6, 95, 2, 2617);
+    			add_location(a0, file$6, 95, 2, 2601);
     			attr_dev(div0, "class", "info svelte-kp1cxo");
     			add_location(div0, file$6, 94, 1, 2554);
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'T'));
-    			add_location(a1, file$6, 98, 2, 2809);
+    			add_location(a1, file$6, 98, 2, 2793);
     			attr_dev(div1, "class", "info svelte-kp1cxo");
-    			add_location(div1, file$6, 97, 1, 2766);
+    			add_location(div1, file$6, 97, 1, 2750);
     			attr_dev(input, "type", "checkbox");
     			input.__value = "";
     			input.value = input.__value;
-    			add_location(input, file$6, 101, 2, 2972);
+    			add_location(input, file$6, 102, 2, 2969);
     			attr_dev(div2, "class", "info svelte-kp1cxo");
-    			add_location(div2, file$6, 100, 1, 2950);
+    			add_location(div2, file$6, 100, 1, 2934);
     			attr_dev(div3, "class", "card svelte-kp1cxo");
     			attr_dev(div3, "id", "images");
     			set_style(div3, "position", "absolute");
@@ -17668,11 +17673,13 @@ var app = (function () {
     			append_dev(a1, t7);
     			append_dev(div3, t8);
     			append_dev(div3, div2);
-    			append_dev(div2, input);
-    			input.checked = /*selected*/ ctx[0][/*index*/ ctx[5]];
     			append_dev(div2, t9);
     			append_dev(div2, t10);
+    			append_dev(div2, input);
+    			input.checked = /*selected*/ ctx[0][/*index*/ ctx[5]];
     			append_dev(div2, t11);
+    			append_dev(div2, t12);
+    			append_dev(div2, t13);
 
     			if (!mounted) {
     				dispose = [
@@ -17693,7 +17700,7 @@ var app = (function () {
     				attr_dev(img, "width", img_width_value);
     			}
 
-    			if (dirty & /*card*/ 16 && t1_value !== (t1_value = /*card*/ ctx[4][7] + ' ' + prettyFilename(/*card*/ ctx[4][2]) + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*card*/ 16 && t1_value !== (t1_value = prettyFilename(/*card*/ ctx[4][2]) + "")) set_data_dev(t1, t1_value);
     			if (dirty & /*card*/ 16 && t3_value !== (t3_value = /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'M') + "")) set_data_dev(t3, t3_value);
 
     			if (dirty & /*card*/ 16 && a0_href_value !== (a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'M'))) {
@@ -17707,11 +17714,13 @@ var app = (function () {
     				attr_dev(a1, "href", a1_href_value);
     			}
 
+    			if (dirty & /*card*/ 16 && t9_value !== (t9_value = /*card*/ ctx[4][7] + "")) set_data_dev(t9, t9_value);
+
     			if (dirty & /*selected, index*/ 33) {
     				input.checked = /*selected*/ ctx[0][/*index*/ ctx[5]];
     			}
 
-    			if (dirty & /*card*/ 16 && t10_value !== (t10_value = /*card*/ ctx[4][1] + "")) set_data_dev(t10, t10_value);
+    			if (dirty & /*card*/ 16 && t12_value !== (t12_value = /*card*/ ctx[4][1] + "")) set_data_dev(t12, t12_value);
 
     			if (dirty & /*card*/ 16) {
     				set_style(div3, "left", /*card*/ ctx[4][5] + "px");
@@ -20984,16 +20993,16 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			button0 = element("button");
-    			button0.textContent = "All";
+    			button0.textContent = "Download";
     			t1 = space();
     			button1 = element("button");
-    			button1.textContent = "None";
+    			button1.textContent = "All";
     			t3 = space();
     			button2 = element("button");
-    			button2.textContent = "Download";
+    			button2.textContent = "None";
     			add_location(button0, file$5, 36, 0, 1098);
-    			add_location(button1, file$5, 37, 0, 1137);
-    			add_location(button2, file$5, 38, 0, 1178);
+    			add_location(button1, file$5, 37, 0, 1150);
+    			add_location(button2, file$5, 38, 0, 1189);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21007,9 +21016,9 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button0, "click", /*all*/ ctx[0], false, false, false),
-    					listen_dev(button1, "click", /*none*/ ctx[1], false, false, false),
-    					listen_dev(button2, "click", /*downloadAll*/ ctx[2], false, false, false)
+    					listen_dev(button0, "click", /*downloadAll*/ ctx[2], false, false, false),
+    					listen_dev(button1, "click", /*all*/ ctx[0], false, false, false),
+    					listen_dev(button2, "click", /*none*/ ctx[1], false, false, false)
     				];
 
     				mounted = true;
@@ -21171,8 +21180,8 @@ var app = (function () {
     	}
     }
 
-    /* src\NavigationDown.svelte generated by Svelte v3.51.0 */
-    const file$4 = "src\\NavigationDown.svelte";
+    /* src\NavigationVertical.svelte generated by Svelte v3.51.0 */
+    const file$4 = "src\\NavigationVertical.svelte";
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
@@ -21503,7 +21512,7 @@ var app = (function () {
 
     function instance$4($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots('NavigationDown', slots, []);
+    	validate_slots('NavigationVertical', slots, []);
     	let { stack } = $$props;
     	let { path } = $$props;
     	let { getPath } = $$props;
@@ -21511,26 +21520,26 @@ var app = (function () {
 
     	$$self.$$.on_mount.push(function () {
     		if (stack === undefined && !('stack' in $$props || $$self.$$.bound[$$self.$$.props['stack']])) {
-    			console.warn("<NavigationDown> was created without expected prop 'stack'");
+    			console.warn("<NavigationVertical> was created without expected prop 'stack'");
     		}
 
     		if (path === undefined && !('path' in $$props || $$self.$$.bound[$$self.$$.props['path']])) {
-    			console.warn("<NavigationDown> was created without expected prop 'path'");
+    			console.warn("<NavigationVertical> was created without expected prop 'path'");
     		}
 
     		if (getPath === undefined && !('getPath' in $$props || $$self.$$.bound[$$self.$$.props['getPath']])) {
-    			console.warn("<NavigationDown> was created without expected prop 'getPath'");
+    			console.warn("<NavigationVertical> was created without expected prop 'getPath'");
     		}
 
     		if (push === undefined && !('push' in $$props || $$self.$$.bound[$$self.$$.props['push']])) {
-    			console.warn("<NavigationDown> was created without expected prop 'push'");
+    			console.warn("<NavigationVertical> was created without expected prop 'push'");
     		}
     	});
 
     	const writable_props = ['stack', 'path', 'getPath', 'push'];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<NavigationDown> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<NavigationVertical> was created with unknown prop '${key}'`);
     	});
 
     	const click_handler = key => push(key);
@@ -21559,54 +21568,54 @@ var app = (function () {
     	return [stack, path, getPath, push, click_handler, click_handler_1];
     }
 
-    class NavigationDown extends SvelteComponentDev {
+    class NavigationVertical extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
     		init(this, options, instance$4, create_fragment$4, safe_not_equal, { stack: 0, path: 1, getPath: 2, push: 3 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
-    			tagName: "NavigationDown",
+    			tagName: "NavigationVertical",
     			options,
     			id: create_fragment$4.name
     		});
     	}
 
     	get stack() {
-    		throw new Error("<NavigationDown>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationVertical>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set stack(value) {
-    		throw new Error("<NavigationDown>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationVertical>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get path() {
-    		throw new Error("<NavigationDown>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationVertical>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set path(value) {
-    		throw new Error("<NavigationDown>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationVertical>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get getPath() {
-    		throw new Error("<NavigationDown>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationVertical>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set getPath(value) {
-    		throw new Error("<NavigationDown>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationVertical>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get push() {
-    		throw new Error("<NavigationDown>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationVertical>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set push(value) {
-    		throw new Error("<NavigationDown>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationVertical>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
-    /* src\NavigationUp.svelte generated by Svelte v3.51.0 */
-    const file$3 = "src\\NavigationUp.svelte";
+    /* src\NavigationHorisontal.svelte generated by Svelte v3.51.0 */
+    const file$3 = "src\\NavigationHorisontal.svelte";
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
@@ -21826,24 +21835,24 @@ var app = (function () {
 
     function instance$3($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots('NavigationUp', slots, []);
+    	validate_slots('NavigationHorisontal', slots, []);
     	let { stack } = $$props;
     	let { pop } = $$props;
 
     	$$self.$$.on_mount.push(function () {
     		if (stack === undefined && !('stack' in $$props || $$self.$$.bound[$$self.$$.props['stack']])) {
-    			console.warn("<NavigationUp> was created without expected prop 'stack'");
+    			console.warn("<NavigationHorisontal> was created without expected prop 'stack'");
     		}
 
     		if (pop === undefined && !('pop' in $$props || $$self.$$.bound[$$self.$$.props['pop']])) {
-    			console.warn("<NavigationUp> was created without expected prop 'pop'");
+    			console.warn("<NavigationHorisontal> was created without expected prop 'pop'");
     		}
     	});
 
     	const writable_props = ['stack', 'pop'];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<NavigationUp> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<NavigationHorisontal> was created with unknown prop '${key}'`);
     	});
 
     	const click_handler = key => pop(key);
@@ -21867,33 +21876,33 @@ var app = (function () {
     	return [stack, pop, click_handler];
     }
 
-    class NavigationUp extends SvelteComponentDev {
+    class NavigationHorisontal extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
     		init(this, options, instance$3, create_fragment$3, safe_not_equal, { stack: 0, pop: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
-    			tagName: "NavigationUp",
+    			tagName: "NavigationHorisontal",
     			options,
     			id: create_fragment$3.name
     		});
     	}
 
     	get stack() {
-    		throw new Error("<NavigationUp>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationHorisontal>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set stack(value) {
-    		throw new Error("<NavigationUp>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationHorisontal>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get pop() {
-    		throw new Error("<NavigationUp>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationHorisontal>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set pop(value) {
-    		throw new Error("<NavigationUp>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<NavigationHorisontal>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -21926,12 +21935,13 @@ var app = (function () {
     			input = element("input");
     			t4 = space();
     			t5 = text(t5_value);
+    			attr_dev(button, "class", "svelte-ha893m");
     			add_location(button, file$2, 6, 1, 72);
-    			attr_dev(input, "placeholder", "Sök");
+    			attr_dev(input, "placeholder", "Enter case sensitive words separated by spaces. Combine_words_like_this.");
     			set_style(input, "width", "50%");
-    			attr_dev(input, "class", "svelte-17i7c9r");
+    			attr_dev(input, "class", "svelte-ha893m");
     			add_location(input, file$2, 8, 1, 141);
-    			attr_dev(div, "class", "svelte-17i7c9r");
+    			attr_dev(div, "class", "svelte-ha893m");
     			add_location(div, file$2, 5, 0, 64);
     		},
     		l: function claim(nodes) {
@@ -22456,7 +22466,7 @@ var app = (function () {
     			t = space();
     			if_block.c();
     			attr_dev(div, "class", "svelte-p8wta7");
-    			add_location(div, file, 224, 1, 5745);
+    			add_location(div, file, 224, 1, 5771);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -22671,12 +22681,12 @@ var app = (function () {
 
     // (227:2) {#if sokruta == ""}
     function create_if_block_1(ctx) {
-    	let navigationup;
+    	let navigationhorisontal;
     	let t;
-    	let navigationdown;
+    	let navigationvertical;
     	let current;
 
-    	navigationup = new NavigationUp({
+    	navigationhorisontal = new NavigationHorisontal({
     			props: {
     				stack: /*stack*/ ctx[6],
     				pop: /*pop*/ ctx[9]
@@ -22684,7 +22694,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	navigationdown = new NavigationDown({
+    	navigationvertical = new NavigationVertical({
     			props: {
     				stack: /*stack*/ ctx[6],
     				path: /*path*/ ctx[5],
@@ -22696,40 +22706,40 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(navigationup.$$.fragment);
+    			create_component(navigationhorisontal.$$.fragment);
     			t = space();
-    			create_component(navigationdown.$$.fragment);
+    			create_component(navigationvertical.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(navigationup, target, anchor);
+    			mount_component(navigationhorisontal, target, anchor);
     			insert_dev(target, t, anchor);
-    			mount_component(navigationdown, target, anchor);
+    			mount_component(navigationvertical, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const navigationup_changes = {};
-    			if (dirty[0] & /*stack*/ 64) navigationup_changes.stack = /*stack*/ ctx[6];
-    			navigationup.$set(navigationup_changes);
-    			const navigationdown_changes = {};
-    			if (dirty[0] & /*stack*/ 64) navigationdown_changes.stack = /*stack*/ ctx[6];
-    			if (dirty[0] & /*path*/ 32) navigationdown_changes.path = /*path*/ ctx[5];
-    			navigationdown.$set(navigationdown_changes);
+    			const navigationhorisontal_changes = {};
+    			if (dirty[0] & /*stack*/ 64) navigationhorisontal_changes.stack = /*stack*/ ctx[6];
+    			navigationhorisontal.$set(navigationhorisontal_changes);
+    			const navigationvertical_changes = {};
+    			if (dirty[0] & /*stack*/ 64) navigationvertical_changes.stack = /*stack*/ ctx[6];
+    			if (dirty[0] & /*path*/ 32) navigationvertical_changes.path = /*path*/ ctx[5];
+    			navigationvertical.$set(navigationvertical_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(navigationup.$$.fragment, local);
-    			transition_in(navigationdown.$$.fragment, local);
+    			transition_in(navigationhorisontal.$$.fragment, local);
+    			transition_in(navigationvertical.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(navigationup.$$.fragment, local);
-    			transition_out(navigationdown.$$.fragment, local);
+    			transition_out(navigationhorisontal.$$.fragment, local);
+    			transition_out(navigationvertical.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(navigationup, detaching);
+    			destroy_component(navigationhorisontal, detaching);
     			if (detaching) detach_dev(t);
-    			destroy_component(navigationdown, detaching);
+    			destroy_component(navigationvertical, detaching);
     		}
     	};
 
@@ -23090,7 +23100,7 @@ var app = (function () {
     			antal += trippel.stat[key];
     		}
 
-    		return [st.join(' '), `${antal} av ${trippel.total} bilder`, trippel.res];
+    		return [st.join(' '), `${antal} of ${trippel.total} pictures`, trippel.res];
     	}
 
     	// rekursiv pga varierande djup i trädet
@@ -23191,8 +23201,8 @@ var app = (function () {
     		_: lodash,
     		Card,
     		Download,
-    		NavigationDown,
-    		NavigationUp,
+    		NavigationVertical,
+    		NavigationHorisontal,
     		Search,
     		BigPicture,
     		count,

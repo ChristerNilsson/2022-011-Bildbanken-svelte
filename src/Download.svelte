@@ -34,6 +34,6 @@
 
 </script>
 
+<button on:click = {downloadAll}>Download</button>
 <button on:click = {all}>All</button>
 <button on:click = {none}>None</button>
-<button on:click = {downloadAll}>Download</button>

@@ -92,13 +92,14 @@
 		on:click = {visaBig}
 		on:keydown = {visaBig}
 	/>
-	<div class="info">{card[7] + ' ' + prettyFilename(card[2])}
+	<div class="info">{prettyFilename(card[2])}
 		<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(card[2],'M')}">{getNumber(card[2],'M')}</a>
 	</div>
 	<div class="info">{prettyPath(card[2])}
 		<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={getNumber(card[2],'T')}">{getNumber(card[2],'T')}</a>
 	</div>
 	<div class="info">
+		{card[7]}
 		<input type="checkbox" value="" bind:checked={selected[index]}/>
 		{card[1]} © Lars OA Hedlund
 	</div>

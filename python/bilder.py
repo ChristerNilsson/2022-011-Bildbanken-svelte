@@ -9,7 +9,7 @@ from PIL import Image
 
 USE_CACHE = True
 
-WIDTH = 432
+WIDTH = 475
 ROOT = "C:\\github\\2022-011-Bildbanken-svelte\\public\\Home\\"
 
 antal = 0
