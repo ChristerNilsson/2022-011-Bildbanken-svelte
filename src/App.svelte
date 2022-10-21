@@ -103,13 +103,14 @@
 		return arr.join("\\")
 	}
 
-	function visaBig(width,height,src) {
+	function visaBig(width,height,bigSize,src) {
 		big.state = 0
 		big.smallWidth = width
 		big.smallHeight = height
 
 		big.bigWidth = innerWidth
 		big.bigHeight = innerHeight
+		big.bigSize = bigSize
 
 		big.skala = 1
 		big.height = big.bigHeight * big.skala
@@ -125,7 +126,12 @@
 
 	function push(key) {
 		if (key.includes('.jpg')) {
-			visaBig(2000,1000,stack.concat(key).join("\\"))
+			const trippel = _.last(path)[key]
+			if (trippel.length==3) {
+				visaBig(trippel[0],trippel[1],trippel[2],stack.concat(key).join("\\"))
+			} else {
+				visaBig(2000,1000,123456,stack.concat(key).join("\\"))
+			}
 		} else {
 			path.push(_.last(path)[key])
 			stack.push(key)
@@ -181,8 +187,8 @@
 					if (newPath.includes(word)) s += ALFABET[i]
 				}
 				if (s.length > 0) {
-					const [width,height] = node[key]
-					res.push([-s.length, s, newPath, width, height, 0, 0, 0, false])
+					const [width,height,bigSize] = node[key]
+					res.push([-s.length, s, newPath, width, height, 0, 0, 0, false, bigSize])
 					stat[s] = (stat[s] || 0) + 1
 				}
 			} else {

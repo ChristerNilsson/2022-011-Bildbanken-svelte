@@ -12,7 +12,7 @@
 	{#each _.keys(_.last(path)) as key }
 		<div>
 			{#if _.isNumber(key)}
-				<button on:click = {() => push(key)}>{_.last(path)[key]}</button>
+				<button on:click = {() => push(key,_.last(path)[key])}>{_.last(path)[key]}</button>
 			{:else}
 				<button on:click = {() => push(key)}>{key}</button>
 			{/if}

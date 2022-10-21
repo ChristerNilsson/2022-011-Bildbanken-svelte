@@ -3,9 +3,9 @@
 
 import json
 import time
-from os import scandir,mkdir
-from os.path import exists
-from PIL import Image
+from os import scandir,mkdir,stat
+from os.path import exists,getsize
+from PIL import Image # Pillow
 
 USE_CACHE = True
 
@@ -28,12 +28,14 @@ def pop(path):
 def makeSmall(js,entry):
 	print('.',end="")
 	big = Image.open(entry.path)
+	bigSize = getsize(entry.path)
+
 	small = big.resize((WIDTH, round(WIDTH*big.height/big.width)))
 	p = pop(entry.path)
 	if not exists(p + '\\small'):
 		mkdir(p + '\\small')
 	small.save(pop(entry.path) + '\\small\\' + entry.name)
-	js[entry.name] = [small.width,small.height]
+	js[entry.name] = [small.width, small.height, bigSize]
 
 def readrecurs(curr, parent):
 	global antal

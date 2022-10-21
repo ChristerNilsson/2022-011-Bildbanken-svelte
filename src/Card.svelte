@@ -59,27 +59,27 @@
 		return path.replaceAll('_', ' ') 
 	}
 
-	function visaBig(e) {
+	function visaBig(card) {
+		console.log('urban')
 		big.state = 0
-		big.smallWidth = e.target.width
-		big.smallHeight = e.target.height
+		big.smallWidth = card[3] // width
+		big.smallHeight = card[4] // height
 
-		big.bigWidth = innerWidth //1600
-		big.bigHeight = innerHeight //1311
+		big.bigWidth = 2000 //naturalWidth //innerWidth //1600
+		big.bigHeight = 1000 //naturalHeight //innerHeight //1311
+		console.log(big)
+		big.bigSize = card[9]
 
 		big.skala = 1
-		big.height = big.bigHeight * big.skala
 		big.width  = big.bigWidth  * big.skala
+		big.height = big.bigHeight * big.skala
 
-		big.left = 0 //big.width/2 //(innerWidth-big.width)/2
-		big.top = 0 //big.height/2
+		big.left = 0
+		big.top = 0
 
-		big.file = e.target.src.replace("small","")
+		big.file = card[2].replace("small","")
 
 		big = big
-
-		console.log('visaBig',e)
-		console.log('visaBig',big)
 	}
 
 </script>
@@ -89,8 +89,8 @@
 		src = {getPath(card[2].split("\\"),"small")}
 		width = {WIDTH-GAP}
 		alt = ""
-		on:click = {visaBig}
-		on:keydown = {visaBig}
+		on:click = {() => visaBig(card)}
+		on:keydown = {() => visaBig(card)}
 	/>
 	<div class="info">{prettyFilename(card[2])}
 		<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(card[2],'M')}">{getNumber(card[2],'M')}</a>
