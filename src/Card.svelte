@@ -113,8 +113,5 @@
 	}
 	div {
 		font-size: 0.9em;
-		color:white;
 	}
 </style>
-
-

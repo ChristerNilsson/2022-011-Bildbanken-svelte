@@ -13,20 +13,20 @@
 		big.bigHeight = img.naturalHeight
 		console.log('getExif',big)
 		big = big
+		state = 1
 		EXIF.getData(img, function() {
 			exif = EXIF.getAllTags(this)
 			if (exif.ExifVersion) {
 				state = 2
 				exif.DateTimeOriginal = exif.DateTimeOriginal.replace(":","-").replace(":","-")
-			} else {
-				state = 1
-				exif = null
+	//		} else {
+//				exif = null
 			}
 			console.log(exif)
 		})
 	}
 
-	document.body.style = "height:100%; overflow:hidden; background-color:black; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
+	document.body.style = "height:100%; overflow:hidden; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
 
 	window.onscroll = (e)=> {
 		e.preventDefault()
@@ -87,7 +87,7 @@
 	function close() {
 		big.file = ""
 		big = big
-		document.body.style ="margin:0; padding:0; background-color:black; margin:1; padding:0; background-color:black; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
+		document.body.style ="margin:0; padding:0; margin:1; padding:0; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
 		// todo Återställ även scrollposition!
 	}
 
@@ -95,41 +95,20 @@
 
 <div>
 
-	<div>
-		<div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div>
-		<div>{big.file}</div>
-		</div>
-
 	{#if state >= 1}
-		<div>
-			{round(big.bigWidth * big.bigHeight/1000000,1)} MP &nbsp;
-			{big.bigWidth}×{big.bigHeight} &nbsp;
-			{#if big.bigSize < 1000000 }
-				{round(big.bigSize/1000,0)} kB &nbsp;
-			{:else}
-				{round(big.bigSize/1000000,1)} MB &nbsp;
-			{/if}
-		</div>
+		<span style="top:3%"> {round(big.bigWidth * big.bigHeight/1000000,1)} MP • {big.bigWidth} x {big.bigHeight} • {round(big.bigSize/1000000,1)} MB </span>
 	{/if}
+		<span style="top:5%">{big.file.replaceAll('\\',' • ').replaceAll("_"," ")}</span>
 	{#if state == 2}
-		<div>{exif.DateTimeOriginal}</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>{exif.Model}</div>
-		<div>
-			f/{exif.FNumber} &nbsp;
-			1/{1/exif.ExposureTime} &nbsp;
-			{exif.FocalLength} mm &nbsp;
-			ISO {exif.ISOSpeedRatings} &nbsp;
-		</div>
-		<div>&nbsp;</div>
-		<div>© {exif.Copyright}</div>
+		<span style="top:1%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
+		<span style="top:7%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
+		<span style="top:9%;"> © {exif.Copyright} </span>
 	{/if}
 
-	<button style = "left:0%;  top:0%;" on:click={()=>getExif()}>info</button>
-	<button style = "left:0%;  top:5%;">&lt;</button>
-	<button style = "left:50%; top:0%;">play</button>
-	<button style = "left:95%; top:5%;">&gt;</button>
+	<button style = "left:0%;  top:1%;" on:click={()=>getExif()}>info</button>
+	<button style = "left:0%;  top:8%;">&lt;</button>
+	<button style = "left:50%; top:1%;">play</button>
+	<button style = "left:95%; top:8%;">&gt;</button>
 	
 	<img id='picture' src={big.file} alt=""
 		on:wheel={wheel}
@@ -139,7 +118,7 @@
 		width = {big.width}
 		style = "position:absolute; left:{big.left}px; top:{big.top}px;"
 	>
-	<button style = "left:95%; top:0%;" on:click={close}>exit</button>
+	<button style = "left:95%; top:1%;" on:click={close}>exit</button>
 
 </div>
 
@@ -152,8 +131,15 @@
 		font-size:1em;
 		width:4%;
 	}
+
 	div {
-		color : white;
+		/* color : white; */
 	}
+
+	span {
+		position:absolute;
+		left:5%;
+	}
+
 </style>
 

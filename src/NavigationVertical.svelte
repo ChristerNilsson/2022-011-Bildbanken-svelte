@@ -22,15 +22,11 @@
 
 <style>
 	button {
-		/* color:black; */
-		/* margin:2px; */
 		width:99%;
 		text-align:left;
 	}
 
 	div {
 		font-size: 0.9em;
-		color:white;
-		background-color: black;
 	}
 </style>

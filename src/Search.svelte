@@ -14,8 +14,8 @@
 <style>
 	div,input {
 		font-size: 0.9em;
-		color:white;
-		background-color: black;
+		/* color:yellow; */
+		/* background-color: white; */
 	}
 	input {
 		margin:4px;

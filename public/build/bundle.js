@@ -17633,20 +17633,20 @@ var app = (function () {
     			attr_dev(a0, "target", "_blank");
     			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'M'));
     			add_location(a0, file$6, 95, 2, 2625);
-    			attr_dev(div0, "class", "info svelte-svweed");
+    			attr_dev(div0, "class", "info svelte-qo7op2");
     			add_location(div0, file$6, 94, 1, 2578);
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'T'));
     			add_location(a1, file$6, 98, 2, 2817);
-    			attr_dev(div1, "class", "info svelte-svweed");
+    			attr_dev(div1, "class", "info svelte-qo7op2");
     			add_location(div1, file$6, 97, 1, 2774);
     			attr_dev(input, "type", "checkbox");
     			input.__value = "";
     			input.value = input.__value;
     			add_location(input, file$6, 102, 2, 2993);
-    			attr_dev(div2, "class", "info svelte-svweed");
+    			attr_dev(div2, "class", "info svelte-qo7op2");
     			add_location(div2, file$6, 100, 1, 2958);
-    			attr_dev(div3, "class", "card svelte-svweed");
+    			attr_dev(div3, "class", "card svelte-qo7op2");
     			attr_dev(div3, "id", "images");
     			set_style(div3, "position", "absolute");
     			set_style(div3, "left", /*card*/ ctx[4][5] + "px");
@@ -21196,7 +21196,7 @@ var app = (function () {
     }
 
     // (11:0) {:else}
-    function create_else_block$3(ctx) {
+    function create_else_block$2(ctx) {
     	let each_1_anchor;
     	let each_value = lodash.keys(lodash.last(/*path*/ ctx[1]));
     	validate_each_argument(each_value);
@@ -21254,7 +21254,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block$3.name,
+    		id: create_else_block$2.name,
     		type: "else",
     		source: "(11:0) {:else}",
     		ctx
@@ -21315,7 +21315,7 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			attr_dev(button, "class", "svelte-13a0ax7");
+    			attr_dev(button, "class", "svelte-1ut6lh2");
     			add_location(button, file$4, 16, 4, 394);
     		},
     		m: function mount(target, anchor) {
@@ -21365,7 +21365,7 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			attr_dev(button, "class", "svelte-13a0ax7");
+    			attr_dev(button, "class", "svelte-1ut6lh2");
     			add_location(button, file$4, 14, 4, 293);
     		},
     		m: function mount(target, anchor) {
@@ -21420,7 +21420,7 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			t = space();
-    			attr_dev(div, "class", "svelte-13a0ax7");
+    			attr_dev(div, "class", "svelte-1ut6lh2");
     			add_location(div, file$4, 12, 2, 256);
     		},
     		m: function mount(target, anchor) {
@@ -21466,7 +21466,7 @@ var app = (function () {
     		if (dirty & /*stack*/ 1) show_if = null;
     		if (show_if == null) show_if = !!lodash.last(/*stack*/ ctx[0]).includes('.jpg');
     		if (show_if) return create_if_block$3;
-    		return create_else_block$3;
+    		return create_else_block$2;
     	}
 
     	let current_block_type = select_block_type(ctx, -1);
@@ -21630,7 +21630,7 @@ var app = (function () {
     }
 
     // (11:2) {:else}
-    function create_else_block$2(ctx) {
+    function create_else_block$1(ctx) {
     	let button;
     	let t_value = /*key*/ ctx[3] + "";
     	let t;
@@ -21669,7 +21669,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block$2.name,
+    		id: create_else_block$1.name,
     		type: "else",
     		source: "(11:2) {:else}",
     		ctx
@@ -21718,7 +21718,7 @@ var app = (function () {
     		if (dirty & /*stack*/ 1) show_if = null;
     		if (show_if == null) show_if = !!(/*key*/ ctx[3] == lodash.last(/*stack*/ ctx[0]));
     		if (show_if) return create_if_block$2;
-    		return create_else_block$2;
+    		return create_else_block$1;
     	}
 
     	let current_block_type = select_block_type(ctx, -1);
@@ -21782,7 +21782,7 @@ var app = (function () {
     			}
 
     			set_style(div, "height", "30px");
-    			attr_dev(div, "class", "svelte-4dlxew");
+    			attr_dev(div, "class", "svelte-1313261");
     			add_location(div, file$3, 6, 0, 84);
     		},
     		l: function claim(nodes) {
@@ -21939,13 +21939,13 @@ var app = (function () {
     			input = element("input");
     			t4 = space();
     			t5 = text(/*text1*/ ctx[2]);
-    			attr_dev(button, "class", "svelte-ha893m");
+    			attr_dev(button, "class", "svelte-10kmwzx");
     			add_location(button, file$2, 7, 1, 90);
     			attr_dev(input, "placeholder", "Enter case sensitive words separated by spaces. Combine_words_like_this.");
     			set_style(input, "width", "50%");
-    			attr_dev(input, "class", "svelte-ha893m");
+    			attr_dev(input, "class", "svelte-10kmwzx");
     			add_location(input, file$2, 9, 1, 155);
-    			attr_dev(div, "class", "svelte-ha893m");
+    			attr_dev(div, "class", "svelte-10kmwzx");
     			add_location(div, file$2, 6, 0, 82);
     		},
     		l: function claim(nodes) {
@@ -22098,9 +22098,9 @@ var app = (function () {
     const { console: console_1$1 } = globals;
     const file$1 = "src\\BigPicture.svelte";
 
-    // (103:1) {#if state >= 1}
+    // (98:1) {#if state >= 1}
     function create_if_block_1$1(ctx) {
-    	let div;
+    	let span;
     	let t0_value = /*round*/ ctx[3](/*big*/ ctx[0].bigWidth * /*big*/ ctx[0].bigHeight / 1000000, 1) + "";
     	let t0;
     	let t1;
@@ -22110,58 +22110,44 @@ var app = (function () {
     	let t4_value = /*big*/ ctx[0].bigHeight + "";
     	let t4;
     	let t5;
-
-    	function select_block_type(ctx, dirty) {
-    		if (/*big*/ ctx[0].bigSize < 1000000) return create_if_block_2;
-    		return create_else_block$1;
-    	}
-
-    	let current_block_type = select_block_type(ctx);
-    	let if_block = current_block_type(ctx);
+    	let t6_value = /*round*/ ctx[3](/*big*/ ctx[0].bigSize / 1000000, 1) + "";
+    	let t6;
+    	let t7;
 
     	const block = {
     		c: function create() {
-    			div = element("div");
+    			span = element("span");
     			t0 = text(t0_value);
-    			t1 = text(" MP  \r\n\t\t\t");
+    			t1 = text(" MP • ");
     			t2 = text(t2_value);
-    			t3 = text("×");
+    			t3 = text(" x ");
     			t4 = text(t4_value);
-    			t5 = text("  \r\n\t\t\t");
-    			if_block.c();
-    			attr_dev(div, "class", "svelte-1h61phv");
-    			add_location(div, file$1, 103, 2, 2275);
+    			t5 = text(" • ");
+    			t6 = text(t6_value);
+    			t7 = text(" MB");
+    			set_style(span, "top", "3%");
+    			attr_dev(span, "class", "svelte-f6fyfu");
+    			add_location(span, file$1, 98, 2, 2071);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, t0);
-    			append_dev(div, t1);
-    			append_dev(div, t2);
-    			append_dev(div, t3);
-    			append_dev(div, t4);
-    			append_dev(div, t5);
-    			if_block.m(div, null);
+    			insert_dev(target, span, anchor);
+    			append_dev(span, t0);
+    			append_dev(span, t1);
+    			append_dev(span, t2);
+    			append_dev(span, t3);
+    			append_dev(span, t4);
+    			append_dev(span, t5);
+    			append_dev(span, t6);
+    			append_dev(span, t7);
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*big*/ 1 && t0_value !== (t0_value = /*round*/ ctx[3](/*big*/ ctx[0].bigWidth * /*big*/ ctx[0].bigHeight / 1000000, 1) + "")) set_data_dev(t0, t0_value);
     			if (dirty & /*big*/ 1 && t2_value !== (t2_value = /*big*/ ctx[0].bigWidth + "")) set_data_dev(t2, t2_value);
     			if (dirty & /*big*/ 1 && t4_value !== (t4_value = /*big*/ ctx[0].bigHeight + "")) set_data_dev(t4, t4_value);
-
-    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
-    				if_block.p(ctx, dirty);
-    			} else {
-    				if_block.d(1);
-    				if_block = current_block_type(ctx);
-
-    				if (if_block) {
-    					if_block.c();
-    					if_block.m(div, null);
-    				}
-    			}
+    			if (dirty & /*big*/ 1 && t6_value !== (t6_value = /*round*/ ctx[3](/*big*/ ctx[0].bigSize / 1000000, 1) + "")) set_data_dev(t6, t6_value);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
-    			if_block.d();
+    			if (detaching) detach_dev(span);
     		}
     	};
 
@@ -22169,216 +22155,103 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(103:1) {#if state >= 1}",
+    		source: "(98:1) {#if state >= 1}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (109:3) {:else}
-    function create_else_block$1(ctx) {
-    	let t0_value = /*round*/ ctx[3](/*big*/ ctx[0].bigSize / 1000000, 1) + "";
-    	let t0;
-    	let t1;
-
-    	const block = {
-    		c: function create() {
-    			t0 = text(t0_value);
-    			t1 = text(" MB  ");
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, t0, anchor);
-    			insert_dev(target, t1, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*big*/ 1 && t0_value !== (t0_value = /*round*/ ctx[3](/*big*/ ctx[0].bigSize / 1000000, 1) + "")) set_data_dev(t0, t0_value);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(t1);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_else_block$1.name,
-    		type: "else",
-    		source: "(109:3) {:else}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (107:3) {#if big.bigSize < 1000000 }
-    function create_if_block_2(ctx) {
-    	let t0_value = /*round*/ ctx[3](/*big*/ ctx[0].bigSize / 1000, 0) + "";
-    	let t0;
-    	let t1;
-
-    	const block = {
-    		c: function create() {
-    			t0 = text(t0_value);
-    			t1 = text(" kB  ");
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, t0, anchor);
-    			insert_dev(target, t1, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*big*/ 1 && t0_value !== (t0_value = /*round*/ ctx[3](/*big*/ ctx[0].bigSize / 1000, 0) + "")) set_data_dev(t0, t0_value);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(t1);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_2.name,
-    		type: "if",
-    		source: "(107:3) {#if big.bigSize < 1000000 }",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (114:1) {#if state == 2}
+    // (102:1) {#if state == 2}
     function create_if_block$1(ctx) {
-    	let div0;
-    	let t0_value = /*exif*/ ctx[1].DateTimeOriginal + "";
+    	let span0;
+    	let t0_value = /*exif*/ ctx[1].DateTimeOriginal.replace(" ", " • ") + "";
     	let t0;
     	let t1;
-    	let div1;
+    	let span1;
+    	let t2_value = /*exif*/ ctx[1].Model + "";
+    	let t2;
     	let t3;
-    	let div2;
+    	let t4_value = /*exif*/ ctx[1].FNumber + "";
+    	let t4;
     	let t5;
-    	let div3;
-    	let t6_value = /*exif*/ ctx[1].Model + "";
+    	let t6_value = 1 / /*exif*/ ctx[1].ExposureTime + "";
     	let t6;
     	let t7;
-    	let div4;
+    	let t8_value = /*exif*/ ctx[1].FocalLength + "";
     	let t8;
-    	let t9_value = /*exif*/ ctx[1].FNumber + "";
     	let t9;
+    	let t10_value = /*exif*/ ctx[1].ISOSpeedRatings + "";
     	let t10;
-    	let t11_value = 1 / /*exif*/ ctx[1].ExposureTime + "";
     	let t11;
+    	let span2;
     	let t12;
-    	let t13_value = /*exif*/ ctx[1].FocalLength + "";
+    	let t13_value = /*exif*/ ctx[1].Copyright + "";
     	let t13;
-    	let t14;
-    	let t15_value = /*exif*/ ctx[1].ISOSpeedRatings + "";
-    	let t15;
-    	let t16;
-    	let t17;
-    	let div5;
-    	let t19;
-    	let div6;
-    	let t20;
-    	let t21_value = /*exif*/ ctx[1].Copyright + "";
-    	let t21;
 
     	const block = {
     		c: function create() {
-    			div0 = element("div");
+    			span0 = element("span");
     			t0 = text(t0_value);
     			t1 = space();
-    			div1 = element("div");
-    			div1.textContent = " ";
-    			t3 = space();
-    			div2 = element("div");
-    			div2.textContent = " ";
-    			t5 = space();
-    			div3 = element("div");
+    			span1 = element("span");
+    			t2 = text(t2_value);
+    			t3 = text(" • f/");
+    			t4 = text(t4_value);
+    			t5 = text(" • 1/");
     			t6 = text(t6_value);
-    			t7 = space();
-    			div4 = element("div");
-    			t8 = text("f/");
-    			t9 = text(t9_value);
-    			t10 = text("  \r\n\t\t\t1/");
-    			t11 = text(t11_value);
-    			t12 = text("  \r\n\t\t\t");
+    			t7 = text(" • ");
+    			t8 = text(t8_value);
+    			t9 = text(" mm • ISO ");
+    			t10 = text(t10_value);
+    			t11 = space();
+    			span2 = element("span");
+    			t12 = text("© ");
     			t13 = text(t13_value);
-    			t14 = text(" mm  \r\n\t\t\tISO ");
-    			t15 = text(t15_value);
-    			t16 = text("  ");
-    			t17 = space();
-    			div5 = element("div");
-    			div5.textContent = " ";
-    			t19 = space();
-    			div6 = element("div");
-    			t20 = text("© ");
-    			t21 = text(t21_value);
-    			attr_dev(div0, "class", "svelte-1h61phv");
-    			add_location(div0, file$1, 114, 2, 2569);
-    			attr_dev(div1, "class", "svelte-1h61phv");
-    			add_location(div1, file$1, 115, 2, 2607);
-    			attr_dev(div2, "class", "svelte-1h61phv");
-    			add_location(div2, file$1, 116, 2, 2628);
-    			attr_dev(div3, "class", "svelte-1h61phv");
-    			add_location(div3, file$1, 117, 2, 2649);
-    			attr_dev(div4, "class", "svelte-1h61phv");
-    			add_location(div4, file$1, 118, 2, 2676);
-    			attr_dev(div5, "class", "svelte-1h61phv");
-    			add_location(div5, file$1, 124, 2, 2829);
-    			attr_dev(div6, "class", "svelte-1h61phv");
-    			add_location(div6, file$1, 125, 2, 2850);
+    			set_style(span0, "top", "1%");
+    			attr_dev(span0, "class", "svelte-f6fyfu");
+    			add_location(span0, file$1, 102, 2, 2338);
+    			set_style(span1, "top", "7%");
+    			attr_dev(span1, "class", "svelte-f6fyfu");
+    			add_location(span1, file$1, 103, 2, 2415);
+    			set_style(span2, "top", "9%");
+    			attr_dev(span2, "class", "svelte-f6fyfu");
+    			add_location(span2, file$1, 104, 2, 2560);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div0, anchor);
-    			append_dev(div0, t0);
+    			insert_dev(target, span0, anchor);
+    			append_dev(span0, t0);
     			insert_dev(target, t1, anchor);
-    			insert_dev(target, div1, anchor);
-    			insert_dev(target, t3, anchor);
-    			insert_dev(target, div2, anchor);
-    			insert_dev(target, t5, anchor);
-    			insert_dev(target, div3, anchor);
-    			append_dev(div3, t6);
-    			insert_dev(target, t7, anchor);
-    			insert_dev(target, div4, anchor);
-    			append_dev(div4, t8);
-    			append_dev(div4, t9);
-    			append_dev(div4, t10);
-    			append_dev(div4, t11);
-    			append_dev(div4, t12);
-    			append_dev(div4, t13);
-    			append_dev(div4, t14);
-    			append_dev(div4, t15);
-    			append_dev(div4, t16);
-    			insert_dev(target, t17, anchor);
-    			insert_dev(target, div5, anchor);
-    			insert_dev(target, t19, anchor);
-    			insert_dev(target, div6, anchor);
-    			append_dev(div6, t20);
-    			append_dev(div6, t21);
+    			insert_dev(target, span1, anchor);
+    			append_dev(span1, t2);
+    			append_dev(span1, t3);
+    			append_dev(span1, t4);
+    			append_dev(span1, t5);
+    			append_dev(span1, t6);
+    			append_dev(span1, t7);
+    			append_dev(span1, t8);
+    			append_dev(span1, t9);
+    			append_dev(span1, t10);
+    			insert_dev(target, t11, anchor);
+    			insert_dev(target, span2, anchor);
+    			append_dev(span2, t12);
+    			append_dev(span2, t13);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*exif*/ 2 && t0_value !== (t0_value = /*exif*/ ctx[1].DateTimeOriginal + "")) set_data_dev(t0, t0_value);
-    			if (dirty & /*exif*/ 2 && t6_value !== (t6_value = /*exif*/ ctx[1].Model + "")) set_data_dev(t6, t6_value);
-    			if (dirty & /*exif*/ 2 && t9_value !== (t9_value = /*exif*/ ctx[1].FNumber + "")) set_data_dev(t9, t9_value);
-    			if (dirty & /*exif*/ 2 && t11_value !== (t11_value = 1 / /*exif*/ ctx[1].ExposureTime + "")) set_data_dev(t11, t11_value);
-    			if (dirty & /*exif*/ 2 && t13_value !== (t13_value = /*exif*/ ctx[1].FocalLength + "")) set_data_dev(t13, t13_value);
-    			if (dirty & /*exif*/ 2 && t15_value !== (t15_value = /*exif*/ ctx[1].ISOSpeedRatings + "")) set_data_dev(t15, t15_value);
-    			if (dirty & /*exif*/ 2 && t21_value !== (t21_value = /*exif*/ ctx[1].Copyright + "")) set_data_dev(t21, t21_value);
+    			if (dirty & /*exif*/ 2 && t0_value !== (t0_value = /*exif*/ ctx[1].DateTimeOriginal.replace(" ", " • ") + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*exif*/ 2 && t2_value !== (t2_value = /*exif*/ ctx[1].Model + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*exif*/ 2 && t4_value !== (t4_value = /*exif*/ ctx[1].FNumber + "")) set_data_dev(t4, t4_value);
+    			if (dirty & /*exif*/ 2 && t6_value !== (t6_value = 1 / /*exif*/ ctx[1].ExposureTime + "")) set_data_dev(t6, t6_value);
+    			if (dirty & /*exif*/ 2 && t8_value !== (t8_value = /*exif*/ ctx[1].FocalLength + "")) set_data_dev(t8, t8_value);
+    			if (dirty & /*exif*/ 2 && t10_value !== (t10_value = /*exif*/ ctx[1].ISOSpeedRatings + "")) set_data_dev(t10, t10_value);
+    			if (dirty & /*exif*/ 2 && t13_value !== (t13_value = /*exif*/ ctx[1].Copyright + "")) set_data_dev(t13, t13_value);
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div0);
+    			if (detaching) detach_dev(span0);
     			if (detaching) detach_dev(t1);
-    			if (detaching) detach_dev(div1);
-    			if (detaching) detach_dev(t3);
-    			if (detaching) detach_dev(div2);
-    			if (detaching) detach_dev(t5);
-    			if (detaching) detach_dev(div3);
-    			if (detaching) detach_dev(t7);
-    			if (detaching) detach_dev(div4);
-    			if (detaching) detach_dev(t17);
-    			if (detaching) detach_dev(div5);
-    			if (detaching) detach_dev(t19);
-    			if (detaching) detach_dev(div6);
+    			if (detaching) detach_dev(span1);
+    			if (detaching) detach_dev(t11);
+    			if (detaching) detach_dev(span2);
     		}
     	};
 
@@ -22386,7 +22259,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(114:1) {#if state == 2}",
+    		source: "(102:1) {#if state == 2}",
     		ctx
     	});
 
@@ -22394,32 +22267,25 @@ var app = (function () {
     }
 
     function create_fragment$1(ctx) {
-    	let div7;
-    	let div6;
-    	let div0;
-    	let div1;
-    	let div2;
-    	let div3;
-    	let div4;
-    	let t5;
-    	let div5;
-    	let t6_value = /*big*/ ctx[0].file + "";
-    	let t6;
-    	let t7;
-    	let t8;
-    	let t9;
+    	let div;
+    	let t0;
+    	let span;
+    	let t1_value = /*big*/ ctx[0].file.replaceAll('\\', ' • ').replaceAll("_", " ") + "";
+    	let t1;
+    	let t2;
+    	let t3;
     	let button0;
-    	let t11;
+    	let t5;
     	let button1;
-    	let t13;
+    	let t7;
     	let button2;
-    	let t15;
+    	let t9;
     	let button3;
-    	let t17;
+    	let t11;
     	let img;
     	let img_src_value;
     	let img_width_value;
-    	let t18;
+    	let t12;
     	let button4;
     	let mounted;
     	let dispose;
@@ -22428,72 +22294,49 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div7 = element("div");
-    			div6 = element("div");
-    			div0 = element("div");
-    			div0.textContent = " ";
-    			div1 = element("div");
-    			div1.textContent = " ";
-    			div2 = element("div");
-    			div2.textContent = " ";
-    			div3 = element("div");
-    			div3.textContent = " ";
-    			div4 = element("div");
-    			div4.textContent = " ";
-    			t5 = space();
-    			div5 = element("div");
-    			t6 = text(t6_value);
-    			t7 = space();
+    			div = element("div");
     			if (if_block0) if_block0.c();
-    			t8 = space();
+    			t0 = space();
+    			span = element("span");
+    			t1 = text(t1_value);
+    			t2 = space();
     			if (if_block1) if_block1.c();
-    			t9 = space();
+    			t3 = space();
     			button0 = element("button");
     			button0.textContent = "info";
-    			t11 = space();
+    			t5 = space();
     			button1 = element("button");
     			button1.textContent = "<";
-    			t13 = space();
+    			t7 = space();
     			button2 = element("button");
     			button2.textContent = "play";
-    			t15 = space();
+    			t9 = space();
     			button3 = element("button");
     			button3.textContent = ">";
-    			t17 = space();
+    			t11 = space();
     			img = element("img");
-    			t18 = space();
+    			t12 = space();
     			button4 = element("button");
     			button4.textContent = "exit";
-    			attr_dev(div0, "class", "svelte-1h61phv");
-    			add_location(div0, file$1, 98, 2, 2130);
-    			attr_dev(div1, "class", "svelte-1h61phv");
-    			add_location(div1, file$1, 98, 19, 2147);
-    			attr_dev(div2, "class", "svelte-1h61phv");
-    			add_location(div2, file$1, 98, 36, 2164);
-    			attr_dev(div3, "class", "svelte-1h61phv");
-    			add_location(div3, file$1, 98, 53, 2181);
-    			attr_dev(div4, "class", "svelte-1h61phv");
-    			add_location(div4, file$1, 98, 70, 2198);
-    			attr_dev(div5, "class", "svelte-1h61phv");
-    			add_location(div5, file$1, 99, 2, 2219);
-    			attr_dev(div6, "class", "svelte-1h61phv");
-    			add_location(div6, file$1, 97, 1, 2121);
+    			set_style(span, "top", "5%");
+    			attr_dev(span, "class", "svelte-f6fyfu");
+    			add_location(span, file$1, 100, 2, 2234);
     			set_style(button0, "left", "0%");
-    			set_style(button0, "top", "0%");
-    			attr_dev(button0, "class", "svelte-1h61phv");
-    			add_location(button0, file$1, 128, 1, 2892);
+    			set_style(button0, "top", "1%");
+    			attr_dev(button0, "class", "svelte-f6fyfu");
+    			add_location(button0, file$1, 107, 1, 2622);
     			set_style(button1, "left", "0%");
-    			set_style(button1, "top", "5%");
-    			attr_dev(button1, "class", "svelte-1h61phv");
-    			add_location(button1, file$1, 129, 1, 2969);
+    			set_style(button1, "top", "8%");
+    			attr_dev(button1, "class", "svelte-f6fyfu");
+    			add_location(button1, file$1, 108, 1, 2699);
     			set_style(button2, "left", "50%");
-    			set_style(button2, "top", "0%");
-    			attr_dev(button2, "class", "svelte-1h61phv");
-    			add_location(button2, file$1, 130, 1, 3021);
+    			set_style(button2, "top", "1%");
+    			attr_dev(button2, "class", "svelte-f6fyfu");
+    			add_location(button2, file$1, 109, 1, 2751);
     			set_style(button3, "left", "95%");
-    			set_style(button3, "top", "5%");
-    			attr_dev(button3, "class", "svelte-1h61phv");
-    			add_location(button3, file$1, 131, 1, 3073);
+    			set_style(button3, "top", "8%");
+    			attr_dev(button3, "class", "svelte-f6fyfu");
+    			add_location(button3, file$1, 110, 1, 2803);
     			attr_dev(img, "id", "picture");
     			if (!src_url_equal(img.src, img_src_value = /*big*/ ctx[0].file)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "");
@@ -22501,44 +22344,37 @@ var app = (function () {
     			set_style(img, "position", "absolute");
     			set_style(img, "left", /*big*/ ctx[0].left + "px");
     			set_style(img, "top", /*big*/ ctx[0].top + "px");
-    			add_location(img, file$1, 133, 1, 3128);
+    			add_location(img, file$1, 112, 1, 2858);
     			set_style(button4, "left", "95%");
-    			set_style(button4, "top", "0%");
-    			attr_dev(button4, "class", "svelte-1h61phv");
-    			add_location(button4, file$1, 141, 1, 3365);
-    			attr_dev(div7, "class", "svelte-1h61phv");
-    			add_location(div7, file$1, 95, 0, 2111);
+    			set_style(button4, "top", "1%");
+    			attr_dev(button4, "class", "svelte-f6fyfu");
+    			add_location(button4, file$1, 120, 1, 3095);
+    			attr_dev(div, "class", "svelte-f6fyfu");
+    			add_location(div, file$1, 95, 0, 2041);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div7, anchor);
-    			append_dev(div7, div6);
-    			append_dev(div6, div0);
-    			append_dev(div6, div1);
-    			append_dev(div6, div2);
-    			append_dev(div6, div3);
-    			append_dev(div6, div4);
-    			append_dev(div6, t5);
-    			append_dev(div6, div5);
-    			append_dev(div5, t6);
-    			append_dev(div7, t7);
-    			if (if_block0) if_block0.m(div7, null);
-    			append_dev(div7, t8);
-    			if (if_block1) if_block1.m(div7, null);
-    			append_dev(div7, t9);
-    			append_dev(div7, button0);
-    			append_dev(div7, t11);
-    			append_dev(div7, button1);
-    			append_dev(div7, t13);
-    			append_dev(div7, button2);
-    			append_dev(div7, t15);
-    			append_dev(div7, button3);
-    			append_dev(div7, t17);
-    			append_dev(div7, img);
-    			append_dev(div7, t18);
-    			append_dev(div7, button4);
+    			insert_dev(target, div, anchor);
+    			if (if_block0) if_block0.m(div, null);
+    			append_dev(div, t0);
+    			append_dev(div, span);
+    			append_dev(span, t1);
+    			append_dev(div, t2);
+    			if (if_block1) if_block1.m(div, null);
+    			append_dev(div, t3);
+    			append_dev(div, button0);
+    			append_dev(div, t5);
+    			append_dev(div, button1);
+    			append_dev(div, t7);
+    			append_dev(div, button2);
+    			append_dev(div, t9);
+    			append_dev(div, button3);
+    			append_dev(div, t11);
+    			append_dev(div, img);
+    			append_dev(div, t12);
+    			append_dev(div, button4);
 
     			if (!mounted) {
     				dispose = [
@@ -22554,20 +22390,20 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*big*/ 1 && t6_value !== (t6_value = /*big*/ ctx[0].file + "")) set_data_dev(t6, t6_value);
-
     			if (/*state*/ ctx[2] >= 1) {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
     					if_block0 = create_if_block_1$1(ctx);
     					if_block0.c();
-    					if_block0.m(div7, t8);
+    					if_block0.m(div, t0);
     				}
     			} else if (if_block0) {
     				if_block0.d(1);
     				if_block0 = null;
     			}
+
+    			if (dirty & /*big*/ 1 && t1_value !== (t1_value = /*big*/ ctx[0].file.replaceAll('\\', ' • ').replaceAll("_", " ") + "")) set_data_dev(t1, t1_value);
 
     			if (/*state*/ ctx[2] == 2) {
     				if (if_block1) {
@@ -22575,7 +22411,7 @@ var app = (function () {
     				} else {
     					if_block1 = create_if_block$1(ctx);
     					if_block1.c();
-    					if_block1.m(div7, t9);
+    					if_block1.m(div, t3);
     				}
     			} else if (if_block1) {
     				if_block1.d(1);
@@ -22601,7 +22437,7 @@ var app = (function () {
     		i: noop$1,
     		o: noop$1,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div7);
+    			if (detaching) detach_dev(div);
     			if (if_block0) if_block0.d();
     			if (if_block1) if_block1.d();
     			mounted = false;
@@ -22634,6 +22470,7 @@ var app = (function () {
     		$$invalidate(0, big.bigHeight = img.naturalHeight, big);
     		console.log('getExif', big);
     		$$invalidate(0, big);
+    		$$invalidate(2, state = 1);
 
     		EXIF.getData(img, function () {
     			$$invalidate(1, exif = EXIF.getAllTags(this));
@@ -22641,16 +22478,14 @@ var app = (function () {
     			if (exif.ExifVersion) {
     				$$invalidate(2, state = 2);
     				$$invalidate(1, exif.DateTimeOriginal = exif.DateTimeOriginal.replace(":", "-").replace(":", "-"), exif);
-    			} else {
-    				$$invalidate(2, state = 1);
-    				$$invalidate(1, exif = null);
-    			}
+    			} //		} else {
+    			//				exif = null
 
     			console.log(exif);
     		});
     	}
 
-    	document.body.style = "height:100%; overflow:hidden; background-color:black; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;";
+    	document.body.style = "height:100%; overflow:hidden; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;";
 
     	window.onscroll = e => {
     		e.preventDefault();
@@ -22706,7 +22541,7 @@ var app = (function () {
     	function close() {
     		$$invalidate(0, big.file = "", big);
     		$$invalidate(0, big);
-    		document.body.style = "margin:0; padding:0; background-color:black; margin:1; padding:0; background-color:black; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;";
+    		document.body.style = "margin:0; padding:0; margin:1; padding:0; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;";
     	} // todo Återställ även scrollposition!
 
     	$$self.$$.on_mount.push(function () {

@@ -24,8 +24,8 @@
 		margin:1px;
 		padding:1px;
 		font-size: 0.9em;
-		color:white;
-		background-color: black;
+		/* color:yellow; */
+		/* background-color: white; */
 	}
 </style>
 
