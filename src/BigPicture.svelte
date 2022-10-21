@@ -1,6 +1,11 @@
 <script>
 	import _ from "lodash"
 	export let big
+	export let y
+
+	let backup = y
+
+$: console.log('backup',y)
 
 	let exif
 	let state = 0
@@ -19,8 +24,6 @@
 			if (exif.ExifVersion) {
 				state = 2
 				exif.DateTimeOriginal = exif.DateTimeOriginal.replace(":","-").replace(":","-")
-	//		} else {
-//				exif = null
 			}
 			console.log(exif)
 		})
@@ -62,7 +65,7 @@
 		e.preventDefault()
 		e.stopPropagation()
 
-		if (e.x<10 && e.y<10) return
+		// if (e.x<10 && e.y<10) return
 
 		big.state = 1
 		big.startX = e.x
@@ -85,9 +88,12 @@
 	}
 
 	function close() {
-		big.file = ""
+		console.log('close',y)
+		big.file = "" 
+		y = backup
+		console.log('close',y)
 		big = big
-		document.body.style ="margin:0; padding:0; margin:1; padding:0; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
+		document.body.style ="margin:0; padding:0; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
 		// todo Återställ även scrollposition!
 	}
 
@@ -130,10 +136,6 @@
 		position:absolute; 
 		font-size:1em;
 		width:4%;
-	}
-
-	div {
-		/* color : white; */
 	}
 
 	span {

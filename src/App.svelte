@@ -16,6 +16,8 @@
 		}
 	}
 
+	$: console.log('y',y)
+
 	let selected = []
 	let skala = 1
 
@@ -56,17 +58,18 @@
 
 	$: { 
 		placera(images)
-		console.log('images',images)
+		// console.log('images',images)
 		images = images
 	}
 
 	function resize() {
-		console.log('resize')
+		// console.log('resize')
 		placera(images)
 		images = images
 	}
 
 	window.onresize = resize
+
 
 	function assert(a,b) {
 		if (!_.isEqual(a,b)) console.log("Assert failed",a,'!=',b)
@@ -221,6 +224,18 @@
 		images = images
 	}
 
+	// const scroller = document.querySelector("#scroller");
+	// console.log('scroller',scroller)
+	// //const output = document.querySelector("#output");
+
+	// scroller.addEventListener("scroll", (event) => {
+  // 	console.log('scrollTop',scroller.scrollTop)
+	// });
+
+	// function scrollY(e) {
+	// 	console.log('scrollY',e)
+	// }
+
 </script>
 
 <svelte:window bind:scrollY={y}/>
@@ -239,7 +254,7 @@
 		{/if}
 	</div>
 {:else}
-	<BigPicture bind:big />
+	<BigPicture bind:big bind:y/>
 {/if}
 
 <style>

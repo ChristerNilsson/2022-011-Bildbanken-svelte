@@ -25,29 +25,22 @@
 		s = s.replace('.jpg','')
 		s = s.replace(/_M\d+/,'')
 
-		// s = s.replace(/Klass_./i,'')
-		// s = s.replace(/\d\d\d\d-\d\d-\d\d-X-\d/,'')
-		// s = s.replace(/\d\d\d\d-\d\d-\d\d-\d/,'')
-		// s = s.replace(/\d\d\d\d-\d\d-\d\d/,'')
+		// s = s.replace('Vy-Veckans-bild-','')
+		// s = s.replace('Vy-Veckans-bild_','')
+		// s = s.replace('Vy-Veckans-Bild_','')
+		// s = s.replace('Vy-Vexkans_Bild_','')
+		// s = s.replace('Vy-Veckans_Bild_','')
+		// s = s.replace('Vy-Veckans_bild_','')
+		// s = s.replace('Vy-veckans_bild_','')
+		// s = s.replace('Vy-veckans-bild_','')
+		// s = s.replace('Vy-Veckans-Bild _','')
+		// s = s.replace('Vy-','')
 
-		s = s.replace('Vy-Veckans-bild-','')
-		s = s.replace('Vy-Veckans-bild_','')
-		s = s.replace('Vy-Veckans-Bild_','')
-		s = s.replace('Vy-Vexkans_Bild_','')
-		s = s.replace('Vy-Veckans_Bild_','')
-		s = s.replace('Vy-Veckans_bild_','')
-		s = s.replace('Vy-veckans_bild_','')
-		s = s.replace('Vy-veckans-bild_','')
-		s = s.replace('Vy-Veckans-Bild _','')
-		s = s.replace('Vy-','')
-
-		s = s.replace('schakläger','schackläger')
-		s = s.replace('sgnerer','signerar')
-		s = s.replace('Salongerrna','Salongerna')
+		// s = s.replace('schakläger','schackläger')
+		// s = s.replace('sgnerer','signerar')
+		// s = s.replace('Salongerrna','Salongerna')
 		
 		s = s.replaceAll(/_/ig,' ')
-		// s = s.replaceAll('KSK-JGP','')
-		// s = s.replaceAll('Minior-Lag-DM','') // kan tas från tournament
 		return s
 	}
 
@@ -60,14 +53,13 @@
 	}
 
 	function visaBig(card) {
-		console.log('urban')
+		//console.log('visaBig',big.y)
 		big.state = 0
 		big.smallWidth = card[3] // width
 		big.smallHeight = card[4] // height
 
-		big.bigWidth = 2000 //naturalWidth //innerWidth //1600
-		big.bigHeight = 1000 //naturalHeight //innerHeight //1311
-		console.log(big)
+		big.bigWidth = 2000
+		big.bigHeight = 1000
 		big.bigSize = card[9]
 
 		big.skala = 1
