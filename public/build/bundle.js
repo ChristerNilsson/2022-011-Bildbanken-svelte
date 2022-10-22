@@ -17627,29 +17627,29 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[3](/*card*/ ctx[4][2].split("\\"), "small"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "width", img_width_value = /*WIDTH*/ ctx[1] - /*GAP*/ ctx[2]);
     			attr_dev(img, "alt", "");
-    			add_location(img, file$6, 79, 1, 2078);
+    			add_location(img, file$6, 81, 1, 2102);
     			attr_dev(a0, "target", "_blank");
     			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'M'));
-    			add_location(a0, file$6, 87, 2, 2295);
+    			add_location(a0, file$6, 91, 2, 2387);
     			attr_dev(div0, "class", "info svelte-qo7op2");
-    			add_location(div0, file$6, 86, 1, 2248);
+    			add_location(div0, file$6, 90, 1, 2340);
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'T'));
-    			add_location(a1, file$6, 90, 2, 2487);
+    			add_location(a1, file$6, 94, 2, 2579);
     			attr_dev(div1, "class", "info svelte-qo7op2");
-    			add_location(div1, file$6, 89, 1, 2444);
+    			add_location(div1, file$6, 93, 1, 2536);
     			attr_dev(input, "type", "checkbox");
     			input.__value = "";
     			input.value = input.__value;
-    			add_location(input, file$6, 94, 2, 2663);
+    			add_location(input, file$6, 98, 2, 2755);
     			attr_dev(div2, "class", "info svelte-qo7op2");
-    			add_location(div2, file$6, 92, 1, 2628);
+    			add_location(div2, file$6, 96, 1, 2720);
     			attr_dev(div3, "class", "card svelte-qo7op2");
     			attr_dev(div3, "id", "images");
     			set_style(div3, "position", "absolute");
     			set_style(div3, "left", /*card*/ ctx[4][5] + "px");
     			set_style(div3, "top", /*card*/ ctx[4][6] + "px");
-    			add_location(div3, file$6, 78, 0, 1984);
+    			add_location(div3, file$6, 80, 0, 2008);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -17681,9 +17681,9 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(img, "click", /*click_handler*/ ctx[9], false, false, false),
-    					listen_dev(img, "keydown", /*keydown_handler*/ ctx[10], false, false, false),
-    					listen_dev(input, "change", /*input_change_handler*/ ctx[11])
+    					listen_dev(img, "click", /*click_handler*/ ctx[8], false, false, false),
+    					listen_dev(img, "keydown", keydown_handler, false, false, false),
+    					listen_dev(input, "change", /*input_change_handler*/ ctx[9])
     				];
 
     				mounted = true;
@@ -17784,6 +17784,10 @@ var app = (function () {
     	return path.replaceAll('_', ' ');
     }
 
+    const keydown_handler = () => {
+    	
+    };
+
     function instance$6($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Card', slots, []);
@@ -17810,20 +17814,21 @@ var app = (function () {
 
     	function visaBig(card) {
     		//console.log('visaBig',big.y)
-    		$$invalidate(8, big.state = 0, big);
+    		$$invalidate(7, big.state = 0, big);
 
-    		$$invalidate(8, big.smallWidth = card[3], big); // width
-    		$$invalidate(8, big.smallHeight = card[4], big); // height
-    		$$invalidate(8, big.bigWidth = 2000, big);
-    		$$invalidate(8, big.bigHeight = 1000, big);
-    		$$invalidate(8, big.bigSize = card[9], big);
-    		$$invalidate(8, big.skala = 1, big);
-    		$$invalidate(8, big.width = big.bigWidth * big.skala, big);
-    		$$invalidate(8, big.height = big.bigHeight * big.skala, big);
-    		$$invalidate(8, big.left = 0, big);
-    		$$invalidate(8, big.top = 0, big);
-    		$$invalidate(8, big.file = card[2].replace("small", ""), big);
-    		$$invalidate(8, big);
+    		$$invalidate(7, big.smallWidth = card[3], big); // width
+    		$$invalidate(7, big.smallHeight = card[4], big); // height
+    		$$invalidate(7, big.bigWidth = 2000, big);
+    		$$invalidate(7, big.bigHeight = 1000, big);
+    		$$invalidate(7, big.bigSize = card[9], big);
+    		$$invalidate(7, big.skala = 1, big);
+    		$$invalidate(7, big.width = big.bigWidth * big.skala, big);
+    		$$invalidate(7, big.height = big.bigHeight * big.skala, big);
+    		$$invalidate(7, big.left = 0, big);
+    		$$invalidate(7, big.top = 0, big);
+    		$$invalidate(7, big.control = card, big);
+    		$$invalidate(7, big.file = card[2].replace("small", ""), big);
+    		$$invalidate(7, big);
     	}
 
     	$$self.$$.on_mount.push(function () {
@@ -17862,8 +17867,9 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Card> was created with unknown prop '${key}'`);
     	});
 
-    	const click_handler = () => visaBig(card);
-    	const keydown_handler = () => visaBig(card);
+    	const click_handler = () => {
+    		window.open("?size=" + card[9] + "&big=" + getPath(card[2].split("\\"), ""), "_blank");
+    	};
 
     	function input_change_handler() {
     		selected[index] = this.checked;
@@ -17877,7 +17883,7 @@ var app = (function () {
     		if ('card' in $$props) $$invalidate(4, card = $$props.card);
     		if ('selected' in $$props) $$invalidate(0, selected = $$props.selected);
     		if ('index' in $$props) $$invalidate(5, index = $$props.index);
-    		if ('big' in $$props) $$invalidate(8, big = $$props.big);
+    		if ('big' in $$props) $$invalidate(7, big = $$props.big);
     	};
 
     	$$self.$capture_state = () => ({
@@ -17902,7 +17908,7 @@ var app = (function () {
     		if ('card' in $$props) $$invalidate(4, card = $$props.card);
     		if ('selected' in $$props) $$invalidate(0, selected = $$props.selected);
     		if ('index' in $$props) $$invalidate(5, index = $$props.index);
-    		if ('big' in $$props) $$invalidate(8, big = $$props.big);
+    		if ('big' in $$props) $$invalidate(7, big = $$props.big);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -17917,10 +17923,8 @@ var app = (function () {
     		card,
     		index,
     		getNumber,
-    		visaBig,
     		big,
     		click_handler,
-    		keydown_handler,
     		input_change_handler
     	];
     }
@@ -17936,7 +17940,7 @@ var app = (function () {
     			card: 4,
     			selected: 0,
     			index: 5,
-    			big: 8
+    			big: 7
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -22095,7 +22099,7 @@ var app = (function () {
     const { console: console_1$1 } = globals;
     const file$1 = "src\\BigPicture.svelte";
 
-    // (104:1) {#if state >= 1}
+    // (86:1) {#if state >= 1}
     function create_if_block_1$1(ctx) {
     	let span;
     	let t0_value = /*round*/ ctx[3](/*big*/ ctx[0].bigWidth * /*big*/ ctx[0].bigHeight / 1000000, 1) + "";
@@ -22124,7 +22128,7 @@ var app = (function () {
     			t7 = text(" MB");
     			set_style(span, "top", "3%");
     			attr_dev(span, "class", "svelte-13tv33m");
-    			add_location(span, file$1, 104, 2, 2150);
+    			add_location(span, file$1, 86, 2, 1738);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -22152,14 +22156,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(104:1) {#if state >= 1}",
+    		source: "(86:1) {#if state >= 1}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (108:1) {#if state == 2}
+    // (90:1) {#if state == 2}
     function create_if_block$1(ctx) {
     	let span0;
     	let t0_value = /*exif*/ ctx[1].DateTimeOriginal.replace(" ", " • ") + "";
@@ -22207,13 +22211,13 @@ var app = (function () {
     			t13 = text(t13_value);
     			set_style(span0, "top", "1%");
     			attr_dev(span0, "class", "svelte-13tv33m");
-    			add_location(span0, file$1, 108, 2, 2417);
+    			add_location(span0, file$1, 90, 2, 2005);
     			set_style(span1, "top", "7%");
     			attr_dev(span1, "class", "svelte-13tv33m");
-    			add_location(span1, file$1, 109, 2, 2494);
+    			add_location(span1, file$1, 91, 2, 2082);
     			set_style(span2, "top", "9%");
     			attr_dev(span2, "class", "svelte-13tv33m");
-    			add_location(span2, file$1, 110, 2, 2639);
+    			add_location(span2, file$1, 92, 2, 2227);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span0, anchor);
@@ -22256,7 +22260,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(108:1) {#if state == 2}",
+    		source: "(90:1) {#if state == 2}",
     		ctx
     	});
 
@@ -22271,19 +22275,11 @@ var app = (function () {
     	let t1;
     	let t2;
     	let t3;
-    	let button0;
+    	let button;
     	let t5;
-    	let button1;
-    	let t7;
-    	let button2;
-    	let t9;
-    	let button3;
-    	let t11;
     	let img;
     	let img_src_value;
     	let img_width_value;
-    	let t12;
-    	let button4;
     	let mounted;
     	let dispose;
     	let if_block0 = /*state*/ ctx[2] >= 1 && create_if_block_1$1(ctx);
@@ -22299,41 +22295,17 @@ var app = (function () {
     			t2 = space();
     			if (if_block1) if_block1.c();
     			t3 = space();
-    			button0 = element("button");
-    			button0.textContent = "info";
+    			button = element("button");
+    			button.textContent = "info";
     			t5 = space();
-    			button1 = element("button");
-    			button1.textContent = "<";
-    			t7 = space();
-    			button2 = element("button");
-    			button2.textContent = "play";
-    			t9 = space();
-    			button3 = element("button");
-    			button3.textContent = ">";
-    			t11 = space();
     			img = element("img");
-    			t12 = space();
-    			button4 = element("button");
-    			button4.textContent = "exit";
     			set_style(span, "top", "5%");
     			attr_dev(span, "class", "svelte-13tv33m");
-    			add_location(span, file$1, 106, 2, 2313);
-    			set_style(button0, "left", "0%");
-    			set_style(button0, "top", "1%");
-    			attr_dev(button0, "class", "svelte-13tv33m");
-    			add_location(button0, file$1, 113, 1, 2701);
-    			set_style(button1, "left", "0%");
-    			set_style(button1, "top", "8%");
-    			attr_dev(button1, "class", "svelte-13tv33m");
-    			add_location(button1, file$1, 114, 1, 2778);
-    			set_style(button2, "left", "50%");
-    			set_style(button2, "top", "1%");
-    			attr_dev(button2, "class", "svelte-13tv33m");
-    			add_location(button2, file$1, 115, 1, 2830);
-    			set_style(button3, "left", "95%");
-    			set_style(button3, "top", "8%");
-    			attr_dev(button3, "class", "svelte-13tv33m");
-    			add_location(button3, file$1, 116, 1, 2882);
+    			add_location(span, file$1, 88, 2, 1901);
+    			set_style(button, "left", "0%");
+    			set_style(button, "top", "1%");
+    			attr_dev(button, "class", "svelte-13tv33m");
+    			add_location(button, file$1, 95, 1, 2289);
     			attr_dev(img, "id", "picture");
     			if (!src_url_equal(img.src, img_src_value = /*big*/ ctx[0].file)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "");
@@ -22341,12 +22313,8 @@ var app = (function () {
     			set_style(img, "position", "absolute");
     			set_style(img, "left", /*big*/ ctx[0].left + "px");
     			set_style(img, "top", /*big*/ ctx[0].top + "px");
-    			add_location(img, file$1, 118, 1, 2937);
-    			set_style(button4, "left", "95%");
-    			set_style(button4, "top", "1%");
-    			attr_dev(button4, "class", "svelte-13tv33m");
-    			add_location(button4, file$1, 126, 1, 3174);
-    			add_location(div, file$1, 101, 0, 2120);
+    			add_location(img, file$1, 97, 1, 2369);
+    			add_location(div, file$1, 83, 0, 1708);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -22360,26 +22328,17 @@ var app = (function () {
     			append_dev(div, t2);
     			if (if_block1) if_block1.m(div, null);
     			append_dev(div, t3);
-    			append_dev(div, button0);
+    			append_dev(div, button);
     			append_dev(div, t5);
-    			append_dev(div, button1);
-    			append_dev(div, t7);
-    			append_dev(div, button2);
-    			append_dev(div, t9);
-    			append_dev(div, button3);
-    			append_dev(div, t11);
     			append_dev(div, img);
-    			append_dev(div, t12);
-    			append_dev(div, button4);
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button0, "click", /*click_handler*/ ctx[11], false, false, false),
+    					listen_dev(button, "click", /*click_handler*/ ctx[9], false, false, false),
     					listen_dev(img, "wheel", /*wheel*/ ctx[5], false, false, false),
     					listen_dev(img, "mousedown", /*mousedown*/ ctx[6], false, false, false),
     					listen_dev(img, "mousemove", /*mousemove*/ ctx[7], false, false, false),
-    					listen_dev(img, "mouseup", /*mouseup*/ ctx[8], false, false, false),
-    					listen_dev(button4, "click", /*close*/ ctx[9], false, false, false)
+    					listen_dev(img, "mouseup", /*mouseup*/ ctx[8], false, false, false)
     				];
 
     				mounted = true;
@@ -22456,8 +22415,6 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('BigPicture', slots, []);
     	let { big } = $$props;
-    	let { y } = $$props;
-    	let backup = y;
     	let exif;
     	let state = 0;
     	const round = (x, n) => Math.round(x * Math.pow(10, n)) / Math.pow(10, n);
@@ -22482,8 +22439,7 @@ var app = (function () {
     		});
     	}
 
-    	document.body.style = "height:100%; overflow:hidden; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;";
-
+    	// document.body.style = "height:100%; overflow:hidden; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
     	window.onscroll = e => {
     		e.preventDefault();
     		e.stopPropagation();
@@ -22514,10 +22470,7 @@ var app = (function () {
     	function mousedown(e) {
     		e.preventDefault();
     		e.stopPropagation();
-
-    		// if (e.x<10 && e.y<10) return
     		$$invalidate(0, big.state = 1, big);
-
     		$$invalidate(0, big.startX = e.x, big);
     		$$invalidate(0, big.startY = e.y, big);
     		$$invalidate(0, big);
@@ -22537,26 +22490,13 @@ var app = (function () {
     		$$invalidate(0, big);
     	}
 
-    	function close() {
-    		console.log('close', y);
-    		$$invalidate(0, big.file = "", big);
-    		$$invalidate(10, y = backup);
-    		console.log('close', y);
-    		$$invalidate(0, big);
-    		document.body.style = "margin:0; padding:0; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;";
-    	} // todo Återställ även scrollposition!
-
     	$$self.$$.on_mount.push(function () {
     		if (big === undefined && !('big' in $$props || $$self.$$.bound[$$self.$$.props['big']])) {
     			console_1$1.warn("<BigPicture> was created without expected prop 'big'");
     		}
-
-    		if (y === undefined && !('y' in $$props || $$self.$$.bound[$$self.$$.props['y']])) {
-    			console_1$1.warn("<BigPicture> was created without expected prop 'y'");
-    		}
     	});
 
-    	const writable_props = ['big', 'y'];
+    	const writable_props = ['big'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1$1.warn(`<BigPicture> was created with unknown prop '${key}'`);
@@ -22566,14 +22506,11 @@ var app = (function () {
 
     	$$self.$$set = $$props => {
     		if ('big' in $$props) $$invalidate(0, big = $$props.big);
-    		if ('y' in $$props) $$invalidate(10, y = $$props.y);
     	};
 
     	$$self.$capture_state = () => ({
     		_: lodash,
     		big,
-    		y,
-    		backup,
     		exif,
     		state,
     		round,
@@ -22581,14 +22518,11 @@ var app = (function () {
     		wheel,
     		mousedown,
     		mousemove,
-    		mouseup,
-    		close
+    		mouseup
     	});
 
     	$$self.$inject_state = $$props => {
     		if ('big' in $$props) $$invalidate(0, big = $$props.big);
-    		if ('y' in $$props) $$invalidate(10, y = $$props.y);
-    		if ('backup' in $$props) backup = $$props.backup;
     		if ('exif' in $$props) $$invalidate(1, exif = $$props.exif);
     		if ('state' in $$props) $$invalidate(2, state = $$props.state);
     	};
@@ -22596,12 +22530,6 @@ var app = (function () {
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
-
-    	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*y*/ 1024) {
-    			console.log('backup', y);
-    		}
-    	};
 
     	return [
     		big,
@@ -22613,8 +22541,6 @@ var app = (function () {
     		mousedown,
     		mousemove,
     		mouseup,
-    		close,
-    		y,
     		click_handler
     	];
     }
@@ -22622,7 +22548,7 @@ var app = (function () {
     class BigPicture extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { big: 0, y: 10 });
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { big: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -22639,14 +22565,6 @@ var app = (function () {
     	set big(value) {
     		throw new Error("<BigPicture>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
-
-    	get y() {
-    		throw new Error("<BigPicture>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set y(value) {
-    		throw new Error("<BigPicture>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
     }
 
     /* src\App.svelte generated by Svelte v3.51.0 */
@@ -22656,24 +22574,19 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[34] = list[i];
-    	child_ctx[36] = i;
+    	child_ctx[35] = list[i];
+    	child_ctx[37] = i;
     	return child_ctx;
     }
 
-    // (256:0) {:else}
+    // (260:1) {:else}
     function create_else_block_1(ctx) {
     	let bigpicture;
     	let updating_big;
-    	let updating_y;
     	let current;
 
     	function bigpicture_big_binding(value) {
     		/*bigpicture_big_binding*/ ctx[19](value);
-    	}
-
-    	function bigpicture_y_binding(value) {
-    		/*bigpicture_y_binding*/ ctx[20](value);
     	}
 
     	let bigpicture_props = {};
@@ -22682,13 +22595,8 @@ var app = (function () {
     		bigpicture_props.big = /*big*/ ctx[7];
     	}
 
-    	if (/*y*/ ctx[1] !== void 0) {
-    		bigpicture_props.y = /*y*/ ctx[1];
-    	}
-
     	bigpicture = new BigPicture({ props: bigpicture_props, $$inline: true });
     	binding_callbacks.push(() => bind$1(bigpicture, 'big', bigpicture_big_binding));
-    	binding_callbacks.push(() => bind$1(bigpicture, 'y', bigpicture_y_binding));
 
     	const block = {
     		c: function create() {
@@ -22705,12 +22613,6 @@ var app = (function () {
     				updating_big = true;
     				bigpicture_changes.big = /*big*/ ctx[7];
     				add_flush_callback(() => updating_big = false);
-    			}
-
-    			if (!updating_y && dirty[0] & /*y*/ 2) {
-    				updating_y = true;
-    				bigpicture_changes.y = /*y*/ ctx[1];
-    				add_flush_callback(() => updating_y = false);
     			}
 
     			bigpicture.$set(bigpicture_changes);
@@ -22733,16 +22635,15 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(256:0) {:else}",
+    		source: "(260:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (243:0) {#if big.file == ""}
+    // (249:1) {#if big.file == ""}
     function create_if_block(ctx) {
-    	let div;
     	let search_1;
     	let updating_sokruta;
     	let updating_text0;
@@ -22750,6 +22651,7 @@ var app = (function () {
     	let t;
     	let current_block_type_index;
     	let if_block;
+    	let if_block_anchor;
     	let current;
 
     	function search_1_sokruta_binding(value) {
@@ -22795,18 +22697,16 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div = element("div");
     			create_component(search_1.$$.fragment);
     			t = space();
     			if_block.c();
-    			attr_dev(div, "class", "svelte-p8wta7");
-    			add_location(div, file, 243, 1, 5924);
+    			if_block_anchor = empty();
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			mount_component(search_1, div, null);
-    			append_dev(div, t);
-    			if_blocks[current_block_type_index].m(div, null);
+    			mount_component(search_1, target, anchor);
+    			insert_dev(target, t, anchor);
+    			if_blocks[current_block_type_index].m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -22854,7 +22754,7 @@ var app = (function () {
     				}
 
     				transition_in(if_block, 1);
-    				if_block.m(div, null);
+    				if_block.m(if_block_anchor.parentNode, if_block_anchor);
     			}
     		},
     		i: function intro(local) {
@@ -22869,9 +22769,10 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
-    			destroy_component(search_1);
-    			if_blocks[current_block_type_index].d();
+    			destroy_component(search_1, detaching);
+    			if (detaching) detach_dev(t);
+    			if_blocks[current_block_type_index].d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
     		}
     	};
 
@@ -22879,14 +22780,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(243:0) {#if big.file == \\\"\\\"}",
+    		source: "(249:1) {#if big.file == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (249:2) {:else}
+    // (254:2) {:else}
     function create_else_block(ctx) {
     	let download;
     	let updating_selected;
@@ -23012,14 +22913,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(249:2) {:else}",
+    		source: "(254:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (246:2) {#if sokruta == ""}
+    // (251:2) {#if sokruta == ""}
     function create_if_block_1(ctx) {
     	let navigationhorisontal;
     	let t;
@@ -23087,14 +22988,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(246:2) {#if sokruta == \\\"\\\"}",
+    		source: "(251:2) {#if sokruta == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (251:3) {#each cards as card,index}
+    // (256:3) {#each cards as card,index}
     function create_each_block(ctx) {
     	let card;
     	let updating_big;
@@ -23108,9 +23009,9 @@ var app = (function () {
     		WIDTH,
     		GAP,
     		getPath,
-    		card: /*card*/ ctx[34],
+    		card: /*card*/ ctx[35],
     		selected: /*selected*/ ctx[4],
-    		index: /*index*/ ctx[36]
+    		index: /*index*/ ctx[37]
     	};
 
     	if (/*big*/ ctx[7] !== void 0) {
@@ -23130,7 +23031,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const card_changes = {};
-    			if (dirty[0] & /*cards*/ 1) card_changes.card = /*card*/ ctx[34];
+    			if (dirty[0] & /*cards*/ 1) card_changes.card = /*card*/ ctx[35];
     			if (dirty[0] & /*selected*/ 16) card_changes.selected = /*selected*/ ctx[4];
 
     			if (!updating_big && dirty[0] & /*big*/ 128) {
@@ -23159,7 +23060,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(251:3) {#each cards as card,index}",
+    		source: "(256:3) {#each cards as card,index}",
     		ctx
     	});
 
@@ -23174,9 +23075,9 @@ var app = (function () {
     	};
 
     	let scrolling_timeout;
+    	let div;
     	let current_block_type_index;
     	let if_block;
-    	let if_block_anchor;
     	let current;
     	let mounted;
     	let dispose;
@@ -23194,15 +23095,17 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			if_block.c();
-    			if_block_anchor = empty();
+    			attr_dev(div, "class", "svelte-p8wta7");
+    			add_location(div, file, 247, 0, 6137);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			if_blocks[current_block_type_index].m(target, anchor);
-    			insert_dev(target, if_block_anchor, anchor);
+    			insert_dev(target, div, anchor);
+    			if_blocks[current_block_type_index].m(div, null);
     			current = true;
 
     			if (!mounted) {
@@ -23247,7 +23150,7 @@ var app = (function () {
     				}
 
     				transition_in(if_block, 1);
-    				if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				if_block.m(div, null);
     			}
     		},
     		i: function intro(local) {
@@ -23260,8 +23163,8 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if_blocks[current_block_type_index].d(detaching);
-    			if (detaching) detach_dev(if_block_anchor);
+    			if (detaching) detach_dev(div);
+    			if_blocks[current_block_type_index].d();
     			mounted = false;
     			dispose();
     		}
@@ -23345,11 +23248,15 @@ var app = (function () {
     		y: 0
     	};
 
-    	// $: console.log('big',big)
     	let text0 = "";
-
     	let text1 = "";
     	let images = [];
+    	const queryString = window.location.search;
+    	const urlParams = new URLSearchParams(queryString);
+
+    	if (urlParams.has("big")) {
+    		visaBig(2000, 1000, urlParams.get("size"), urlParams.get("big"));
+    	}
 
     	function resize() {
     		// console.log('resize')
@@ -23383,6 +23290,7 @@ var app = (function () {
     	assert(-40, f(1.1, 0, 400));
 
     	function visaBig(width, height, bigSize, src) {
+    		document.title = lodash.last(src.split("\\"));
     		$$invalidate(7, big.state = 0, big);
     		$$invalidate(7, big.smallWidth = width, big);
     		$$invalidate(7, big.smallHeight = height, big);
@@ -23543,11 +23451,6 @@ var app = (function () {
     		$$invalidate(7, big);
     	}
 
-    	function bigpicture_y_binding(value) {
-    		y = value;
-    		$$invalidate(1, y);
-    	}
-
     	$$self.$capture_state = () => ({
     		cards,
     		y,
@@ -23577,6 +23480,8 @@ var app = (function () {
     		text0,
     		text1,
     		images,
+    		queryString,
+    		urlParams,
     		resize,
     		assert,
     		spaceShip,
@@ -23644,10 +23549,6 @@ var app = (function () {
     				}
     			}
     		}
-
-    		if ($$self.$$.dirty[0] & /*y*/ 2) {
-    			console.log('y', y);
-    		}
     	};
 
     	COLS = Math.floor((innerWidth - SCROLLBAR - GAP) / WIDTH);
@@ -23672,8 +23573,7 @@ var app = (function () {
     		search_1_text1_binding,
     		download_selected_binding,
     		card_big_binding,
-    		bigpicture_big_binding,
-    		bigpicture_y_binding
+    		bigpicture_big_binding
     	];
     }
 

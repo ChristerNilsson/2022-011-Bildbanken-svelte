@@ -16,8 +16,6 @@
 		}
 	}
 
-	$: console.log('y',y)
-
 	let selected = []
 	let skala = 1
 
@@ -49,10 +47,15 @@
 	let sokruta = "Numa"
 	let big = {file:"", origWidth:1600, origHeight:1311, skala:0, factor:1, left:0, top:0, width:1600, height:1311, x:0, y:0}
 	
-	// $: console.log('big',big)
 	let text0 = ""
 	let text1 = ""
 	let images = []
+
+	const queryString = window.location.search
+	const urlParams = new URLSearchParams(queryString)
+	if (urlParams.has("big")) {
+		visaBig(2000,1000,urlParams.get("size"),urlParams.get("big"))
+	}
 
 	$: [text0,text1,images] = search(Home,sokruta)
 
@@ -107,6 +110,7 @@
 	}
 
 	function visaBig(width,height,bigSize,src) {
+		document.title = _.last(src.split("\\"))
 		big.state = 0
 		big.smallWidth = width
 		big.smallHeight = height
@@ -232,16 +236,17 @@
   // 	console.log('scrollTop',scroller.scrollTop)
 	// });
 
-	// function scrollY(e) {
-	// 	console.log('scrollY',e)
+	// function scroll(e) {
+	// 	y = e.path[1].scrollY
+	// 	// console.log('scroll',e.path[1].scrollY,big.file)
 	// }
 
 </script>
 
 <svelte:window bind:scrollY={y}/>
 
-{#if big.file == ""}
-	<div>
+<div>
+	{#if big.file == ""}
 		<Search bind:sokruta bind:text0 bind:text1 />
 		{#if sokruta == ""}
 			<NavigationHorisontal {stack}{pop} />
@@ -252,10 +257,10 @@
 				<Card {WIDTH}{GAP}{getPath}{card}{selected}{index} bind:big />
 			{/each}
 		{/if}
-	</div>
-{:else}
-	<BigPicture bind:big bind:y/>
-{/if}
+	{:else}
+		<BigPicture bind:big />
+	{/if}
+</div>
 
 <style>
 	div {

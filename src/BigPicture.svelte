@@ -1,11 +1,6 @@
 <script>
 	import _ from "lodash"
 	export let big
-	export let y
-
-	let backup = y
-
-$: console.log('backup',y)
 
 	let exif
 	let state = 0
@@ -29,7 +24,7 @@ $: console.log('backup',y)
 		})
 	}
 
-	document.body.style = "height:100%; overflow:hidden; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
+	// document.body.style = "height:100%; overflow:hidden; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
 
 	window.onscroll = (e)=> {
 		e.preventDefault()
@@ -64,9 +59,6 @@ $: console.log('backup',y)
 	function mousedown(e) {
 		e.preventDefault()
 		e.stopPropagation()
-
-		// if (e.x<10 && e.y<10) return
-
 		big.state = 1
 		big.startX = e.x
 		big.startY = e.y
@@ -87,16 +79,6 @@ $: console.log('backup',y)
 		big = big
 	}
 
-	function close() {
-		console.log('close',y)
-		big.file = "" 
-		y = backup
-		console.log('close',y)
-		big = big
-		document.body.style ="margin:0; padding:0; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
-		// todo Återställ även scrollposition!
-	}
-
 </script>
 
 <div>
@@ -112,9 +94,6 @@ $: console.log('backup',y)
 	{/if}
 
 	<button style = "left:0%;  top:1%;" on:click={()=>getExif()}>info</button>
-	<button style = "left:0%;  top:8%;">&lt;</button>
-	<button style = "left:50%; top:1%;">play</button>
-	<button style = "left:95%; top:8%;">&gt;</button>
 	
 	<img id='picture' src={big.file} alt=""
 		on:wheel={wheel}
@@ -124,7 +103,6 @@ $: console.log('backup',y)
 		width = {big.width}
 		style = "position:absolute; left:{big.left}px; top:{big.top}px;"
 	>
-	<button style = "left:95%; top:1%;" on:click={close}>exit</button>
 
 </div>
 

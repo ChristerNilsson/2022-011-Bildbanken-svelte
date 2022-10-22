@@ -69,6 +69,8 @@
 		big.left = 0
 		big.top = 0
 
+		big.control = card
+
 		big.file = card[2].replace("small","")
 
 		big = big
@@ -81,8 +83,10 @@
 		src = {getPath(card[2].split("\\"),"small")}
 		width = {WIDTH-GAP}
 		alt = ""
-		on:click = {() => visaBig(card)}
-		on:keydown = {() => visaBig(card)}
+		on:click = {() => {
+			window.open("?size=" + card[9] + "&big="+getPath(card[2].split("\\"),""),"_blank")
+		}}
+		on:keydown = {() =>{}}
 	/>
 	<div class="info">{prettyFilename(card[2])}
 		<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(card[2],'M')}">{getNumber(card[2],'M')}</a>
