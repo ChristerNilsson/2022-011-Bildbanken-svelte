@@ -24,8 +24,6 @@
 		})
 	}
 
-	// document.body.style = "height:100%; overflow:hidden; font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;"
-
 	window.onscroll = (e)=> {
 		e.preventDefault()
 		e.stopPropagation()
