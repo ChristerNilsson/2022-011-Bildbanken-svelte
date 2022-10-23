@@ -5,7 +5,6 @@
 </script>
 
 <div style="height:30px">
-	<!-- {console.log('Bertil',stack)} -->
 	{#each stack as key }
 		{#if key == _.last(stack)}
 			{key}

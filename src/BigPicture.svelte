@@ -2,6 +2,8 @@
 	import _ from "lodash"
 	export let big
 
+	const INCR = 0.08
+
 	let exif = null
 	
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
@@ -38,8 +40,8 @@
 
 		function f(skala,left,x) {return (1-skala) * (x-left)}
 	
-		let faktor = 1.1
-		if (e.deltaY > 0) faktor = 1/1.1
+		let faktor = 1 + INCR
+		if (e.deltaY > 0) faktor = 1/faktor
 
 		big.left += f(faktor,big.left,x)
 		big.top  += f(faktor,big.top,y)
@@ -78,8 +80,8 @@
 	}
 
 	function mouseout(e) {
-		big.mouseState = 0
-		big = big
+		// big.mouseState = 0
+		// big = big
 	}
 </script>
 

@@ -4,31 +4,24 @@
 	export let path
 	export let getPath
 	export let push
+
+	const click = (key) => {
+		if (key.includes('.jpg')) {
+			const arr = _.last(path)[key]
+			window.open(`/?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack,"")+"\\"+key}`, "_blank")
+		} else {
+			push(key)
+		}
+	}
 </script>
 
-{#if _.last(stack).includes('.jpg')}
-	<img src={getPath(stack,"")} alt='big' />
-{:else}
-<!-- {console.log('Cesar',path)} -->
 {#each _.keys(_.last(path)) as key } 
-		<!-- {console.log('Cesar',key)} -->
-		<div>
-			{#if _.isNumber(key)}
-				<button on:click = {() => push(key,_.last(path)[key])}>{_.last(path)[key]}</button>
-			{:else}
-				<button on:click = {() => push(key)}>{key}</button>
-			{/if}
-		</div>
-	{/each}
-{/if}
+	<button on:click = {() => click(key)}> {key} </button>
+{/each}
 
 <style>
 	button {
 		width:99%;
 		text-align:left;
-	}
-
-	div {
-		font-size: 0.9em;
 	}
 </style>
