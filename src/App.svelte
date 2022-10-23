@@ -1,5 +1,15 @@
 <script>
 
+	import _ from "lodash"
+	import Card from "./Card.svelte"
+	import Download from "./Download.svelte"
+	import NavigationVertical from "./NavigationVertical.svelte"
+	import NavigationHorisontal from "./NavigationHorisontal.svelte"
+	import Search from "./Search.svelte"
+	import BigPicture from "./BigPicture.svelte"
+
+	const range = _.range
+
   let cards = [] // Varje bild tillsammans med tre rader text utgör ett Card.
 	let y = 0 // Anger var scrollern befinner sig just nu.
 	let ymax = 0 // Anger var senast laddade bild befinner sig.
@@ -18,15 +28,17 @@
 
 	let selected = []
 	let skala = 1
+	// let Home = {}
 
-	import _ from "lodash"
-	import Card from "./Card.svelte"
-	import Download from "./Download.svelte"
-	import NavigationVertical from "./NavigationVertical.svelte"
-	import NavigationHorisontal from "./NavigationHorisontal.svelte"
-	import Search from "./Search.svelte"
-	import BigPicture from "./BigPicture.svelte"
-
+	// async function readJSON(file) {
+	// 	fetch(file)
+	// 		.then(response => response.json())
+	// 		.then(json => {
+	// 			Home = json
+	// 			console.log('reading JSON',_.size(Home))
+	// 		})
+	// }
+	
 	let count = 0
 	
 	const SCROLLBAR = 12
@@ -36,9 +48,8 @@
 
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
 
-	const path  = [Home] // used for navigation
+	$: path  = [Home] // used for navigation
 	const stack = ["Home"]
-	const range = _.range
 	
 	let res=[]
 	let stat={}
@@ -53,26 +64,25 @@
 
 	const queryString = window.location.search
 	const urlParams = new URLSearchParams(queryString)
-	if (urlParams.has("big")) {
-		visaBig(2000,1000,urlParams.get("size"),urlParams.get("big"))
+	if (urlParams.has("image")) {
+		visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("image"))
+	} else {
+		// readJSON('./Home/bilder.json')
 	}
 
 	$: [text0,text1,images] = search(Home,sokruta)
 
 	$: { 
 		placera(images)
-		// console.log('images',images)
 		images = images
 	}
 
 	function resize() {
-		// console.log('resize')
 		placera(images)
 		images = images
 	}
 
 	window.onresize = resize
-
 
 	function assert(a,b) {
 		if (!_.isEqual(a,b)) console.log("Assert failed",a,'!=',b)
@@ -109,36 +119,31 @@
 		return arr.join("\\")
 	}
 
-	function visaBig(width,height,bigSize,src) {
+	function visaBig(bs, bw, bh, src) {
 		document.title = _.last(src.split("\\"))
-		big.state = 0
-		big.smallWidth = width
-		big.smallHeight = height
+		document.body.style = "overflow:hidden"
 
-		big.bigWidth = innerWidth
-		big.bigHeight = innerHeight
-		big.bigSize = bigSize
+		big.exifState = 0
+		big.mouseState = 0
 
-		big.skala = 1
-		big.height = big.bigHeight * big.skala
-		big.width  = big.bigWidth  * big.skala
+		big.bs = bs
+		big.bw = bw
+		big.bh = bh
 
-		big.left = 0
-		big.top = 0
+		big.skala = Math.min(innerHeight/bh, innerWidth/bw)
+		big.width = bw * big.skala
+		big.height = bh * big.skala
+		big.left = (innerWidth-big.width)/2
+		big.top = (innerHeight-big.height)/2
 
 		big.file = src
-
 		big = big
 	}
 
 	function push(key) {
 		if (key.includes('.jpg')) {
-			const trippel = _.last(path)[key]
-			if (trippel.length==3) {
-				visaBig(trippel[0],trippel[1],trippel[2],stack.concat(key).join("\\"))
-			} else {
-				visaBig(2000,1000,123456,stack.concat(key).join("\\"))
-			}
+			const t5 = _.last(path)[key]
+			visaBig(t5[2],t5[3],t5[4],stack.concat(key).join("\\"))
 		} else {
 			path.push(_.last(path)[key])
 			stack.push(key)
@@ -194,8 +199,8 @@
 					if (newPath.includes(word)) s += ALFABET[i]
 				}
 				if (s.length > 0) {
-					const [width,height,bigSize] = node[key]
-					res.push([-s.length, s, newPath, width, height, 0, 0, 0, false, bigSize])
+					const [sw,sh,bs,bw,bh] = node[key] // small/big width/height
+					res.push([-s.length, s, newPath, sw, sh, 0, 0, 0, false, bs, bw, bh])
 					stat[s] = (stat[s] || 0) + 1
 				}
 			} else {
@@ -228,19 +233,6 @@
 		images = images
 	}
 
-	// const scroller = document.querySelector("#scroller");
-	// console.log('scroller',scroller)
-	// //const output = document.querySelector("#output");
-
-	// scroller.addEventListener("scroll", (event) => {
-  // 	console.log('scrollTop',scroller.scrollTop)
-	// });
-
-	// function scroll(e) {
-	// 	y = e.path[1].scrollY
-	// 	// console.log('scroll',e.path[1].scrollY,big.file)
-	// }
-
 </script>
 
 <svelte:window bind:scrollY={y}/>
@@ -254,7 +246,7 @@
 		{:else}
 			<Download bind:selected {images} />
 			{#each cards as card,index}
-				<Card {WIDTH}{GAP}{getPath}{card}{selected}{index} bind:big />
+				<Card {WIDTH}{GAP}{getPath}{card}{selected}{index} />
 			{/each}
 		{/if}
 	{:else}

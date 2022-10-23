@@ -9,7 +9,6 @@
 	}
 </script>
 
-
 <div>
 	<button tabindex=0 on:click={clear}> Clear </button>
 	{text0}

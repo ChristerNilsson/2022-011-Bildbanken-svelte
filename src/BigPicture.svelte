@@ -2,25 +2,23 @@
 	import _ from "lodash"
 	export let big
 
-	let exif
-	let state = 0
-
+	let exif = null
+	
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
 
 	function getExif() {
 		const img = document.getElementById("picture")
-		big.bigWidth  = img.naturalWidth
-		big.bigHeight = img.naturalHeight
-		console.log('getExif',big)
+		big.bw = img.naturalWidth
+		big.bh = img.naturalHeight
+		big.exifState = 1
 		big = big
-		state = 1
 		EXIF.getData(img, function() {
 			exif = EXIF.getAllTags(this)
 			if (exif.ExifVersion) {
-				state = 2
+				big.exifState = 2
+				big = big
 				exif.DateTimeOriginal = exif.DateTimeOriginal.replace(":","-").replace(":","-")
 			}
-			console.log(exif)
 		})
 	}
 
@@ -33,6 +31,7 @@
 	function wheel(e) {
 		e.preventDefault()
 		e.stopPropagation()
+		if (exif == null) getExif()
 
 		const x = e.x // musens position
 		const y = e.y
@@ -47,8 +46,8 @@
 
 		big.skala *= faktor
 
-		big.width  = big.skala * big.bigWidth
-		big.height = big.skala * big.bigHeight
+		big.width  = big.skala * big.bw
+		big.height = big.skala * big.bh
 
 		big = big
 		return false 
@@ -57,14 +56,15 @@
 	function mousedown(e) {
 		e.preventDefault()
 		e.stopPropagation()
-		big.state = 1
+		if (exif == null) getExif()
+		big.mouseState = 1
 		big.startX = e.x
 		big.startY = e.y
 		big = big
 	}
 
 	function mousemove(e) {
-		if (big.state == 0) return 
+		if (big.mouseState == 0) return 
 		big.left += e.x - big.startX
 		big.top += e.y - big.startY
 		big.startX = e.x
@@ -73,31 +73,35 @@
 	}
 
 	function mouseup(e) {
-		big.state = 0
+		big.mouseState = 0
 		big = big
 	}
 
+	function mouseout(e) {
+		big.mouseState = 0
+		big = big
+	}
 </script>
 
 <div>
 
-	{#if state >= 1}
-		<span style="top:3%"> {round(big.bigWidth * big.bigHeight/1000000,1)} MP • {big.bigWidth} x {big.bigHeight} • {round(big.bigSize/1000000,1)} MB </span>
+	<span style="top:1%">{big.file.replaceAll('\\',' • ').replaceAll("_"," ")}</span>
+	{#if big.exifState >= 1}
+		<span style="top:3%"> {round(big.bw * big.bh/1000000,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1000000,1)} MB </span>
 	{/if}
-		<span style="top:5%">{big.file.replaceAll('\\',' • ').replaceAll("_"," ")}</span>
-	{#if state == 2}
-		<span style="top:1%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
+	{#if big.exifState == 2}
+		<span style="top:5%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
 		<span style="top:7%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
 		<span style="top:9%;"> © {exif.Copyright} </span>
 	{/if}
-
-	<button style = "left:0%;  top:1%;" on:click={()=>getExif()}>info</button>
 	
 	<img id='picture' src={big.file} alt=""
 		on:wheel={wheel}
 		on:mousedown={mousedown}
 		on:mousemove={mousemove}
 		on:mouseup={mouseup}
+		on:mouseout={mouseout}
+		on:blur={blur}
 		width = {big.width}
 		style = "position:absolute; left:{big.left}px; top:{big.top}px;"
 	>
@@ -105,19 +109,9 @@
 </div>
 
 <style>
-	button {
-		border: 1px solid grey;
-		color : grey;
-		background-color: transparent; 
-		position:absolute; 
-		font-size:1em;
-		width:4%;
-	}
-
 	span {
 		position:absolute;
-		left:5%;
+		left:1%;
 	}
-
 </style>
 

@@ -35,7 +35,7 @@ def makeSmall(js,entry):
 	if not exists(p + '\\small'):
 		mkdir(p + '\\small')
 	small.save(pop(entry.path) + '\\small\\' + entry.name)
-	js[entry.name] = [small.width, small.height, bigSize]
+	js[entry.name] = [small.width, small.height, bigSize, big.width, big.height]
 
 def readrecurs(curr, parent):
 	global antal
@@ -50,7 +50,7 @@ def readrecurs(curr, parent):
 	else:
 		names = [f for f in scandir(parent)]
 		for name in names:
-			if name.name != 'small' and name.name != 'bilder.js':
+			if name.name != 'small' and name.name != 'bilder.js' and name.name != 'bilder.json':
 				if name.is_dir():
 					nextcurr = {}
 					curr[-1][name.name] = nextcurr
@@ -70,8 +70,8 @@ start = time.time()
 Home = {}
 readrecurs([Home],ROOT)
 
-with open(ROOT + "bilder.js", 'w', encoding="utf8") as f:
-	f.write('Home=')
+with open(ROOT + "bilder.json", 'w', encoding="utf8") as f:
+	# f.write('Home=')
 	dumpjson(Home, f)
 
 #print(Home)

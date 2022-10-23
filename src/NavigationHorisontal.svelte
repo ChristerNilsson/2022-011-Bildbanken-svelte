@@ -5,6 +5,7 @@
 </script>
 
 <div style="height:30px">
+	<!-- {console.log('Bertil',stack)} -->
 	{#each stack as key }
 		{#if key == _.last(stack)}
 			{key}
@@ -16,16 +17,10 @@
 </div>
 
 <style>
-	/* button {
-		margin:1px;
-		padding:1px;
-	} */
 	div {
 		margin:1px;
 		padding:1px;
 		font-size: 0.9em;
-		/* color:yellow; */
-		/* background-color: white; */
 	}
 </style>
 

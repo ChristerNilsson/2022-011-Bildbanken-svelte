@@ -6,7 +6,7 @@
 	export let card
 	export let selected
 	export let index
-	export let big
+	// export let big
 
 	function getNumber(path,letter) { // Används både för T och M-nummer
 		path = path.replace('.jpg','')
@@ -24,22 +24,6 @@
 		let s = path.slice(i+1)
 		s = s.replace('.jpg','')
 		s = s.replace(/_M\d+/,'')
-
-		// s = s.replace('Vy-Veckans-bild-','')
-		// s = s.replace('Vy-Veckans-bild_','')
-		// s = s.replace('Vy-Veckans-Bild_','')
-		// s = s.replace('Vy-Vexkans_Bild_','')
-		// s = s.replace('Vy-Veckans_Bild_','')
-		// s = s.replace('Vy-Veckans_bild_','')
-		// s = s.replace('Vy-veckans_bild_','')
-		// s = s.replace('Vy-veckans-bild_','')
-		// s = s.replace('Vy-Veckans-Bild _','')
-		// s = s.replace('Vy-','')
-
-		// s = s.replace('schakläger','schackläger')
-		// s = s.replace('sgnerer','signerar')
-		// s = s.replace('Salongerrna','Salongerna')
-		
 		s = s.replaceAll(/_/ig,' ')
 		return s
 	}
@@ -52,30 +36,6 @@
 		return path.replaceAll('_', ' ') 
 	}
 
-	function visaBig(card) {
-		//console.log('visaBig',big.y)
-		big.state = 0
-		big.smallWidth = card[3] // width
-		big.smallHeight = card[4] // height
-
-		big.bigWidth = 2000
-		big.bigHeight = 1000
-		big.bigSize = card[9]
-
-		big.skala = 1
-		big.width  = big.bigWidth  * big.skala
-		big.height = big.bigHeight * big.skala
-
-		big.left = 0
-		big.top = 0
-
-		big.control = card
-
-		big.file = card[2].replace("small","")
-
-		big = big
-	}
-
 </script>
 
 <div class="card" id="images" style="position:absolute; left:{card[5]}px; top:{card[6]}px">
@@ -84,7 +44,7 @@
 		width = {WIDTH-GAP}
 		alt = ""
 		on:click = {() => {
-			window.open("?size=" + card[9] + "&big="+getPath(card[2].split("\\"),""),"_blank")
+			window.open(`/?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(card[2].split('\\'),'')}`, "_blank")
 		}}
 		on:keydown = {() =>{}}
 	/>

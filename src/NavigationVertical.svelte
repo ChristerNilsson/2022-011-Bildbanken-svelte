@@ -9,7 +9,9 @@
 {#if _.last(stack).includes('.jpg')}
 	<img src={getPath(stack,"")} alt='big' />
 {:else}
-	{#each _.keys(_.last(path)) as key }
+<!-- {console.log('Cesar',path)} -->
+{#each _.keys(_.last(path)) as key } 
+		<!-- {console.log('Cesar',key)} -->
 		<div>
 			{#if _.isNumber(key)}
 				<button on:click = {() => push(key,_.last(path)[key])}>{_.last(path)[key]}</button>

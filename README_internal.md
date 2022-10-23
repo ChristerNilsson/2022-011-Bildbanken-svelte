@@ -4,6 +4,8 @@ Jag skulle vilja att bara en flik används för många bilder och en bild. Fick 
 
 Det som komplicerar ytterligare är att infinite scroll används för framsökta bilder.
 
+För att hindra att JSON-filen läses in även när man bara ska titta på en bild, läses den mha fetch och enbart i huvudfönstret.
+
 ### Info-knappen
 
 Vore skönt att slippa klicka på den. Dock kräver det asynkron hantering, vilket gör programmet svårare att underhålla. Nyckelord: 
