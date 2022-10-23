@@ -66,7 +66,8 @@
 	const urlParams = new URLSearchParams(queryString)
 	if (urlParams.has("image")) {
 		visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("image"))
-	} else {
+	} else if (urlParams.has("query")) {
+		sokruta = urlParams.get("query")
 		// readJSON('./Home/bilder.json')
 	}
 
