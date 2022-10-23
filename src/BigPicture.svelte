@@ -35,6 +35,8 @@
 		e.stopPropagation()
 		if (exif == null) getExif()
 
+		big.mouseState = 0
+
 		const x = e.x // musens position
 		const y = e.y
 
@@ -66,11 +68,14 @@
 	}
 
 	function mousemove(e) {
-		if (big.mouseState == 0) return 
-		big.left += e.x - big.startX
-		big.top += e.y - big.startY
-		big.startX = e.x
-		big.startY = e.y
+		if (e.button==0 && big.mouseState==1) {
+			big.left += e.x - big.startX
+			big.top += e.y - big.startY
+			big.startX = e.x
+			big.startY = e.y
+		} else {
+			big.mousestate=0
+		}
 		big = big
 	}
 
@@ -80,12 +85,18 @@
 	}
 
 	function mouseout(e) {
-		// big.mouseState = 0
-		// big = big
+		big.mouseState = 0
+		big = big
 	}
+
+	function share () {
+		const extra = `bs=${big.bs}&bw=${big.bw}&bh=${big.bh}&image=${big.file}`
+		navigator.clipboard.writeText(location.origin + location.pathname + "?" + extra)
+	}
+
 </script>
 
-<div>
+<!-- <div> -->
 
 	<span style="top:1%">{big.file.replaceAll('\\',' • ').replaceAll("_"," ")}</span>
 	{#if big.exifState >= 1}
@@ -96,6 +107,8 @@
 		<span style="top:7%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
 		<span style="top:9%;"> © {exif.Copyright} </span>
 	{/if}
+
+	<button tabindex=0 on:click={share}> Share </button>
 	
 	<img 
 		id='picture' 
@@ -111,12 +124,15 @@
 		style = "position:absolute; left:{big.left}px; top:{big.top}px;"
 	>
 
-</div>
+<!-- </div> -->
 
 <style>
+	button {
+		margin:1%
+	}
 	span {
 		position:absolute;
-		left:1%;
+		left:5%;
 	}
 </style>
 

@@ -48,8 +48,8 @@
 
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
 
-	$: path  = [Home] // used for navigation
-	const stack = ["Home"]
+	let path  = [Home] // used for navigation
+	let stack = ["Home"]
 	
 	let res=[]
 	let stat={}
@@ -62,13 +62,36 @@
 	let text1 = ""
 	let images = []
 
-	const queryString = window.location.search
-	const urlParams = new URLSearchParams(queryString)
-	if (urlParams.has("image")) {
-		visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("image"))
-	} else if (urlParams.has("query")) {
-		sokruta = urlParams.get("query")
-		// readJSON('./Home/bilder.json')
+	function consumeFolder(folder) {
+		sokruta = ""
+		stack = folder.split("\\")
+		console.log('stack',stack)
+		path = [Home]
+		let pointer = Home
+		for (const key of stack.slice(1)) {
+			pointer = pointer[key]
+			path.push(pointer)
+			console.log('')
+			console.log('key',key)
+			console.log('pointer',pointer)
+			console.log('path',path)
+		}
+		path = path
+		stack = stack 
+	}
+
+	consumeParameters()
+
+	function consumeParameters() {
+		const queryString = window.location.search
+		const urlParams = new URLSearchParams(queryString)
+		if (urlParams.has("image")) {
+			visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("image"))
+		} else if (urlParams.has("query")) {
+			sokruta = urlParams.get("query")
+		} else if (urlParams.has("folder")) {
+			consumeFolder(urlParams.get("folder"))
+		}
 	}
 
 	$: [text0,text1,images] = search(Home,sokruta)
@@ -242,7 +265,7 @@
 
 <div>
 	{#if big.file == ""}
-		<Search bind:sokruta bind:text0 bind:text1 />
+		<Search bind:sokruta bind:text0 bind:text1 bind:stack/>
 		{#if sokruta == ""}
 			<NavigationHorisontal {stack}{pop} />
 			<NavigationVertical {stack}{path}{getPath}{push} />

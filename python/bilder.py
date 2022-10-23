@@ -70,8 +70,8 @@ start = time.time()
 Home = {}
 readrecurs([Home],ROOT)
 
-with open(ROOT + "bilder.json", 'w', encoding="utf8") as f:
-	# f.write('Home=')
+with open(ROOT + "bilder.js", 'w', encoding="utf8") as f:
+	f.write('Home=')
 	dumpjson(Home, f)
 
 #print(Home)
