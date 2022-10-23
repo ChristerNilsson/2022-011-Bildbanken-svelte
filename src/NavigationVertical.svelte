@@ -8,10 +8,10 @@
 	const click = (key) => {
 		if (key.includes('.jpg')) {
 			const arr = _.last(path)[key]
-			const host = location.host.replace('/localhost','')
-			console.log('host',location.host,host)
+			const host = location.origin.replace('/localhost','')
+			console.log('host',location.origin,host)
 			// window.open(`/?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack,"")+"\\"+key}`)
-			window.open(`${host}//?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack,'')}\\${key}`)
+			window.open(`/?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack,'')}\\${key}`)
 
 		} else {
 			push(key)
