@@ -11,10 +11,10 @@
 			console.log('origin',location.origin)
 			console.log('pathname',location.pathname)
 			console.log('href',location.href)
-			const host = location.origin + location.pathname//.replace('/localhost','')
-			console.log('host',host)
+			const host = location.origin + location.pathname
+			// console.log('host',host)
 			// window.open(`/?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack,"")+"\\"+key}`)
-			window.open(host + `/?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack,'')}\\${key}`)
+			window.open(host + `?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack,'')}\\${key}`)
 
 		} else {
 			push(key)

@@ -56,7 +56,7 @@
 	let total=0
 
 	let sokruta = "Numa"
-	let big = {file:"", origWidth:1600, origHeight:1311, skala:0, factor:1, left:0, top:0, width:1600, height:1311, x:0, y:0}
+	let big = {file:""}
 	
 	let text0 = ""
 	let text1 = ""
