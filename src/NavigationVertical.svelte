@@ -8,7 +8,7 @@
 	const click = (key) => {
 		if (key.includes('.jpg')) {
 			const arr = _.last(path)[key]
-			window.open(`/?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack,"")+"\\"+key}`, "_blank")
+			window.open(`/?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack,"")+"\\"+key}`)
 		} else {
 			push(key)
 		}

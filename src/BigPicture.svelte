@@ -97,7 +97,10 @@
 		<span style="top:9%;"> © {exif.Copyright} </span>
 	{/if}
 	
-	<img id='picture' src={big.file} alt=""
+	<img 
+		id='picture' 
+		src={big.file} 
+		alt=""
 		on:wheel={wheel}
 		on:mousedown={mousedown}
 		on:mousemove={mousemove}
