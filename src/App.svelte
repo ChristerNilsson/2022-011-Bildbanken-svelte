@@ -73,6 +73,8 @@
 
 	$: [text0,text1,images] = search(Home,sokruta)
 
+	// $: history.replaceState(null, '', `\?query=${sokruta}`)
+
 	$: { 
 		placera(images)
 		images = images

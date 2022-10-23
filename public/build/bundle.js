@@ -17632,20 +17632,20 @@ var app = (function () {
     			add_location(img, file$6, 41, 1, 1088);
     			attr_dev(a0, "target", "_blank");
     			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'M'));
-    			add_location(a0, file$6, 53, 2, 1475);
+    			add_location(a0, file$6, 53, 2, 1490);
     			attr_dev(div0, "class", "info svelte-qo7op2");
-    			add_location(div0, file$6, 52, 1, 1428);
+    			add_location(div0, file$6, 52, 1, 1443);
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[4][2], 'T'));
-    			add_location(a1, file$6, 56, 2, 1667);
+    			add_location(a1, file$6, 56, 2, 1682);
     			attr_dev(div1, "class", "info svelte-qo7op2");
-    			add_location(div1, file$6, 55, 1, 1624);
+    			add_location(div1, file$6, 55, 1, 1639);
     			attr_dev(input, "type", "checkbox");
     			input.__value = "";
     			input.value = input.__value;
-    			add_location(input, file$6, 60, 2, 1843);
+    			add_location(input, file$6, 60, 2, 1858);
     			attr_dev(div2, "class", "info svelte-qo7op2");
-    			add_location(div2, file$6, 58, 1, 1808);
+    			add_location(div2, file$6, 58, 1, 1823);
     			attr_dev(div3, "class", "card svelte-qo7op2");
     			attr_dev(div3, "id", "images");
     			set_style(div3, "position", "absolute");
@@ -17832,9 +17832,9 @@ var app = (function () {
     	});
 
     	const click_handler = () => {
-    		const host = location.origin; //.replace('/localhost','')
-    		console.log(host);
-    		window.open(`/?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(card[2].split('\\'), '')}`);
+    		const host = location.pathname; //.replace('/localhost','')
+    		console.log('host', host);
+    		window.open(host + `/?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(card[2].split('\\'), '')}`);
     	};
 
     	function input_change_handler() {
@@ -21144,7 +21144,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (22:0) {#each _.keys(_.last(path)) as key }
+    // (25:0) {#each _.keys(_.last(path)) as key }
     function create_each_block$2(ctx) {
     	let button;
     	let t0_value = /*key*/ ctx[6] + "";
@@ -21163,7 +21163,7 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = space();
     			attr_dev(button, "class", "svelte-4qbu0");
-    			add_location(button, file$4, 22, 1, 592);
+    			add_location(button, file$4, 25, 1, 731);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21190,7 +21190,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(22:0) {#each _.keys(_.last(path)) as key }",
+    		source: "(25:0) {#each _.keys(_.last(path)) as key }",
     		ctx
     	});
 
@@ -21280,11 +21280,14 @@ var app = (function () {
     	const click = key => {
     		if (key.includes('.jpg')) {
     			const arr = lodash.last(path)[key];
-    			const host = location.origin.replace('/localhost', '');
-    			console.log('host', location.origin, host);
+    			console.log('origin', location.origin);
+    			console.log('pathname', location.pathname);
+    			console.log('href', location.href);
+    			const host = location.origin + location.pathname; //.replace('/localhost','')
+    			console.log('host', host);
 
     			// window.open(`/?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack,"")+"\\"+key}`)
-    			window.open(`/?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack, '')}\\${key}`);
+    			window.open(host + `/?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack, '')}\\${key}`);
     		} else {
     			push(key);
     		}
@@ -22329,7 +22332,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (253:1) {:else}
+    // (255:1) {:else}
     function create_else_block_1(ctx) {
     	let bigpicture;
     	let updating_big;
@@ -22385,14 +22388,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(253:1) {:else}",
+    		source: "(255:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (242:1) {#if big.file == ""}
+    // (244:1) {#if big.file == ""}
     function create_if_block(ctx) {
     	let search_1;
     	let updating_sokruta;
@@ -22530,14 +22533,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(242:1) {#if big.file == \\\"\\\"}",
+    		source: "(244:1) {#if big.file == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (247:2) {:else}
+    // (249:2) {:else}
     function create_else_block(ctx) {
     	let download;
     	let updating_selected;
@@ -22663,14 +22666,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(247:2) {:else}",
+    		source: "(249:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (244:2) {#if sokruta == ""}
+    // (246:2) {#if sokruta == ""}
     function create_if_block_1(ctx) {
     	let navigationhorisontal;
     	let t;
@@ -22738,14 +22741,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(244:2) {#if sokruta == \\\"\\\"}",
+    		source: "(246:2) {#if sokruta == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (249:3) {#each cards as card,index}
+    // (251:3) {#each cards as card,index}
     function create_each_block(ctx) {
     	let card;
     	let current;
@@ -22794,7 +22797,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(249:3) {#each cards as card,index}",
+    		source: "(251:3) {#each cards as card,index}",
     		ctx
     	});
 
@@ -22832,7 +22835,7 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			attr_dev(div, "class", "svelte-p8wta7");
-    			add_location(div, file, 240, 0, 6214);
+    			add_location(div, file, 242, 0, 6277);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -23262,6 +23265,7 @@ var app = (function () {
     		}
 
     		if ($$self.$$.dirty[0] & /*images*/ 8) {
+    			// $: history.replaceState(null, '', `\?query=${sokruta}`)
     			{
     				placera(images);
     				($$invalidate(3, images), $$invalidate(2, sokruta));

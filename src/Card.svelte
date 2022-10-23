@@ -44,9 +44,9 @@
 		width = {WIDTH-GAP}
 		alt = ""
 		on:click = {() => {
-			const host = location.origin //.replace('/localhost','')
-			console.log(host)
-			window.open(`/?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(card[2].split('\\'),'')}`)
+			const host = location.pathname//.replace('/localhost','')
+			console.log('host',host)
+			window.open(host + `/?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(card[2].split('\\'),'')}`)
 		}}
 		on:keydown = {() =>{}}
 	/>
