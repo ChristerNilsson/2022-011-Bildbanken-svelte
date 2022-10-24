@@ -8,6 +8,8 @@
 	export let index
 	// export let big
 
+	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
+
 	function getNumber(path,letter) { // Används både för T och M-nummer
 		path = path.replace('.jpg','')
 		const arr = path.split('\\')
@@ -56,10 +58,12 @@
 	<div class="info">{prettyPath(card[2])}
 		<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={getNumber(card[2],'T')}">{getNumber(card[2],'T')}</a>
 	</div>
-	<div class="info">
-		{card[7]}
-		<input type="checkbox" value="" bind:checked={selected[index]}/>
-		{card[1]} © Lars OA Hedlund
+	<div class="info" style="display:flex">
+		{card[7]} • &nbsp;
+		<input type="checkbox" value="" bind:checked={selected[index]}/> &nbsp; •&nbsp;
+		{card[1]}
+		<span style="flex:2; text-align:center; white-space:nowrap;"> © Lars OA Hedlund </span>
+		<span style="flex:1; text-align:right; white-space:nowrap;"> {round(card[10]*card[11]/1000000,1)} MP • {card[10]} x {card[11]} • {round(card[9]/1000,0)} kB &nbsp;</span>
 	</div>
 </div>
 

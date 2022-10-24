@@ -195,6 +195,7 @@
 		res=[]
 		stat={}
 		total=0
+		const start = new Date()
 
 		recursiveSearch(Home,words,path)
 
@@ -208,7 +209,7 @@
 			st.push(`${key}:${stat[key]}`) 
 			antal += stat[key]
 		}
-		return [st.join(' '),`${antal} of ${total} pictures`,res]
+		return [st.join(' '),`${antal} of ${total} images in ${new Date() - start} ms`,res]
 	}
 
 	// rekursiv pga varierande djup i trädet

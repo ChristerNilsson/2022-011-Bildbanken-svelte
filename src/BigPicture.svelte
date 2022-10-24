@@ -100,10 +100,10 @@
 
 	<span style="top:1%">{big.file.replaceAll('\\',' • ').replaceAll("_"," ")}</span>
 	{#if big.exifState >= 1}
-		<span style="top:3%"> {round(big.bw * big.bh/1000000,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1000000,1)} MB </span>
+		<span style="top:5%"> {round(big.bw * big.bh/1000000,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1000000,1)} MB </span>
 	{/if}
 	{#if big.exifState == 2}
-		<span style="top:5%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
+		<span style="top:3%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
 		<span style="top:7%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
 		<span style="top:9%;"> © {exif.Copyright} </span>
 	{/if}
