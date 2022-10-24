@@ -1,31 +1,26 @@
 <script>
 	import _ from "lodash"
-	export let stack
 	export let path
-	export let getPath
 	export let push
 
-	const click = (key) => {
-		if (key.includes('.jpg')) {
-			const arr = _.last(path)[key]
-			const host = location.origin + location.pathname
-			window.open(host + `?bs=${arr[2]}&bw=${arr[3]}&bh=${arr[4]}&image=${getPath(stack,'')}\\${key}`)
-		} else {
-			push(key)
-		}
-	}
+	let selected = ""
+
 </script>
 
-<span>
+<select bind:value={selected} size=10 style="width:470px" >
 	{#each _.keys(_.last(path)) as key } 
-	<button on:click = {() => click(key)}> {key} </button>
+		{#if ! key.includes('.jpg')}
+			<option value={key} on:click = {() => push(key)}>
+				{key}
+			</option>
+		{/if}
 	{/each}
-</span>
+</select>
 
 <style>
-	button {
-		margin:1px;
-		/* width:99%; */
-		/* text-align:left; */
+	select {
+		font-size: inherit;
+		font-family: inherit;
+		padding: 0.4rem;
 	}
 </style>

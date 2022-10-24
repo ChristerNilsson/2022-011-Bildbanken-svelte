@@ -7,6 +7,7 @@
 	import NavigationHorisontal from "./NavigationHorisontal.svelte"
 	import Search from "./Search.svelte"
 	import BigPicture from "./BigPicture.svelte"
+	import Infinite from "./Infinite.svelte"
 
 	const range = _.range
 
@@ -55,7 +56,7 @@
 	let stat={}
 	let total=0
 
-	let sokruta = "Numa"
+	let sokruta = ""
 	let big = {file:""}
 	
 	let text0 = ""
@@ -87,16 +88,13 @@
 		const urlParams = new URLSearchParams(queryString)
 		if (urlParams.has("image")) {
 			visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("image"))
-		} else if (urlParams.has("query")) {
-			sokruta = urlParams.get("query")
-		} else if (urlParams.has("folder")) {
-			consumeFolder(urlParams.get("folder"))
+		} else {
+			if (urlParams.has("folder")) consumeFolder(urlParams.get("folder"))
+			if (urlParams.has("query")) sokruta = urlParams.get("query")
 		}
 	}
 
 	$: [text0,text1,images] = search(_.last(path), sokruta, stack.join('\\'))
-
-	// $: history.replaceState(null, '', `\?query=${sokruta}`)
 
 	$: { 
 		placera(images)
@@ -146,6 +144,7 @@
 	}
 
 	function visaBig(bs, bw, bh, src) {
+		console.log('visaBig')
 		document.title = _.last(src.split("\\"))
 		document.body.style = "overflow:hidden"
 
@@ -187,10 +186,14 @@
 		stack = stack
 	}
 
-	function search(node,words,path="Home") {
+	function search(node,words,path) {
 		cards = []
 		count = 0
-		words = words.split(" ")
+		if (words.length == 0) {
+			words = []
+		}else{
+			words = words.split(" ")
+		}
 
 		res=[]
 		stat={}
@@ -219,13 +222,15 @@
 			if (key.includes('.jpg')) {
 				total += 1
 				let s = ''
+				console.log('A',words,words.length)
 				for (const i in range(words.length)) {
 					const word = words[i]
 					if (word.length == 0) continue
 					count += 1
 					if (newPath.includes(word)) s += ALFABET[i]
 				}
-				if (s.length > 0) {
+				console.log('B',s.length)
+				if (s.length > 0 || words.length == 0) {
 					const [sw,sh,bs,bw,bh] = node[key] // small/big width/height/size
 					res.push([-s.length, s, newPath, sw, sh, 0, 0, 0, false, bs, bw, bh])
 					stat[s] = (stat[s] || 0) + 1
@@ -242,8 +247,9 @@
 	function placera(images) {
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
 		const cols = []
-		for (const i in range(COLS)) cols.push(80+70)
-		const textHeights = 60
+
+		for (const i in range(COLS)) cols.push(345)
+		const textHeights = 60-10
 		const res = images
 		for (const i in res) {
 			const bild = res[i]
@@ -264,18 +270,13 @@
 
 <svelte:window bind:scrollY={y}/>
 
-<div>
-	<Search bind:sokruta bind:text0 bind:text1 bind:stack/>
-	<Download bind:selected {images} />
-	<NavigationHorisontal {stack}{pop} />
-	<NavigationVertical {stack}{path}{getPath}{push} />
-	{#each cards as card,index}
-		<Card {WIDTH}{GAP}{getPath}{card}{selected}{index} />
-	{/each}
-</div>
+{#if big.file == ""}
+	<Search bind:sokruta bind:text0 bind:stack/>
+	<Download bind:selected {images} bind:text1 />
+	<NavigationHorisontal {stack} {pop} />
+	<NavigationVertical {path} {push} />
+	<Infinite {WIDTH} {GAP} {getPath} {selected} {cards} />
+{:else}
+	<BigPicture {big} />
+{/if}
 
-<style>
-	div {
-		font-size: 0.9em;
-	}
-</style>

@@ -96,35 +96,31 @@
 
 </script>
 
-<!-- <div> -->
+<span style="top:1%">{big.file.replaceAll('\\',' • ').replaceAll("_"," ")}</span>
+{#if big.exifState >= 1}
+	<span style="top:5%"> {round(big.bw * big.bh/1000000,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1000000,1)} MB </span>
+{/if}
+{#if big.exifState == 2}
+	<span style="top:3%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
+	<span style="top:7%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
+	<span style="top:9%;"> © {exif.Copyright} </span>
+{/if}
 
-	<span style="top:1%">{big.file.replaceAll('\\',' • ').replaceAll("_"," ")}</span>
-	{#if big.exifState >= 1}
-		<span style="top:5%"> {round(big.bw * big.bh/1000000,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1000000,1)} MB </span>
-	{/if}
-	{#if big.exifState == 2}
-		<span style="top:3%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
-		<span style="top:7%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
-		<span style="top:9%;"> © {exif.Copyright} </span>
-	{/if}
+<button tabindex=0 on:click={share}> Share </button>
 
-	<button tabindex=0 on:click={share}> Share </button>
-	
-	<img 
-		id='picture' 
-		src={big.file} 
-		alt=""
-		on:wheel={wheel}
-		on:mousedown={mousedown}
-		on:mousemove={mousemove}
-		on:mouseup={mouseup}
-		on:mouseout={mouseout}
-		on:blur={blur}
-		width = {big.width}
-		style = "position:absolute; left:{big.left}px; top:{big.top}px;"
-	>
-
-<!-- </div> -->
+<img 
+	id='picture' 
+	src={big.file} 
+	alt=""
+	on:wheel={wheel}
+	on:mousedown={mousedown}
+	on:mousemove={mousemove}
+	on:mouseup={mouseup}
+	on:mouseout={mouseout}
+	on:blur={blur}
+	width = {big.width}
+	style = "position:absolute; left:{big.left}px; top:{big.top}px;"
+>
 
 <style>
 	button {

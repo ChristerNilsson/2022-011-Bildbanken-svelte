@@ -6,7 +6,6 @@
 	export let card
 	export let selected
 	export let index
-	// export let big
 
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
 
@@ -42,35 +41,48 @@
 
 <div class="card" id="images" style="position:absolute; left:{card[5]}px; top:{card[6]}px">
 	<img 
+		margin:0px
+		padding:0px
 		src = {getPath(card[2].split("\\"),"small")}
 		width = {WIDTH-GAP}
 		alt = ""
 		on:click = {() => {
 			const host = location.origin + location.pathname
-			// console.log('host',host)
 			window.open(host + `?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(card[2].split('\\'),'')}`)
 		}}
 		on:keydown = {() =>{}}
 	/>
-	<div class="info">{prettyFilename(card[2])}
-		<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(card[2],'M')}">{getNumber(card[2],'M')}</a>
-	</div>
-	<div class="info">{prettyPath(card[2])}
-		<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={getNumber(card[2],'T')}">{getNumber(card[2],'T')}</a>
-	</div>
-	<div class="info" style="display:flex">
-		{card[7]} • &nbsp;
-		<input type="checkbox" value="" bind:checked={selected[index]}/> &nbsp; •&nbsp;
-		{card[1]}
-		<span style="flex:2; text-align:center; white-space:nowrap;"> © Lars OA Hedlund </span>
-		<span style="flex:1; text-align:right; white-space:nowrap;"> {round(card[10]*card[11]/1000000,1)} MP • {card[10]} x {card[11]} • {round(card[9]/1000,0)} kB &nbsp;</span>
+	<div class="group">
+		<div class="info" >&nbsp;{prettyFilename(card[2])}
+			<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(card[2],'M')}">{getNumber(card[2],'M')}</a>
+		</div>
+		<div class="info">&nbsp;{prettyPath(card[2])}
+			<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={getNumber(card[2],'T')}">{getNumber(card[2],'T')}</a>
+		</div>
+		<div class="info" style="display:flex">
+			&nbsp;{card[7]} • &nbsp;
+			<input type="checkbox" value="" bind:checked={selected[index]}/> &nbsp; •&nbsp;
+			{card[1]}
+			<span style="flex:2; text-align:center; white-space:nowrap;"> © Lars OA Hedlund </span>
+			<span style="flex:1; text-align:right; white-space:nowrap;"> {round(card[10]*card[11]/1000000,1)} MP • {card[10]} x {card[11]} • {round(card[9]/1000,0)} kB &nbsp;</span>
+		</div>	
 	</div>
 </div>
 
 <style>
+	.group {
+		margin-top:-2px;
+	}
+	.info {
+		padding-top:1px;
+		white-space:nowrap;
+		width:473px;
+		overflow:hidden;
+		background-color:lightgray;
+	}
 	.card {
 		font-size: 0.9em;
-		width: 475px; 
+		width: 473px; 
 		max-height: 800px;
 	}
 	div {

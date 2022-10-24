@@ -6,6 +6,7 @@
 
 	export let selected
 	export let images
+	export let text1
 
 	function make(value) { selected = _.map(images, () => value) }
 	function download(item) { return axios.get(item.url, { responseType: "blob" }).then((resp) => {zip.file(item.name, resp.data)}) }
@@ -34,6 +35,9 @@
 
 </script>
 
-<button on:click = {downloadAll}>Download</button>
-<button on:click = {all}>All</button>
-<button on:click = {none}>None</button>
+<div>
+	<button on:click = {downloadAll}>Download</button>
+	<button on:click = {all}>All</button>
+	<button on:click = {none}>None</button>
+	{text1}
+</div>

@@ -4,22 +4,19 @@
 	export let pop
 </script>
 
-<div style="height:30px">
+<div>
 	{#each stack as key }
 		{#if key == _.last(stack)}
-			{key}
+			<button style="border:0px; background-color:transparent;">{key}</button>
 		{:else}
 			<button on:click = {() => pop(key)}>{key}</button>
 		{/if}
-		&nbsp;
 	{/each}
+
 </div>
 
 <style>
-	div {
-		margin:1px;
-		padding:1px;
-		font-size: 0.9em;
+	button {
+		margin-right:3px;
 	}
 </style>
-
