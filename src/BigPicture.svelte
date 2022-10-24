@@ -84,15 +84,17 @@
 		big = big
 	}
 
-	function mouseout(e) {
-		big.mouseState = 0
-		big = big
-	}
+	// function mouseout(e) {
+	// 	big.mouseState = 0
+	// 	big = big
+	// }
 
 	function share () {
 		const extra = `bs=${big.bs}&bw=${big.bw}&bh=${big.bh}&image=${big.file}`
 		navigator.clipboard.writeText(location.origin + location.pathname + "?" + extra)
 	}
+
+	document.onmousemove = mousemove
 
 </script>
 
@@ -114,9 +116,7 @@
 	alt=""
 	on:wheel={wheel}
 	on:mousedown={mousedown}
-	on:mousemove={mousemove}
 	on:mouseup={mouseup}
-	on:mouseout={mouseout}
 	on:blur={blur}
 	width = {big.width}
 	style = "position:absolute; left:{big.left}px; top:{big.top}px;"
