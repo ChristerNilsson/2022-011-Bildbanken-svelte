@@ -63,6 +63,9 @@
 	let text1 = ""
 	let images = []
 
+	const is_jpg = (file) => file.includes('.jpg') || file.includes('.JPG')
+	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
+
 	function consumeFolder(folder) {
 		sokruta = ""
 		stack = folder.split("\\")
@@ -166,7 +169,7 @@
 	}
 
 	function push(key) {
-		if (key.includes('.jpg')) {
+		if (is_jpg(key)) {
 			const t5 = _.last(path)[key]
 			visaBig(t5[2],t5[3],t5[4],stack.concat(key).join("\\"))
 		} else {
@@ -219,17 +222,15 @@
 	function recursiveSearch (node,words,path) { // node är nuvarande katalog. words är de sökta orden
 		for (const key in node) {
 			const newPath = path + "\\" + key
-			if (key.includes('.jpg')) {
+			if (is_jpg(key)) {
 				total += 1
 				let s = ''
-				console.log('A',words,words.length)
 				for (const i in range(words.length)) {
 					const word = words[i]
 					if (word.length == 0) continue
 					count += 1
 					if (newPath.includes(word)) s += ALFABET[i]
 				}
-				console.log('B',s.length)
 				if (s.length > 0 || words.length == 0) {
 					const [sw,sh,bs,bw,bh] = node[key] // small/big width/height/size
 					res.push([-s.length, s, newPath, sw, sh, 0, 0, 0, false, bs, bw, bh])
@@ -249,7 +250,7 @@
 		const cols = []
 
 		for (const i in range(COLS)) cols.push(345)
-		const textHeights = 60-10
+		const textHeights = 50-6
 		const res = images
 		for (const i in res) {
 			const bild = res[i]
@@ -274,8 +275,8 @@
 	<Search bind:sokruta bind:text0 bind:stack/>
 	<Download bind:selected {images} bind:text1 />
 	<NavigationHorisontal {stack} {pop} />
-	<NavigationVertical {path} {push} />
-	<Infinite {WIDTH} {GAP} {getPath} {selected} {cards} />
+	<NavigationVertical {path} {push} {is_jpg}/>
+	<Infinite {WIDTH} {GAP} {getPath} {selected} {cards} {round} />
 {:else}
 	<BigPicture {big} />
 {/if}

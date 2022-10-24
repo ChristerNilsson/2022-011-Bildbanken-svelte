@@ -19,8 +19,10 @@
 <div>
 	<button tabindex=0 on:click={share}> Share </button>
 	<button tabindex=0 on:click={clear}> Clear </button>
-	&nbsp; {text0} &nbsp;
 	<input id="search" tabindex=0 bind:value={sokruta} placeholder="Enter case sensitive words separated by spaces. Combine_words_like_this. Share stores a link to the clipboard." style='width:50%'>
+	{#if (sokruta.split(" ").length <= 3) && (sokruta.length > 0)}
+		&nbsp; {text0} &nbsp;
+	{/if}
 </div>
 
 <style>

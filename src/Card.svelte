@@ -6,8 +6,7 @@
 	export let card
 	export let selected
 	export let index
-
-	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
+	export let round
 
 	function getNumber(path,letter) { // Används både för T och M-nummer
 		path = path.replace('.jpg','')
@@ -56,12 +55,12 @@
 		<div class="info" >&nbsp;{prettyFilename(card[2])}
 			<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(card[2],'M')}">{getNumber(card[2],'M')}</a>
 		</div>
-		<div class="info">&nbsp;{prettyPath(card[2])}
+		<div class="info" >&nbsp;{prettyPath(card[2])}
 			<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={getNumber(card[2],'T')}">{getNumber(card[2],'T')}</a>
 		</div>
-		<div class="info" style="display:flex">
+		<div class="info" style="display:flex; height:13px">
 			&nbsp;{card[7]} • &nbsp;
-			<input type="checkbox" value="" bind:checked={selected[index]}/> &nbsp; •&nbsp;
+			<input class="largerCheckbox" type="checkbox" value="" bind:checked={selected[index]}/> &nbsp; •&nbsp;
 			{card[1]}
 			<span style="flex:2; text-align:center; white-space:nowrap;"> © Lars OA Hedlund </span>
 			<span style="flex:1; text-align:right; white-space:nowrap;"> {round(card[10]*card[11]/1000000,1)} MP • {card[10]} x {card[11]} • {round(card[9]/1000,0)} kB &nbsp;</span>
@@ -70,8 +69,13 @@
 </div>
 
 <style>
+	input.largerCheckbox {
+		width: 12px;
+		height: 12px;
+	}	
 	.group {
 		margin-top:-2px;
+		/* margin-bottom:4px; */
 	}
 	.info {
 		padding-top:1px;

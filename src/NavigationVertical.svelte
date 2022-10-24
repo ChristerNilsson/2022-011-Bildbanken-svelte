@@ -2,6 +2,7 @@
 	import _ from "lodash"
 	export let path
 	export let push
+	export let is_jpg
 
 	let selected = ""
 
@@ -9,7 +10,7 @@
 
 <select bind:value={selected} size=10 style="width:470px" >
 	{#each _.keys(_.last(path)) as key } 
-		{#if ! key.includes('.jpg')}
+		{#if ! is_jpg(key)}
 			<option value={key} on:click = {() => push(key)}>
 				{key}
 			</option>

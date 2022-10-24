@@ -62,12 +62,16 @@ Sökning genomförs genom att fylla i sökrutan. Dessa ord, avgränsade av blank
 Sökningen kräver att man anger rätt VERSALER och gemener, t ex ger varken "KARLSSON" eller "karlsson" någon träff, däremot "Karlsson".
 De ord man anger kan vara delord, även enstaka tecken, och de kan stå var som helst i orden. T ex kommer "sson" att matcha ett antal Karlsson och Nilsson.
 
+Tom söksträng innebär att alla bilder matchar.
+
+Sökning går endast mot den katalog man valt. Välj Home om du vill söka i alla kataloger.
+
 ### Knappar
 
 #### Horisontala Navigeringsknappar
 Dessa utgörs av Home, 2022 osv. Man hoppar till en katalog närmare *roten* (Home).
 
-#### Vertikala Katalogknappar och Filknappar
+#### Lista med kataloger
 Dessa utgörs av 2022, 2021 osv. Man hoppar till en katalog närmare *löven* (bilderna)
 
 #### T-nummer
@@ -87,9 +91,8 @@ Alla bilder avmarkeras.
 
 #### Share
 Aktuell avgränsning, dvs både strukturellt och med sökord, kan hämtas på klippbordet som en [URL](https://en.wikipedia.org/wiki/URL)
-Det finns tre typer: 
-* query - länk innehållande söktext
-* folder - länk till aktuell katalog
+Det finns två typer: 
+* query + folder - länk innehållande söktext och katalog
 * image - länk till en bild med full upplösning
 
 #### Prev (Not implemented)
