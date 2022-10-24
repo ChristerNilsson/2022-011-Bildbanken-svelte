@@ -59,9 +59,6 @@ var app = (function () {
     function space() {
         return text(' ');
     }
-    function empty() {
-        return text('');
-    }
     function listen(node, event, handler, options) {
         node.addEventListener(event, handler, options);
         return () => node.removeEventListener(event, handler, options);
@@ -21196,7 +21193,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (19:0) {#each _.keys(_.last(path)) as key }
+    // (20:1) {#each _.keys(_.last(path)) as key }
     function create_each_block$2(ctx) {
     	let button;
     	let t0_value = /*key*/ ctx[6] + "";
@@ -21214,8 +21211,8 @@ var app = (function () {
     			button = element("button");
     			t0 = text(t0_value);
     			t1 = space();
-    			attr_dev(button, "class", "svelte-4qbu0");
-    			add_location(button, file$4, 19, 1, 447);
+    			attr_dev(button, "class", "svelte-10cch86");
+    			add_location(button, file$4, 20, 1, 456);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21242,7 +21239,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(19:0) {#each _.keys(_.last(path)) as key }",
+    		source: "(20:1) {#each _.keys(_.last(path)) as key }",
     		ctx
     	});
 
@@ -21250,7 +21247,7 @@ var app = (function () {
     }
 
     function create_fragment$4(ctx) {
-    	let each_1_anchor;
+    	let span;
     	let each_value = lodash.keys(lodash.last(/*path*/ ctx[0]));
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -21261,21 +21258,23 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			span = element("span");
+
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			each_1_anchor = empty();
+    			add_location(span, file$4, 18, 0, 407);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(target, anchor);
-    			}
+    			insert_dev(target, span, anchor);
 
-    			insert_dev(target, each_1_anchor, anchor);
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(span, null);
+    			}
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*click, _, path*/ 3) {
@@ -21291,7 +21290,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block$2(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    						each_blocks[i].m(span, null);
     					}
     				}
 
@@ -21305,8 +21304,8 @@ var app = (function () {
     		i: noop$1,
     		o: noop$1,
     		d: function destroy(detaching) {
+    			if (detaching) detach_dev(span);
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(each_1_anchor);
     		}
     	};
 
@@ -21444,7 +21443,7 @@ var app = (function () {
     }
 
     // (11:2) {:else}
-    function create_else_block$1(ctx) {
+    function create_else_block(ctx) {
     	let button;
     	let t_value = /*key*/ ctx[3] + "";
     	let t;
@@ -21483,7 +21482,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block$1.name,
+    		id: create_else_block.name,
     		type: "else",
     		source: "(11:2) {:else}",
     		ctx
@@ -21493,7 +21492,7 @@ var app = (function () {
     }
 
     // (9:2) {#if key == _.last(stack)}
-    function create_if_block$2(ctx) {
+    function create_if_block$1(ctx) {
     	let t_value = /*key*/ ctx[3] + "";
     	let t;
 
@@ -21514,7 +21513,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$2.name,
+    		id: create_if_block$1.name,
     		type: "if",
     		source: "(9:2) {#if key == _.last(stack)}",
     		ctx
@@ -21531,8 +21530,8 @@ var app = (function () {
     	function select_block_type(ctx, dirty) {
     		if (dirty & /*stack*/ 1) show_if = null;
     		if (show_if == null) show_if = !!(/*key*/ ctx[3] == lodash.last(/*stack*/ ctx[0]));
-    		if (show_if) return create_if_block$2;
-    		return create_else_block$1;
+    		if (show_if) return create_if_block$1;
+    		return create_else_block;
     	}
 
     	let current_block_type = select_block_type(ctx, -1);
@@ -21752,7 +21751,7 @@ var app = (function () {
     			t1 = space();
     			button1 = element("button");
     			button1.textContent = "Clear";
-    			t3 = space();
+    			t3 = text("\r\n\t  ");
     			t4 = text(/*text0*/ ctx[1]);
     			t5 = space();
     			input = element("input");
@@ -21769,7 +21768,7 @@ var app = (function () {
     			attr_dev(input, "placeholder", "Enter case sensitive words separated by spaces. Combine_words_like_this. Share stores a link to the clipboard.");
     			set_style(input, "width", "50%");
     			attr_dev(input, "class", "svelte-46nnxf");
-    			add_location(input, file$2, 22, 1, 516);
+    			add_location(input, file$2, 22, 1, 523);
     			attr_dev(div, "class", "svelte-46nnxf");
     			add_location(div, file$2, 18, 0, 388);
     		},
@@ -21958,7 +21957,7 @@ var app = (function () {
     const file$1 = "src\\BigPicture.svelte";
 
     // (102:1) {#if big.exifState >= 1}
-    function create_if_block_1$1(ctx) {
+    function create_if_block_1(ctx) {
     	let span;
     	let t0_value = /*round*/ ctx[2](/*big*/ ctx[0].bw * /*big*/ ctx[0].bh / 1000000, 1) + "";
     	let t0;
@@ -22012,7 +22011,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1$1.name,
+    		id: create_if_block_1.name,
     		type: "if",
     		source: "(102:1) {#if big.exifState >= 1}",
     		ctx
@@ -22022,7 +22021,7 @@ var app = (function () {
     }
 
     // (105:1) {#if big.exifState == 2}
-    function create_if_block$1(ctx) {
+    function create_if_block(ctx) {
     	let span0;
     	let t0_value = /*exif*/ ctx[1].DateTimeOriginal.replace(" ", " • ") + "";
     	let t0;
@@ -22116,7 +22115,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$1.name,
+    		id: create_if_block.name,
     		type: "if",
     		source: "(105:1) {#if big.exifState == 2}",
     		ctx
@@ -22139,8 +22138,8 @@ var app = (function () {
     	let img_width_value;
     	let mounted;
     	let dispose;
-    	let if_block0 = /*big*/ ctx[0].exifState >= 1 && create_if_block_1$1(ctx);
-    	let if_block1 = /*big*/ ctx[0].exifState == 2 && create_if_block$1(ctx);
+    	let if_block0 = /*big*/ ctx[0].exifState >= 1 && create_if_block_1(ctx);
+    	let if_block1 = /*big*/ ctx[0].exifState == 2 && create_if_block(ctx);
 
     	const block = {
     		c: function create() {
@@ -22206,7 +22205,7 @@ var app = (function () {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
-    					if_block0 = create_if_block_1$1(ctx);
+    					if_block0 = create_if_block_1(ctx);
     					if_block0.c();
     					if_block0.m(t2.parentNode, t2);
     				}
@@ -22219,7 +22218,7 @@ var app = (function () {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
-    					if_block1 = create_if_block$1(ctx);
+    					if_block1 = create_if_block(ctx);
     					if_block1.c();
     					if_block1.m(t3.parentNode, t3);
     				}
@@ -22438,444 +22437,12 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[35] = list[i];
-    	child_ctx[37] = i;
+    	child_ctx[34] = list[i];
+    	child_ctx[36] = i;
     	return child_ctx;
     }
 
-    // (279:1) {:else}
-    function create_else_block_1(ctx) {
-    	let bigpicture;
-    	let updating_big;
-    	let current;
-
-    	function bigpicture_big_binding(value) {
-    		/*bigpicture_big_binding*/ ctx[19](value);
-    	}
-
-    	let bigpicture_props = {};
-
-    	if (/*big*/ ctx[7] !== void 0) {
-    		bigpicture_props.big = /*big*/ ctx[7];
-    	}
-
-    	bigpicture = new BigPicture({ props: bigpicture_props, $$inline: true });
-    	binding_callbacks.push(() => bind$1(bigpicture, 'big', bigpicture_big_binding));
-
-    	const block = {
-    		c: function create() {
-    			create_component(bigpicture.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(bigpicture, target, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			const bigpicture_changes = {};
-
-    			if (!updating_big && dirty[0] & /*big*/ 128) {
-    				updating_big = true;
-    				bigpicture_changes.big = /*big*/ ctx[7];
-    				add_flush_callback(() => updating_big = false);
-    			}
-
-    			bigpicture.$set(bigpicture_changes);
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(bigpicture.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(bigpicture.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(bigpicture, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_else_block_1.name,
-    		type: "else",
-    		source: "(279:1) {:else}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (268:1) {#if big.file == ""}
-    function create_if_block(ctx) {
-    	let search_1;
-    	let updating_sokruta;
-    	let updating_text0;
-    	let updating_text1;
-    	let updating_stack;
-    	let t;
-    	let current_block_type_index;
-    	let if_block;
-    	let if_block_anchor;
-    	let current;
-
-    	function search_1_sokruta_binding(value) {
-    		/*search_1_sokruta_binding*/ ctx[14](value);
-    	}
-
-    	function search_1_text0_binding(value) {
-    		/*search_1_text0_binding*/ ctx[15](value);
-    	}
-
-    	function search_1_text1_binding(value) {
-    		/*search_1_text1_binding*/ ctx[16](value);
-    	}
-
-    	function search_1_stack_binding(value) {
-    		/*search_1_stack_binding*/ ctx[17](value);
-    	}
-
-    	let search_1_props = {};
-
-    	if (/*sokruta*/ ctx[2] !== void 0) {
-    		search_1_props.sokruta = /*sokruta*/ ctx[2];
-    	}
-
-    	if (/*text0*/ ctx[8] !== void 0) {
-    		search_1_props.text0 = /*text0*/ ctx[8];
-    	}
-
-    	if (/*text1*/ ctx[9] !== void 0) {
-    		search_1_props.text1 = /*text1*/ ctx[9];
-    	}
-
-    	if (/*stack*/ ctx[6] !== void 0) {
-    		search_1_props.stack = /*stack*/ ctx[6];
-    	}
-
-    	search_1 = new Search({ props: search_1_props, $$inline: true });
-    	binding_callbacks.push(() => bind$1(search_1, 'sokruta', search_1_sokruta_binding));
-    	binding_callbacks.push(() => bind$1(search_1, 'text0', search_1_text0_binding));
-    	binding_callbacks.push(() => bind$1(search_1, 'text1', search_1_text1_binding));
-    	binding_callbacks.push(() => bind$1(search_1, 'stack', search_1_stack_binding));
-    	const if_block_creators = [create_if_block_1, create_else_block];
-    	const if_blocks = [];
-
-    	function select_block_type_1(ctx, dirty) {
-    		if (/*sokruta*/ ctx[2] == "") return 0;
-    		return 1;
-    	}
-
-    	current_block_type_index = select_block_type_1(ctx);
-    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-
-    	const block = {
-    		c: function create() {
-    			create_component(search_1.$$.fragment);
-    			t = space();
-    			if_block.c();
-    			if_block_anchor = empty();
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(search_1, target, anchor);
-    			insert_dev(target, t, anchor);
-    			if_blocks[current_block_type_index].m(target, anchor);
-    			insert_dev(target, if_block_anchor, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			const search_1_changes = {};
-
-    			if (!updating_sokruta && dirty[0] & /*sokruta*/ 4) {
-    				updating_sokruta = true;
-    				search_1_changes.sokruta = /*sokruta*/ ctx[2];
-    				add_flush_callback(() => updating_sokruta = false);
-    			}
-
-    			if (!updating_text0 && dirty[0] & /*text0*/ 256) {
-    				updating_text0 = true;
-    				search_1_changes.text0 = /*text0*/ ctx[8];
-    				add_flush_callback(() => updating_text0 = false);
-    			}
-
-    			if (!updating_text1 && dirty[0] & /*text1*/ 512) {
-    				updating_text1 = true;
-    				search_1_changes.text1 = /*text1*/ ctx[9];
-    				add_flush_callback(() => updating_text1 = false);
-    			}
-
-    			if (!updating_stack && dirty[0] & /*stack*/ 64) {
-    				updating_stack = true;
-    				search_1_changes.stack = /*stack*/ ctx[6];
-    				add_flush_callback(() => updating_stack = false);
-    			}
-
-    			search_1.$set(search_1_changes);
-    			let previous_block_index = current_block_type_index;
-    			current_block_type_index = select_block_type_1(ctx);
-
-    			if (current_block_type_index === previous_block_index) {
-    				if_blocks[current_block_type_index].p(ctx, dirty);
-    			} else {
-    				group_outros();
-
-    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
-    					if_blocks[previous_block_index] = null;
-    				});
-
-    				check_outros();
-    				if_block = if_blocks[current_block_type_index];
-
-    				if (!if_block) {
-    					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-    					if_block.c();
-    				} else {
-    					if_block.p(ctx, dirty);
-    				}
-
-    				transition_in(if_block, 1);
-    				if_block.m(if_block_anchor.parentNode, if_block_anchor);
-    			}
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(search_1.$$.fragment, local);
-    			transition_in(if_block);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(search_1.$$.fragment, local);
-    			transition_out(if_block);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(search_1, detaching);
-    			if (detaching) detach_dev(t);
-    			if_blocks[current_block_type_index].d(detaching);
-    			if (detaching) detach_dev(if_block_anchor);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block.name,
-    		type: "if",
-    		source: "(268:1) {#if big.file == \\\"\\\"}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (273:2) {:else}
-    function create_else_block(ctx) {
-    	let download;
-    	let updating_selected;
-    	let t;
-    	let each_1_anchor;
-    	let current;
-
-    	function download_selected_binding(value) {
-    		/*download_selected_binding*/ ctx[18](value);
-    	}
-
-    	let download_props = { images: /*images*/ ctx[3] };
-
-    	if (/*selected*/ ctx[4] !== void 0) {
-    		download_props.selected = /*selected*/ ctx[4];
-    	}
-
-    	download = new Download({ props: download_props, $$inline: true });
-    	binding_callbacks.push(() => bind$1(download, 'selected', download_selected_binding));
-    	let each_value = /*cards*/ ctx[0];
-    	validate_each_argument(each_value);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
-    	}
-
-    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
-    		each_blocks[i] = null;
-    	});
-
-    	const block = {
-    		c: function create() {
-    			create_component(download.$$.fragment);
-    			t = space();
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
-    			each_1_anchor = empty();
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(download, target, anchor);
-    			insert_dev(target, t, anchor);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(target, anchor);
-    			}
-
-    			insert_dev(target, each_1_anchor, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			const download_changes = {};
-    			if (dirty[0] & /*images*/ 8) download_changes.images = /*images*/ ctx[3];
-
-    			if (!updating_selected && dirty[0] & /*selected*/ 16) {
-    				updating_selected = true;
-    				download_changes.selected = /*selected*/ ctx[4];
-    				add_flush_callback(() => updating_selected = false);
-    			}
-
-    			download.$set(download_changes);
-
-    			if (dirty[0] & /*cards, selected*/ 17) {
-    				each_value = /*cards*/ ctx[0];
-    				validate_each_argument(each_value);
-    				let i;
-
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context(ctx, each_value, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    						transition_in(each_blocks[i], 1);
-    					} else {
-    						each_blocks[i] = create_each_block(child_ctx);
-    						each_blocks[i].c();
-    						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-    					}
-    				}
-
-    				group_outros();
-
-    				for (i = each_value.length; i < each_blocks.length; i += 1) {
-    					out(i);
-    				}
-
-    				check_outros();
-    			}
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(download.$$.fragment, local);
-
-    			for (let i = 0; i < each_value.length; i += 1) {
-    				transition_in(each_blocks[i]);
-    			}
-
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(download.$$.fragment, local);
-    			each_blocks = each_blocks.filter(Boolean);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				transition_out(each_blocks[i]);
-    			}
-
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(download, detaching);
-    			if (detaching) detach_dev(t);
-    			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(each_1_anchor);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_else_block.name,
-    		type: "else",
-    		source: "(273:2) {:else}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (270:2) {#if sokruta == ""}
-    function create_if_block_1(ctx) {
-    	let navigationhorisontal;
-    	let t;
-    	let navigationvertical;
-    	let current;
-
-    	navigationhorisontal = new NavigationHorisontal({
-    			props: {
-    				stack: /*stack*/ ctx[6],
-    				pop: /*pop*/ ctx[11]
-    			},
-    			$$inline: true
-    		});
-
-    	navigationvertical = new NavigationVertical({
-    			props: {
-    				stack: /*stack*/ ctx[6],
-    				path: /*path*/ ctx[5],
-    				getPath,
-    				push: /*push*/ ctx[10]
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(navigationhorisontal.$$.fragment);
-    			t = space();
-    			create_component(navigationvertical.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(navigationhorisontal, target, anchor);
-    			insert_dev(target, t, anchor);
-    			mount_component(navigationvertical, target, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			const navigationhorisontal_changes = {};
-    			if (dirty[0] & /*stack*/ 64) navigationhorisontal_changes.stack = /*stack*/ ctx[6];
-    			navigationhorisontal.$set(navigationhorisontal_changes);
-    			const navigationvertical_changes = {};
-    			if (dirty[0] & /*stack*/ 64) navigationvertical_changes.stack = /*stack*/ ctx[6];
-    			if (dirty[0] & /*path*/ 32) navigationvertical_changes.path = /*path*/ ctx[5];
-    			navigationvertical.$set(navigationvertical_changes);
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(navigationhorisontal.$$.fragment, local);
-    			transition_in(navigationvertical.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(navigationhorisontal.$$.fragment, local);
-    			transition_out(navigationvertical.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(navigationhorisontal, detaching);
-    			if (detaching) detach_dev(t);
-    			destroy_component(navigationvertical, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_1.name,
-    		type: "if",
-    		source: "(270:2) {#if sokruta == \\\"\\\"}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (275:3) {#each cards as card,index}
+    // (272:1) {#each cards as card,index}
     function create_each_block(ctx) {
     	let card;
     	let current;
@@ -22885,9 +22452,9 @@ var app = (function () {
     				WIDTH,
     				GAP,
     				getPath,
-    				card: /*card*/ ctx[35],
-    				selected: /*selected*/ ctx[4],
-    				index: /*index*/ ctx[37]
+    				card: /*card*/ ctx[34],
+    				selected: /*selected*/ ctx[6],
+    				index: /*index*/ ctx[36]
     			},
     			$$inline: true
     		});
@@ -22902,8 +22469,8 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const card_changes = {};
-    			if (dirty[0] & /*cards*/ 1) card_changes.card = /*card*/ ctx[35];
-    			if (dirty[0] & /*selected*/ 16) card_changes.selected = /*selected*/ ctx[4];
+    			if (dirty[0] & /*cards*/ 1) card_changes.card = /*card*/ ctx[34];
+    			if (dirty[0] & /*selected*/ 64) card_changes.selected = /*selected*/ ctx[6];
     			card.$set(card_changes);
     		},
     		i: function intro(local) {
@@ -22924,7 +22491,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(275:3) {#each cards as card,index}",
+    		source: "(272:1) {#each cards as card,index}",
     		ctx
     	});
 
@@ -22940,36 +22507,144 @@ var app = (function () {
 
     	let scrolling_timeout;
     	let div;
-    	let current_block_type_index;
-    	let if_block;
+    	let search_1;
+    	let updating_sokruta;
+    	let updating_text0;
+    	let updating_text1;
+    	let updating_stack;
+    	let t0;
+    	let download;
+    	let updating_selected;
+    	let t1;
+    	let navigationhorisontal;
+    	let t2;
+    	let navigationvertical;
+    	let t3;
     	let current;
     	let mounted;
     	let dispose;
-    	add_render_callback(/*onwindowscroll*/ ctx[13]);
-    	const if_block_creators = [create_if_block, create_else_block_1];
-    	const if_blocks = [];
+    	add_render_callback(/*onwindowscroll*/ ctx[12]);
 
-    	function select_block_type(ctx, dirty) {
-    		if (/*big*/ ctx[7].file == "") return 0;
-    		return 1;
+    	function search_1_sokruta_binding(value) {
+    		/*search_1_sokruta_binding*/ ctx[13](value);
     	}
 
-    	current_block_type_index = select_block_type(ctx);
-    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    	function search_1_text0_binding(value) {
+    		/*search_1_text0_binding*/ ctx[14](value);
+    	}
+
+    	function search_1_text1_binding(value) {
+    		/*search_1_text1_binding*/ ctx[15](value);
+    	}
+
+    	function search_1_stack_binding(value) {
+    		/*search_1_stack_binding*/ ctx[16](value);
+    	}
+
+    	let search_1_props = {};
+
+    	if (/*sokruta*/ ctx[4] !== void 0) {
+    		search_1_props.sokruta = /*sokruta*/ ctx[4];
+    	}
+
+    	if (/*text0*/ ctx[7] !== void 0) {
+    		search_1_props.text0 = /*text0*/ ctx[7];
+    	}
+
+    	if (/*text1*/ ctx[8] !== void 0) {
+    		search_1_props.text1 = /*text1*/ ctx[8];
+    	}
+
+    	if (/*stack*/ ctx[3] !== void 0) {
+    		search_1_props.stack = /*stack*/ ctx[3];
+    	}
+
+    	search_1 = new Search({ props: search_1_props, $$inline: true });
+    	binding_callbacks.push(() => bind$1(search_1, 'sokruta', search_1_sokruta_binding));
+    	binding_callbacks.push(() => bind$1(search_1, 'text0', search_1_text0_binding));
+    	binding_callbacks.push(() => bind$1(search_1, 'text1', search_1_text1_binding));
+    	binding_callbacks.push(() => bind$1(search_1, 'stack', search_1_stack_binding));
+
+    	function download_selected_binding(value) {
+    		/*download_selected_binding*/ ctx[17](value);
+    	}
+
+    	let download_props = { images: /*images*/ ctx[5] };
+
+    	if (/*selected*/ ctx[6] !== void 0) {
+    		download_props.selected = /*selected*/ ctx[6];
+    	}
+
+    	download = new Download({ props: download_props, $$inline: true });
+    	binding_callbacks.push(() => bind$1(download, 'selected', download_selected_binding));
+
+    	navigationhorisontal = new NavigationHorisontal({
+    			props: {
+    				stack: /*stack*/ ctx[3],
+    				pop: /*pop*/ ctx[10]
+    			},
+    			$$inline: true
+    		});
+
+    	navigationvertical = new NavigationVertical({
+    			props: {
+    				stack: /*stack*/ ctx[3],
+    				path: /*path*/ ctx[2],
+    				getPath,
+    				push: /*push*/ ctx[9]
+    			},
+    			$$inline: true
+    		});
+
+    	let each_value = /*cards*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			if_block.c();
+    			create_component(search_1.$$.fragment);
+    			t0 = space();
+    			create_component(download.$$.fragment);
+    			t1 = space();
+    			create_component(navigationhorisontal.$$.fragment);
+    			t2 = space();
+    			create_component(navigationvertical.$$.fragment);
+    			t3 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
     			attr_dev(div, "class", "svelte-p8wta7");
-    			add_location(div, file, 266, 0, 6737);
+    			add_location(div, file, 266, 0, 6765);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			if_blocks[current_block_type_index].m(div, null);
+    			mount_component(search_1, div, null);
+    			append_dev(div, t0);
+    			mount_component(download, div, null);
+    			append_dev(div, t1);
+    			mount_component(navigationhorisontal, div, null);
+    			append_dev(div, t2);
+    			mount_component(navigationvertical, div, null);
+    			append_dev(div, t3);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div, null);
+    			}
+
     			current = true;
 
     			if (!mounted) {
@@ -22977,7 +22652,7 @@ var app = (function () {
     					scrolling = true;
     					clearTimeout(scrolling_timeout);
     					scrolling_timeout = setTimeout(clear_scrolling, 100);
-    					/*onwindowscroll*/ ctx[13]();
+    					/*onwindowscroll*/ ctx[12]();
     				});
 
     				mounted = true;
@@ -22991,44 +22666,112 @@ var app = (function () {
     				scrolling_timeout = setTimeout(clear_scrolling, 100);
     			}
 
-    			let previous_block_index = current_block_type_index;
-    			current_block_type_index = select_block_type(ctx);
+    			const search_1_changes = {};
 
-    			if (current_block_type_index === previous_block_index) {
-    				if_blocks[current_block_type_index].p(ctx, dirty);
-    			} else {
-    				group_outros();
+    			if (!updating_sokruta && dirty[0] & /*sokruta*/ 16) {
+    				updating_sokruta = true;
+    				search_1_changes.sokruta = /*sokruta*/ ctx[4];
+    				add_flush_callback(() => updating_sokruta = false);
+    			}
 
-    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
-    					if_blocks[previous_block_index] = null;
-    				});
+    			if (!updating_text0 && dirty[0] & /*text0*/ 128) {
+    				updating_text0 = true;
+    				search_1_changes.text0 = /*text0*/ ctx[7];
+    				add_flush_callback(() => updating_text0 = false);
+    			}
 
-    				check_outros();
-    				if_block = if_blocks[current_block_type_index];
+    			if (!updating_text1 && dirty[0] & /*text1*/ 256) {
+    				updating_text1 = true;
+    				search_1_changes.text1 = /*text1*/ ctx[8];
+    				add_flush_callback(() => updating_text1 = false);
+    			}
 
-    				if (!if_block) {
-    					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-    					if_block.c();
-    				} else {
-    					if_block.p(ctx, dirty);
+    			if (!updating_stack && dirty[0] & /*stack*/ 8) {
+    				updating_stack = true;
+    				search_1_changes.stack = /*stack*/ ctx[3];
+    				add_flush_callback(() => updating_stack = false);
+    			}
+
+    			search_1.$set(search_1_changes);
+    			const download_changes = {};
+    			if (dirty[0] & /*images*/ 32) download_changes.images = /*images*/ ctx[5];
+
+    			if (!updating_selected && dirty[0] & /*selected*/ 64) {
+    				updating_selected = true;
+    				download_changes.selected = /*selected*/ ctx[6];
+    				add_flush_callback(() => updating_selected = false);
+    			}
+
+    			download.$set(download_changes);
+    			const navigationhorisontal_changes = {};
+    			if (dirty[0] & /*stack*/ 8) navigationhorisontal_changes.stack = /*stack*/ ctx[3];
+    			navigationhorisontal.$set(navigationhorisontal_changes);
+    			const navigationvertical_changes = {};
+    			if (dirty[0] & /*stack*/ 8) navigationvertical_changes.stack = /*stack*/ ctx[3];
+    			if (dirty[0] & /*path*/ 4) navigationvertical_changes.path = /*path*/ ctx[2];
+    			navigationvertical.$set(navigationvertical_changes);
+
+    			if (dirty[0] & /*cards, selected*/ 65) {
+    				each_value = /*cards*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(div, null);
+    					}
     				}
 
-    				transition_in(if_block, 1);
-    				if_block.m(div, null);
+    				group_outros();
+
+    				for (i = each_value.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
     			}
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(if_block);
+    			transition_in(search_1.$$.fragment, local);
+    			transition_in(download.$$.fragment, local);
+    			transition_in(navigationhorisontal.$$.fragment, local);
+    			transition_in(navigationvertical.$$.fragment, local);
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(if_block);
+    			transition_out(search_1.$$.fragment, local);
+    			transition_out(download.$$.fragment, local);
+    			transition_out(navigationhorisontal.$$.fragment, local);
+    			transition_out(navigationvertical.$$.fragment, local);
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			if_blocks[current_block_type_index].d();
+    			destroy_component(search_1);
+    			destroy_component(download);
+    			destroy_component(navigationhorisontal);
+    			destroy_component(navigationvertical);
+    			destroy_each(each_blocks, detaching);
     			mounted = false;
     			dispose();
     		}
@@ -23114,10 +22857,10 @@ var app = (function () {
     	let images = [];
 
     	function consumeFolder(folder) {
-    		$$invalidate(2, sokruta = "");
-    		$$invalidate(6, stack = folder.split("\\"));
+    		$$invalidate(4, sokruta = "");
+    		$$invalidate(3, stack = folder.split("\\"));
     		console.log('stack', stack);
-    		$$invalidate(5, path = [Home]);
+    		$$invalidate(2, path = [Home]);
     		let pointer = Home;
 
     		for (const key of stack.slice(1)) {
@@ -23129,8 +22872,8 @@ var app = (function () {
     			console.log('path', path);
     		}
 
-    		$$invalidate(5, path);
-    		$$invalidate(6, stack);
+    		$$invalidate(2, path);
+    		$$invalidate(3, stack);
     	}
 
     	consumeParameters();
@@ -23142,7 +22885,7 @@ var app = (function () {
     		if (urlParams.has("image")) {
     			visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("image"));
     		} else if (urlParams.has("query")) {
-    			$$invalidate(2, sokruta = urlParams.get("query"));
+    			$$invalidate(4, sokruta = urlParams.get("query"));
     		} else if (urlParams.has("folder")) {
     			consumeFolder(urlParams.get("folder"));
     		}
@@ -23150,7 +22893,7 @@ var app = (function () {
 
     	function resize() {
     		placera(images);
-    		($$invalidate(3, images), $$invalidate(2, sokruta));
+    		((($$invalidate(5, images), $$invalidate(2, path)), $$invalidate(4, sokruta)), $$invalidate(3, stack));
     	}
 
     	window.onresize = resize;
@@ -23180,18 +22923,18 @@ var app = (function () {
     	function visaBig(bs, bw, bh, src) {
     		document.title = lodash.last(src.split("\\"));
     		document.body.style = "overflow:hidden";
-    		$$invalidate(7, big.exifState = 0, big);
-    		$$invalidate(7, big.mouseState = 0, big);
-    		$$invalidate(7, big.bs = bs, big);
-    		$$invalidate(7, big.bw = bw, big);
-    		$$invalidate(7, big.bh = bh, big);
-    		$$invalidate(7, big.skala = Math.min(innerHeight / bh, innerWidth / bw), big);
-    		$$invalidate(7, big.width = bw * big.skala, big);
-    		$$invalidate(7, big.height = bh * big.skala, big);
-    		$$invalidate(7, big.left = (innerWidth - big.width) / 2, big);
-    		$$invalidate(7, big.top = (innerHeight - big.height) / 2, big);
-    		$$invalidate(7, big.file = src, big);
-    		$$invalidate(7, big);
+    		big.exifState = 0;
+    		big.mouseState = 0;
+    		big.bs = bs;
+    		big.bw = bw;
+    		big.bh = bh;
+    		big.skala = Math.min(innerHeight / bh, innerWidth / bw);
+    		big.width = bw * big.skala;
+    		big.height = bh * big.skala;
+    		big.left = (innerWidth - big.width) / 2;
+    		big.top = (innerHeight - big.height) / 2;
+    		big.file = src;
+    		big = big;
     	}
 
     	function push(key) {
@@ -23201,8 +22944,8 @@ var app = (function () {
     		} else {
     			path.push(lodash.last(path)[key]);
     			stack.push(key);
-    			$$invalidate(5, path);
-    			$$invalidate(6, stack);
+    			$$invalidate(2, path);
+    			$$invalidate(3, stack);
     		}
     	}
 
@@ -23212,11 +22955,11 @@ var app = (function () {
     			stack.pop();
     		}
 
-    		$$invalidate(5, path);
-    		$$invalidate(6, stack);
+    		$$invalidate(2, path);
+    		$$invalidate(3, stack);
     	}
 
-    	function search(Home, words, path = "Home") {
+    	function search(node, words, path = "Home") {
     		$$invalidate(0, cards = []);
     		count = 0;
     		words = words.split(" ");
@@ -23224,7 +22967,7 @@ var app = (function () {
     		stat = {};
     		total = 0;
     		const start = new Date();
-    		recursiveSearch(Home, words, path);
+    		recursiveSearch(node, words, path);
     		res.sort(comp);
     		const keys = Object.keys(stat);
     		keys.sort(comp2);
@@ -23240,7 +22983,7 @@ var app = (function () {
     	}
 
     	// rekursiv pga varierande djup i trädet
-    	function recursiveSearch(node, words, path = "Home") {
+    	function recursiveSearch(node, words, path) {
     		// node är nuvarande katalog. words är de sökta orden
     		for (const key in node) {
     			const newPath = path + "\\" + key;
@@ -23257,7 +23000,7 @@ var app = (function () {
     				}
 
     				if (s.length > 0) {
-    					const [sw, sh, bs, bw, bh] = node[key]; // small/big width/height
+    					const [sw, sh, bs, bw, bh] = node[key]; // small/big width/height/size
     					res.push([-s.length, s, newPath, sw, sh, 0, 0, 0, false, bs, bw, bh]);
     					stat[s] = (stat[s] || 0) + 1;
     				}
@@ -23273,7 +23016,7 @@ var app = (function () {
     	function placera(images) {
     		COLS = Math.floor((window.innerWidth - SCROLLBAR - GAP) / WIDTH);
     		const cols = [];
-    		for (const i in range(COLS)) cols.push(80);
+    		for (const i in range(COLS)) cols.push(80 + 70);
     		const textHeights = 60;
     		const res = images;
 
@@ -23307,32 +23050,27 @@ var app = (function () {
 
     	function search_1_sokruta_binding(value) {
     		sokruta = value;
-    		$$invalidate(2, sokruta);
+    		$$invalidate(4, sokruta);
     	}
 
     	function search_1_text0_binding(value) {
     		text0 = value;
-    		($$invalidate(8, text0), $$invalidate(2, sokruta));
+    		((($$invalidate(7, text0), $$invalidate(2, path)), $$invalidate(4, sokruta)), $$invalidate(3, stack));
     	}
 
     	function search_1_text1_binding(value) {
     		text1 = value;
-    		($$invalidate(9, text1), $$invalidate(2, sokruta));
+    		((($$invalidate(8, text1), $$invalidate(2, path)), $$invalidate(4, sokruta)), $$invalidate(3, stack));
     	}
 
     	function search_1_stack_binding(value) {
     		stack = value;
-    		$$invalidate(6, stack);
+    		$$invalidate(3, stack);
     	}
 
     	function download_selected_binding(value) {
     		selected = value;
-    		$$invalidate(4, selected);
-    	}
-
-    	function bigpicture_big_binding(value) {
-    		big = value;
-    		$$invalidate(7, big);
+    		$$invalidate(6, selected);
     	}
 
     	$$self.$capture_state = () => ({
@@ -23385,20 +23123,20 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ('cards' in $$props) $$invalidate(0, cards = $$props.cards);
     		if ('y' in $$props) $$invalidate(1, y = $$props.y);
-    		if ('ymax' in $$props) $$invalidate(12, ymax = $$props.ymax);
-    		if ('selected' in $$props) $$invalidate(4, selected = $$props.selected);
+    		if ('ymax' in $$props) $$invalidate(11, ymax = $$props.ymax);
+    		if ('selected' in $$props) $$invalidate(6, selected = $$props.selected);
     		if ('skala' in $$props) skala = $$props.skala;
     		if ('count' in $$props) count = $$props.count;
-    		if ('path' in $$props) $$invalidate(5, path = $$props.path);
-    		if ('stack' in $$props) $$invalidate(6, stack = $$props.stack);
+    		if ('path' in $$props) $$invalidate(2, path = $$props.path);
+    		if ('stack' in $$props) $$invalidate(3, stack = $$props.stack);
     		if ('res' in $$props) res = $$props.res;
     		if ('stat' in $$props) stat = $$props.stat;
     		if ('total' in $$props) total = $$props.total;
-    		if ('sokruta' in $$props) $$invalidate(2, sokruta = $$props.sokruta);
-    		if ('big' in $$props) $$invalidate(7, big = $$props.big);
-    		if ('text0' in $$props) $$invalidate(8, text0 = $$props.text0);
-    		if ('text1' in $$props) $$invalidate(9, text1 = $$props.text1);
-    		if ('images' in $$props) $$invalidate(3, images = $$props.images);
+    		if ('sokruta' in $$props) $$invalidate(4, sokruta = $$props.sokruta);
+    		if ('big' in $$props) big = $$props.big;
+    		if ('text0' in $$props) $$invalidate(7, text0 = $$props.text0);
+    		if ('text1' in $$props) $$invalidate(8, text1 = $$props.text1);
+    		if ('images' in $$props) $$invalidate(5, images = $$props.images);
     		if ('COLS' in $$props) COLS = $$props.COLS;
     	};
 
@@ -23407,19 +23145,19 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty[0] & /*sokruta*/ 4) {
-    			$$invalidate(8, [text0, text1, images] = search(Home, sokruta), text0, ($$invalidate(9, text1), $$invalidate(2, sokruta)), ($$invalidate(3, images), $$invalidate(2, sokruta)));
+    		if ($$self.$$.dirty[0] & /*path, sokruta, stack*/ 28) {
+    			$$invalidate(7, [text0, text1, images] = search(lodash.last(path), sokruta, stack.join('\\')), text0, ((($$invalidate(8, text1), $$invalidate(2, path)), $$invalidate(4, sokruta)), $$invalidate(3, stack)), ((($$invalidate(5, images), $$invalidate(2, path)), $$invalidate(4, sokruta)), $$invalidate(3, stack)));
     		}
 
-    		if ($$self.$$.dirty[0] & /*images*/ 8) {
+    		if ($$self.$$.dirty[0] & /*images*/ 32) {
     			// $: history.replaceState(null, '', `\?query=${sokruta}`)
     			{
     				placera(images);
-    				($$invalidate(3, images), $$invalidate(2, sokruta));
+    				((($$invalidate(5, images), $$invalidate(2, path)), $$invalidate(4, sokruta)), $$invalidate(3, stack));
     			}
     		}
 
-    		if ($$self.$$.dirty[0] & /*y, ymax, cards, images*/ 4107) {
+    		if ($$self.$$.dirty[0] & /*y, ymax, cards, images*/ 2083) {
     			{
     				// infinite scroll
     				// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
@@ -23429,7 +23167,7 @@ var app = (function () {
     					const latest = lodash.last(cards);
 
     					if (n > 0) {
-    						$$invalidate(12, ymax = latest[4] + latest[6]); // y + h
+    						$$invalidate(11, ymax = latest[4] + latest[6]); // y + h
     					}
     				}
     			}
@@ -23441,12 +23179,11 @@ var app = (function () {
     	return [
     		cards,
     		y,
+    		path,
+    		stack,
     		sokruta,
     		images,
     		selected,
-    		path,
-    		stack,
-    		big,
     		text0,
     		text1,
     		push,
@@ -23457,8 +23194,7 @@ var app = (function () {
     		search_1_text0_binding,
     		search_1_text1_binding,
     		search_1_stack_binding,
-    		download_selected_binding,
-    		bigpicture_big_binding
+    		download_selected_binding
     	];
     }
 

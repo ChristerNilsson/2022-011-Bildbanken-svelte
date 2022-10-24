@@ -16,13 +16,16 @@
 	}
 </script>
 
-{#each _.keys(_.last(path)) as key } 
+<span>
+	{#each _.keys(_.last(path)) as key } 
 	<button on:click = {() => click(key)}> {key} </button>
-{/each}
+	{/each}
+</span>
 
 <style>
 	button {
-		width:99%;
-		text-align:left;
+		margin:1px;
+		/* width:99%; */
+		/* text-align:left; */
 	}
 </style>

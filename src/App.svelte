@@ -94,7 +94,7 @@
 		}
 	}
 
-	$: [text0,text1,images] = search(Home,sokruta)
+	$: [text0,text1,images] = search(_.last(path), sokruta, stack.join('\\'))
 
 	// $: history.replaceState(null, '', `\?query=${sokruta}`)
 
@@ -187,7 +187,7 @@
 		stack = stack
 	}
 
-	function search(Home,words,path="Home") {
+	function search(node,words,path="Home") {
 		cards = []
 		count = 0
 		words = words.split(" ")
@@ -197,7 +197,7 @@
 		total=0
 		const start = new Date()
 
-		recursiveSearch(Home,words,path)
+		recursiveSearch(node,words,path)
 
 		res.sort(comp)
 
@@ -213,7 +213,7 @@
 	}
 
 	// rekursiv pga varierande djup i trädet
-	function recursiveSearch (node,words,path="Home") { // node är nuvarande katalog. words är de sökta orden
+	function recursiveSearch (node,words,path) { // node är nuvarande katalog. words är de sökta orden
 		for (const key in node) {
 			const newPath = path + "\\" + key
 			if (key.includes('.jpg')) {
@@ -226,7 +226,7 @@
 					if (newPath.includes(word)) s += ALFABET[i]
 				}
 				if (s.length > 0) {
-					const [sw,sh,bs,bw,bh] = node[key] // small/big width/height
+					const [sw,sh,bs,bw,bh] = node[key] // small/big width/height/size
 					res.push([-s.length, s, newPath, sw, sh, 0, 0, 0, false, bs, bw, bh])
 					stat[s] = (stat[s] || 0) + 1
 				}
@@ -242,7 +242,7 @@
 	function placera(images) {
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
 		const cols = []
-		for (const i in range(COLS)) cols.push(80)
+		for (const i in range(COLS)) cols.push(80+70)
 		const textHeights = 60
 		const res = images
 		for (const i in res) {
@@ -265,20 +265,13 @@
 <svelte:window bind:scrollY={y}/>
 
 <div>
-	{#if big.file == ""}
-		<Search bind:sokruta bind:text0 bind:text1 bind:stack/>
-		{#if sokruta == ""}
-			<NavigationHorisontal {stack}{pop} />
-			<NavigationVertical {stack}{path}{getPath}{push} />
-		{:else}
-			<Download bind:selected {images} />
-			{#each cards as card,index}
-				<Card {WIDTH}{GAP}{getPath}{card}{selected}{index} />
-			{/each}
-		{/if}
-	{:else}
-		<BigPicture bind:big />
-	{/if}
+	<Search bind:sokruta bind:text0 bind:text1 bind:stack/>
+	<Download bind:selected {images} />
+	<NavigationHorisontal {stack}{pop} />
+	<NavigationVertical {stack}{path}{getPath}{push} />
+	{#each cards as card,index}
+		<Card {WIDTH}{GAP}{getPath}{card}{selected}{index} />
+	{/each}
 </div>
 
 <style>
