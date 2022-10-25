@@ -190,17 +190,14 @@
 	}
 
 	function search(node,words,path) {
+		ymax = 0 // Viktigt! Annars syns inte nya bilder.
 		cards = []
 		count = 0
-		if (words.length == 0) {
-			words = []
-		}else{
-			words = words.split(" ")
-		}
+		words = words.length == 0 ? [] : words.split(" ")
 
-		res=[]
-		stat={}
-		total=0
+		res = []
+		stat = {}
+		total = 0
 		const start = new Date()
 
 		recursiveSearch(node,words,path)
@@ -272,7 +269,7 @@
 <svelte:window bind:scrollY={y}/>
 
 {#if big.file == ""}
-	<Search bind:sokruta bind:text0 bind:stack {_} />
+	<Search bind:sokruta {text0} {stack} />
 	<Download bind:selected {images} bind:text1 />
 	<NavigationHorisontal {stack} {pop} />
 	<NavigationVertical {path} {push} {is_jpg}/>
