@@ -78,6 +78,7 @@
 		/* margin-bottom:4px; */
 	}
 	.info {
+		text-align:left;
 		padding-top:1px;
 		white-space:nowrap;
 		width:473px;
