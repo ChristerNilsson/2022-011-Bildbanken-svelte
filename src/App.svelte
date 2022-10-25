@@ -272,7 +272,7 @@
 <svelte:window bind:scrollY={y}/>
 
 {#if big.file == ""}
-	<Search bind:sokruta bind:text0 bind:stack/>
+	<Search bind:sokruta bind:text0 bind:stack {_} />
 	<Download bind:selected {images} bind:text1 />
 	<NavigationHorisontal {stack} {pop} />
 	<NavigationVertical {path} {push} {is_jpg}/>

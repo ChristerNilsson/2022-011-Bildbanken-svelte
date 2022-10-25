@@ -3,9 +3,7 @@
 	export let path
 	export let push
 	export let is_jpg
-
 	let selected = ""
-
 </script>
 
 <select bind:value={selected} size=10 style="width:470px" >
@@ -17,11 +15,3 @@
 		{/if}
 	{/each}
 </select>
-
-<style>
-	select {
-		font-size: inherit;
-		font-family: inherit;
-		padding: 0.4rem;
-	}
-</style>

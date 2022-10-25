@@ -7,7 +7,7 @@
 <div>
 	{#each stack as key }
 		{#if key == _.last(stack)}
-			<button style="border:0px; background-color:transparent;">{key}</button>
+			<button style="border:0px; background-color:transparent;"><b>{key}</b></button>
 		{:else}
 			<button on:click = {() => pop(key)}>{key}</button>
 		{/if}
