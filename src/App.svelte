@@ -44,7 +44,7 @@
 	
 	const SCROLLBAR = 12
 	const WIDTH = 475
-	const GAP = 2
+	const GAP = 1
 	const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
@@ -89,6 +89,7 @@
 	function consumeParameters() {
 		const queryString = window.location.search
 		const urlParams = new URLSearchParams(queryString)
+		console.log(urlParams)
 		if (urlParams.has("image")) {
 			visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("image"))
 		} else {
@@ -148,7 +149,7 @@
 
 	function visaBig(bs, bw, bh, src) {
 		console.log('visaBig')
-		document.title = _.last(src.split("\\"))
+		document.title = _.last(src.replaceAll("_"," ").split("\\"))
 		document.body.style = "overflow:hidden"
 
 		big.exifState = 0
@@ -244,10 +245,10 @@
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
 	function placera(images) {
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
-		const cols = []
 
-		for (const i in range(COLS)) cols.push(345)
-		const textHeights = 50-6
+		const cols = [345-2]
+		for (const i in range(1,COLS)) cols.push(123)
+		const textHeights = 43
 		const res = images
 		for (const i in res) {
 			const bild = res[i]
@@ -255,7 +256,7 @@
 			for (const j in range(COLS)) {
 				if (cols[j] < cols[index]) index = j
 			}
-			bild[5] = GAP + WIDTH*index // x
+			bild[5] = (GAP + WIDTH)*index // x
 			bild[6] = cols[index]       // y
 			bild[7] = i
 			bild[8] = true // kryssruta

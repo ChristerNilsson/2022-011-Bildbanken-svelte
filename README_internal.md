@@ -39,3 +39,30 @@ Vy-Damallsvenskan_Julia_Östensson_2022-09-24-X.jpg [filnamnet]
 Vy-Damallsvenskan_Ju [är]
 Julia_Östensson_2022 [bör]
 ```
+
+### Annorlunda hantering av swimlanes
+
+Dessa borde flyttas söderut, beroende på tidigare divars height.
+Utan behov av omräkning av koordinaterna, eftersom de räknas från parents origo.
+
+```
+<div class="container" style = "left:0px; border: solid green 1px">
+	<div class="item" style="top:20px" >Pelle</div>
+	<div class="item" style="top:40px" >Quintus</div>
+</div>
+
+<div class="container" style = "left:60px; border: solid red 1px">
+	<div class="item" style="top:20px" >Rudolf</div>
+	<div class="item" style="top:40px" >Sigurd</div>
+</div>
+
+<style>
+	.container {
+		position:absolute;
+	}
+	.item {
+ 		border: solid black 2px;
+		position:absolute;
+	}
+</style>
+```

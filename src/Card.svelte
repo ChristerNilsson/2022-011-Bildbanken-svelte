@@ -43,7 +43,7 @@
 		margin:0px
 		padding:0px
 		src = {getPath(card[2].split("\\"),"small")}
-		width = {WIDTH-GAP}
+		width = {WIDTH}
 		alt = ""
 		on:click = {() => {
 			const host = location.origin + location.pathname
@@ -63,7 +63,7 @@
 			<input class="largerCheckbox" type="checkbox" value="" bind:checked={selected[index]}/> &nbsp; •&nbsp;
 			{card[1]}
 			<span style="flex:2; text-align:center; white-space:nowrap;"> © Lars OA Hedlund </span>
-			<span style="flex:1; text-align:right; white-space:nowrap;"> {round(card[10]*card[11]/1000000,1)} MP • {card[10]} x {card[11]} • {round(card[9]/1000,0)} kB &nbsp;</span>
+			<span style="flex:1; text-align:right; white-space:nowrap;"> {round(card[10]*card[11]/1024/1024,1)} MP • {card[10]} x {card[11]} • {round(card[9]/1024,0)} kB &nbsp;</span>
 		</div>	
 	</div>
 </div>
@@ -74,20 +74,20 @@
 		height: 12px;
 	}	
 	.group {
-		margin-top:-2px;
+		margin-top:-3px;
 		/* margin-bottom:4px; */
 	}
 	.info {
 		text-align:left;
 		padding-top:1px;
 		white-space:nowrap;
-		width:473px;
+		width:475px;
 		overflow:hidden;
 		background-color:lightgray;
 	}
 	.card {
 		font-size: 0.9em;
-		width: 473px; 
+		width: 475px; 
 		max-height: 800px;
 	}
 	div {

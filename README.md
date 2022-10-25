@@ -165,6 +165,20 @@ Just nu läser man in fler och fler bilder. Egentligen bör man kasta bort bilde
 * Även förflyttning fungerar.
 * Knappar:
 	* Share. Skapar en URL och lägger på klippbordet
+* Data
+	* Vy-Damallsvenskan Julia Östensson 2022-09-25
+		* Filnamn
+	* 2022 • 2022-09-24 Damallsvenskan,Alingsås T10304
+		* Katalognamn
+	* 3.9 MP • 2048 x 2002 • 2624 kB
+		* Megapixel • Bredd • Höjd • Filstorlek i block om 1024 bytes
+	* 2022-09-25 • 09:25:39
+		* Datum • Tid när bilden togs
+	* NIKON Z 7_2 • f/4 • 1/125 • 85 mm • ISO 3600
+		* Fabrikat och Modell • Bländare • Slutartid • Brännvidd • Filmkänslighet
+	* © Lars OA Hedlund
+		* Fotograf
+
 
 ### FAQ
 ```

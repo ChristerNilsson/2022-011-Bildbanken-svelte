@@ -30,7 +30,7 @@
 	push("The Current directory is shown in bold")
 	push("The listbox contains directories in the Current directory")
 	push("High resolution images are draggable and zoomable")
-	push("Contact: janchrister (dot) nilsson (at) gmail (dot) com")
+	push("Contact: janchrister_punkt_nilsson_alfakrull_gmail_punkt_com")
 	
 	helpTexts[0] += " of " + helpTexts.length
 	

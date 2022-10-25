@@ -5,8 +5,12 @@
 	const INCR = 0.08
 
 	let exif = null
+
+	let names = big.file.replaceAll("_"," ").replace('.jpg','').split("\\")
+	let filename = _.last(names)
+	let path = names.slice(1,names.length-1).join(' • ')
 	
-	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
+	const round = (x,n=0) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
 
 	function getExif() {
 		const img = document.getElementById("picture")
@@ -98,14 +102,15 @@
 
 </script>
 
-<span style="top:1%">{big.file.replaceAll('\\',' • ').replaceAll("_"," ")}</span>
+<span style="top:1%">{filename}</span>
+<span style="top:3%">{path}</span>
 {#if big.exifState >= 1}
-	<span style="top:5%"> {round(big.bw * big.bh/1000000,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1000000,1)} MB </span>
+	<span style="top:7%"> {round(big.bw * big.bh/1024/1024,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1024)} kB </span>
 {/if}
 {#if big.exifState == 2}
-	<span style="top:3%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
-	<span style="top:7%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
-	<span style="top:9%;"> © {exif.Copyright} </span>
+	<span style="top:5%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
+	<span style="top:9%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
+	<span style="top:11%;"> © {exif.Copyright} </span>
 {/if}
 
 <button tabindex=0 on:click={share}> Share </button>

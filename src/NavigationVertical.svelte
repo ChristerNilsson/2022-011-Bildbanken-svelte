@@ -6,7 +6,7 @@
 	let selected = ""
 </script>
 
-<select bind:value={selected} size=10 style="width:470px" >
+<select bind:value={selected} size=10 style="width:470px;" >
 	{#each _.keys(_.last(path)) as key } 
 		{#if ! is_jpg(key)}
 			<option value={key} on:click = {() => push(key)}>
