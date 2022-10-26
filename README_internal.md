@@ -66,3 +66,39 @@ Utan behov av omräkning av koordinaterna, eftersom de räknas från parents ori
 	}
 </style>
 ```
+
+### Använda html element (substantiv)
+För att underlätta anpassning till mobiler och paddor, begränsas antalet olika element:
+* div (generell nod)
+* img (bilder)
+* span (texter på samma rad)
+* button
+* input (text)
+* input (checkbox)
+
+## Händelser (verb)
+* click
+* mousedown
+* mousemove
+* mouseup
+* scroll
+* wheel
+* resize
+
+## Egenskaper (adjektiv)
+* width,height,left,top
+* position
+* margin
+* padding
+* font-size
+* max-height
+* text-align
+* padding-top
+* white-space:nowrap
+* overflow:hidden
+* background-color
+* display
+* flex
+
+
+

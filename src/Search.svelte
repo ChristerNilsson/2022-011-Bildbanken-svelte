@@ -3,6 +3,7 @@
 	export let text0
 	export let text1
 	export let stack
+	export let helpToggle
 
 	function clear() {
 		sokruta = ""
@@ -15,6 +16,10 @@
 		navigator.clipboard.writeText(location.origin + location.pathname + "?" + q1 + "&" + q2)
 	}
 
+	function help() {
+		helpToggle = ! helpToggle
+	}
+
 	window.onload = () => document.getElementById("search").focus()
 
 </script>
@@ -24,8 +29,9 @@
 	{text1}
 </div>
 <div style="width:475px">
-	<button on:click={share} style="width:233px"> Share </button>
-	<button on:click={clear} style="width:233px"> Clear </button>
+	<button on:click={share} style="width:153px"> Share </button>
+	<button on:click={clear} style="width:153px"> Clear </button>
+	<button on:click={help}  style="width:153px"> Help </button>
 </div>
 {#if (sokruta.split(" ").length <= 3) && (sokruta.length > 0)}
 	<div class="center">

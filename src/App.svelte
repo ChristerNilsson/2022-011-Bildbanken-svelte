@@ -28,6 +28,7 @@
 		}
 	}
 
+	let helpToggle = false
 	let selected = []
 	let skala = 1
 	// let Home = {}
@@ -247,9 +248,9 @@
 	function placera(images) {
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
 
-		const cols = []
+		const cols = [1] // Borde vara verklig offset.
 		for (const i in range(COLS)) cols.push(0)
-		const textHeights = 50 //43
+		const textHeights = 50-2 //43
 		const res = images
 		for (const i in res) {
 			const bild = res[i]
@@ -266,27 +267,46 @@
 		images = images
 	}
 
+	function getRect(id) {
+		const element = document.getElementById(id)
+		if (element==null) return 0
+		return element.getBoundingClientRect()
+	}
+
+	// $: console.log('rows',rows)
+	// $: console.log('stack',_.size(stack))
+	// $: console.log('path',_.size(_.last(path)))
+	// $: console.log('antal',antal)
+	// $: console.log('offset',offset)
+
+	function countDirs(path) {
+		let res = 0
+		for (const name in path) {
+			if (! is_jpg(name)) {
+				res += 1
+			}
+		}
+		return res
+	}
+
+	$: rows = sokruta=="" ? 4 : 5
+	$: antal = rows + _.size(stack) + countDirs(_.last(path))
+	$: offset = 34 * antal
+
 </script>
 
 <svelte:window bind:scrollY={y}/>
-<div >
+
 {#if big.file == ""}
-	<Search bind:sokruta {text0} {text1} {stack} />
-	<Help/>
+	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle />
 	<Download bind:selected {images} />
 	<NavigationHorisontal {stack} {pop} />
 	<NavigationVertical {path} {push} {is_jpg}/>
-	<Infinite {WIDTH} {getPath} bind:selected {cards} {round} />
+	{#if helpToggle}
+		<Help/>
+	{/if}
+	<div id="infinite"></div>
+	<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {offset} />
 {:else}
 	<BigPicture {big} />
 {/if}
-</div>
-
-<style>
-	div {
-		width:475px;
-		margin:0px;
-		padding:0px;
-	}
-</style>
-
