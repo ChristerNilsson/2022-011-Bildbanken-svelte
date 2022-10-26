@@ -113,7 +113,7 @@
 	<span style="top:11%;"> © {exif.Copyright} </span>
 {/if}
 
-<button tabindex=0 on:click={share}> Share </button>
+<button on:click={share}> Share </button>
 
 <img 
 	id='picture' 

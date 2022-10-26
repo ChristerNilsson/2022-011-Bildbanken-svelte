@@ -3,6 +3,7 @@
 	import _ from "lodash"
 	import Card from "./Card.svelte"
 	import Download from "./Download.svelte"
+	import Help from "./Help.svelte"
 	import NavigationVertical from "./NavigationVertical.svelte"
 	import NavigationHorisontal from "./NavigationHorisontal.svelte"
 	import Search from "./Search.svelte"
@@ -213,7 +214,7 @@
 			st.push(`${key}:${stat[key]}`) 
 			antal += stat[key]
 		}
-		return [st.join(' '),`${antal} of ${total} images in ${new Date() - start} ms`,res]
+		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,res]
 	}
 
 	// rekursiv pga varierande djup i trädet
@@ -248,7 +249,7 @@
 
 		const cols = []
 		for (const i in range(COLS)) cols.push(0)
-		const textHeights = 43
+		const textHeights = 50 //43
 		const res = images
 		for (const i in res) {
 			const bild = res[i]
@@ -271,6 +272,7 @@
 <div >
 {#if big.file == ""}
 	<Search bind:sokruta {text0} {text1} {stack} />
+	<Help/>
 	<Download bind:selected {images} />
 	<NavigationHorisontal {stack} {pop} />
 	<NavigationVertical {path} {push} {is_jpg}/>

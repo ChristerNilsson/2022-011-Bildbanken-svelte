@@ -39,7 +39,7 @@
 
 <div style="width:475px" >
 	<button style="width:115px" on:click = {none}>None</button>
-	<button style="width:229px" on:click = {downloadAll}>Download {n}</button>
+	<button style="width:229px" on:click = {downloadAll}>Download {n} image(s)</button>
 	<button style="width:115px" on:click = {all}>All</button>
 </div>
 
