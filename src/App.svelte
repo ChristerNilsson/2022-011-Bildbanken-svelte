@@ -15,6 +15,7 @@
   let cards = [] // Varje bild tillsammans med tre rader text utgör ett Card.
 	let y = 0 // Anger var scrollern befinner sig just nu.
 	let ymax = 0 // Anger var senast laddade bild befinner sig.
+	let offset = 0
 
 	$: { // infinite scroll
 		// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
@@ -246,9 +247,13 @@
 	// Uppdaterar x och y för varje bild
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
 	function placera(images) {
+		const rows = sokruta=="" ? 4 : 5
+		const antal = rows + _.size(stack) + countDirs(_.last(path))
+		offset = 35 * antal
+
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
 
-		const cols = [1] // Borde vara verklig offset.
+		const cols = [offset]
 		for (const i in range(COLS)) cols.push(0)
 		const textHeights = 50-2 //43
 		const res = images
@@ -267,17 +272,11 @@
 		images = images
 	}
 
-	function getRect(id) {
-		const element = document.getElementById(id)
-		if (element==null) return 0
-		return element.getBoundingClientRect()
-	}
-
-	// $: console.log('rows',rows)
-	// $: console.log('stack',_.size(stack))
-	// $: console.log('path',_.size(_.last(path)))
-	// $: console.log('antal',antal)
-	// $: console.log('offset',offset)
+	// function getRect(id) {
+	// 	const element = document.getElementById(id)
+	// 	if (element==null) return 0
+	// 	return element.getBoundingClientRect()
+	// }
 
 	function countDirs(path) {
 		let res = 0
@@ -288,10 +287,6 @@
 		}
 		return res
 	}
-
-	$: rows = sokruta=="" ? 4 : 5
-	$: antal = rows + _.size(stack) + countDirs(_.last(path))
-	$: offset = 34 * antal
 
 </script>
 
@@ -304,9 +299,9 @@
 	<NavigationVertical {path} {push} {is_jpg}/>
 	{#if helpToggle}
 		<Help/>
+	{:else}
+		<Infinite {WIDTH} {getPath} bind:selected {cards} {round} />
 	{/if}
-	<div id="infinite"></div>
-	<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {offset} />
 {:else}
 	<BigPicture {big} />
 {/if}

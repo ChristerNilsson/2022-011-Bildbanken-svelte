@@ -19,6 +19,7 @@
 <style>
 	button {
 		margin:1px;
+		height:33px;
 		width:473px;
 		text-align:left;
 	}

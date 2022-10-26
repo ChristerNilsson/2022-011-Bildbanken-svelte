@@ -3,7 +3,6 @@
 	export let path
 	export let push
 	export let is_jpg
-	// let selected = ""
 </script>
 
 <div>
@@ -24,6 +23,7 @@
 	}
 	button {
 		margin:1px;
+		height:33px;
 		width:473px;
 		text-align:left;
 	}

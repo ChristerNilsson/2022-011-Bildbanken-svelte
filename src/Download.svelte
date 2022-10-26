@@ -45,7 +45,8 @@
 
 <style>
 button{
-	margin:1px
+	margin:1px;
+	height:33px;
 }
 div {
 	margin:0px

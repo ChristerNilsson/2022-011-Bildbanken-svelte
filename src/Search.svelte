@@ -44,17 +44,19 @@
 		margin-top:7px;
 		width:475px;
 		text-align:center;
-		height:25px
+		height:27px
 	}
 	div {
 		margin:0px;
 	}
 	button {
 		margin:1px;
+		height:34px;
 	}
 	input {
 		width:473px;
 		margin:1px;
+		height:32px;
 	}
 	::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 		color: lightgray;

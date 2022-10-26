@@ -6,9 +6,6 @@
 	export let selected
 	export let index
 	export let round
-	export let offset
-
-	$: y = card[5]==0 ? offset + card[6] : card[6]
 
 	function getNumber(path,letter) { // Används både för T och M-nummer
 		path = path.replace('.jpg','')
@@ -40,7 +37,7 @@
 
 </script>
 
-<div class="card" id="images" style="position:absolute; left:{card[5]}px; top:{y}px">
+<div class="card" id="images" style="position:absolute; left:{card[5]}px; top:{card[6]}px">
 	<img 
 		margin:0px
 		padding:0px

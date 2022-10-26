@@ -1,0 +1,13 @@
+<script>
+	import Card from './Card.svelte'
+	export let WIDTH
+	export let getPath
+	export let selected
+	export let cards
+	export let round
+	// export let offset
+</script>
+
+{#each cards as card,index}
+<Card {WIDTH} {getPath} {card} bind:selected {index} {round} />
+{/each}
