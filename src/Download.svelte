@@ -6,7 +6,8 @@
 
 	export let selected
 	export let images
-	export let text1
+
+	$: n = _.sumBy(selected, (value) => value ? 1 : 0)
 
 	function make(value) { selected = _.map(images, () => value) }
 	function download(item) { return axios.get(item.url, { responseType: "blob" }).then((resp) => {zip.file(item.name, resp.data)}) }
@@ -25,6 +26,7 @@
 				fileArr.push({name:path.slice(p+1), url:path})
 			}
 		}
+		n = fileArr.length
 		if (fileArr.length == 0) return
 
 		const arrOfFiles = fileArr.map((item) => download(item)) //create array of promises
@@ -35,9 +37,18 @@
 
 </script>
 
-<div>
-	<button on:click = {downloadAll}>Download</button>
-	<button on:click = {all}>All</button>
-	<button on:click = {none}>None</button>
-	{text1}
+<div style="width:475px" >
+	<button style="width:115px" on:click = {none}>None</button>
+	<button style="width:229px" on:click = {downloadAll}>Download {n}</button>
+	<button style="width:115px" on:click = {all}>All</button>
 </div>
+
+<style>
+button{
+	margin:1px
+}
+div {
+	margin:0px
+}
+</style>
+

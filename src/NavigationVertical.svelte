@@ -3,10 +3,34 @@
 	export let path
 	export let push
 	export let is_jpg
-	let selected = ""
+	// let selected = ""
 </script>
 
-<select bind:value={selected} size=10 style="width:470px;" >
+<div>
+	{#each _.keys(_.last(path)) as key } 
+		<div>
+			{#if ! is_jpg(key)}
+				<button value={key} on:click = {() => push(key)}>
+					{key}
+				</button>
+			{/if}
+		</div>
+	{/each}
+</div>
+
+<style>
+	div {
+		margin:0px
+	}
+	button {
+		margin:1px;
+		width:473px;
+		text-align:left;
+	}
+</style>
+
+
+<!-- <select bind:value={selected} size=10 style="width:470px;" >
 	{#each _.keys(_.last(path)) as key } 
 		{#if ! is_jpg(key)}
 			<option value={key} on:click = {() => push(key)}>
@@ -14,4 +38,4 @@
 			</option>
 		{/if}
 	{/each}
-</select>
+</select> -->

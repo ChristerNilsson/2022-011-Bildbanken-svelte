@@ -1,7 +1,7 @@
 <script>
 	import _ from "lodash"
 	export let WIDTH
-	export let GAP
+	// export let GAP
 	export let getPath
 	export let card
 	export let selected
@@ -78,6 +78,7 @@
 		/* margin-bottom:4px; */
 	}
 	.info {
+		margin:0px;
 		text-align:left;
 		padding-top:1px;
 		white-space:nowrap;
@@ -86,11 +87,14 @@
 		background-color:lightgray;
 	}
 	.card {
+		margin:0px;
 		font-size: 0.9em;
 		width: 475px; 
 		max-height: 800px;
 	}
 	div {
+		margin:0px;
+		padding:0px;
 		font-size: 0.9em;
 	}
 </style>

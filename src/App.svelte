@@ -246,8 +246,8 @@
 	function placera(images) {
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
 
-		const cols = [345-2]
-		for (const i in range(1,COLS)) cols.push(123)
+		const cols = []
+		for (const i in range(COLS)) cols.push(0)
 		const textHeights = 43
 		const res = images
 		for (const i in res) {
@@ -268,14 +268,23 @@
 </script>
 
 <svelte:window bind:scrollY={y}/>
-
+<div >
 {#if big.file == ""}
-	<Search bind:sokruta {text0} {stack} />
-	<Download bind:selected {images} bind:text1 />
+	<Search bind:sokruta {text0} {text1} {stack} />
+	<Download bind:selected {images} />
 	<NavigationHorisontal {stack} {pop} />
 	<NavigationVertical {path} {push} {is_jpg}/>
-	<Infinite {WIDTH} {GAP} {getPath} {selected} {cards} {round} />
+	<Infinite {WIDTH} {getPath} bind:selected {cards} {round} />
 {:else}
 	<BigPicture {big} />
 {/if}
+</div>
+
+<style>
+	div {
+		width:475px;
+		margin:0px;
+		padding:0px;
+	}
+</style>
 
