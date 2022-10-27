@@ -23,9 +23,8 @@
 		const fileArr = []
 		for (const i in _.range(selected.length)) {
 			if (selected[i]==true) {
-				const path = images[i][2]
-				const p = path.lastIndexOf("\\")
-				fileArr.push({name:path.slice(p+1), url:path})
+				const path = images[i][2] + "\\" + images[i][12]
+				fileArr.push({name:path, url:path})
 			}
 		}
 		n = fileArr.length
@@ -38,13 +37,6 @@
 	}
 
 </script>
-
-<!-- <div style="width:{WIDTH}px; height:34px">
-	<button on:click={share} style="left:0px;           width:{spreadWidth(1/3,WIDTH)}px">Share</button>
-	<button on:click={clear} style="left:{WIDTH/3}px;   width:{spreadWidth(1/3,WIDTH)}px">Clear</button>
-	<button on:click={help}  style="left:{2*WIDTH/3}px; width:{spreadWidth(1/3,WIDTH)}px">Help</button>
-</div> -->
-
 
 <div style="width:{WIDTH}px; height:34px">
 	<button style="left:0px;           width:{spreadWidth(0.25,WIDTH)}px" on:click = {none}>None</button>
@@ -62,4 +54,3 @@
 		margin:0px
 	}
 </style>
-

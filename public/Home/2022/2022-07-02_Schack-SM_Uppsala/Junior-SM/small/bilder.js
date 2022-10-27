@@ -1,1 +1,1 @@
-{"Arvin_Rasti_Junior-SM.jpg":[475,359,1149629,2048,1546],"CM_Adrian_Söderström.jpg":[475,317,1477922,2048,1367]}
+{"Arvin_Rasti.jpg":[475,359,1149629,2048,1546],"CM_Adrian_Söderström.jpg":[475,317,1477922,2048,1367]}

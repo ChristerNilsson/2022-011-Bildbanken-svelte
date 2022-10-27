@@ -225,10 +225,11 @@
 		recursiveSearch(node,words,path)
 
 		//res.sort(comp)
-		res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++
-		//res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++  -letters.length letters -path key
-		//res = res
-		//console.log(res)
+		// console.log('före',res)
+		res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++  [-letters.length, letters, -path, key] [-3, 'ABC', 'Home/2022/2022-09-17...', 'Pelle...jpg']
+		// res = res 
+		// console.log('efter',res)
+		//res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++
 
 		const keys = Object.keys(stat)
 		keys.sort(comp2) 

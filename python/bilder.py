@@ -7,7 +7,7 @@ from os import scandir,mkdir,stat
 from os.path import exists,getsize
 from PIL import Image # Pillow
 
-USE_CACHE = False
+USE_CACHE = True
 
 WIDTH = 475
 ROOT = "C:\\github\\2022-011-Bildbanken-svelte\\public\\Home\\"

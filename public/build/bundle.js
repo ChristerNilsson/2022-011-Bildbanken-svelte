@@ -21064,19 +21064,19 @@ var app = (function () {
     			set_style(button0, "left", "0px");
     			set_style(button0, "width", /*spreadWidth*/ ctx[1](0.25, /*WIDTH*/ ctx[0]) + "px");
     			attr_dev(button0, "class", "svelte-1fgpcij");
-    			add_location(button0, file$5, 49, 1, 1631);
+    			add_location(button0, file$5, 41, 1, 1232);
     			set_style(button1, "left", /*WIDTH*/ ctx[0] / 4 + "px");
     			set_style(button1, "width", /*spreadWidth*/ ctx[1](0.50, /*WIDTH*/ ctx[0]) + "px");
     			attr_dev(button1, "class", "svelte-1fgpcij");
-    			add_location(button1, file$5, 50, 1, 1735);
+    			add_location(button1, file$5, 42, 1, 1336);
     			set_style(button2, "left", 3 * /*WIDTH*/ ctx[0] / 4 + "px");
     			set_style(button2, "width", /*spreadWidth*/ ctx[1](0.25, /*WIDTH*/ ctx[0]) + "px");
     			attr_dev(button2, "class", "svelte-1fgpcij");
-    			add_location(button2, file$5, 51, 1, 1863);
+    			add_location(button2, file$5, 43, 1, 1464);
     			set_style(div, "width", /*WIDTH*/ ctx[0] + "px");
     			set_style(div, "height", "34px");
     			attr_dev(div, "class", "svelte-1fgpcij");
-    			add_location(div, file$5, 48, 0, 1586);
+    			add_location(div, file$5, 40, 0, 1187);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21188,9 +21188,8 @@ var app = (function () {
 
     		for (const i in lodash.range(selected.length)) {
     			if (selected[i] == true) {
-    				const path = images[i][2];
-    				const p = path.lastIndexOf("\\");
-    				fileArr.push({ name: path.slice(p + 1), url: path });
+    				const path = images[i][2] + "\\" + images[i][12];
+    				fileArr.push({ name: path, url: path });
     			}
     		}
 
@@ -23405,7 +23404,7 @@ var app = (function () {
 
     const { Object: Object_1, console: console_1, window: window_1 } = globals;
 
-    // (327:0) {:else}
+    // (328:0) {:else}
     function create_else_block_1(ctx) {
     	let bigpicture;
     	let current;
@@ -23446,14 +23445,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(327:0) {:else}",
+    		source: "(328:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (317:0) {#if big.file == ""}
+    // (318:0) {#if big.file == ""}
     function create_if_block(ctx) {
     	let search_1;
     	let updating_sokruta;
@@ -23673,14 +23672,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(317:0) {#if big.file == \\\"\\\"}",
+    		source: "(318:0) {#if big.file == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (324:1) {:else}
+    // (325:1) {:else}
     function create_else_block(ctx) {
     	let infinite;
     	let updating_selected;
@@ -23743,14 +23742,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(324:1) {:else}",
+    		source: "(325:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (322:1) {#if helpToggle}
+    // (323:1) {#if helpToggle}
     function create_if_block_1(ctx) {
     	let help;
     	let current;
@@ -23783,7 +23782,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(322:1) {#if helpToggle}",
+    		source: "(323:1) {#if helpToggle}",
     		ctx
     	});
 
@@ -24128,11 +24127,12 @@ var app = (function () {
     		recursiveSearch(node, words, path);
 
     		//res.sort(comp)
-    		res.sort((a, b) => multiSort(a, b, [1, 2, -3, 13])); // OBS: index++
+    		// console.log('före',res)
+    		res.sort((a, b) => multiSort(a, b, [1, 2, -3, 13])); // OBS: index++  [-letters.length, letters, -path, key] [-3, 'ABC', 'Home/2022/2022-09-17...', 'Pelle...jpg']
 
-    		//res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++  -letters.length letters -path key
-    		//res = res
-    		//console.log(res)
+    		// res = res 
+    		// console.log('efter',res)
+    		//res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++
     		const keys = Object.keys(stat);
 
     		keys.sort(comp2);
