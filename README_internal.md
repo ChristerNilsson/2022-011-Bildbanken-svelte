@@ -100,5 +100,8 @@ För att underlätta anpassning till mobiler och paddor, begränsas antalet olik
 * display
 * flex
 
+### Tvingades placera knapparna för search och download med position:absolute.
 
-
+Browsern har ett gap mellan knapparna som ej kan förklaras.
+Känns som att en vit rand utanför knappen ingår.
+Knappar med 25%+50%+25% fick ej plats på 100%.

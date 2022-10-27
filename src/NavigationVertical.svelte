@@ -3,9 +3,10 @@
 	export let path
 	export let push
 	export let is_jpg
+	export let WIDTH
 </script>
 
-<div>
+<div style="width:{WIDTH}px">
 	{#each _.keys(_.last(path)) as key } 
 		<div>
 			{#if ! is_jpg(key)}
@@ -22,20 +23,9 @@
 		margin:0px
 	}
 	button {
-		margin:1px;
-		height:33px;
-		width:473px;
+		margin:2px;
+		height:30px;
+		width:99%;
 		text-align:left;
 	}
 </style>
-
-
-<!-- <select bind:value={selected} size=10 style="width:470px;" >
-	{#each _.keys(_.last(path)) as key } 
-		{#if ! is_jpg(key)}
-			<option value={key} on:click = {() => push(key)}>
-				{key}
-			</option>
-		{/if}
-	{/each}
-</select> -->

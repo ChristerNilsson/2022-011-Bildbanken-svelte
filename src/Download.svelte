@@ -6,6 +6,8 @@
 
 	export let selected
 	export let images
+	export let WIDTH
+	export let spreadWidth
 
 	$: n = _.sumBy(selected, (value) => value ? 1 : 0)
 
@@ -37,19 +39,27 @@
 
 </script>
 
-<div style="width:475px" >
-	<button style="width:115px" on:click = {none}>None</button>
-	<button style="width:229px" on:click = {downloadAll}>Download {n} image(s)</button>
-	<button style="width:115px" on:click = {all}>All</button>
+<!-- <div style="width:{WIDTH}px; height:34px">
+	<button on:click={share} style="left:0px;           width:{spreadWidth(1/3,WIDTH)}px">Share</button>
+	<button on:click={clear} style="left:{WIDTH/3}px;   width:{spreadWidth(1/3,WIDTH)}px">Clear</button>
+	<button on:click={help}  style="left:{2*WIDTH/3}px; width:{spreadWidth(1/3,WIDTH)}px">Help</button>
+</div> -->
+
+
+<div style="width:{WIDTH}px; height:34px">
+	<button style="left:0px;           width:{spreadWidth(0.25,WIDTH)}px" on:click = {none}>None</button>
+	<button style="left:{WIDTH/4}px;   width:{spreadWidth(0.50,WIDTH)}px" on:click = {downloadAll}>Download {n} image(s)</button>
+	<button style="left:{3*WIDTH/4}px; width:{spreadWidth(0.25,WIDTH)}px" on:click = {all}>All</button>
 </div>
 
 <style>
-button{
-	margin:1px;
-	height:33px;
-}
-div {
-	margin:0px
-}
+	button {
+		position:absolute;
+		height:30px;
+		margin:2px;
+	}
+	div {
+		margin:0px
+	}
 </style>
 

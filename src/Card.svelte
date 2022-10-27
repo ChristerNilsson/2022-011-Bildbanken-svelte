@@ -37,12 +37,12 @@
 
 </script>
 
-<div class="card" id="images" style="position:absolute; left:{card[5]}px; top:{card[6]}px">
+<div class="card" id="images" style="position:absolute; width:{WIDTH}px; left:{card[5]}px; top:{card[6]}px">
 	<img 
 		margin:0px
 		padding:0px
 		src = {getPath(card[2].split("\\"),"small")}
-		width = {WIDTH}
+		width = {WIDTH}px
 		alt = ""
 		on:click = {() => {
 			const host = location.origin + location.pathname
@@ -51,13 +51,13 @@
 		on:keydown = {() =>{}}
 	/>
 	<div class="group">
-		<div class="info" >&nbsp;{prettyFilename(card[2])}
+		<div class="info" style="width:{WIDTH}px">&nbsp;{prettyFilename(card[2])}
 			<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(card[2],'M')}">{getNumber(card[2],'M')}</a>
 		</div>
-		<div class="info" >&nbsp;{prettyPath(card[2])}
+		<div class="info" style="width:{WIDTH}px">&nbsp;{prettyPath(card[2])}
 			<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={getNumber(card[2],'T')}">{getNumber(card[2],'T')}</a>
 		</div>
-		<div class="info" style="display:flex; height:13px">
+		<div class="info" style="display:flex; height:13px; width:{WIDTH}px">
 			&nbsp;{card[7]} • &nbsp;
 			<input class="largerCheckbox" type="checkbox" value="" bind:checked={selected[index]}/> &nbsp; •&nbsp;
 			{card[1]}
@@ -81,14 +81,14 @@
 		text-align:left;
 		padding-top:1px;
 		white-space:nowrap;
-		width:475px;
+		/* width:475px; */
 		overflow:hidden;
 		background-color:lightgray;
 	}
 	.card {
 		margin:0px;
 		font-size: 0.9em;
-		width: 475px; 
+		/* width: 475px;  */
 		max-height: 800px;
 	}
 	div {

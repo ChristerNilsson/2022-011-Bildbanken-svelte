@@ -2,9 +2,10 @@
 	import _ from "lodash"
 	export let stack
 	export let pop
+	export let WIDTH
 </script>
 
-<div style="width:470px">
+<div style="width:{WIDTH}px">
 	{#each stack as key }
 		<div>
 			{#if key == _.last(stack)}
@@ -18,9 +19,9 @@
 
 <style>
 	button {
-		margin:1px;
-		height:33px;
-		width:473px;
+		margin:2px;
+		height:30px;
+		width:99%;
 		text-align:left;
 	}
 </style>

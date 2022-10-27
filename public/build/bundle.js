@@ -17572,6 +17572,7 @@ var app = (function () {
     	let div4;
     	let img;
     	let img_src_value;
+    	let img_width_value;
     	let t0;
     	let div3;
     	let div0;
@@ -17665,41 +17666,45 @@ var app = (function () {
     			attr_dev(img, "margin:0px", "");
     			attr_dev(img, "padding:0px", "");
     			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*card*/ ctx[3][2].split("\\"), "small"))) attr_dev(img, "src", img_src_value);
-    			attr_dev(img, "width", /*WIDTH*/ ctx[1]);
+    			attr_dev(img, "width", img_width_value = "" + (/*WIDTH*/ ctx[1] + "px"));
     			attr_dev(img, "alt", "");
-    			add_location(img, file$6, 40, 1, 1070);
+    			add_location(img, file$6, 40, 1, 1087);
     			attr_dev(a0, "target", "_blank");
     			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'M'));
-    			add_location(a0, file$6, 54, 3, 1489);
-    			attr_dev(div0, "class", "info svelte-p9eyzy");
-    			add_location(div0, file$6, 53, 2, 1434);
+    			add_location(a0, file$6, 54, 3, 1531);
+    			attr_dev(div0, "class", "info svelte-iykdbq");
+    			set_style(div0, "width", /*WIDTH*/ ctx[1] + "px");
+    			add_location(div0, file$6, 53, 2, 1453);
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'T'));
-    			add_location(a1, file$6, 57, 3, 1691);
-    			attr_dev(div1, "class", "info svelte-p9eyzy");
-    			add_location(div1, file$6, 56, 2, 1640);
-    			attr_dev(input, "class", "largerCheckbox svelte-p9eyzy");
+    			add_location(a1, file$6, 57, 3, 1756);
+    			attr_dev(div1, "class", "info svelte-iykdbq");
+    			set_style(div1, "width", /*WIDTH*/ ctx[1] + "px");
+    			add_location(div1, file$6, 56, 2, 1682);
+    			attr_dev(input, "class", "largerCheckbox svelte-iykdbq");
     			attr_dev(input, "type", "checkbox");
     			input.__value = "";
     			input.value = input.__value;
-    			add_location(input, file$6, 61, 3, 1920);
+    			add_location(input, file$6, 61, 3, 2002);
     			set_style(span0, "flex", "2");
     			set_style(span0, "text-align", "center");
     			set_style(span0, "white-space", "nowrap");
-    			add_location(span0, file$6, 63, 3, 2041);
+    			add_location(span0, file$6, 63, 3, 2123);
     			set_style(span1, "flex", "1");
     			set_style(span1, "text-align", "right");
     			set_style(span1, "white-space", "nowrap");
-    			add_location(span1, file$6, 64, 3, 2133);
-    			attr_dev(div2, "class", "info svelte-p9eyzy");
+    			add_location(span1, file$6, 64, 3, 2215);
+    			attr_dev(div2, "class", "info svelte-iykdbq");
     			set_style(div2, "display", "flex");
     			set_style(div2, "height", "13px");
-    			add_location(div2, file$6, 59, 2, 1834);
-    			attr_dev(div3, "class", "group svelte-p9eyzy");
-    			add_location(div3, file$6, 52, 1, 1411);
-    			attr_dev(div4, "class", "card svelte-p9eyzy");
+    			set_style(div2, "width", /*WIDTH*/ ctx[1] + "px");
+    			add_location(div2, file$6, 59, 2, 1899);
+    			attr_dev(div3, "class", "group svelte-iykdbq");
+    			add_location(div3, file$6, 52, 1, 1430);
+    			attr_dev(div4, "class", "card svelte-iykdbq");
     			attr_dev(div4, "id", "images");
     			set_style(div4, "position", "absolute");
+    			set_style(div4, "width", /*WIDTH*/ ctx[1] + "px");
     			set_style(div4, "left", /*card*/ ctx[3][5] + "px");
     			set_style(div4, "top", /*card*/ ctx[3][6] + "px");
     			add_location(div4, file$6, 39, 0, 976);
@@ -17762,8 +17767,8 @@ var app = (function () {
     				attr_dev(img, "src", img_src_value);
     			}
 
-    			if (dirty & /*WIDTH*/ 2) {
-    				attr_dev(img, "width", /*WIDTH*/ ctx[1]);
+    			if (dirty & /*WIDTH*/ 2 && img_width_value !== (img_width_value = "" + (/*WIDTH*/ ctx[1] + "px"))) {
+    				attr_dev(img, "width", img_width_value);
     			}
 
     			if (dirty & /*card*/ 8 && t2_value !== (t2_value = prettyFilename(/*card*/ ctx[3][2]) + "")) set_data_dev(t2, t2_value);
@@ -17773,11 +17778,19 @@ var app = (function () {
     				attr_dev(a0, "href", a0_href_value);
     			}
 
+    			if (dirty & /*WIDTH*/ 2) {
+    				set_style(div0, "width", /*WIDTH*/ ctx[1] + "px");
+    			}
+
     			if (dirty & /*card*/ 8 && t7_value !== (t7_value = prettyPath(/*card*/ ctx[3][2]) + "")) set_data_dev(t7, t7_value);
     			if (dirty & /*card*/ 8 && t9_value !== (t9_value = /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'T') + "")) set_data_dev(t9, t9_value);
 
     			if (dirty & /*card*/ 8 && a1_href_value !== (a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'T'))) {
     				attr_dev(a1, "href", a1_href_value);
+    			}
+
+    			if (dirty & /*WIDTH*/ 2) {
+    				set_style(div1, "width", /*WIDTH*/ ctx[1] + "px");
     			}
 
     			if (dirty & /*card*/ 8 && t12_value !== (t12_value = /*card*/ ctx[3][7] + "")) set_data_dev(t12, t12_value);
@@ -17791,6 +17804,14 @@ var app = (function () {
     			if (dirty & /*card*/ 8 && t21_value !== (t21_value = /*card*/ ctx[3][10] + "")) set_data_dev(t21, t21_value);
     			if (dirty & /*card*/ 8 && t23_value !== (t23_value = /*card*/ ctx[3][11] + "")) set_data_dev(t23, t23_value);
     			if (dirty & /*round, card*/ 40 && t25_value !== (t25_value = /*round*/ ctx[5](/*card*/ ctx[3][9] / 1024, 0) + "")) set_data_dev(t25, t25_value);
+
+    			if (dirty & /*WIDTH*/ 2) {
+    				set_style(div2, "width", /*WIDTH*/ ctx[1] + "px");
+    			}
+
+    			if (dirty & /*WIDTH*/ 2) {
+    				set_style(div4, "width", /*WIDTH*/ ctx[1] + "px");
+    			}
 
     			if (dirty & /*card*/ 8) {
     				set_style(div4, "left", /*card*/ ctx[3][5] + "px");
@@ -21005,6 +21026,7 @@ var app = (function () {
     function create_fragment$7(ctx) {
     	let div;
     	let button0;
+    	let t0;
     	let t1;
     	let button1;
     	let t2;
@@ -21012,6 +21034,7 @@ var app = (function () {
     	let t4;
     	let t5;
     	let button2;
+    	let t6;
     	let mounted;
     	let dispose;
 
@@ -21019,27 +21042,31 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			button0 = element("button");
-    			button0.textContent = "None";
+    			t0 = text("None");
     			t1 = space();
     			button1 = element("button");
     			t2 = text("Download ");
-    			t3 = text(/*n*/ ctx[0]);
+    			t3 = text(/*n*/ ctx[2]);
     			t4 = text(" image(s)");
     			t5 = space();
     			button2 = element("button");
-    			button2.textContent = "All";
-    			set_style(button0, "width", "115px");
-    			attr_dev(button0, "class", "svelte-1klok7z");
-    			add_location(button0, file$5, 40, 1, 1198);
-    			set_style(button1, "width", "229px");
-    			attr_dev(button1, "class", "svelte-1klok7z");
-    			add_location(button1, file$5, 41, 1, 1260);
-    			set_style(button2, "width", "115px");
-    			attr_dev(button2, "class", "svelte-1klok7z");
-    			add_location(button2, file$5, 42, 1, 1346);
-    			set_style(div, "width", "475px");
-    			attr_dev(div, "class", "svelte-1klok7z");
-    			add_location(div, file$5, 39, 0, 1169);
+    			t6 = text("All");
+    			set_style(button0, "left", "0px");
+    			set_style(button0, "width", /*spreadWidth*/ ctx[1](0.25, /*WIDTH*/ ctx[0]) + "px");
+    			attr_dev(button0, "class", "svelte-1fgpcij");
+    			add_location(button0, file$5, 49, 1, 1631);
+    			set_style(button1, "left", /*WIDTH*/ ctx[0] / 4 + "px");
+    			set_style(button1, "width", /*spreadWidth*/ ctx[1](0.50, /*WIDTH*/ ctx[0]) + "px");
+    			attr_dev(button1, "class", "svelte-1fgpcij");
+    			add_location(button1, file$5, 50, 1, 1735);
+    			set_style(button2, "left", 3 * /*WIDTH*/ ctx[0] / 4 + "px");
+    			set_style(button2, "width", /*spreadWidth*/ ctx[1](0.25, /*WIDTH*/ ctx[0]) + "px");
+    			attr_dev(button2, "class", "svelte-1fgpcij");
+    			add_location(button2, file$5, 51, 1, 1863);
+    			set_style(div, "width", /*WIDTH*/ ctx[0] + "px");
+    			set_style(div, "height", "34px");
+    			attr_dev(div, "class", "svelte-1fgpcij");
+    			add_location(div, file$5, 48, 0, 1586);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21047,6 +21074,7 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, button0);
+    			append_dev(button0, t0);
     			append_dev(div, t1);
     			append_dev(div, button1);
     			append_dev(button1, t2);
@@ -21054,19 +21082,44 @@ var app = (function () {
     			append_dev(button1, t4);
     			append_dev(div, t5);
     			append_dev(div, button2);
+    			append_dev(button2, t6);
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button0, "click", /*none*/ ctx[2], false, false, false),
-    					listen_dev(button1, "click", /*downloadAll*/ ctx[3], false, false, false),
-    					listen_dev(button2, "click", /*all*/ ctx[1], false, false, false)
+    					listen_dev(button0, "click", /*none*/ ctx[4], false, false, false),
+    					listen_dev(button1, "click", /*downloadAll*/ ctx[5], false, false, false),
+    					listen_dev(button2, "click", /*all*/ ctx[3], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*n*/ 1) set_data_dev(t3, /*n*/ ctx[0]);
+    			if (dirty & /*spreadWidth, WIDTH*/ 3) {
+    				set_style(button0, "width", /*spreadWidth*/ ctx[1](0.25, /*WIDTH*/ ctx[0]) + "px");
+    			}
+
+    			if (dirty & /*n*/ 4) set_data_dev(t3, /*n*/ ctx[2]);
+
+    			if (dirty & /*WIDTH*/ 1) {
+    				set_style(button1, "left", /*WIDTH*/ ctx[0] / 4 + "px");
+    			}
+
+    			if (dirty & /*spreadWidth, WIDTH*/ 3) {
+    				set_style(button1, "width", /*spreadWidth*/ ctx[1](0.50, /*WIDTH*/ ctx[0]) + "px");
+    			}
+
+    			if (dirty & /*WIDTH*/ 1) {
+    				set_style(button2, "left", 3 * /*WIDTH*/ ctx[0] / 4 + "px");
+    			}
+
+    			if (dirty & /*spreadWidth, WIDTH*/ 3) {
+    				set_style(button2, "width", /*spreadWidth*/ ctx[1](0.25, /*WIDTH*/ ctx[0]) + "px");
+    			}
+
+    			if (dirty & /*WIDTH*/ 1) {
+    				set_style(div, "width", /*WIDTH*/ ctx[0] + "px");
+    			}
     		},
     		i: noop$1,
     		o: noop$1,
@@ -21094,9 +21147,11 @@ var app = (function () {
     	validate_slots('Download', slots, []);
     	let { selected } = $$props;
     	let { images } = $$props;
+    	let { WIDTH } = $$props;
+    	let { spreadWidth } = $$props;
 
     	function make(value) {
-    		$$invalidate(4, selected = lodash.map(images, () => value));
+    		$$invalidate(6, selected = lodash.map(images, () => value));
     	}
 
     	function download(item) {
@@ -21129,7 +21184,7 @@ var app = (function () {
     			}
     		}
 
-    		$$invalidate(0, n = fileArr.length);
+    		$$invalidate(2, n = fileArr.length);
     		if (fileArr.length == 0) return;
     		const arrOfFiles = fileArr.map(item => download(item)); //create array of promises
 
@@ -21150,17 +21205,27 @@ var app = (function () {
     		if (images === undefined && !('images' in $$props || $$self.$$.bound[$$self.$$.props['images']])) {
     			console_1$1.warn("<Download> was created without expected prop 'images'");
     		}
+
+    		if (WIDTH === undefined && !('WIDTH' in $$props || $$self.$$.bound[$$self.$$.props['WIDTH']])) {
+    			console_1$1.warn("<Download> was created without expected prop 'WIDTH'");
+    		}
+
+    		if (spreadWidth === undefined && !('spreadWidth' in $$props || $$self.$$.bound[$$self.$$.props['spreadWidth']])) {
+    			console_1$1.warn("<Download> was created without expected prop 'spreadWidth'");
+    		}
     	});
 
-    	const writable_props = ['selected', 'images'];
+    	const writable_props = ['selected', 'images', 'WIDTH', 'spreadWidth'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1$1.warn(`<Download> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$$set = $$props => {
-    		if ('selected' in $$props) $$invalidate(4, selected = $$props.selected);
-    		if ('images' in $$props) $$invalidate(5, images = $$props.images);
+    		if ('selected' in $$props) $$invalidate(6, selected = $$props.selected);
+    		if ('images' in $$props) $$invalidate(7, images = $$props.images);
+    		if ('WIDTH' in $$props) $$invalidate(0, WIDTH = $$props.WIDTH);
+    		if ('spreadWidth' in $$props) $$invalidate(1, spreadWidth = $$props.spreadWidth);
     	};
 
     	$$self.$capture_state = () => ({
@@ -21170,6 +21235,8 @@ var app = (function () {
     		saveAs: FileSaver_min.saveAs,
     		selected,
     		images,
+    		WIDTH,
+    		spreadWidth,
     		make,
     		download,
     		zip,
@@ -21180,10 +21247,12 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('selected' in $$props) $$invalidate(4, selected = $$props.selected);
-    		if ('images' in $$props) $$invalidate(5, images = $$props.images);
+    		if ('selected' in $$props) $$invalidate(6, selected = $$props.selected);
+    		if ('images' in $$props) $$invalidate(7, images = $$props.images);
+    		if ('WIDTH' in $$props) $$invalidate(0, WIDTH = $$props.WIDTH);
+    		if ('spreadWidth' in $$props) $$invalidate(1, spreadWidth = $$props.spreadWidth);
     		if ('zip' in $$props) zip = $$props.zip;
-    		if ('n' in $$props) $$invalidate(0, n = $$props.n);
+    		if ('n' in $$props) $$invalidate(2, n = $$props.n);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -21191,18 +21260,24 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*selected*/ 16) {
-    			$$invalidate(0, n = lodash.sumBy(selected, value => value ? 1 : 0));
+    		if ($$self.$$.dirty & /*selected*/ 64) {
+    			$$invalidate(2, n = lodash.sumBy(selected, value => value ? 1 : 0));
     		}
     	};
 
-    	return [n, all, none, downloadAll, selected, images];
+    	return [WIDTH, spreadWidth, n, all, none, downloadAll, selected, images];
     }
 
     class Download extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { selected: 4, images: 5 });
+
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, {
+    			selected: 6,
+    			images: 7,
+    			WIDTH: 0,
+    			spreadWidth: 1
+    		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -21225,6 +21300,22 @@ var app = (function () {
     	}
 
     	set images(value) {
+    		throw new Error("<Download>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get WIDTH() {
+    		throw new Error("<Download>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set WIDTH(value) {
+    		throw new Error("<Download>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get spreadWidth() {
+    		throw new Error("<Download>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set spreadWidth(value) {
     		throw new Error("<Download>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -21419,30 +21510,30 @@ var app = (function () {
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[4] = list[i];
+    	child_ctx[5] = list[i];
     	return child_ctx;
     }
 
-    // (11:3) {#if ! is_jpg(key)}
+    // (12:3) {#if ! is_jpg(key)}
     function create_if_block$4(ctx) {
     	let button;
-    	let t_value = /*key*/ ctx[4] + "";
+    	let t_value = /*key*/ ctx[5] + "";
     	let t;
     	let button_value_value;
     	let mounted;
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[3](/*key*/ ctx[4]);
+    		return /*click_handler*/ ctx[4](/*key*/ ctx[5]);
     	}
 
     	const block = {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			button.value = button_value_value = /*key*/ ctx[4];
-    			attr_dev(button, "class", "svelte-9nx8yu");
-    			add_location(button, file$3, 11, 4, 188);
+    			button.value = button_value_value = /*key*/ ctx[5];
+    			attr_dev(button, "class", "svelte-10r6lf3");
+    			add_location(button, file$3, 12, 4, 231);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21455,9 +21546,9 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*path*/ 1 && t_value !== (t_value = /*key*/ ctx[4] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*path*/ 1 && t_value !== (t_value = /*key*/ ctx[5] + "")) set_data_dev(t, t_value);
 
-    			if (dirty & /*path*/ 1 && button_value_value !== (button_value_value = /*key*/ ctx[4])) {
+    			if (dirty & /*path*/ 1 && button_value_value !== (button_value_value = /*key*/ ctx[5])) {
     				prop_dev(button, "value", button_value_value);
     			}
     		},
@@ -21472,17 +21563,17 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(11:3) {#if ! is_jpg(key)}",
+    		source: "(12:3) {#if ! is_jpg(key)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (9:1) {#each _.keys(_.last(path)) as key }
+    // (10:1) {#each _.keys(_.last(path)) as key }
     function create_each_block$2(ctx) {
     	let div;
-    	let show_if = !/*is_jpg*/ ctx[2](/*key*/ ctx[4]);
+    	let show_if = !/*is_jpg*/ ctx[2](/*key*/ ctx[5]);
     	let t;
     	let if_block = show_if && create_if_block$4(ctx);
 
@@ -21491,8 +21582,8 @@ var app = (function () {
     			div = element("div");
     			if (if_block) if_block.c();
     			t = space();
-    			attr_dev(div, "class", "svelte-9nx8yu");
-    			add_location(div, file$3, 9, 2, 153);
+    			attr_dev(div, "class", "svelte-10r6lf3");
+    			add_location(div, file$3, 10, 2, 196);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -21500,7 +21591,7 @@ var app = (function () {
     			append_dev(div, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*is_jpg, path*/ 5) show_if = !/*is_jpg*/ ctx[2](/*key*/ ctx[4]);
+    			if (dirty & /*is_jpg, path*/ 5) show_if = !/*is_jpg*/ ctx[2](/*key*/ ctx[5]);
 
     			if (show_if) {
     				if (if_block) {
@@ -21525,7 +21616,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(9:1) {#each _.keys(_.last(path)) as key }",
+    		source: "(10:1) {#each _.keys(_.last(path)) as key }",
     		ctx
     	});
 
@@ -21550,8 +21641,9 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div, "class", "svelte-9nx8yu");
-    			add_location(div, file$3, 7, 0, 104);
+    			set_style(div, "width", /*WIDTH*/ ctx[3] + "px");
+    			attr_dev(div, "class", "svelte-10r6lf3");
+    			add_location(div, file$3, 8, 0, 123);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21587,6 +21679,10 @@ var app = (function () {
 
     				each_blocks.length = each_value.length;
     			}
+
+    			if (dirty & /*WIDTH*/ 8) {
+    				set_style(div, "width", /*WIDTH*/ ctx[3] + "px");
+    			}
     		},
     		i: noop$1,
     		o: noop$1,
@@ -21613,6 +21709,7 @@ var app = (function () {
     	let { path } = $$props;
     	let { push } = $$props;
     	let { is_jpg } = $$props;
+    	let { WIDTH } = $$props;
 
     	$$self.$$.on_mount.push(function () {
     		if (path === undefined && !('path' in $$props || $$self.$$.bound[$$self.$$.props['path']])) {
@@ -21626,9 +21723,13 @@ var app = (function () {
     		if (is_jpg === undefined && !('is_jpg' in $$props || $$self.$$.bound[$$self.$$.props['is_jpg']])) {
     			console.warn("<NavigationVertical> was created without expected prop 'is_jpg'");
     		}
+
+    		if (WIDTH === undefined && !('WIDTH' in $$props || $$self.$$.bound[$$self.$$.props['WIDTH']])) {
+    			console.warn("<NavigationVertical> was created without expected prop 'WIDTH'");
+    		}
     	});
 
-    	const writable_props = ['path', 'push', 'is_jpg'];
+    	const writable_props = ['path', 'push', 'is_jpg', 'WIDTH'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<NavigationVertical> was created with unknown prop '${key}'`);
@@ -21640,27 +21741,29 @@ var app = (function () {
     		if ('path' in $$props) $$invalidate(0, path = $$props.path);
     		if ('push' in $$props) $$invalidate(1, push = $$props.push);
     		if ('is_jpg' in $$props) $$invalidate(2, is_jpg = $$props.is_jpg);
+    		if ('WIDTH' in $$props) $$invalidate(3, WIDTH = $$props.WIDTH);
     	};
 
-    	$$self.$capture_state = () => ({ _: lodash, path, push, is_jpg });
+    	$$self.$capture_state = () => ({ _: lodash, path, push, is_jpg, WIDTH });
 
     	$$self.$inject_state = $$props => {
     		if ('path' in $$props) $$invalidate(0, path = $$props.path);
     		if ('push' in $$props) $$invalidate(1, push = $$props.push);
     		if ('is_jpg' in $$props) $$invalidate(2, is_jpg = $$props.is_jpg);
+    		if ('WIDTH' in $$props) $$invalidate(3, WIDTH = $$props.WIDTH);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [path, push, is_jpg, click_handler];
+    	return [path, push, is_jpg, WIDTH, click_handler];
     }
 
     class NavigationVertical extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { path: 0, push: 1, is_jpg: 2 });
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { path: 0, push: 1, is_jpg: 2, WIDTH: 3 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -21693,6 +21796,14 @@ var app = (function () {
     	set is_jpg(value) {
     		throw new Error("<NavigationVertical>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get WIDTH() {
+    		throw new Error("<NavigationVertical>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set WIDTH(value) {
+    		throw new Error("<NavigationVertical>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
     /* src\NavigationHorisontal.svelte generated by Svelte v3.51.0 */
@@ -21700,28 +21811,28 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
+    	child_ctx[4] = list[i];
     	return child_ctx;
     }
 
-    // (12:3) {:else}
+    // (13:3) {:else}
     function create_else_block$1(ctx) {
     	let button;
-    	let t_value = /*key*/ ctx[3] + "";
+    	let t_value = /*key*/ ctx[4] + "";
     	let t;
     	let mounted;
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[2](/*key*/ ctx[3]);
+    		return /*click_handler*/ ctx[3](/*key*/ ctx[4]);
     	}
 
     	const block = {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			attr_dev(button, "class", "svelte-1870xpj");
-    			add_location(button, file$2, 12, 4, 276);
+    			attr_dev(button, "class", "svelte-1bw5vik");
+    			add_location(button, file$2, 13, 4, 299);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21734,7 +21845,7 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*stack*/ 1 && t_value !== (t_value = /*key*/ ctx[3] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*stack*/ 1 && t_value !== (t_value = /*key*/ ctx[4] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(button);
@@ -21747,18 +21858,18 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(12:3) {:else}",
+    		source: "(13:3) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (10:3) {#if key == _.last(stack)}
+    // (11:3) {#if key == _.last(stack)}
     function create_if_block$3(ctx) {
     	let button;
     	let b;
-    	let t_value = /*key*/ ctx[3] + "";
+    	let t_value = /*key*/ ctx[4] + "";
     	let t;
 
     	const block = {
@@ -21766,11 +21877,11 @@ var app = (function () {
     			button = element("button");
     			b = element("b");
     			t = text(t_value);
-    			add_location(b, file$2, 10, 62, 237);
+    			add_location(b, file$2, 11, 62, 260);
     			set_style(button, "border", "0px");
     			set_style(button, "background-color", "transparent");
-    			attr_dev(button, "class", "svelte-1870xpj");
-    			add_location(button, file$2, 10, 4, 179);
+    			attr_dev(button, "class", "svelte-1bw5vik");
+    			add_location(button, file$2, 11, 4, 202);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21778,7 +21889,7 @@ var app = (function () {
     			append_dev(b, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*stack*/ 1 && t_value !== (t_value = /*key*/ ctx[3] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*stack*/ 1 && t_value !== (t_value = /*key*/ ctx[4] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(button);
@@ -21789,14 +21900,14 @@ var app = (function () {
     		block,
     		id: create_if_block$3.name,
     		type: "if",
-    		source: "(10:3) {#if key == _.last(stack)}",
+    		source: "(11:3) {#if key == _.last(stack)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (8:1) {#each stack as key }
+    // (9:1) {#each stack as key }
     function create_each_block$1(ctx) {
     	let div;
     	let show_if;
@@ -21804,7 +21915,7 @@ var app = (function () {
 
     	function select_block_type(ctx, dirty) {
     		if (dirty & /*stack*/ 1) show_if = null;
-    		if (show_if == null) show_if = !!(/*key*/ ctx[3] == lodash.last(/*stack*/ ctx[0]));
+    		if (show_if == null) show_if = !!(/*key*/ ctx[4] == lodash.last(/*stack*/ ctx[0]));
     		if (show_if) return create_if_block$3;
     		return create_else_block$1;
     	}
@@ -21817,7 +21928,7 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			t = space();
-    			add_location(div, file$2, 8, 2, 137);
+    			add_location(div, file$2, 9, 2, 160);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -21847,7 +21958,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(8:1) {#each stack as key }",
+    		source: "(9:1) {#each stack as key }",
     		ctx
     	});
 
@@ -21872,8 +21983,8 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			set_style(div, "width", "470px");
-    			add_location(div, file$2, 6, 0, 84);
+    			set_style(div, "width", /*WIDTH*/ ctx[2] + "px");
+    			add_location(div, file$2, 7, 0, 103);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21909,6 +22020,10 @@ var app = (function () {
 
     				each_blocks.length = each_value.length;
     			}
+
+    			if (dirty & /*WIDTH*/ 4) {
+    				set_style(div, "width", /*WIDTH*/ ctx[2] + "px");
+    			}
     		},
     		i: noop$1,
     		o: noop$1,
@@ -21934,6 +22049,7 @@ var app = (function () {
     	validate_slots('NavigationHorisontal', slots, []);
     	let { stack } = $$props;
     	let { pop } = $$props;
+    	let { WIDTH } = $$props;
 
     	$$self.$$.on_mount.push(function () {
     		if (stack === undefined && !('stack' in $$props || $$self.$$.bound[$$self.$$.props['stack']])) {
@@ -21943,9 +22059,13 @@ var app = (function () {
     		if (pop === undefined && !('pop' in $$props || $$self.$$.bound[$$self.$$.props['pop']])) {
     			console.warn("<NavigationHorisontal> was created without expected prop 'pop'");
     		}
+
+    		if (WIDTH === undefined && !('WIDTH' in $$props || $$self.$$.bound[$$self.$$.props['WIDTH']])) {
+    			console.warn("<NavigationHorisontal> was created without expected prop 'WIDTH'");
+    		}
     	});
 
-    	const writable_props = ['stack', 'pop'];
+    	const writable_props = ['stack', 'pop', 'WIDTH'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<NavigationHorisontal> was created with unknown prop '${key}'`);
@@ -21956,26 +22076,28 @@ var app = (function () {
     	$$self.$$set = $$props => {
     		if ('stack' in $$props) $$invalidate(0, stack = $$props.stack);
     		if ('pop' in $$props) $$invalidate(1, pop = $$props.pop);
+    		if ('WIDTH' in $$props) $$invalidate(2, WIDTH = $$props.WIDTH);
     	};
 
-    	$$self.$capture_state = () => ({ _: lodash, stack, pop });
+    	$$self.$capture_state = () => ({ _: lodash, stack, pop, WIDTH });
 
     	$$self.$inject_state = $$props => {
     		if ('stack' in $$props) $$invalidate(0, stack = $$props.stack);
     		if ('pop' in $$props) $$invalidate(1, pop = $$props.pop);
+    		if ('WIDTH' in $$props) $$invalidate(2, WIDTH = $$props.WIDTH);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [stack, pop, click_handler];
+    	return [stack, pop, WIDTH, click_handler];
     }
 
     class NavigationHorisontal extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, { stack: 0, pop: 1 });
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, { stack: 0, pop: 1, WIDTH: 2 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -22000,13 +22122,21 @@ var app = (function () {
     	set pop(value) {
     		throw new Error("<NavigationHorisontal>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get WIDTH() {
+    		throw new Error("<NavigationHorisontal>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set WIDTH(value) {
+    		throw new Error("<NavigationHorisontal>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
     /* src\Search.svelte generated by Svelte v3.51.0 */
 
     const file$1 = "src\\Search.svelte";
 
-    // (36:0) {#if (sokruta.split(" ").length <= 3) && (sokruta.length > 0)}
+    // (43:0) {#if (sokruta.split(" ").length <= 3) && (sokruta.length > 0)}
     function create_if_block$2(ctx) {
     	let div;
     	let t;
@@ -22015,8 +22145,9 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			t = text(/*text0*/ ctx[1]);
-    			attr_dev(div, "class", "center svelte-tb7ys0");
-    			add_location(div, file$1, 36, 1, 949);
+    			attr_dev(div, "class", "center svelte-ywynv5");
+    			set_style(div, "width", /*WIDTH*/ ctx[3] + "px");
+    			add_location(div, file$1, 43, 1, 1244);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -22024,6 +22155,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*text0*/ 2) set_data_dev(t, /*text0*/ ctx[1]);
+
+    			if (dirty & /*WIDTH*/ 8) {
+    				set_style(div, "width", /*WIDTH*/ ctx[3] + "px");
+    			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
@@ -22034,7 +22169,7 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(36:0) {#if (sokruta.split(\\\" \\\").length <= 3) && (sokruta.length > 0)}",
+    		source: "(43:0) {#if (sokruta.split(\\\" \\\").length <= 3) && (sokruta.length > 0)}",
     		ctx
     	});
 
@@ -22049,10 +22184,13 @@ var app = (function () {
     	let t2;
     	let div1;
     	let button0;
+    	let t3;
     	let t4;
     	let button1;
+    	let t5;
     	let t6;
     	let button2;
+    	let t7;
     	let t8;
     	let show_if = /*sokruta*/ ctx[0].split(" ").length <= 3 && /*sokruta*/ ctx[0].length > 0;
     	let if_block_anchor;
@@ -22069,35 +22207,41 @@ var app = (function () {
     			t2 = space();
     			div1 = element("div");
     			button0 = element("button");
-    			button0.textContent = "Share";
+    			t3 = text("Share");
     			t4 = space();
     			button1 = element("button");
-    			button1.textContent = "Clear";
+    			t5 = text("Clear");
     			t6 = space();
     			button2 = element("button");
-    			button2.textContent = "Help";
+    			t7 = text("Help");
     			t8 = space();
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(input, "autocomplete", "off");
     			attr_dev(input, "id", "search");
     			attr_dev(input, "placeholder", "Search");
-    			attr_dev(input, "class", "svelte-tb7ys0");
-    			add_location(input, file$1, 26, 0, 535);
-    			attr_dev(div0, "class", "center svelte-tb7ys0");
-    			add_location(div0, file$1, 27, 0, 618);
-    			set_style(button0, "width", "153px");
-    			attr_dev(button0, "class", "svelte-tb7ys0");
-    			add_location(button0, file$1, 31, 1, 686);
-    			set_style(button1, "width", "153px");
-    			attr_dev(button1, "class", "svelte-tb7ys0");
-    			add_location(button1, file$1, 32, 1, 750);
-    			set_style(button2, "width", "153px");
-    			attr_dev(button2, "class", "svelte-tb7ys0");
-    			add_location(button2, file$1, 33, 1, 814);
-    			set_style(div1, "width", "475px");
-    			attr_dev(div1, "class", "svelte-tb7ys0");
-    			add_location(div1, file$1, 30, 0, 658);
+    			set_style(input, "width", /*WIDTH*/ ctx[3] - 2 * /*GAP*/ ctx[4] + "px");
+    			attr_dev(input, "class", "svelte-ywynv5");
+    			add_location(input, file$1, 31, 0, 639);
+    			attr_dev(div0, "class", "center svelte-ywynv5");
+    			set_style(div0, "width", /*WIDTH*/ ctx[3] + "px");
+    			add_location(div0, file$1, 32, 0, 751);
+    			set_style(button0, "left", "0px");
+    			set_style(button0, "width", /*spreadWidth*/ ctx[5](1 / 3, /*WIDTH*/ ctx[3]) + "px");
+    			attr_dev(button0, "class", "svelte-ywynv5");
+    			add_location(button0, file$1, 37, 1, 862);
+    			set_style(button1, "left", /*WIDTH*/ ctx[3] / 3 + "px");
+    			set_style(button1, "width", /*spreadWidth*/ ctx[5](1 / 3, /*WIDTH*/ ctx[3]) + "px");
+    			attr_dev(button1, "class", "svelte-ywynv5");
+    			add_location(button1, file$1, 38, 1, 965);
+    			set_style(button2, "left", 2 * /*WIDTH*/ ctx[3] / 3 + "px");
+    			set_style(button2, "width", /*spreadWidth*/ ctx[5](1 / 3, /*WIDTH*/ ctx[3]) + "px");
+    			attr_dev(button2, "class", "svelte-ywynv5");
+    			add_location(button2, file$1, 39, 1, 1068);
+    			set_style(div1, "width", /*WIDTH*/ ctx[3] + "px");
+    			set_style(div1, "height", "34px");
+    			attr_dev(div1, "class", "svelte-ywynv5");
+    			add_location(div1, file$1, 36, 0, 817);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -22111,31 +22255,67 @@ var app = (function () {
     			insert_dev(target, t2, anchor);
     			insert_dev(target, div1, anchor);
     			append_dev(div1, button0);
+    			append_dev(button0, t3);
     			append_dev(div1, t4);
     			append_dev(div1, button1);
+    			append_dev(button1, t5);
     			append_dev(div1, t6);
     			append_dev(div1, button2);
+    			append_dev(button2, t7);
     			insert_dev(target, t8, anchor);
     			if (if_block) if_block.m(target, anchor);
     			insert_dev(target, if_block_anchor, anchor);
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input, "input", /*input_input_handler*/ ctx[8]),
-    					listen_dev(button0, "click", /*share*/ ctx[4], false, false, false),
-    					listen_dev(button1, "click", /*clear*/ ctx[3], false, false, false),
-    					listen_dev(button2, "click", /*help*/ ctx[5], false, false, false)
+    					listen_dev(input, "input", /*input_input_handler*/ ctx[11]),
+    					listen_dev(button0, "click", /*share*/ ctx[7], false, false, false),
+    					listen_dev(button1, "click", /*clear*/ ctx[6], false, false, false),
+    					listen_dev(button2, "click", /*help*/ ctx[8], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
+    			if (dirty & /*WIDTH, GAP*/ 24) {
+    				set_style(input, "width", /*WIDTH*/ ctx[3] - 2 * /*GAP*/ ctx[4] + "px");
+    			}
+
     			if (dirty & /*sokruta*/ 1 && input.value !== /*sokruta*/ ctx[0]) {
     				set_input_value(input, /*sokruta*/ ctx[0]);
     			}
 
     			if (dirty & /*text1*/ 4) set_data_dev(t1, /*text1*/ ctx[2]);
+
+    			if (dirty & /*WIDTH*/ 8) {
+    				set_style(div0, "width", /*WIDTH*/ ctx[3] + "px");
+    			}
+
+    			if (dirty & /*spreadWidth, WIDTH*/ 40) {
+    				set_style(button0, "width", /*spreadWidth*/ ctx[5](1 / 3, /*WIDTH*/ ctx[3]) + "px");
+    			}
+
+    			if (dirty & /*WIDTH*/ 8) {
+    				set_style(button1, "left", /*WIDTH*/ ctx[3] / 3 + "px");
+    			}
+
+    			if (dirty & /*spreadWidth, WIDTH*/ 40) {
+    				set_style(button1, "width", /*spreadWidth*/ ctx[5](1 / 3, /*WIDTH*/ ctx[3]) + "px");
+    			}
+
+    			if (dirty & /*WIDTH*/ 8) {
+    				set_style(button2, "left", 2 * /*WIDTH*/ ctx[3] / 3 + "px");
+    			}
+
+    			if (dirty & /*spreadWidth, WIDTH*/ 40) {
+    				set_style(button2, "width", /*spreadWidth*/ ctx[5](1 / 3, /*WIDTH*/ ctx[3]) + "px");
+    			}
+
+    			if (dirty & /*WIDTH*/ 8) {
+    				set_style(div1, "width", /*WIDTH*/ ctx[3] + "px");
+    			}
+
     			if (dirty & /*sokruta*/ 1) show_if = /*sokruta*/ ctx[0].split(" ").length <= 3 && /*sokruta*/ ctx[0].length > 0;
 
     			if (show_if) {
@@ -22186,7 +22366,11 @@ var app = (function () {
     	let { text1 } = $$props;
     	let { stack } = $$props;
     	let { helpToggle } = $$props;
+    	let { WIDTH } = $$props;
+    	let { GAP } = $$props;
+    	let { spreadWidth } = $$props;
 
+    	// console.log('PELLE',WIDTH,GAP,COLS)
     	function clear() {
     		$$invalidate(0, sokruta = "");
     		document.getElementById("search").focus();
@@ -22199,7 +22383,7 @@ var app = (function () {
     	}
 
     	function help() {
-    		$$invalidate(6, helpToggle = !helpToggle);
+    		$$invalidate(9, helpToggle = !helpToggle);
     	}
 
     	window.onload = () => document.getElementById("search").focus();
@@ -22224,9 +22408,30 @@ var app = (function () {
     		if (helpToggle === undefined && !('helpToggle' in $$props || $$self.$$.bound[$$self.$$.props['helpToggle']])) {
     			console.warn("<Search> was created without expected prop 'helpToggle'");
     		}
+
+    		if (WIDTH === undefined && !('WIDTH' in $$props || $$self.$$.bound[$$self.$$.props['WIDTH']])) {
+    			console.warn("<Search> was created without expected prop 'WIDTH'");
+    		}
+
+    		if (GAP === undefined && !('GAP' in $$props || $$self.$$.bound[$$self.$$.props['GAP']])) {
+    			console.warn("<Search> was created without expected prop 'GAP'");
+    		}
+
+    		if (spreadWidth === undefined && !('spreadWidth' in $$props || $$self.$$.bound[$$self.$$.props['spreadWidth']])) {
+    			console.warn("<Search> was created without expected prop 'spreadWidth'");
+    		}
     	});
 
-    	const writable_props = ['sokruta', 'text0', 'text1', 'stack', 'helpToggle'];
+    	const writable_props = [
+    		'sokruta',
+    		'text0',
+    		'text1',
+    		'stack',
+    		'helpToggle',
+    		'WIDTH',
+    		'GAP',
+    		'spreadWidth'
+    	];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Search> was created with unknown prop '${key}'`);
@@ -22241,8 +22446,11 @@ var app = (function () {
     		if ('sokruta' in $$props) $$invalidate(0, sokruta = $$props.sokruta);
     		if ('text0' in $$props) $$invalidate(1, text0 = $$props.text0);
     		if ('text1' in $$props) $$invalidate(2, text1 = $$props.text1);
-    		if ('stack' in $$props) $$invalidate(7, stack = $$props.stack);
-    		if ('helpToggle' in $$props) $$invalidate(6, helpToggle = $$props.helpToggle);
+    		if ('stack' in $$props) $$invalidate(10, stack = $$props.stack);
+    		if ('helpToggle' in $$props) $$invalidate(9, helpToggle = $$props.helpToggle);
+    		if ('WIDTH' in $$props) $$invalidate(3, WIDTH = $$props.WIDTH);
+    		if ('GAP' in $$props) $$invalidate(4, GAP = $$props.GAP);
+    		if ('spreadWidth' in $$props) $$invalidate(5, spreadWidth = $$props.spreadWidth);
     	};
 
     	$$self.$capture_state = () => ({
@@ -22251,6 +22459,9 @@ var app = (function () {
     		text1,
     		stack,
     		helpToggle,
+    		WIDTH,
+    		GAP,
+    		spreadWidth,
     		clear,
     		share,
     		help
@@ -22260,8 +22471,11 @@ var app = (function () {
     		if ('sokruta' in $$props) $$invalidate(0, sokruta = $$props.sokruta);
     		if ('text0' in $$props) $$invalidate(1, text0 = $$props.text0);
     		if ('text1' in $$props) $$invalidate(2, text1 = $$props.text1);
-    		if ('stack' in $$props) $$invalidate(7, stack = $$props.stack);
-    		if ('helpToggle' in $$props) $$invalidate(6, helpToggle = $$props.helpToggle);
+    		if ('stack' in $$props) $$invalidate(10, stack = $$props.stack);
+    		if ('helpToggle' in $$props) $$invalidate(9, helpToggle = $$props.helpToggle);
+    		if ('WIDTH' in $$props) $$invalidate(3, WIDTH = $$props.WIDTH);
+    		if ('GAP' in $$props) $$invalidate(4, GAP = $$props.GAP);
+    		if ('spreadWidth' in $$props) $$invalidate(5, spreadWidth = $$props.spreadWidth);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -22272,6 +22486,9 @@ var app = (function () {
     		sokruta,
     		text0,
     		text1,
+    		WIDTH,
+    		GAP,
+    		spreadWidth,
     		clear,
     		share,
     		help,
@@ -22289,8 +22506,11 @@ var app = (function () {
     			sokruta: 0,
     			text0: 1,
     			text1: 2,
-    			stack: 7,
-    			helpToggle: 6
+    			stack: 10,
+    			helpToggle: 9,
+    			WIDTH: 3,
+    			GAP: 4,
+    			spreadWidth: 5
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -22338,6 +22558,30 @@ var app = (function () {
     	}
 
     	set helpToggle(value) {
+    		throw new Error("<Search>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get WIDTH() {
+    		throw new Error("<Search>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set WIDTH(value) {
+    		throw new Error("<Search>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get GAP() {
+    		throw new Error("<Search>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set GAP(value) {
+    		throw new Error("<Search>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get spreadWidth() {
+    		throw new Error("<Search>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set spreadWidth(value) {
     		throw new Error("<Search>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -23151,13 +23395,13 @@ var app = (function () {
 
     const { Object: Object_1, console: console_1, window: window_1 } = globals;
 
-    // (305:0) {:else}
+    // (316:0) {:else}
     function create_else_block_1(ctx) {
     	let bigpicture;
     	let current;
 
     	bigpicture = new BigPicture({
-    			props: { big: /*big*/ ctx[8] },
+    			props: { big: /*big*/ ctx[9] },
     			$$inline: true
     		});
 
@@ -23171,7 +23415,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const bigpicture_changes = {};
-    			if (dirty[0] & /*big*/ 256) bigpicture_changes.big = /*big*/ ctx[8];
+    			if (dirty[0] & /*big*/ 512) bigpicture_changes.big = /*big*/ ctx[9];
     			bigpicture.$set(bigpicture_changes);
     		},
     		i: function intro(local) {
@@ -23192,14 +23436,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(305:0) {:else}",
+    		source: "(316:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (295:0) {#if big.file == ""}
+    // (306:0) {#if big.file == ""}
     function create_if_block(ctx) {
     	let search_1;
     	let updating_sokruta;
@@ -23218,25 +23462,28 @@ var app = (function () {
     	let current;
 
     	function search_1_sokruta_binding(value) {
-    		/*search_1_sokruta_binding*/ ctx[17](value);
+    		/*search_1_sokruta_binding*/ ctx[19](value);
     	}
 
     	function search_1_helpToggle_binding(value) {
-    		/*search_1_helpToggle_binding*/ ctx[18](value);
+    		/*search_1_helpToggle_binding*/ ctx[20](value);
     	}
 
     	let search_1_props = {
-    		text0: /*text0*/ ctx[9],
-    		text1: /*text1*/ ctx[10],
-    		stack: /*stack*/ ctx[3]
+    		text0: /*text0*/ ctx[10],
+    		text1: /*text1*/ ctx[11],
+    		stack: /*stack*/ ctx[3],
+    		WIDTH: /*WIDTH*/ ctx[6],
+    		GAP,
+    		spreadWidth: /*spreadWidth*/ ctx[14]
     	};
 
     	if (/*sokruta*/ ctx[4] !== void 0) {
     		search_1_props.sokruta = /*sokruta*/ ctx[4];
     	}
 
-    	if (/*helpToggle*/ ctx[6] !== void 0) {
-    		search_1_props.helpToggle = /*helpToggle*/ ctx[6];
+    	if (/*helpToggle*/ ctx[7] !== void 0) {
+    		search_1_props.helpToggle = /*helpToggle*/ ctx[7];
     	}
 
     	search_1 = new Search({ props: search_1_props, $$inline: true });
@@ -23244,13 +23491,17 @@ var app = (function () {
     	binding_callbacks.push(() => bind$1(search_1, 'helpToggle', search_1_helpToggle_binding));
 
     	function download_selected_binding(value) {
-    		/*download_selected_binding*/ ctx[19](value);
+    		/*download_selected_binding*/ ctx[21](value);
     	}
 
-    	let download_props = { images: /*images*/ ctx[5] };
+    	let download_props = {
+    		images: /*images*/ ctx[5],
+    		WIDTH: /*WIDTH*/ ctx[6],
+    		spreadWidth: /*spreadWidth*/ ctx[14]
+    	};
 
-    	if (/*selected*/ ctx[7] !== void 0) {
-    		download_props.selected = /*selected*/ ctx[7];
+    	if (/*selected*/ ctx[8] !== void 0) {
+    		download_props.selected = /*selected*/ ctx[8];
     	}
 
     	download = new Download({ props: download_props, $$inline: true });
@@ -23259,7 +23510,8 @@ var app = (function () {
     	navigationhorisontal = new NavigationHorisontal({
     			props: {
     				stack: /*stack*/ ctx[3],
-    				pop: /*pop*/ ctx[14]
+    				pop: /*pop*/ ctx[16],
+    				WIDTH: /*WIDTH*/ ctx[6]
     			},
     			$$inline: true
     		});
@@ -23267,8 +23519,9 @@ var app = (function () {
     	navigationvertical = new NavigationVertical({
     			props: {
     				path: /*path*/ ctx[2],
-    				push: /*push*/ ctx[13],
-    				is_jpg: /*is_jpg*/ ctx[11]
+    				push: /*push*/ ctx[15],
+    				is_jpg: /*is_jpg*/ ctx[12],
+    				WIDTH: /*WIDTH*/ ctx[6]
     			},
     			$$inline: true
     		});
@@ -23277,7 +23530,7 @@ var app = (function () {
     	const if_blocks = [];
 
     	function select_block_type_1(ctx, dirty) {
-    		if (/*helpToggle*/ ctx[6]) return 0;
+    		if (/*helpToggle*/ ctx[7]) return 0;
     		return 1;
     	}
 
@@ -23312,9 +23565,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const search_1_changes = {};
-    			if (dirty[0] & /*text0*/ 512) search_1_changes.text0 = /*text0*/ ctx[9];
-    			if (dirty[0] & /*text1*/ 1024) search_1_changes.text1 = /*text1*/ ctx[10];
+    			if (dirty[0] & /*text0*/ 1024) search_1_changes.text0 = /*text0*/ ctx[10];
+    			if (dirty[0] & /*text1*/ 2048) search_1_changes.text1 = /*text1*/ ctx[11];
     			if (dirty[0] & /*stack*/ 8) search_1_changes.stack = /*stack*/ ctx[3];
+    			if (dirty[0] & /*WIDTH*/ 64) search_1_changes.WIDTH = /*WIDTH*/ ctx[6];
 
     			if (!updating_sokruta && dirty[0] & /*sokruta*/ 16) {
     				updating_sokruta = true;
@@ -23322,28 +23576,31 @@ var app = (function () {
     				add_flush_callback(() => updating_sokruta = false);
     			}
 
-    			if (!updating_helpToggle && dirty[0] & /*helpToggle*/ 64) {
+    			if (!updating_helpToggle && dirty[0] & /*helpToggle*/ 128) {
     				updating_helpToggle = true;
-    				search_1_changes.helpToggle = /*helpToggle*/ ctx[6];
+    				search_1_changes.helpToggle = /*helpToggle*/ ctx[7];
     				add_flush_callback(() => updating_helpToggle = false);
     			}
 
     			search_1.$set(search_1_changes);
     			const download_changes = {};
     			if (dirty[0] & /*images*/ 32) download_changes.images = /*images*/ ctx[5];
+    			if (dirty[0] & /*WIDTH*/ 64) download_changes.WIDTH = /*WIDTH*/ ctx[6];
 
-    			if (!updating_selected && dirty[0] & /*selected*/ 128) {
+    			if (!updating_selected && dirty[0] & /*selected*/ 256) {
     				updating_selected = true;
-    				download_changes.selected = /*selected*/ ctx[7];
+    				download_changes.selected = /*selected*/ ctx[8];
     				add_flush_callback(() => updating_selected = false);
     			}
 
     			download.$set(download_changes);
     			const navigationhorisontal_changes = {};
     			if (dirty[0] & /*stack*/ 8) navigationhorisontal_changes.stack = /*stack*/ ctx[3];
+    			if (dirty[0] & /*WIDTH*/ 64) navigationhorisontal_changes.WIDTH = /*WIDTH*/ ctx[6];
     			navigationhorisontal.$set(navigationhorisontal_changes);
     			const navigationvertical_changes = {};
     			if (dirty[0] & /*path*/ 4) navigationvertical_changes.path = /*path*/ ctx[2];
+    			if (dirty[0] & /*WIDTH*/ 64) navigationvertical_changes.WIDTH = /*WIDTH*/ ctx[6];
     			navigationvertical.$set(navigationvertical_changes);
     			let previous_block_index = current_block_type_index;
     			current_block_type_index = select_block_type_1(ctx);
@@ -23406,32 +23663,32 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(295:0) {#if big.file == \\\"\\\"}",
+    		source: "(306:0) {#if big.file == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (302:1) {:else}
+    // (313:1) {:else}
     function create_else_block(ctx) {
     	let infinite;
     	let updating_selected;
     	let current;
 
     	function infinite_selected_binding(value) {
-    		/*infinite_selected_binding*/ ctx[20](value);
+    		/*infinite_selected_binding*/ ctx[22](value);
     	}
 
     	let infinite_props = {
-    		WIDTH,
+    		WIDTH: /*WIDTH*/ ctx[6],
     		getPath,
     		cards: /*cards*/ ctx[0],
-    		round: /*round*/ ctx[12]
+    		round: /*round*/ ctx[13]
     	};
 
-    	if (/*selected*/ ctx[7] !== void 0) {
-    		infinite_props.selected = /*selected*/ ctx[7];
+    	if (/*selected*/ ctx[8] !== void 0) {
+    		infinite_props.selected = /*selected*/ ctx[8];
     	}
 
     	infinite = new Infinite({ props: infinite_props, $$inline: true });
@@ -23447,11 +23704,12 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const infinite_changes = {};
+    			if (dirty[0] & /*WIDTH*/ 64) infinite_changes.WIDTH = /*WIDTH*/ ctx[6];
     			if (dirty[0] & /*cards*/ 1) infinite_changes.cards = /*cards*/ ctx[0];
 
-    			if (!updating_selected && dirty[0] & /*selected*/ 128) {
+    			if (!updating_selected && dirty[0] & /*selected*/ 256) {
     				updating_selected = true;
-    				infinite_changes.selected = /*selected*/ ctx[7];
+    				infinite_changes.selected = /*selected*/ ctx[8];
     				add_flush_callback(() => updating_selected = false);
     			}
 
@@ -23475,14 +23733,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(302:1) {:else}",
+    		source: "(313:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (300:1) {#if helpToggle}
+    // (311:1) {#if helpToggle}
     function create_if_block_1(ctx) {
     	let help;
     	let current;
@@ -23515,7 +23773,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(300:1) {#if helpToggle}",
+    		source: "(311:1) {#if helpToggle}",
     		ctx
     	});
 
@@ -23536,12 +23794,12 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
-    	add_render_callback(/*onwindowscroll*/ ctx[16]);
+    	add_render_callback(/*onwindowscroll*/ ctx[18]);
     	const if_block_creators = [create_if_block, create_else_block_1];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*big*/ ctx[8].file == "") return 0;
+    		if (/*big*/ ctx[9].file == "") return 0;
     		return 1;
     	}
 
@@ -23566,7 +23824,7 @@ var app = (function () {
     					scrolling = true;
     					clearTimeout(scrolling_timeout);
     					scrolling_timeout = setTimeout(clear_scrolling, 100);
-    					/*onwindowscroll*/ ctx[16]();
+    					/*onwindowscroll*/ ctx[18]();
     				});
 
     				mounted = true;
@@ -23634,10 +23892,8 @@ var app = (function () {
     	return block;
     }
 
-    const SCROLLBAR = 12;
-    const WIDTH = 475;
-    const GAP = 1;
     const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const GAP = 1;
 
     function spaceShip(a, b) {
     	if (a < b) return -1; else if (a == b) return 0;
@@ -23670,6 +23926,7 @@ var app = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
+    	let WIDTH;
     	let COLS;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
@@ -23693,6 +23950,7 @@ var app = (function () {
     	// }
     	let count = 0;
 
+    	const SCROLLBAR = 12 + 3;
     	let path = [Home]; // used for navigation
     	let stack = ["Home"];
     	let res = [];
@@ -23705,6 +23963,17 @@ var app = (function () {
     	let images = [];
     	const is_jpg = file => file.includes('.jpg') || file.includes('.JPG');
     	const round = (x, n) => Math.round(x * Math.pow(10, n)) / Math.pow(10, n);
+
+    	const spreadWidth = (share, WIDTH) => {
+    		const res = Math.floor((WIDTH - 2 * GAP * (1 / share + 1)) * share) - 2;
+    		console.log(res);
+    		return res;
+    	};
+
+    	function calcWidth(innerWidth) {
+    		let n = Math.floor(innerWidth / 475);
+    		return Math.floor((innerWidth - (n + 1) * GAP - SCROLLBAR) / n);
+    	}
 
     	function consumeFolder(folder) {
     		$$invalidate(4, sokruta = "");
@@ -23742,6 +24011,7 @@ var app = (function () {
     	}
 
     	function resize() {
+    		$$invalidate(6, WIDTH = calcWidth(innerWidth));
     		placera(images);
     		((($$invalidate(5, images), $$invalidate(2, path)), $$invalidate(4, sokruta)), $$invalidate(3, stack));
     	}
@@ -23774,18 +24044,18 @@ var app = (function () {
     		console.log('visaBig');
     		document.title = lodash.last(src.replaceAll("_", " ").split("\\"));
     		document.body.style = "overflow:hidden";
-    		$$invalidate(8, big.exifState = 0, big);
-    		$$invalidate(8, big.mouseState = 0, big);
-    		$$invalidate(8, big.bs = bs, big);
-    		$$invalidate(8, big.bw = bw, big);
-    		$$invalidate(8, big.bh = bh, big);
-    		$$invalidate(8, big.skala = Math.min(innerHeight / bh, innerWidth / bw), big);
-    		$$invalidate(8, big.width = bw * big.skala, big);
-    		$$invalidate(8, big.height = bh * big.skala, big);
-    		$$invalidate(8, big.left = (innerWidth - big.width) / 2, big);
-    		$$invalidate(8, big.top = (innerHeight - big.height) / 2, big);
-    		$$invalidate(8, big.file = src, big);
-    		$$invalidate(8, big);
+    		$$invalidate(9, big.exifState = 0, big);
+    		$$invalidate(9, big.mouseState = 0, big);
+    		$$invalidate(9, big.bs = bs, big);
+    		$$invalidate(9, big.bw = bw, big);
+    		$$invalidate(9, big.bh = bh, big);
+    		$$invalidate(9, big.skala = Math.min(innerHeight / bh, innerWidth / bw), big);
+    		$$invalidate(9, big.width = bw * big.skala, big);
+    		$$invalidate(9, big.height = bh * big.skala, big);
+    		$$invalidate(9, big.left = (innerWidth - big.width) / 2, big);
+    		$$invalidate(9, big.top = (innerHeight - big.height) / 2, big);
+    		$$invalidate(9, big.file = src, big);
+    		$$invalidate(9, big);
     	}
 
     	function push(key) {
@@ -23811,7 +24081,7 @@ var app = (function () {
     	}
 
     	function search(node, words, path) {
-    		$$invalidate(15, ymax = 0); // Viktigt! Annars syns inte nya bilder.
+    		$$invalidate(17, ymax = 0); // Viktigt! Annars syns inte nya bilder.
     		$$invalidate(0, cards = []);
     		count = 0;
     		words = words.length == 0 ? [] : words.split(" ");
@@ -23872,7 +24142,7 @@ var app = (function () {
     	function placera(images) {
     		const rows = sokruta == "" ? 4 : 5;
     		const antal = rows + lodash.size(stack) + countDirs(lodash.last(path));
-    		offset = 35 * antal;
+    		offset = 34 * antal; // 30 + 2 * margin=2
     		COLS = Math.floor((window.innerWidth - SCROLLBAR - GAP) / WIDTH);
     		const cols = [offset];
     		for (const i in range(COLS)) cols.push(0);
@@ -23931,17 +24201,17 @@ var app = (function () {
 
     	function search_1_helpToggle_binding(value) {
     		helpToggle = value;
-    		$$invalidate(6, helpToggle);
+    		$$invalidate(7, helpToggle);
     	}
 
     	function download_selected_binding(value) {
     		selected = value;
-    		$$invalidate(7, selected);
+    		$$invalidate(8, selected);
     	}
 
     	function infinite_selected_binding(value) {
     		selected = value;
-    		$$invalidate(7, selected);
+    		$$invalidate(8, selected);
     	}
 
     	$$self.$capture_state = () => ({
@@ -23963,10 +24233,9 @@ var app = (function () {
     		selected,
     		skala,
     		count,
-    		SCROLLBAR,
-    		WIDTH,
-    		GAP,
     		ALFABET,
+    		SCROLLBAR,
+    		GAP,
     		path,
     		stack,
     		res,
@@ -23979,6 +24248,8 @@ var app = (function () {
     		images,
     		is_jpg,
     		round,
+    		spreadWidth,
+    		calcWidth,
     		consumeFolder,
     		consumeParameters,
     		resize,
@@ -23995,16 +24266,17 @@ var app = (function () {
     		recursiveSearch,
     		placera,
     		countDirs,
+    		WIDTH,
     		COLS
     	});
 
     	$$self.$inject_state = $$props => {
     		if ('cards' in $$props) $$invalidate(0, cards = $$props.cards);
     		if ('y' in $$props) $$invalidate(1, y = $$props.y);
-    		if ('ymax' in $$props) $$invalidate(15, ymax = $$props.ymax);
+    		if ('ymax' in $$props) $$invalidate(17, ymax = $$props.ymax);
     		if ('offset' in $$props) offset = $$props.offset;
-    		if ('helpToggle' in $$props) $$invalidate(6, helpToggle = $$props.helpToggle);
-    		if ('selected' in $$props) $$invalidate(7, selected = $$props.selected);
+    		if ('helpToggle' in $$props) $$invalidate(7, helpToggle = $$props.helpToggle);
+    		if ('selected' in $$props) $$invalidate(8, selected = $$props.selected);
     		if ('skala' in $$props) skala = $$props.skala;
     		if ('count' in $$props) count = $$props.count;
     		if ('path' in $$props) $$invalidate(2, path = $$props.path);
@@ -24013,10 +24285,11 @@ var app = (function () {
     		if ('stat' in $$props) stat = $$props.stat;
     		if ('total' in $$props) total = $$props.total;
     		if ('sokruta' in $$props) $$invalidate(4, sokruta = $$props.sokruta);
-    		if ('big' in $$props) $$invalidate(8, big = $$props.big);
-    		if ('text0' in $$props) $$invalidate(9, text0 = $$props.text0);
-    		if ('text1' in $$props) $$invalidate(10, text1 = $$props.text1);
+    		if ('big' in $$props) $$invalidate(9, big = $$props.big);
+    		if ('text0' in $$props) $$invalidate(10, text0 = $$props.text0);
+    		if ('text1' in $$props) $$invalidate(11, text1 = $$props.text1);
     		if ('images' in $$props) $$invalidate(5, images = $$props.images);
+    		if ('WIDTH' in $$props) $$invalidate(6, WIDTH = $$props.WIDTH);
     		if ('COLS' in $$props) COLS = $$props.COLS;
     	};
 
@@ -24026,7 +24299,7 @@ var app = (function () {
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty[0] & /*path, sokruta, stack*/ 28) {
-    			$$invalidate(9, [text0, text1, images] = search(lodash.last(path), sokruta, stack.join('\\')), text0, ((($$invalidate(10, text1), $$invalidate(2, path)), $$invalidate(4, sokruta)), $$invalidate(3, stack)), ((($$invalidate(5, images), $$invalidate(2, path)), $$invalidate(4, sokruta)), $$invalidate(3, stack)));
+    			$$invalidate(10, [text0, text1, images] = search(lodash.last(path), sokruta, stack.join('\\')), text0, ((($$invalidate(11, text1), $$invalidate(2, path)), $$invalidate(4, sokruta)), $$invalidate(3, stack)), ((($$invalidate(5, images), $$invalidate(2, path)), $$invalidate(4, sokruta)), $$invalidate(3, stack)));
     		}
 
     		if ($$self.$$.dirty[0] & /*images*/ 32) {
@@ -24036,7 +24309,7 @@ var app = (function () {
     			}
     		}
 
-    		if ($$self.$$.dirty[0] & /*y, ymax, cards, images*/ 32803) {
+    		if ($$self.$$.dirty[0] & /*y, ymax, cards, images*/ 131107) {
     			{
     				// infinite scroll
     				// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
@@ -24046,14 +24319,18 @@ var app = (function () {
     					const latest = lodash.last(cards);
 
     					if (n > 0) {
-    						$$invalidate(15, ymax = latest[4] + latest[6]); // y + h
+    						$$invalidate(17, ymax = latest[4] + latest[6]); // y + h
     					}
     				}
     			}
     		}
+
+    		if ($$self.$$.dirty[0] & /*WIDTH*/ 64) {
+    			COLS = Math.floor((innerWidth - SCROLLBAR - GAP) / WIDTH);
+    		}
     	};
 
-    	COLS = Math.floor((innerWidth - SCROLLBAR - GAP) / WIDTH);
+    	$$invalidate(6, WIDTH = calcWidth(innerWidth));
 
     	return [
     		cards,
@@ -24062,6 +24339,7 @@ var app = (function () {
     		stack,
     		sokruta,
     		images,
+    		WIDTH,
     		helpToggle,
     		selected,
     		big,
@@ -24069,6 +24347,7 @@ var app = (function () {
     		text1,
     		is_jpg,
     		round,
+    		spreadWidth,
     		push,
     		pop,
     		ymax,

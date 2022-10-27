@@ -45,11 +45,11 @@
 	
 	let count = 0
 	
-	const SCROLLBAR = 12
-	const WIDTH = 475
-	const GAP = 1
 	const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+	const SCROLLBAR = 12+3
+	const GAP = 1
+	$: WIDTH = calcWidth(innerWidth)
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
 
 	let path  = [Home] // used for navigation
@@ -68,6 +68,16 @@
 
 	const is_jpg = (file) => file.includes('.jpg') || file.includes('.JPG')
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
+
+	const spreadWidth = (share,WIDTH) => {
+		const res = Math.floor((WIDTH-2*GAP*(1/share+1))*share) - 2
+		console.log(res)
+		return res
+	}
+	function calcWidth(innerWidth) {
+		let n = Math.floor(innerWidth/475)
+		return Math.floor((innerWidth-(n+1)*GAP-SCROLLBAR)/n)
+	}
 
 	function consumeFolder(folder) {
 		sokruta = ""
@@ -109,6 +119,7 @@
 	}
 
 	function resize() {
+		WIDTH = calcWidth(innerWidth)
 		placera(images)
 		images = images
 	}
@@ -249,7 +260,7 @@
 	function placera(images) {
 		const rows = sokruta=="" ? 4 : 5
 		const antal = rows + _.size(stack) + countDirs(_.last(path))
-		offset = 35 * antal
+		offset = 34 * antal // 30 + 2 * margin=2
 
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
 
@@ -293,10 +304,10 @@
 <svelte:window bind:scrollY={y}/>
 
 {#if big.file == ""}
-	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle />
-	<Download bind:selected {images} />
-	<NavigationHorisontal {stack} {pop} />
-	<NavigationVertical {path} {push} {is_jpg}/>
+	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle {WIDTH} {GAP} {spreadWidth} />
+	<Download bind:selected {images} {WIDTH} {spreadWidth} />
+	<NavigationHorisontal {stack} {pop} {WIDTH} />
+	<NavigationVertical {path} {push} {is_jpg} {WIDTH}/>
 	{#if helpToggle}
 		<Help/>
 	{:else}

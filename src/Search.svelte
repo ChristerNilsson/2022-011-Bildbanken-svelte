@@ -4,6 +4,11 @@
 	export let text1
 	export let stack
 	export let helpToggle
+	export let WIDTH
+	export let GAP
+	export let spreadWidth
+
+	// console.log('PELLE',WIDTH,GAP,COLS)
 
 	function clear() {
 		sokruta = ""
@@ -24,17 +29,19 @@
 
 </script>
 
-<input autocomplete="off" id="search" bind:value={sokruta} placeholder='Search' >
-<div class="center">
+<input autocomplete="off" id="search" bind:value={sokruta} placeholder='Search' style="width:{WIDTH-2*GAP}px">
+<div class="center" style="width:{WIDTH}px">
 	{text1}
 </div>
-<div style="width:475px">
-	<button on:click={share} style="width:153px"> Share </button>
-	<button on:click={clear} style="width:153px"> Clear </button>
-	<button on:click={help}  style="width:153px"> Help </button>
+
+<div style="width:{WIDTH}px; height:34px">
+	<button on:click={share} style="left:0px;           width:{spreadWidth(1/3,WIDTH)}px">Share</button>
+	<button on:click={clear} style="left:{WIDTH/3}px;   width:{spreadWidth(1/3,WIDTH)}px">Clear</button>
+	<button on:click={help}  style="left:{2*WIDTH/3}px; width:{spreadWidth(1/3,WIDTH)}px">Help</button>
 </div>
+
 {#if (sokruta.split(" ").length <= 3) && (sokruta.length > 0)}
-	<div class="center">
+	<div class="center" style="width:{WIDTH}px">
 		{text0}
 	</div>
 {/if}
@@ -42,7 +49,6 @@
 <style>
 	.center {
 		margin-top:7px;
-		width:475px;
 		text-align:center;
 		height:27px
 	}
@@ -50,16 +56,16 @@
 		margin:0px;
 	}
 	button {
-		margin:1px;
-		height:34px;
+		position:absolute;
+		margin:2px;
+		height:30px;
 	}
 	input {
-		width:473px;
-		margin:1px;
-		height:32px;
+		margin:2px;
+		height:30px;
 	}
-	::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	::placeholder {
 		color: lightgray;
-		opacity: 1; /* Firefox */
-	}
+		opacity: 1;
+	} 
 </style>
