@@ -1,0 +1,1 @@
+{"Ludvig_Morell.jpg":[475,320,1608979,2048,1379],"Marius_Schriever-Abeln.jpg":[475,533,2325253,1825,2048]}

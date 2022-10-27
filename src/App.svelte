@@ -68,12 +68,8 @@
 
 	const is_jpg = (file) => file.includes('.jpg') || file.includes('.JPG')
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
+	const spreadWidth = (share,WIDTH) => Math.floor((WIDTH-2*GAP*(1/share+1))*share) - 2
 
-	const spreadWidth = (share,WIDTH) => {
-		const res = Math.floor((WIDTH-2*GAP*(1/share+1))*share) - 2
-		console.log(res)
-		return res
-	}
 	function calcWidth(innerWidth) {
 		let n = Math.floor(innerWidth/475)
 		return Math.floor((innerWidth-(n+1)*GAP-SCROLLBAR)/n)
@@ -141,6 +137,10 @@
 	assert(_.range(3),[0,1,2])
 
 	function comp (a,b) { if (a[0] == b[0]) {return spaceShip(a[1], b[1])} else {return spaceShip(a[0], b[0])}}
+
+
+
+
 	function comp2(a,b) { if (a.length == b.length) {return spaceShip(a,b)} else {return -spaceShip(a.length,b.length)}}
 	assert(comp2("A","B"),-1)
 	assert(comp2("AB","AB"),0)

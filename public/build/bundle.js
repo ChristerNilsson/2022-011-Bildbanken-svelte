@@ -17668,46 +17668,46 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*card*/ ctx[3][2].split("\\"), "small"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "width", img_width_value = "" + (/*WIDTH*/ ctx[1] + "px"));
     			attr_dev(img, "alt", "");
-    			add_location(img, file$6, 40, 1, 1087);
+    			add_location(img, file$6, 40, 1, 1088);
     			attr_dev(a0, "target", "_blank");
     			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'M'));
-    			add_location(a0, file$6, 54, 3, 1531);
+    			add_location(a0, file$6, 54, 3, 1532);
     			attr_dev(div0, "class", "info svelte-iykdbq");
     			set_style(div0, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div0, file$6, 53, 2, 1453);
+    			add_location(div0, file$6, 53, 2, 1454);
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'T'));
-    			add_location(a1, file$6, 57, 3, 1756);
+    			add_location(a1, file$6, 57, 3, 1757);
     			attr_dev(div1, "class", "info svelte-iykdbq");
     			set_style(div1, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div1, file$6, 56, 2, 1682);
+    			add_location(div1, file$6, 56, 2, 1683);
     			attr_dev(input, "class", "largerCheckbox svelte-iykdbq");
     			attr_dev(input, "type", "checkbox");
     			input.__value = "";
     			input.value = input.__value;
-    			add_location(input, file$6, 61, 3, 2002);
+    			add_location(input, file$6, 61, 3, 2003);
     			set_style(span0, "flex", "2");
     			set_style(span0, "text-align", "center");
     			set_style(span0, "white-space", "nowrap");
-    			add_location(span0, file$6, 63, 3, 2123);
+    			add_location(span0, file$6, 63, 3, 2124);
     			set_style(span1, "flex", "1");
     			set_style(span1, "text-align", "right");
     			set_style(span1, "white-space", "nowrap");
-    			add_location(span1, file$6, 64, 3, 2215);
+    			add_location(span1, file$6, 64, 3, 2216);
     			attr_dev(div2, "class", "info svelte-iykdbq");
     			set_style(div2, "display", "flex");
     			set_style(div2, "height", "13px");
     			set_style(div2, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div2, file$6, 59, 2, 1899);
+    			add_location(div2, file$6, 59, 2, 1900);
     			attr_dev(div3, "class", "group svelte-iykdbq");
-    			add_location(div3, file$6, 52, 1, 1430);
+    			add_location(div3, file$6, 52, 1, 1431);
     			attr_dev(div4, "class", "card svelte-iykdbq");
     			attr_dev(div4, "id", "images");
     			set_style(div4, "position", "absolute");
     			set_style(div4, "width", /*WIDTH*/ ctx[1] + "px");
     			set_style(div4, "left", /*card*/ ctx[3][5] + "px");
     			set_style(div4, "top", /*card*/ ctx[3][6] + "px");
-    			add_location(div4, file$6, 39, 0, 976);
+    			add_location(div4, file$6, 39, 0, 977);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -17857,7 +17857,7 @@ var app = (function () {
     	path = path.split('\\');
 
     	path = path.slice(2, path.length - 1);
-    	path = path.join(" ");
+    	path = path.join(" • ");
     	path = path.replace(/_T\d+/, '');
     	return path.replaceAll('_', ' ');
     }
@@ -21517,7 +21517,7 @@ var app = (function () {
     // (12:3) {#if ! is_jpg(key)}
     function create_if_block$4(ctx) {
     	let button;
-    	let t_value = /*key*/ ctx[5] + "";
+    	let t_value = /*key*/ ctx[5].replaceAll("_", " ") + "";
     	let t;
     	let button_value_value;
     	let mounted;
@@ -21546,7 +21546,7 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*path*/ 1 && t_value !== (t_value = /*key*/ ctx[5] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*path*/ 1 && t_value !== (t_value = /*key*/ ctx[5].replaceAll("_", " ") + "")) set_data_dev(t, t_value);
 
     			if (dirty & /*path*/ 1 && button_value_value !== (button_value_value = /*key*/ ctx[5])) {
     				prop_dev(button, "value", button_value_value);
@@ -21832,7 +21832,7 @@ var app = (function () {
     			button = element("button");
     			t = text(t_value);
     			attr_dev(button, "class", "svelte-1bw5vik");
-    			add_location(button, file$2, 13, 4, 299);
+    			add_location(button, file$2, 13, 4, 319);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21869,7 +21869,7 @@ var app = (function () {
     function create_if_block$3(ctx) {
     	let button;
     	let b;
-    	let t_value = /*key*/ ctx[4] + "";
+    	let t_value = /*key*/ ctx[4].replaceAll("_", " ") + "";
     	let t;
 
     	const block = {
@@ -21889,7 +21889,7 @@ var app = (function () {
     			append_dev(b, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*stack*/ 1 && t_value !== (t_value = /*key*/ ctx[4] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*stack*/ 1 && t_value !== (t_value = /*key*/ ctx[4].replaceAll("_", " ") + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(button);
@@ -23963,12 +23963,7 @@ var app = (function () {
     	let images = [];
     	const is_jpg = file => file.includes('.jpg') || file.includes('.JPG');
     	const round = (x, n) => Math.round(x * Math.pow(10, n)) / Math.pow(10, n);
-
-    	const spreadWidth = (share, WIDTH) => {
-    		const res = Math.floor((WIDTH - 2 * GAP * (1 / share + 1)) * share) - 2;
-    		console.log(res);
-    		return res;
-    	};
+    	const spreadWidth = (share, WIDTH) => Math.floor((WIDTH - 2 * GAP * (1 / share + 1)) * share) - 2;
 
     	function calcWidth(innerWidth) {
     		let n = Math.floor(innerWidth / 475);

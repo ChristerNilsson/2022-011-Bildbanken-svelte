@@ -1,0 +1,1 @@
+{"Adam_Brzezinski.jpg":[475,317,1087339,2048,1365],"Alvin_Lind_Bertéusen.jpg":[475,491,2016554,1980,2048]}

@@ -30,9 +30,9 @@
 	function prettyPath(path) { // Tag bort eventuellt T-nummer
 		path = path.split('\\')
 		path = path.slice(2,path.length-1)
-		path = path.join(" ")
+		path = path.join(" • ")
 		path = path.replace(/_T\d+/,'')
-		return path.replaceAll('_', ' ') 
+		return path.replaceAll('_', ' ')
 	}
 
 </script>

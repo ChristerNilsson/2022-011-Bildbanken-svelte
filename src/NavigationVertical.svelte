@@ -11,7 +11,7 @@
 		<div>
 			{#if ! is_jpg(key)}
 				<button value={key} on:click = {() => push(key)}>
-					{key}
+					{key.replaceAll("_"," ")}
 				</button>
 			{/if}
 		</div>
