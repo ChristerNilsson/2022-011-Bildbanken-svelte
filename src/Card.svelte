@@ -7,6 +7,8 @@
 	export let index
 	export let round
 
+	$: filename = card[2] + "\\" + card[12]
+
 	function getNumber(path,letter) { // Används både för T och M-nummer
 		path = path.replace('.jpg','')
 		const arr = path.split('\\')
@@ -41,21 +43,21 @@
 	<img 
 		margin:0px
 		padding:0px
-		src = {getPath(card[2].split("\\"),"small")}
+		src = {getPath(filename.split("\\"),"small")}
 		width = {WIDTH}px
 		alt = ""
 		on:click = {() => {
 			const host = location.origin + location.pathname
-			window.open(host + `?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(card[2].split('\\'),'')}`)
+			window.open(host + `?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(filename.split('\\'),'')}`)
 		}}
 		on:keydown = {() =>{}}
 	/>
 	<div class="group">
-		<div class="info" style="width:{WIDTH}px">&nbsp;{prettyFilename(card[2])}
-			<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(card[2],'M')}">{getNumber(card[2],'M')}</a>
+		<div class="info" style="width:{WIDTH}px">&nbsp;{prettyFilename(filename)}
+			<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(filename,'M')}">{getNumber(filename,'M')}</a>
 		</div>
-		<div class="info" style="width:{WIDTH}px">&nbsp;{prettyPath(card[2])}
-			<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={getNumber(card[2],'T')}">{getNumber(card[2],'T')}</a>
+		<div class="info" style="width:{WIDTH}px">&nbsp;{prettyPath(filename)}
+			<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={getNumber(filename,'T')}">{getNumber(filename,'T')}</a>
 		</div>
 		<div class="info" style="display:flex; height:13px; width:{WIDTH}px">
 			&nbsp;{card[7]} • &nbsp;
@@ -74,21 +76,18 @@
 	}	
 	.group {
 		margin-top:-3px;
-		/* margin-bottom:4px; */
 	}
 	.info {
 		margin:0px;
 		text-align:left;
 		padding-top:1px;
 		white-space:nowrap;
-		/* width:475px; */
 		overflow:hidden;
 		background-color:lightgray;
 	}
 	.card {
 		margin:0px;
 		font-size: 0.9em;
-		/* width: 475px;  */
 		max-height: 800px;
 	}
 	div {

@@ -138,8 +138,15 @@
 
 	function comp (a,b) { if (a[0] == b[0]) {return spaceShip(a[1], b[1])} else {return spaceShip(a[0], b[0])}}
 
-
-
+	// Obs: använd index++ istf 0 pga -0 == +0
+	function multiSort (a,b,indexes) {
+		for (const i in _.range(indexes.length)) {
+			const index = Math.abs(indexes[i])-1 // 0..
+			let res = spaceShip(a[index],b[index])
+			if (res != 0) return indexes[i] < 0 ? -res : res
+		}
+	}
+	assert([[2018, 'Noah'], [2013, 'Numa'], [1982, 'Karolina'], [1982, 'Kasper'], [1982, 'Miranda'], [1954, 'Christer'], [1954, 'Maria']],[[1954,'Christer'],[1982,'Kasper'],[1982,'Karolina'],[1982,'Miranda'],[2013,'Numa'],[2018,'Noah'],[1954,'Maria']].sort((a,b) =>  multiSort(a,b,[-1,2])) )
 
 	function comp2(a,b) { if (a.length == b.length) {return spaceShip(a,b)} else {return -spaceShip(a.length,b.length)}}
 	assert(comp2("A","B"),-1)
@@ -217,7 +224,11 @@
 
 		recursiveSearch(node,words,path)
 
-		res.sort(comp)
+		//res.sort(comp)
+		res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++
+		//res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++  -letters.length letters -path key
+		//res = res
+		//console.log(res)
 
 		const keys = Object.keys(stat)
 		keys.sort(comp2) 
@@ -245,7 +256,7 @@
 				}
 				if (s.length > 0 || words.length == 0) {
 					const [sw,sh,bs,bw,bh] = node[key] // small/big width/height/size
-					res.push([-s.length, s, newPath, sw, sh, 0, 0, 0, false, bs, bw, bh])
+					res.push([-s.length, s, path, sw, sh, 0, 0, 0, false, bs, bw, bh, key])
 					stat[s] = (stat[s] || 0) + 1
 				}
 			} else {

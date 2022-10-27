@@ -17577,21 +17577,21 @@ var app = (function () {
     	let div3;
     	let div0;
     	let t1;
-    	let t2_value = prettyFilename(/*card*/ ctx[3][2]) + "";
+    	let t2_value = prettyFilename(/*filename*/ ctx[6]) + "";
     	let t2;
     	let t3;
     	let a0;
-    	let t4_value = /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'M') + "";
+    	let t4_value = /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'M') + "";
     	let t4;
     	let a0_href_value;
     	let t5;
     	let div1;
     	let t6;
-    	let t7_value = prettyPath(/*card*/ ctx[3][2]) + "";
+    	let t7_value = prettyPath(/*filename*/ ctx[6]) + "";
     	let t7;
     	let t8;
     	let a1;
-    	let t9_value = /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'T') + "";
+    	let t9_value = /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'T') + "";
     	let t9;
     	let a1_href_value;
     	let t10;
@@ -17665,49 +17665,49 @@ var app = (function () {
     			t26 = text(" kB  ");
     			attr_dev(img, "margin:0px", "");
     			attr_dev(img, "padding:0px", "");
-    			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*card*/ ctx[3][2].split("\\"), "small"))) attr_dev(img, "src", img_src_value);
+    			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*filename*/ ctx[6].split("\\"), "small"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "width", img_width_value = "" + (/*WIDTH*/ ctx[1] + "px"));
     			attr_dev(img, "alt", "");
-    			add_location(img, file$6, 40, 1, 1088);
+    			add_location(img, file$6, 42, 1, 1132);
     			attr_dev(a0, "target", "_blank");
-    			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'M'));
-    			add_location(a0, file$6, 54, 3, 1532);
-    			attr_dev(div0, "class", "info svelte-iykdbq");
+    			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'M'));
+    			add_location(a0, file$6, 56, 3, 1579);
+    			attr_dev(div0, "class", "info svelte-12u6tjf");
     			set_style(div0, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div0, file$6, 53, 2, 1454);
+    			add_location(div0, file$6, 55, 2, 1500);
     			attr_dev(a1, "target", "_blank");
-    			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'T'));
-    			add_location(a1, file$6, 57, 3, 1757);
-    			attr_dev(div1, "class", "info svelte-iykdbq");
+    			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'T'));
+    			add_location(a1, file$6, 59, 3, 1807);
+    			attr_dev(div1, "class", "info svelte-12u6tjf");
     			set_style(div1, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div1, file$6, 56, 2, 1683);
-    			attr_dev(input, "class", "largerCheckbox svelte-iykdbq");
+    			add_location(div1, file$6, 58, 2, 1732);
+    			attr_dev(input, "class", "largerCheckbox svelte-12u6tjf");
     			attr_dev(input, "type", "checkbox");
     			input.__value = "";
     			input.value = input.__value;
-    			add_location(input, file$6, 61, 3, 2003);
+    			add_location(input, file$6, 63, 3, 2055);
     			set_style(span0, "flex", "2");
     			set_style(span0, "text-align", "center");
     			set_style(span0, "white-space", "nowrap");
-    			add_location(span0, file$6, 63, 3, 2124);
+    			add_location(span0, file$6, 65, 3, 2176);
     			set_style(span1, "flex", "1");
     			set_style(span1, "text-align", "right");
     			set_style(span1, "white-space", "nowrap");
-    			add_location(span1, file$6, 64, 3, 2216);
-    			attr_dev(div2, "class", "info svelte-iykdbq");
+    			add_location(span1, file$6, 66, 3, 2268);
+    			attr_dev(div2, "class", "info svelte-12u6tjf");
     			set_style(div2, "display", "flex");
     			set_style(div2, "height", "13px");
     			set_style(div2, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div2, file$6, 59, 2, 1900);
-    			attr_dev(div3, "class", "group svelte-iykdbq");
-    			add_location(div3, file$6, 52, 1, 1431);
-    			attr_dev(div4, "class", "card svelte-iykdbq");
+    			add_location(div2, file$6, 61, 2, 1952);
+    			attr_dev(div3, "class", "group svelte-12u6tjf");
+    			add_location(div3, file$6, 54, 1, 1477);
+    			attr_dev(div4, "class", "card svelte-12u6tjf");
     			attr_dev(div4, "id", "images");
     			set_style(div4, "position", "absolute");
     			set_style(div4, "width", /*WIDTH*/ ctx[1] + "px");
     			set_style(div4, "left", /*card*/ ctx[3][5] + "px");
     			set_style(div4, "top", /*card*/ ctx[3][6] + "px");
-    			add_location(div4, file$6, 39, 0, 977);
+    			add_location(div4, file$6, 41, 0, 1021);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -17754,16 +17754,16 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(img, "click", /*click_handler*/ ctx[7], false, false, false),
+    					listen_dev(img, "click", /*click_handler*/ ctx[8], false, false, false),
     					listen_dev(img, "keydown", keydown_handler, false, false, false),
-    					listen_dev(input, "change", /*input_change_handler*/ ctx[8])
+    					listen_dev(input, "change", /*input_change_handler*/ ctx[9])
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*getPath, card*/ 12 && !src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*card*/ ctx[3][2].split("\\"), "small"))) {
+    			if (dirty & /*getPath, filename*/ 68 && !src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*filename*/ ctx[6].split("\\"), "small"))) {
     				attr_dev(img, "src", img_src_value);
     			}
 
@@ -17771,10 +17771,10 @@ var app = (function () {
     				attr_dev(img, "width", img_width_value);
     			}
 
-    			if (dirty & /*card*/ 8 && t2_value !== (t2_value = prettyFilename(/*card*/ ctx[3][2]) + "")) set_data_dev(t2, t2_value);
-    			if (dirty & /*card*/ 8 && t4_value !== (t4_value = /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'M') + "")) set_data_dev(t4, t4_value);
+    			if (dirty & /*filename*/ 64 && t2_value !== (t2_value = prettyFilename(/*filename*/ ctx[6]) + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*filename*/ 64 && t4_value !== (t4_value = /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'M') + "")) set_data_dev(t4, t4_value);
 
-    			if (dirty & /*card*/ 8 && a0_href_value !== (a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'M'))) {
+    			if (dirty & /*filename*/ 64 && a0_href_value !== (a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'M'))) {
     				attr_dev(a0, "href", a0_href_value);
     			}
 
@@ -17782,10 +17782,10 @@ var app = (function () {
     				set_style(div0, "width", /*WIDTH*/ ctx[1] + "px");
     			}
 
-    			if (dirty & /*card*/ 8 && t7_value !== (t7_value = prettyPath(/*card*/ ctx[3][2]) + "")) set_data_dev(t7, t7_value);
-    			if (dirty & /*card*/ 8 && t9_value !== (t9_value = /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'T') + "")) set_data_dev(t9, t9_value);
+    			if (dirty & /*filename*/ 64 && t7_value !== (t7_value = prettyPath(/*filename*/ ctx[6]) + "")) set_data_dev(t7, t7_value);
+    			if (dirty & /*filename*/ 64 && t9_value !== (t9_value = /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'T') + "")) set_data_dev(t9, t9_value);
 
-    			if (dirty & /*card*/ 8 && a1_href_value !== (a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[6](/*card*/ ctx[3][2], 'T'))) {
+    			if (dirty & /*filename*/ 64 && a1_href_value !== (a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'T'))) {
     				attr_dev(a1, "href", a1_href_value);
     			}
 
@@ -17867,6 +17867,7 @@ var app = (function () {
     };
 
     function instance$8($$self, $$props, $$invalidate) {
+    	let filename;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Card', slots, []);
     	let { WIDTH } = $$props;
@@ -17923,7 +17924,7 @@ var app = (function () {
 
     	const click_handler = () => {
     		const host = location.origin + location.pathname;
-    		window.open(host + `?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(card[2].split('\\'), '')}`);
+    		window.open(host + `?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(filename.split('\\'), '')}`);
     	};
 
     	function input_change_handler() {
@@ -17950,7 +17951,8 @@ var app = (function () {
     		round,
     		getNumber,
     		prettyFilename,
-    		prettyPath
+    		prettyPath,
+    		filename
     	});
 
     	$$self.$inject_state = $$props => {
@@ -17960,11 +17962,18 @@ var app = (function () {
     		if ('selected' in $$props) $$invalidate(0, selected = $$props.selected);
     		if ('index' in $$props) $$invalidate(4, index = $$props.index);
     		if ('round' in $$props) $$invalidate(5, round = $$props.round);
+    		if ('filename' in $$props) $$invalidate(6, filename = $$props.filename);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*card*/ 8) {
+    			$$invalidate(6, filename = card[2] + "\\" + card[12]);
+    		}
+    	};
 
     	return [
     		selected,
@@ -17973,6 +17982,7 @@ var app = (function () {
     		card,
     		index,
     		round,
+    		filename,
     		getNumber,
     		click_handler,
     		input_change_handler
@@ -23395,7 +23405,7 @@ var app = (function () {
 
     const { Object: Object_1, console: console_1, window: window_1 } = globals;
 
-    // (316:0) {:else}
+    // (327:0) {:else}
     function create_else_block_1(ctx) {
     	let bigpicture;
     	let current;
@@ -23436,14 +23446,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(316:0) {:else}",
+    		source: "(327:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (306:0) {#if big.file == ""}
+    // (317:0) {#if big.file == ""}
     function create_if_block(ctx) {
     	let search_1;
     	let updating_sokruta;
@@ -23663,14 +23673,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(306:0) {#if big.file == \\\"\\\"}",
+    		source: "(317:0) {#if big.file == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (313:1) {:else}
+    // (324:1) {:else}
     function create_else_block(ctx) {
     	let infinite;
     	let updating_selected;
@@ -23733,14 +23743,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(313:1) {:else}",
+    		source: "(324:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (311:1) {#if helpToggle}
+    // (322:1) {#if helpToggle}
     function create_if_block_1(ctx) {
     	let help;
     	let current;
@@ -23773,7 +23783,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(311:1) {#if helpToggle}",
+    		source: "(322:1) {#if helpToggle}",
     		ctx
     	});
 
@@ -24021,6 +24031,37 @@ var app = (function () {
     	assert(spaceShip(1, 1), 0);
     	assert(spaceShip(1, 0), 1);
     	assert(lodash.range(3), [0, 1, 2]);
+
+    	// Obs: använd index++ istf 0 pga -0 == +0
+    	function multiSort(a, b, indexes) {
+    		for (const i in lodash.range(indexes.length)) {
+    			const index = Math.abs(indexes[i]) - 1; // 0..
+    			let res = spaceShip(a[index], b[index]);
+    			if (res != 0) return indexes[i] < 0 ? -res : res;
+    		}
+    	}
+
+    	assert(
+    		[
+    			[2018, 'Noah'],
+    			[2013, 'Numa'],
+    			[1982, 'Karolina'],
+    			[1982, 'Kasper'],
+    			[1982, 'Miranda'],
+    			[1954, 'Christer'],
+    			[1954, 'Maria']
+    		],
+    		[
+    			[1954, 'Christer'],
+    			[1982, 'Kasper'],
+    			[1982, 'Karolina'],
+    			[1982, 'Miranda'],
+    			[2013, 'Numa'],
+    			[2018, 'Noah'],
+    			[1954, 'Maria']
+    		].sort((a, b) => multiSort(a, b, [-1, 2]))
+    	);
+
     	assert(comp2("A", "B"), -1);
     	assert(comp2("AB", "AB"), 0);
     	assert(comp2("B", "A"), 1);
@@ -24085,8 +24126,15 @@ var app = (function () {
     		total = 0;
     		const start = new Date();
     		recursiveSearch(node, words, path);
-    		res.sort(comp);
+
+    		//res.sort(comp)
+    		res.sort((a, b) => multiSort(a, b, [1, 2, -3, 13])); // OBS: index++
+
+    		//res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++  -letters.length letters -path key
+    		//res = res
+    		//console.log(res)
     		const keys = Object.keys(stat);
+
     		keys.sort(comp2);
     		const st = [];
     		let antal = 0;
@@ -24122,7 +24170,7 @@ var app = (function () {
 
     				if (s.length > 0 || words.length == 0) {
     					const [sw, sh, bs, bw, bh] = node[key]; // small/big width/height/size
-    					res.push([-s.length, s, newPath, sw, sh, 0, 0, 0, false, bs, bw, bh]);
+    					res.push([-s.length, s, path, sw, sh, 0, 0, 0, false, bs, bw, bh, key]);
     					stat[s] = (stat[s] || 0) + 1;
     				}
     			} else {
@@ -24251,6 +24299,7 @@ var app = (function () {
     		assert,
     		spaceShip,
     		comp,
+    		multiSort,
     		comp2,
     		f,
     		getPath,
