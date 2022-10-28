@@ -1,0 +1,1 @@
+{"1.Lucas_Torre_Klass_I_2022-10-09.jpg":[475,565,22303,475,565],"2.Yaashvan_Madevan_Vaishnavi_Klass_I_2022-10-09.jpg":[475,523,21460,475,523]}

@@ -72,7 +72,7 @@
 
 	function calcWidth(innerWidth) {
 		let n = Math.floor(innerWidth/475)
-		return Math.floor((innerWidth-(n+1)*GAP-SCROLLBAR)/n)
+		return Math.floor((innerWidth-(n+1)*GAP-SCROLLBAR-2)/n)
 	}
 
 	function consumeFolder(folder) {
@@ -98,7 +98,7 @@
 	function consumeParameters() {
 		const queryString = window.location.search
 		const urlParams = new URLSearchParams(queryString)
-		console.log(urlParams)
+		// console.log(urlParams)
 		if (urlParams.has("image")) {
 			visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("image"))
 		} else {
@@ -139,6 +139,10 @@
 	function comp (a,b) { if (a[0] == b[0]) {return spaceShip(a[1], b[1])} else {return spaceShip(a[0], b[0])}}
 
 	// Obs: använd index++ istf 0 pga -0 == +0
+	// 1 index => [-1],[1] = 2 varianter
+	// 2 index => [-1,-2],[1,-2],[-1,2],[1,2], [-2,-1],[-2,1],[2,-1],[2,1] = 2!*2^2 = 8 varianter
+	// 3 index => n! * 2^n = 48 varianter
+	// 4 index => 24 * 16 = 384 varianter
 	function multiSort (a,b,indexes) {
 		for (const i in _.range(indexes.length)) {
 			const index = Math.abs(indexes[i])-1 // 0..
@@ -163,9 +167,9 @@
 	assert(-20,f(1.1,    0, 200,400))
 	assert(-40,f(1.1,    0, 400,400))
 
-	function getPath(arr,dir="small") {
-		if (dir.length > 0) arr.splice(arr.length-1, 0, dir);
-		return arr.join("\\")
+	function getPath(path,dir="small") {
+		if (dir.length > 0) path = path.replace("Home",dir) //arr.splice(arr.length-1, 0, dir);
+		return path //.join("\\")
 	}
 
 	function visaBig(bs, bw, bh, src) {

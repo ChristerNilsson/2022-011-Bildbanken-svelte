@@ -1,1 +1,0 @@
-{"Vy-Skol-SM_efterspel_2022-10-09.jpg":[475,245,1643752,2048,1056],"Vy-Skol-SM_Uppsala_från_prisutdelningen_2022-10-09.jpg":[475,300,1881517,2048,1292]}

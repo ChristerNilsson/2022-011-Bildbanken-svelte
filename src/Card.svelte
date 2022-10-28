@@ -43,12 +43,12 @@
 	<img 
 		margin:0px
 		padding:0px
-		src = {getPath(filename.split("\\"),"small")}
+		src = {getPath(filename,"small")}
 		width = {WIDTH}px
 		alt = ""
 		on:click = {() => {
 			const host = location.origin + location.pathname
-			window.open(host + `?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(filename.split('\\'),'')}`)
+			window.open(host + `?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(filename,'')}`)
 		}}
 		on:keydown = {() =>{}}
 	/>

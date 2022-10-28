@@ -1,1 +1,0 @@
-{"Alexander_Ström-Engdahl.jpg":[475,385,1633350,2048,1661]}

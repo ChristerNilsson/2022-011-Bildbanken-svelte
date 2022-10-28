@@ -1,1 +1,0 @@
-{"Andreas_Carlsson.jpg":[475,321,1507070,2048,1383],"Christoffer_Stenman.jpg":[475,346,1454511,2048,1490]}

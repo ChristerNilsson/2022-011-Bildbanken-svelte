@@ -17665,42 +17665,42 @@ var app = (function () {
     			t26 = text(" kB  ");
     			attr_dev(img, "margin:0px", "");
     			attr_dev(img, "padding:0px", "");
-    			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*filename*/ ctx[6].split("\\"), "small"))) attr_dev(img, "src", img_src_value);
+    			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*filename*/ ctx[6], "small"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "width", img_width_value = "" + (/*WIDTH*/ ctx[1] + "px"));
     			attr_dev(img, "alt", "");
     			add_location(img, file$6, 42, 1, 1132);
     			attr_dev(a0, "target", "_blank");
     			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'M'));
-    			add_location(a0, file$6, 56, 3, 1579);
+    			add_location(a0, file$6, 56, 3, 1555);
     			attr_dev(div0, "class", "info svelte-12u6tjf");
     			set_style(div0, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div0, file$6, 55, 2, 1500);
+    			add_location(div0, file$6, 55, 2, 1476);
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'T'));
-    			add_location(a1, file$6, 59, 3, 1807);
+    			add_location(a1, file$6, 59, 3, 1783);
     			attr_dev(div1, "class", "info svelte-12u6tjf");
     			set_style(div1, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div1, file$6, 58, 2, 1732);
+    			add_location(div1, file$6, 58, 2, 1708);
     			attr_dev(input, "class", "largerCheckbox svelte-12u6tjf");
     			attr_dev(input, "type", "checkbox");
     			input.__value = "";
     			input.value = input.__value;
-    			add_location(input, file$6, 63, 3, 2055);
+    			add_location(input, file$6, 63, 3, 2031);
     			set_style(span0, "flex", "2");
     			set_style(span0, "text-align", "center");
     			set_style(span0, "white-space", "nowrap");
-    			add_location(span0, file$6, 65, 3, 2176);
+    			add_location(span0, file$6, 65, 3, 2152);
     			set_style(span1, "flex", "1");
     			set_style(span1, "text-align", "right");
     			set_style(span1, "white-space", "nowrap");
-    			add_location(span1, file$6, 66, 3, 2268);
+    			add_location(span1, file$6, 66, 3, 2244);
     			attr_dev(div2, "class", "info svelte-12u6tjf");
     			set_style(div2, "display", "flex");
     			set_style(div2, "height", "13px");
     			set_style(div2, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div2, file$6, 61, 2, 1952);
+    			add_location(div2, file$6, 61, 2, 1928);
     			attr_dev(div3, "class", "group svelte-12u6tjf");
-    			add_location(div3, file$6, 54, 1, 1477);
+    			add_location(div3, file$6, 54, 1, 1453);
     			attr_dev(div4, "class", "card svelte-12u6tjf");
     			attr_dev(div4, "id", "images");
     			set_style(div4, "position", "absolute");
@@ -17763,7 +17763,7 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*getPath, filename*/ 68 && !src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*filename*/ ctx[6].split("\\"), "small"))) {
+    			if (dirty & /*getPath, filename*/ 68 && !src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*filename*/ ctx[6], "small"))) {
     				attr_dev(img, "src", img_src_value);
     			}
 
@@ -17924,7 +17924,7 @@ var app = (function () {
 
     	const click_handler = () => {
     		const host = location.origin + location.pathname;
-    		window.open(host + `?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(filename.split('\\'), '')}`);
+    		window.open(host + `?bs=${card[9]}&bw=${card[10]}&bh=${card[11]}&image=${getPath(filename, '')}`);
     	};
 
     	function input_change_handler() {
@@ -21519,30 +21519,30 @@ var app = (function () {
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[5] = list[i];
+    	child_ctx[7] = list[i];
     	return child_ctx;
     }
 
-    // (12:3) {#if ! is_jpg(key)}
+    // (29:3) {#if ! is_jpg(key)}
     function create_if_block$4(ctx) {
     	let button;
-    	let t_value = /*key*/ ctx[5].replaceAll("_", " ") + "";
+    	let t_value = /*key*/ ctx[7].replaceAll("_", " ") + "";
     	let t;
     	let button_value_value;
     	let mounted;
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[4](/*key*/ ctx[5]);
+    		return /*click_handler*/ ctx[5](/*key*/ ctx[7]);
     	}
 
     	const block = {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			button.value = button_value_value = /*key*/ ctx[5];
+    			button.value = button_value_value = /*key*/ ctx[7];
     			attr_dev(button, "class", "svelte-10r6lf3");
-    			add_location(button, file$3, 12, 4, 231);
+    			add_location(button, file$3, 29, 4, 573);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21555,9 +21555,9 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*path*/ 1 && t_value !== (t_value = /*key*/ ctx[5].replaceAll("_", " ") + "")) set_data_dev(t, t_value);
+    			if (dirty & /*keys*/ 8 && t_value !== (t_value = /*key*/ ctx[7].replaceAll("_", " ") + "")) set_data_dev(t, t_value);
 
-    			if (dirty & /*path*/ 1 && button_value_value !== (button_value_value = /*key*/ ctx[5])) {
+    			if (dirty & /*keys*/ 8 && button_value_value !== (button_value_value = /*key*/ ctx[7])) {
     				prop_dev(button, "value", button_value_value);
     			}
     		},
@@ -21572,17 +21572,17 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(12:3) {#if ! is_jpg(key)}",
+    		source: "(29:3) {#if ! is_jpg(key)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (10:1) {#each _.keys(_.last(path)) as key }
+    // (27:1) {#each keys as key }
     function create_each_block$2(ctx) {
     	let div;
-    	let show_if = !/*is_jpg*/ ctx[2](/*key*/ ctx[5]);
+    	let show_if = !/*is_jpg*/ ctx[1](/*key*/ ctx[7]);
     	let t;
     	let if_block = show_if && create_if_block$4(ctx);
 
@@ -21592,7 +21592,7 @@ var app = (function () {
     			if (if_block) if_block.c();
     			t = space();
     			attr_dev(div, "class", "svelte-10r6lf3");
-    			add_location(div, file$3, 10, 2, 196);
+    			add_location(div, file$3, 27, 2, 538);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -21600,7 +21600,7 @@ var app = (function () {
     			append_dev(div, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*is_jpg, path*/ 5) show_if = !/*is_jpg*/ ctx[2](/*key*/ ctx[5]);
+    			if (dirty & /*is_jpg, keys*/ 10) show_if = !/*is_jpg*/ ctx[1](/*key*/ ctx[7]);
 
     			if (show_if) {
     				if (if_block) {
@@ -21625,7 +21625,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(10:1) {#each _.keys(_.last(path)) as key }",
+    		source: "(27:1) {#each keys as key }",
     		ctx
     	});
 
@@ -21634,7 +21634,7 @@ var app = (function () {
 
     function create_fragment$5(ctx) {
     	let div;
-    	let each_value = lodash.keys(lodash.last(/*path*/ ctx[0]));
+    	let each_value = /*keys*/ ctx[3];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -21650,9 +21650,9 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			set_style(div, "width", /*WIDTH*/ ctx[3] + "px");
+    			set_style(div, "width", /*WIDTH*/ ctx[2] + "px");
     			attr_dev(div, "class", "svelte-10r6lf3");
-    			add_location(div, file$3, 8, 0, 123);
+    			add_location(div, file$3, 25, 0, 481);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21665,8 +21665,8 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*_, path, push, is_jpg*/ 7) {
-    				each_value = lodash.keys(lodash.last(/*path*/ ctx[0]));
+    			if (dirty & /*keys, push, is_jpg*/ 11) {
+    				each_value = /*keys*/ ctx[3];
     				validate_each_argument(each_value);
     				let i;
 
@@ -21689,8 +21689,8 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (dirty & /*WIDTH*/ 8) {
-    				set_style(div, "width", /*WIDTH*/ ctx[3] + "px");
+    			if (dirty & /*WIDTH*/ 4) {
+    				set_style(div, "width", /*WIDTH*/ ctx[2] + "px");
     			}
     		},
     		i: noop$1,
@@ -21719,6 +21719,8 @@ var app = (function () {
     	let { push } = $$props;
     	let { is_jpg } = $$props;
     	let { WIDTH } = $$props;
+    	const digit = d => '0' <= d && d <= '9';
+    	let keys;
 
     	$$self.$$.on_mount.push(function () {
     		if (path === undefined && !('path' in $$props || $$self.$$.bound[$$self.$$.props['path']])) {
@@ -21747,32 +21749,60 @@ var app = (function () {
     	const click_handler = key => push(key);
 
     	$$self.$$set = $$props => {
-    		if ('path' in $$props) $$invalidate(0, path = $$props.path);
-    		if ('push' in $$props) $$invalidate(1, push = $$props.push);
-    		if ('is_jpg' in $$props) $$invalidate(2, is_jpg = $$props.is_jpg);
-    		if ('WIDTH' in $$props) $$invalidate(3, WIDTH = $$props.WIDTH);
+    		if ('path' in $$props) $$invalidate(4, path = $$props.path);
+    		if ('push' in $$props) $$invalidate(0, push = $$props.push);
+    		if ('is_jpg' in $$props) $$invalidate(1, is_jpg = $$props.is_jpg);
+    		if ('WIDTH' in $$props) $$invalidate(2, WIDTH = $$props.WIDTH);
     	};
 
-    	$$self.$capture_state = () => ({ _: lodash, path, push, is_jpg, WIDTH });
+    	$$self.$capture_state = () => ({
+    		_: lodash,
+    		path,
+    		push,
+    		is_jpg,
+    		WIDTH,
+    		digit,
+    		keys
+    	});
 
     	$$self.$inject_state = $$props => {
-    		if ('path' in $$props) $$invalidate(0, path = $$props.path);
-    		if ('push' in $$props) $$invalidate(1, push = $$props.push);
-    		if ('is_jpg' in $$props) $$invalidate(2, is_jpg = $$props.is_jpg);
-    		if ('WIDTH' in $$props) $$invalidate(3, WIDTH = $$props.WIDTH);
+    		if ('path' in $$props) $$invalidate(4, path = $$props.path);
+    		if ('push' in $$props) $$invalidate(0, push = $$props.push);
+    		if ('is_jpg' in $$props) $$invalidate(1, is_jpg = $$props.is_jpg);
+    		if ('WIDTH' in $$props) $$invalidate(2, WIDTH = $$props.WIDTH);
+    		if ('keys' in $$props) $$invalidate(3, keys = $$props.keys);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [path, push, is_jpg, WIDTH, click_handler];
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*path, keys*/ 24) {
+    			{
+    				$$invalidate(3, keys = lodash.keys(lodash.last(path)));
+    				let numbers = true;
+
+    				for (const key of keys) {
+    					if (!(digit(key[0]) && digit(key[1]) && digit(key[2]) && digit(key[3]))) numbers = false;
+    				}
+
+    				keys.sort();
+    				if (numbers) keys.reverse();
+
+    				// console.log('keys',numbers,keys)
+    				($$invalidate(3, keys), $$invalidate(4, path));
+    			}
+    		}
+    	};
+
+    	return [push, is_jpg, WIDTH, keys, path, click_handler];
     }
 
     class NavigationVertical extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { path: 0, push: 1, is_jpg: 2, WIDTH: 3 });
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { path: 4, push: 0, is_jpg: 1, WIDTH: 2 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -23404,7 +23434,7 @@ var app = (function () {
 
     const { Object: Object_1, console: console_1, window: window_1 } = globals;
 
-    // (328:0) {:else}
+    // (332:0) {:else}
     function create_else_block_1(ctx) {
     	let bigpicture;
     	let current;
@@ -23445,14 +23475,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(328:0) {:else}",
+    		source: "(332:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (318:0) {#if big.file == ""}
+    // (322:0) {#if big.file == ""}
     function create_if_block(ctx) {
     	let search_1;
     	let updating_sokruta;
@@ -23672,14 +23702,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(318:0) {#if big.file == \\\"\\\"}",
+    		source: "(322:0) {#if big.file == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (325:1) {:else}
+    // (329:1) {:else}
     function create_else_block(ctx) {
     	let infinite;
     	let updating_selected;
@@ -23742,14 +23772,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(325:1) {:else}",
+    		source: "(329:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (323:1) {#if helpToggle}
+    // (327:1) {#if helpToggle}
     function create_if_block_1(ctx) {
     	let help;
     	let current;
@@ -23782,7 +23812,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(323:1) {#if helpToggle}",
+    		source: "(327:1) {#if helpToggle}",
     		ctx
     	});
 
@@ -23929,9 +23959,9 @@ var app = (function () {
     	return Math.round((1 - skala) * (x - left));
     } //         
 
-    function getPath(arr, dir = "small") {
-    	if (dir.length > 0) arr.splice(arr.length - 1, 0, dir);
-    	return arr.join("\\");
+    function getPath(path, dir = "small") {
+    	if (dir.length > 0) path = path.replace("Home", dir); //arr.splice(arr.length-1, 0, dir);
+    	return path; //.join("\\")
     }
 
     function instance($$self, $$props, $$invalidate) {
@@ -23976,7 +24006,7 @@ var app = (function () {
 
     	function calcWidth(innerWidth) {
     		let n = Math.floor(innerWidth / 475);
-    		return Math.floor((innerWidth - (n + 1) * GAP - SCROLLBAR) / n);
+    		return Math.floor((innerWidth - (n + 1) * GAP - SCROLLBAR - 2) / n);
     	}
 
     	function consumeFolder(folder) {
@@ -24004,8 +24034,8 @@ var app = (function () {
     	function consumeParameters() {
     		const queryString = window.location.search;
     		const urlParams = new URLSearchParams(queryString);
-    		console.log(urlParams);
 
+    		// console.log(urlParams)
     		if (urlParams.has("image")) {
     			visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("image"));
     		} else {
@@ -24032,6 +24062,10 @@ var app = (function () {
     	assert(lodash.range(3), [0, 1, 2]);
 
     	// Obs: använd index++ istf 0 pga -0 == +0
+    	// 1 index => [-1],[1] = 2 varianter
+    	// 2 index => [-1,-2],[1,-2],[-1,2],[1,2], [-2,-1],[-2,1],[2,-1],[2,1] = 2!*2^2 = 8 varianter
+    	// 3 index => n! * 2^n = 48 varianter
+    	// 4 index => 24 * 16 = 384 varianter
     	function multiSort(a, b, indexes) {
     		for (const i in lodash.range(indexes.length)) {
     			const index = Math.abs(indexes[i]) - 1; // 0..

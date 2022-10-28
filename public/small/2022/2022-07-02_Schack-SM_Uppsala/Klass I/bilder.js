@@ -1,0 +1,1 @@
+{"Andreas_Carlsson.jpg":[475,321,19799,475,321],"Christoffer_Stenman.jpg":[475,346,15028,475,346]}

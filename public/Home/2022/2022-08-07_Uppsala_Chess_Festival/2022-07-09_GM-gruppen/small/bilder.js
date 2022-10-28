@@ -1,1 +1,0 @@
-{"Vy-Uchess-fest_GM_Jha_Sriram_2022-07-09.jpg":[475,378,1999266,2048,1630],"Vy-Uchess-fest_GM_Jha_Sriram_web169_2022-07-09.jpg":[475,267,1346297,2048,1152]}

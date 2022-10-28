@@ -1,0 +1,1 @@
+{"1.Leonard_Hammar_Klass_H_2022-10-09.jpg":[475,453,18094,475,453],"2.Yohan_Tharmarair_Klass_H_2022-10-09.jpg":[475,511,19718,475,511]}

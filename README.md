@@ -23,22 +23,25 @@ Pythonprogrammet bilder.py underhåller denna fil.
 		* [M585772](https://member.schack.se/ViewPlayerRatingDiagram?memberid=585772) Numa Karlsson
 
 ```
-database
-	bilder.js
+Home
 	2022
 		2022-09-17_Kristallens_JGP
 			Klass_AB_T10368
 				1.FM_Edvin_Trost_Klass_A_2022-09-17-X.jpg
-				small
-					bilder.js
-					1.FM_Edvin_Trost_Klass_A_2022-09-17-X.jpg
 			Klass_D_T10370
-				7.Numa_Karlsson_klass_D_2022-09-17.jpg
-				small
-					bilder.js
 					7.Numa_Karlsson_klass_D_2022-09-17.jpg
 	2021
-	2020
+Small
+	2022
+		2022-09-17_Kristallens_JGP
+			Klass_AB_T10368
+				1.FM_Edvin_Trost_Klass_A_2022-09-17-X.jpg
+					bilder.js
+			Klass_D_T10370
+				7.Numa_Karlsson_klass_D_2022-09-17.jpg
+					bilder.js
+	2021
+bilder.js
 ```
 Filer har *extension* [.jpg](https://en.wikipedia.org/wiki/JPEG) och .js, övriga är kataloger.
 
@@ -141,14 +144,14 @@ Så här uppdaterar man databasen med nya bildsamlingar.
 					* 7.Numa_Karlsson_M123456.jpg
 
 Starta Pythonprogrammet bilder.py. Följande kommer att ske:
-* small-katalogerna skapas. Dessa ligger i samma katalog som de stora .jpg-filerna.
+* small-katalogen skapas. Syskon till Home
 * Thumbnails skapas och läggs i small-katalogen.
-* Cache av bilder.js (med bredd och höjd för varje bild) läggs i katalogen small.
-* Alla bilder.js sammanställs till den totala public/Home/bilder.js
+* Cache av bilder.js (med bredd och höjd för varje bild) läggs i varje katalog som innehåller en thumbnail
+* Alla bilder.js sammanställs till den totala public/bilder.js
 * Cacharna finns pga att det tar cirka 100 ms att skapa en thumbnail.
 * Att skapa om alla cachar tar drygt en timme.
-	* Detta kan framtvingas genom att sätta USE_CACHE = False i bilder.py
-	* Vill man bara skapa om vissa kataloger tar man bort filen bilder.js i dessa
+	* Detta kan framtvingas genom att ta bort katalogen small
+	* Vill man bara skapa om vissa kataloger tar man bort dessa i small.
 
 ### Tidsuppskattningar.
 

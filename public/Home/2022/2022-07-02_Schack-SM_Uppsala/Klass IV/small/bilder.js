@@ -1,1 +1,0 @@
-{"Angelica_Lindberg.jpg":[475,343,1208589,2048,1480],"Cristina_Svensson.jpg":[475,284,1290297,2048,1226]}
