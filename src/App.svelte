@@ -206,11 +206,11 @@
 		}
 	}
 
-	function pop(key) {
-		while (_.last(stack) != key) {
-			path.pop()
-			stack.pop()
-		}
+	function pop() {
+		// while (_.last(stack) != key) {
+		path.pop()
+		stack.pop()
+		// }
 		path = path
 		stack = stack
 	}
@@ -275,7 +275,8 @@
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
 	function placera(images) {
 		const rows = sokruta=="" ? 4 : 5
-		const antal = rows + _.size(stack) + countDirs(_.last(path))
+//		const antal = rows + _.size(stack) + countDirs(_.last(path))
+		const antal = rows + 1 + countDirs(_.last(path))
 		offset = 34 * antal // 30 + 2 * margin=2
 
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)

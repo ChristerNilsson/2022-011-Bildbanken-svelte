@@ -5,17 +5,15 @@
 	export let is_jpg
 	export let WIDTH
 
-	// const digit = (d) => '0' <= d && d <= '9'
-
 	let keys 
-	const regex1 = new RegExp(/^\d\d\d\d/)
-	const regex2 = new RegExp(/^\d\d-\d\d/)
+	const regexYYYY = new RegExp(/^\d\d\d\d/)
+	const regexMMDD = new RegExp(/^\d\d-\d\d/)
 
 	$: { 
 		keys = _.keys(_.last(path))
 		let numbers = true
 		for (const key of keys) {
-			if ( ! (regex1.test(key) || regex2.test(key))) numbers = false 
+			if ( ! (regexYYYY.test(key) || regexMMDD.test(key))) numbers = false 
 		}
 		keys.sort()
 		if (numbers) keys.reverse()
@@ -45,8 +43,8 @@
 		height:30px;
 		width:99%;
 		text-align:left;
-		border:1px black solid; 
-		color:white;
-		background-color:green;
+		/* border:1px black solid;  */
+		/* color:white; */
+		/* background-color:green; */
 	}
 </style>
