@@ -15,7 +15,7 @@ Den har ersatts av att man klickar eller använder hjulet.
 Av samma anledning används filen bilder.js istället för [bilder.json](https://stackoverflow.com/questions/60779816/how-to-access-local-json-file-via-svelte)
 
 Min lösning:
-```
+```c
 <script src='./Home/bilder.js'></script>
 
 Home={"2022":{"2022-09-17_Kristallens_JGP":{"Klass_AB_T10368":{"1.FM_Edvin_Trost_Klass_A_2022-09-17-X.jpg":[475,267,224639,1600,1200],...
@@ -23,13 +23,13 @@ Home={"2022":{"2022-09-17_Kristallens_JGP":{"Klass_AB_T10368":{"1.FM_Edvin_Trost
 pixlar,pixlar,bytes, pixlar,pixlar
 [475,  267,   224639,1600,  1200]
 [sw,   sh,    bs,    bw,    bh]    s/b = small/big s/w/h = size/width/height
-sw och sh används för att bygga swimlanes
-bs är rena information
-bw och bh anväds för att placera ut stora bilder initialt maximerade.
- 
-Dessa skulle alternativt kunna tas fram genom att läsa från filsystemet, men det skulle ta längre tid.
-Ponera att 47.000 thumbnails sökts fram och man vill placera dem i rätt swimlane, beroende på bildernas höjder.
 ```
+* sw och sh används för att bygga swimlanes
+* bs är rena information
+* bw och bh anväds för att placera ut stora bilder initialt maximerade.
+ 
+* Dessa skulle alternativt kunna tas fram genom att läsa från filsystemet, men det skulle ta längre tid.
+* Ponera att 47.000 thumbnails sökts fram och man vill placera dem i rätt swimlane, beroende på bildernas höjder.
 
 ### Fliknamn
 
@@ -45,7 +45,7 @@ Julia_Östensson_2022 [bör]
 Dessa borde flyttas söderut, beroende på tidigare divars height.
 Utan behov av omräkning av koordinaterna, eftersom de räknas från parents origo.
 
-```
+```c
 <div class="container" style = "left:0px; border: solid green 1px">
 	<div class="item" style="top:20px" >Pelle</div>
 	<div class="item" style="top:40px" >Quintus</div>
@@ -119,7 +119,7 @@ gsutil -m rsync -r C:\github\2022-011-Bildbanken-svelte\public gs://bildbanken2
 
 Prestanda: 2.4GB tog fem minuter. Nästa synk tog 13 sekunder.
 
-Skapa rättigheter för alla användare:
+Skapa rättigheter för alla användare i [Google Cloud Storage](https://cloud.google.com/) :
 * Edit Access
 * +Add Principal
 * Skriv in "allUsers"
@@ -132,3 +132,35 @@ Skapa rättigheter för alla användare:
 * Denna ska då vara "https://storage.googleapis.com/bildbanken2/index.html"
 
 Kostnad: 100GB kostar $24 per år.
+
+## Externa filer och URL:er
+
+Dessa kan göras tillgängliga genom att dekorera .jpg-filnamnet med följande nummer:
+* M = Medlemsnummer. https://member.schack.se/ViewPlayerRatingDiagram?memberid=585772
+* T = Turneringsnummer. https://member.schack.se/ShowTournamentServlet?id=10370
+* V = Videonummer i Vimeo. https://player.vimeo.com/video/724273589
+* F = Övriga filer och url:er. Tex .pdf.
+
+Gemensamt för dessa filer är att endast .jpg-filens path är sökbar. Innehållet är ej sökbart.
+
+### Exempel
+
+07.Numa_Karlsson_M585772_V724273589_F10000.jpg
+
+För att F-nummer ska fungera måste filnamnet/urlen registreras i filen public/file_index.js
+(Orsaken till detta är att man inte kan ha ett filnamn eller en url i ett filnamn, däremot går ett heltal bra)
+
+Här visas hur samma pdf kan hanteras på två olika sätt:
+
+```c
+fileIndex = {
+	10000 : "https://www.wasask.se/Stockholms Schackförbunds nybörjarkurs i schack.pdf",
+	10001 : "files/Stockholms Schackförbunds nybörjarkurs i schack.pdf",
+}```
+
+Om det handlar om en fil, så måste den även placeras i katalogen public/files.
+
+.jpg-bilden väljer man själv. Förslagsvis tas en skärmdump av lämplig bild som representerar innehållet.
+Beskrivningen av innehållet lägger man i .jpg-filnamnet och denna text blir sökbar.
+
+![Resultatet](fileIndex.PNG)

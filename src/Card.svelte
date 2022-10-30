@@ -6,26 +6,31 @@
 	export let selected
 	export let index
 	export let round
+	export let fileWrapper
 
 	$: filename = card[2] + "\\" + card[12]
 
-	function getNumber(path,letter) { // Används både för T och M-nummer
-		path = path.replace('.jpg','')
-		const arr = path.split('\\')
-		const pos = " MT".indexOf(letter)
-		const cand = arr[arr.length-pos]
-		const arr2 = cand.split('_')
-		const nummer = _.last(arr2)
-		const matches = nummer.match(/[MT]\d+/)
-		if (matches) return matches[0].slice(1)
-		return ""
+	$: M = getNumber(filename,'M')
+	$: T = getNumber(filename,'T')
+	$: V = getNumber(filename,'V')
+	$: F = getNumber(filename,'F')
+
+	function getNumber(path,letter) { // Används för filnummer = MTVP
+		let matches 
+		if (letter=='M') matches = path.match(/[M]\d+/)
+		if (letter=='T') matches = path.match(/[T]\d+/)
+		if (letter=='V') matches = path.match(/[V]\d+/)
+		if (letter=='F') matches = path.match(/[F]\d+/)
+		return matches ? matches[0].slice(1) : ""
 	}
 
-	function prettyFilename(path) { // Tag bort eventuellt M-nummer
+	function prettyFilename(path) { // Tag bort eventuella M och V-nummer
 		let i = path.lastIndexOf('\\')
 		let s = path.slice(i+1)
 		s = s.replace('.jpg','')
 		s = s.replace(/_M\d+/,'')
+		s = s.replace(/_V\d+/,'')
+		s = s.replace(/_F\d+/,'')
 		s = s.replaceAll(/_/ig,' ')
 		return s
 	}
@@ -41,7 +46,7 @@
 </script>
 
 <div class="card" id="images" style="position:absolute; width:{WIDTH}px; left:{card[5]}px; top:{card[6]}px">
-	<img 
+	<img
 		margin:0px
 		padding:0px
 		src = {getPath(filename,"small")}
@@ -55,11 +60,25 @@
 	/>
 	<div class="group">
 		<div class="info" style="width:{WIDTH}px">&nbsp;{prettyFilename(filename)}
-			<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={getNumber(filename,'M')}">{getNumber(filename,'M')}</a>
+			{#if M}
+				<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">member</a>
+			{/if}
+			{#if V}
+				<a target="_blank" href="https://player.vimeo.com/video/{V}">video</a>
+			{/if}
+			{#if F}
+				<a target="_blank" href="{fileWrapper[0][F]}">file</a>
+			{/if}
 		</div>
 		<div class="info" style="width:{WIDTH}px">&nbsp;{prettyPath(filename)}
-			<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={getNumber(filename,'T')}">{getNumber(filename,'T')}</a>
+			{#if T}
+				<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={T}">result</a>
+			{/if}
 		</div>
+
+		<!-- <div class="info" style="width:{WIDTH}px">&nbsp;
+		</div> -->
+
 		<div class="info" style="display:flex; height:13px; width:{WIDTH}px">
 			&nbsp;{card[7]} • &nbsp;
 			<input class="largerCheckbox" type="checkbox" value="" bind:checked={selected[index]}/> &nbsp; •&nbsp;

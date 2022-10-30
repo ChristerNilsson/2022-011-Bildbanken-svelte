@@ -5,9 +5,9 @@
 	export let selected
 	export let cards
 	export let round
-	// export let offset
+	export let fileWrapper
 </script>
 
 {#each cards as card,index}
-<Card {WIDTH} {getPath} {card} bind:selected {index} {round} />
+	<Card {WIDTH} {getPath} {card} bind:selected {index} {round} {fileWrapper}/>
 {/each}

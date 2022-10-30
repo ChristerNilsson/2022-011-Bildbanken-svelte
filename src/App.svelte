@@ -42,6 +42,8 @@
 	// 			console.log('reading JSON',_.size(Home))
 	// 		})
 	// }
+
+	const fileWrapper = [fileIndex]
 	
 	let count = 0
 	
@@ -328,7 +330,7 @@
 	{#if helpToggle}
 		<Help/>
 	{:else}
-		<Infinite {WIDTH} {getPath} bind:selected {cards} {round} />
+		<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper}/>
 	{/if}
 {:else}
 	<BigPicture {big} />
