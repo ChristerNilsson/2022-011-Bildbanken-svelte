@@ -1,1 +1,0 @@
-{"Vy-Uppsala-YC_Adam_Frank_2021-10-29-X.jpg":[475,282,25967,475,282],"Vy-Uppsala-YC_Alexander_Nord_2021-10-29.jpg":[475,339,21482,475,339]}

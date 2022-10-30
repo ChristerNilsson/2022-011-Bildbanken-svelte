@@ -15,11 +15,12 @@
 		const pos = " MT".indexOf(letter)
 		const cand = arr[arr.length-pos]
 		const arr2 = cand.split('_')
-		const tnummer = _.last(arr2)
-		if (tnummer[0]==letter) return tnummer.slice(1)
+		const nummer = _.last(arr2)
+		const matches = nummer.match(/[MT]\d+/)
+		if (matches) return matches[0].slice(1)
 		return ""
 	}
- 
+
 	function prettyFilename(path) { // Tag bort eventuellt M-nummer
 		let i = path.lastIndexOf('\\')
 		let s = path.slice(i+1)
@@ -31,7 +32,7 @@
 
 	function prettyPath(path) { // Tag bort eventuellt T-nummer
 		path = path.split('\\')
-		path = path.slice(2,path.length-1)
+		path = path.slice(1,path.length-1)
 		path = path.join(" • ")
 		path = path.replace(/_T\d+/,'')
 		return path.replaceAll('_', ' ')

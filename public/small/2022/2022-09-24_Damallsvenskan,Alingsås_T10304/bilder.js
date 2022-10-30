@@ -1,1 +1,0 @@
-{"Vy-Damallsvenskan_Claire_Emil_2022-09-24.jpg":[475,340,26282,475,340],"Vy-Damallsvenskan_Julia_Östensson_2022-09-25.jpg":[475,464,29273,475,464]}

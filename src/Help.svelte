@@ -1,7 +1,6 @@
 <script>
 	const helpTexts = []
 	helpTexts.push("Separate words with a space or an underscore (_)")
-	helpTexts.push("Only the Current directory is searched")
 	helpTexts.push("Search is case sensitive")
 	helpTexts.push("Searching can start anywhere in a word")
 	helpTexts.push("Search period like 2022-09-17, 2022-09, 2022 or 09-17")
@@ -10,9 +9,12 @@
 	helpTexts.push("[None] unmarks images")
 	helpTexts.push("[Download] zips marked images")
 	helpTexts.push("[All] marks images")
-	helpTexts.push("[Home] makes the Home directory the Current directory")
-	helpTexts.push("The Current directory is shown in bold")
-	helpTexts.push("Directories below it are in the Current directory")
+	helpTexts.push("Home is the highest level directory")
+	helpTexts.push("Red directories are parents/grandparents to the Current dir.")
+	helpTexts.push("The yellow directory is the Current directory")
+	helpTexts.push("Green directories are children of the Current directory")
+	helpTexts.push("Clicking a directory, makes it the Current directory")
+	helpTexts.push("Search is done in the Current directory and below")
 	helpTexts.push("High resolution images are draggable and zoomable")
 	helpTexts.push("[Share] copies a URL to the clipboard")
 	helpTexts.push("Search words are named A, B and C")

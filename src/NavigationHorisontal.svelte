@@ -9,9 +9,9 @@
 	{#each stack as key }
 		<div>
 			{#if key == _.last(stack)}
-				<button style="border:0px; background-color:transparent;"><b>{key.replaceAll("_"," ")}</b></button>
+				<button style="border:1px black solid; background-color:yellow;"><b>{key.replaceAll("_"," ")}</b></button>
 			{:else}
-				<button on:click = {() => pop(key)}>{key}</button>
+				<button style="color:white; border:1px black solid; background-color:red;"on:click = {() => pop(key)}>{key}</button>
 			{/if}
 		</div>
 	{/each}

@@ -1,1 +1,0 @@
-{"Vy-Skol-SM_Albin_Alenius_2022-10-08.jpg":[475,353,21248,475,353],"Vy-Skol-SM_avdelningen_förfriskningar_2022-10-08-X.jpg":[475,267,20974,475,267]}

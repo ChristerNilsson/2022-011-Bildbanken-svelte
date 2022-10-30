@@ -1,1 +1,0 @@
-{"Vy-Skol-SM_Uppsala_Västberga Skola_blev bästa_skola_2022-10-09.jpg":[475,316,24815,475,316]}

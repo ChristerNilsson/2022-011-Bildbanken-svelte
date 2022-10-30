@@ -1,5 +1,8 @@
 /node_modules/
-
+Home
+small
+big
+*.pdf
 .DS_Store
 Gigantisk
 .vercel

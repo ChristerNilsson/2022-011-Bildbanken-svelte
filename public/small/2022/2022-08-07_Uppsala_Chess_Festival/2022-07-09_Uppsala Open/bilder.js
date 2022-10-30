@@ -1,1 +1,0 @@
-{"Vy-Uchess-fest_Almir_Kicin-Matija_Sakicr_web169_2022-07-09-X.jpg":[475,267,27859,475,267],"Vy-Uchess-fest_Almir_Kicin_web169_2022-07-09.jpg":[475,267,11253,475,267]}

@@ -1,1 +1,0 @@
-{"Vy-Sports-heart__Adrian_Söderström_2022-08-03-X.jpg":[475,378,32574,475,378],"Vy-Sports-heart__Baldur_Teodor_Petersson_2022-08-03.jpg":[475,379,30319,475,379]}

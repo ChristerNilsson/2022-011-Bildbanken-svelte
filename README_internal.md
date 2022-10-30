@@ -105,3 +105,30 @@ För att underlätta anpassning till mobiler och paddor, begränsas antalet olik
 Browsern har ett gap mellan knapparna som ej kan förklaras.
 Känns som att en vit rand utanför knappen ingår.
 Knappar med 25%+50%+25% fick ej plats på 100%.
+
+### Deploy till Google Storage
+
+* Skapa projektet benämnt t ex Bildbanken2
+* Installera gsutil.
+* Kopiera över hela projektet med kommandot:
+```
+gsutil -m rsync -r C:\github\2022-011-Bildbanken-svelte\public gs://bildbanken2
+```
+* -m innebär att flera processer arbetar.
+* -r innebär rekursiv traversering av katalogerna.
+
+Prestanda: 2.4GB tog fem minuter. Nästa synk tog 13 sekunder.
+
+Skapa rättigheter för alla användare:
+* Edit Access
+* +Add Principal
+* Skriv in "allUsers"
+* Skriv in "Storage Object Viewer"
+* Save
+* Allow Public Access
+
+* Därefter kan man efter någon minut se access ändrad till "Public to Internet".
+* Då kan man välja filen index.html och klicka på "Copy URL"
+* Denna ska då vara "https://storage.googleapis.com/bildbanken2/index.html"
+
+Kostnad: 100GB kostar $24 per år.

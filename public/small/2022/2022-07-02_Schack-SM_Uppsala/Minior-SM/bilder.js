@@ -1,1 +1,0 @@
-{"Axel_Grettve_Odenfors.jpg":[475,378,26229,475,378],"Jung_Hoon_Seo.jpg":[475,364,18409,475,364]}

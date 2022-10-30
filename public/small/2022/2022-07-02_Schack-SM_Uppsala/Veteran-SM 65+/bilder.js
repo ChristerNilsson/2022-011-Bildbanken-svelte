@@ -1,1 +1,0 @@
-{"Arnold_Sderlind.jpg":[475,379,23489,475,379],"Björn_Gillefalk.jpg":[475,434,25799,475,434]}

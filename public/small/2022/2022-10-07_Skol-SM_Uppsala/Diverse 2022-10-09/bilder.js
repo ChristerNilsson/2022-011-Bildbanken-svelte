@@ -1,1 +1,0 @@
-{"Vy-Skol-SM_Alice_Ruud_gör_reklam_för_Wasas_Tjejträning_på_Norra_Realr_2022-10-09-X-2.jpg":[475,354,16205,475,354],"Vy-Skol-SM_Alice_Ruud_gör_reklam_för_Wasas_Tjejträning_på_Norra_Realr_2022-10-09-X.jpg":[475,419,24463,475,419]}

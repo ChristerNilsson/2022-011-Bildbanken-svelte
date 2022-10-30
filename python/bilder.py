@@ -56,13 +56,13 @@ def readrecurs(curr, parent):
 		names = [f for f in scandir(ROOT + "Home" + parent)]
 		# print(names)
 		for name in names:
-			# if name.name != 'small' and name.name != 'bilder.js' and name.name != 'bilder.json':
-			if name.is_dir():
-				nextcurr = {}
-				curr[-1][name.name] = nextcurr
-				readrecurs(curr+[nextcurr],parent + "\\" + name.name) # path
-			else:
-				makeSmall(js,name)
+			if name.name != 'bilder.js':
+				if name.is_dir():
+					nextcurr = {}
+					curr[-1][name.name] = nextcurr
+					readrecurs(curr+[nextcurr],parent + "\\" + name.name) # path
+				else:
+					makeSmall(js,name)
 		if len(js) > 0:
 			print('\n',len(js),'thumbnails written for',parent.split('\\')[-1])
 			with open(ROOT + '\\small' + parent + '\\bilder.js', 'w', encoding="utf8") as f:

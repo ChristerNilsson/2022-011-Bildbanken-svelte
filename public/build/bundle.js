@@ -17668,46 +17668,46 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = /*getPath*/ ctx[2](/*filename*/ ctx[6], "small"))) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "width", img_width_value = "" + (/*WIDTH*/ ctx[1] + "px"));
     			attr_dev(img, "alt", "");
-    			add_location(img, file$6, 42, 1, 1132);
+    			add_location(img, file$6, 43, 1, 1165);
     			attr_dev(a0, "target", "_blank");
     			attr_dev(a0, "href", a0_href_value = "https://member.schack.se/ViewPlayerRatingDiagram?memberid=" + /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'M'));
-    			add_location(a0, file$6, 56, 3, 1555);
+    			add_location(a0, file$6, 57, 3, 1588);
     			attr_dev(div0, "class", "info svelte-12u6tjf");
     			set_style(div0, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div0, file$6, 55, 2, 1476);
+    			add_location(div0, file$6, 56, 2, 1509);
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "href", a1_href_value = "https://member.schack.se/ShowTournamentServlet?id=" + /*getNumber*/ ctx[7](/*filename*/ ctx[6], 'T'));
-    			add_location(a1, file$6, 59, 3, 1783);
+    			add_location(a1, file$6, 60, 3, 1816);
     			attr_dev(div1, "class", "info svelte-12u6tjf");
     			set_style(div1, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div1, file$6, 58, 2, 1708);
+    			add_location(div1, file$6, 59, 2, 1741);
     			attr_dev(input, "class", "largerCheckbox svelte-12u6tjf");
     			attr_dev(input, "type", "checkbox");
     			input.__value = "";
     			input.value = input.__value;
-    			add_location(input, file$6, 63, 3, 2031);
+    			add_location(input, file$6, 64, 3, 2064);
     			set_style(span0, "flex", "2");
     			set_style(span0, "text-align", "center");
     			set_style(span0, "white-space", "nowrap");
-    			add_location(span0, file$6, 65, 3, 2152);
+    			add_location(span0, file$6, 66, 3, 2185);
     			set_style(span1, "flex", "1");
     			set_style(span1, "text-align", "right");
     			set_style(span1, "white-space", "nowrap");
-    			add_location(span1, file$6, 66, 3, 2244);
+    			add_location(span1, file$6, 67, 3, 2277);
     			attr_dev(div2, "class", "info svelte-12u6tjf");
     			set_style(div2, "display", "flex");
     			set_style(div2, "height", "13px");
     			set_style(div2, "width", /*WIDTH*/ ctx[1] + "px");
-    			add_location(div2, file$6, 61, 2, 1928);
+    			add_location(div2, file$6, 62, 2, 1961);
     			attr_dev(div3, "class", "group svelte-12u6tjf");
-    			add_location(div3, file$6, 54, 1, 1453);
+    			add_location(div3, file$6, 55, 1, 1486);
     			attr_dev(div4, "class", "card svelte-12u6tjf");
     			attr_dev(div4, "id", "images");
     			set_style(div4, "position", "absolute");
     			set_style(div4, "width", /*WIDTH*/ ctx[1] + "px");
     			set_style(div4, "left", /*card*/ ctx[3][5] + "px");
     			set_style(div4, "top", /*card*/ ctx[3][6] + "px");
-    			add_location(div4, file$6, 41, 0, 1021);
+    			add_location(div4, file$6, 42, 0, 1054);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -17856,7 +17856,7 @@ var app = (function () {
     	// Tag bort eventuellt T-nummer
     	path = path.split('\\');
 
-    	path = path.slice(2, path.length - 1);
+    	path = path.slice(1, path.length - 1);
     	path = path.join(" • ");
     	path = path.replace(/_T\d+/, '');
     	return path.replaceAll('_', ' ');
@@ -17885,8 +17885,9 @@ var app = (function () {
     		const pos = (" MT").indexOf(letter);
     		const cand = arr[arr.length - pos];
     		const arr2 = cand.split('_');
-    		const tnummer = lodash.last(arr2);
-    		if (tnummer[0] == letter) return tnummer.slice(1);
+    		const nummer = lodash.last(arr2);
+    		const matches = nummer.match(/[MT]\d+/);
+    		if (matches) return matches[0].slice(1);
     		return "";
     	}
 
@@ -21339,7 +21340,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (24:1) {#each helpTexts as helpText}
+    // (26:1) {#each helpTexts as helpText}
     function create_each_block$3(ctx) {
     	let div;
     	let t0;
@@ -21352,7 +21353,7 @@ var app = (function () {
     			t0 = text("  • ");
     			t1 = text(t1_value);
     			set_style(div, "width", "475px");
-    			add_location(div, file$4, 24, 2, 1154);
+    			add_location(div, file$4, 26, 2, 1314);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -21369,7 +21370,7 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(24:1) {#each helpTexts as helpText}",
+    		source: "(26:1) {#each helpTexts as helpText}",
     		ctx
     	});
 
@@ -21405,10 +21406,10 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = "./qr.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "QR");
     			set_style(img, "width", "200px");
-    			add_location(img, file$4, 29, 3, 1260);
+    			add_location(img, file$4, 31, 3, 1420);
     			set_style(div0, "width", "475px");
-    			add_location(div0, file$4, 28, 2, 1229);
-    			add_location(div1, file$4, 22, 0, 1113);
+    			add_location(div0, file$4, 30, 2, 1389);
+    			add_location(div1, file$4, 24, 0, 1273);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21473,7 +21474,6 @@ var app = (function () {
     	validate_slots('Help', slots, []);
     	const helpTexts = [];
     	helpTexts.push("Separate words with a space or an underscore (_)");
-    	helpTexts.push("Only the Current directory is searched");
     	helpTexts.push("Search is case sensitive");
     	helpTexts.push("Searching can start anywhere in a word");
     	helpTexts.push("Search period like 2022-09-17, 2022-09, 2022 or 09-17");
@@ -21482,9 +21482,12 @@ var app = (function () {
     	helpTexts.push("[None] unmarks images");
     	helpTexts.push("[Download] zips marked images");
     	helpTexts.push("[All] marks images");
-    	helpTexts.push("[Home] makes the Home directory the Current directory");
-    	helpTexts.push("The Current directory is shown in bold");
-    	helpTexts.push("Directories below it are in the Current directory");
+    	helpTexts.push("Home is the highest level directory");
+    	helpTexts.push("Red directories are parents/grandparents to the Current dir.");
+    	helpTexts.push("The yellow directory is the Current directory");
+    	helpTexts.push("Green directories are children of the Current directory");
+    	helpTexts.push("Clicking a directory, makes it the Current directory");
+    	helpTexts.push("Search is done in the Current directory and below");
     	helpTexts.push("High resolution images are draggable and zoomable");
     	helpTexts.push("[Share] copies a URL to the clipboard");
     	helpTexts.push("Search words are named A, B and C");
@@ -21519,30 +21522,30 @@ var app = (function () {
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[7] = list[i];
+    	child_ctx[8] = list[i];
     	return child_ctx;
     }
 
-    // (29:3) {#if ! is_jpg(key)}
+    // (30:3) {#if ! is_jpg(key)}
     function create_if_block$4(ctx) {
     	let button;
-    	let t_value = /*key*/ ctx[7].replaceAll("_", " ") + "";
+    	let t_value = /*key*/ ctx[8].replaceAll("_", " ") + "";
     	let t;
     	let button_value_value;
     	let mounted;
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[5](/*key*/ ctx[7]);
+    		return /*click_handler*/ ctx[5](/*key*/ ctx[8]);
     	}
 
     	const block = {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			button.value = button_value_value = /*key*/ ctx[7];
-    			attr_dev(button, "class", "svelte-10r6lf3");
-    			add_location(button, file$3, 29, 4, 573);
+    			button.value = button_value_value = /*key*/ ctx[8];
+    			attr_dev(button, "class", "svelte-55y9ya");
+    			add_location(button, file$3, 30, 4, 593);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21555,9 +21558,9 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*keys*/ 8 && t_value !== (t_value = /*key*/ ctx[7].replaceAll("_", " ") + "")) set_data_dev(t, t_value);
+    			if (dirty & /*keys*/ 8 && t_value !== (t_value = /*key*/ ctx[8].replaceAll("_", " ") + "")) set_data_dev(t, t_value);
 
-    			if (dirty & /*keys*/ 8 && button_value_value !== (button_value_value = /*key*/ ctx[7])) {
+    			if (dirty & /*keys*/ 8 && button_value_value !== (button_value_value = /*key*/ ctx[8])) {
     				prop_dev(button, "value", button_value_value);
     			}
     		},
@@ -21572,17 +21575,17 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(29:3) {#if ! is_jpg(key)}",
+    		source: "(30:3) {#if ! is_jpg(key)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (27:1) {#each keys as key }
+    // (28:1) {#each keys as key }
     function create_each_block$2(ctx) {
     	let div;
-    	let show_if = !/*is_jpg*/ ctx[1](/*key*/ ctx[7]);
+    	let show_if = !/*is_jpg*/ ctx[1](/*key*/ ctx[8]);
     	let t;
     	let if_block = show_if && create_if_block$4(ctx);
 
@@ -21591,8 +21594,8 @@ var app = (function () {
     			div = element("div");
     			if (if_block) if_block.c();
     			t = space();
-    			attr_dev(div, "class", "svelte-10r6lf3");
-    			add_location(div, file$3, 27, 2, 538);
+    			attr_dev(div, "class", "svelte-55y9ya");
+    			add_location(div, file$3, 28, 2, 558);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -21600,7 +21603,7 @@ var app = (function () {
     			append_dev(div, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*is_jpg, keys*/ 10) show_if = !/*is_jpg*/ ctx[1](/*key*/ ctx[7]);
+    			if (dirty & /*is_jpg, keys*/ 10) show_if = !/*is_jpg*/ ctx[1](/*key*/ ctx[8]);
 
     			if (show_if) {
     				if (if_block) {
@@ -21625,7 +21628,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(27:1) {#each keys as key }",
+    		source: "(28:1) {#each keys as key }",
     		ctx
     	});
 
@@ -21651,8 +21654,8 @@ var app = (function () {
     			}
 
     			set_style(div, "width", /*WIDTH*/ ctx[2] + "px");
-    			attr_dev(div, "class", "svelte-10r6lf3");
-    			add_location(div, file$3, 25, 0, 481);
+    			attr_dev(div, "class", "svelte-55y9ya");
+    			add_location(div, file$3, 26, 0, 501);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21719,8 +21722,12 @@ var app = (function () {
     	let { push } = $$props;
     	let { is_jpg } = $$props;
     	let { WIDTH } = $$props;
-    	const digit = d => '0' <= d && d <= '9';
+
+    	// const digit = (d) => '0' <= d && d <= '9'
     	let keys;
+
+    	const regex1 = new RegExp(/^\d\d\d\d/);
+    	const regex2 = new RegExp(/^\d\d-\d\d/);
 
     	$$self.$$.on_mount.push(function () {
     		if (path === undefined && !('path' in $$props || $$self.$$.bound[$$self.$$.props['path']])) {
@@ -21761,8 +21768,9 @@ var app = (function () {
     		push,
     		is_jpg,
     		WIDTH,
-    		digit,
-    		keys
+    		keys,
+    		regex1,
+    		regex2
     	});
 
     	$$self.$inject_state = $$props => {
@@ -21784,13 +21792,11 @@ var app = (function () {
     				let numbers = true;
 
     				for (const key of keys) {
-    					if (!(digit(key[0]) && digit(key[1]) && digit(key[2]) && digit(key[3]))) numbers = false;
+    					if (!(regex1.test(key) || regex2.test(key))) numbers = false;
     				}
 
     				keys.sort();
     				if (numbers) keys.reverse();
-
-    				// console.log('keys',numbers,keys)
     				($$invalidate(3, keys), $$invalidate(4, path));
     			}
     		}
@@ -21870,8 +21876,11 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
+    			set_style(button, "color", "white");
+    			set_style(button, "border", "1px black solid");
+    			set_style(button, "background-color", "red");
     			attr_dev(button, "class", "svelte-1bw5vik");
-    			add_location(button, file$2, 13, 4, 319);
+    			add_location(button, file$2, 13, 4, 326);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21916,9 +21925,9 @@ var app = (function () {
     			button = element("button");
     			b = element("b");
     			t = text(t_value);
-    			add_location(b, file$2, 11, 62, 260);
-    			set_style(button, "border", "0px");
-    			set_style(button, "background-color", "transparent");
+    			add_location(b, file$2, 11, 69, 267);
+    			set_style(button, "border", "1px black solid");
+    			set_style(button, "background-color", "yellow");
     			attr_dev(button, "class", "svelte-1bw5vik");
     			add_location(button, file$2, 11, 4, 202);
     		},
