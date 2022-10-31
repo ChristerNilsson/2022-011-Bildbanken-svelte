@@ -7,13 +7,15 @@
 
 	let keys 
 	const regexYYYY = new RegExp(/^\d\d\d\d/)
-	const regexMMDD = new RegExp(/^\d\d-\d\d/)
+	// const regexMMDD = new RegExp(/^\d\d-\d\d/)
 
 	$: { 
 		keys = _.keys(_.last(path))
 		let numbers = true
 		for (const key of keys) {
-			if ( ! (regexYYYY.test(key) || regexMMDD.test(key))) numbers = false 
+			// if ( ! (regexYYYY.test(key) || regexMMDD.test(key))) numbers = false 
+			if (key.includes('.jpg') || key.includes('.JPG')) continue
+			if ( ! regexYYYY.test(key)) numbers = false 
 		}
 		keys.sort()
 		if (numbers) keys.reverse()

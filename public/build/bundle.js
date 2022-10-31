@@ -21768,30 +21768,30 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[8] = list[i];
+    	child_ctx[7] = list[i];
     	return child_ctx;
     }
 
-    // (28:3) {#if ! is_jpg(key)}
+    // (30:3) {#if ! is_jpg(key)}
     function create_if_block$4(ctx) {
     	let button;
-    	let t_value = /*key*/ ctx[8].replaceAll("_", " ") + "";
+    	let t_value = /*key*/ ctx[7].replaceAll("_", " ") + "";
     	let t;
     	let button_value_value;
     	let mounted;
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[5](/*key*/ ctx[8]);
+    		return /*click_handler*/ ctx[5](/*key*/ ctx[7]);
     	}
 
     	const block = {
     		c: function create() {
     			button = element("button");
     			t = text(t_value);
-    			button.value = button_value_value = /*key*/ ctx[8];
+    			button.value = button_value_value = /*key*/ ctx[7];
     			attr_dev(button, "class", "svelte-1rmw03g");
-    			add_location(button, file$3, 28, 4, 556);
+    			add_location(button, file$3, 30, 4, 674);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -21804,9 +21804,9 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*keys*/ 8 && t_value !== (t_value = /*key*/ ctx[8].replaceAll("_", " ") + "")) set_data_dev(t, t_value);
+    			if (dirty & /*keys*/ 8 && t_value !== (t_value = /*key*/ ctx[7].replaceAll("_", " ") + "")) set_data_dev(t, t_value);
 
-    			if (dirty & /*keys*/ 8 && button_value_value !== (button_value_value = /*key*/ ctx[8])) {
+    			if (dirty & /*keys*/ 8 && button_value_value !== (button_value_value = /*key*/ ctx[7])) {
     				prop_dev(button, "value", button_value_value);
     			}
     		},
@@ -21821,17 +21821,17 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(28:3) {#if ! is_jpg(key)}",
+    		source: "(30:3) {#if ! is_jpg(key)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (26:1) {#each keys as key }
+    // (28:1) {#each keys as key }
     function create_each_block$1(ctx) {
     	let div;
-    	let show_if = !/*is_jpg*/ ctx[1](/*key*/ ctx[8]);
+    	let show_if = !/*is_jpg*/ ctx[1](/*key*/ ctx[7]);
     	let t;
     	let if_block = show_if && create_if_block$4(ctx);
 
@@ -21841,7 +21841,7 @@ var app = (function () {
     			if (if_block) if_block.c();
     			t = space();
     			attr_dev(div, "class", "svelte-1rmw03g");
-    			add_location(div, file$3, 26, 2, 521);
+    			add_location(div, file$3, 28, 2, 639);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -21849,7 +21849,7 @@ var app = (function () {
     			append_dev(div, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*is_jpg, keys*/ 10) show_if = !/*is_jpg*/ ctx[1](/*key*/ ctx[8]);
+    			if (dirty & /*is_jpg, keys*/ 10) show_if = !/*is_jpg*/ ctx[1](/*key*/ ctx[7]);
 
     			if (show_if) {
     				if (if_block) {
@@ -21874,7 +21874,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(26:1) {#each keys as key }",
+    		source: "(28:1) {#each keys as key }",
     		ctx
     	});
 
@@ -21901,7 +21901,7 @@ var app = (function () {
 
     			set_style(div, "width", /*WIDTH*/ ctx[2] + "px");
     			attr_dev(div, "class", "svelte-1rmw03g");
-    			add_location(div, file$3, 24, 0, 464);
+    			add_location(div, file$3, 26, 0, 582);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21970,7 +21970,6 @@ var app = (function () {
     	let { WIDTH } = $$props;
     	let keys;
     	const regexYYYY = new RegExp(/^\d\d\d\d/);
-    	const regexMMDD = new RegExp(/^\d\d-\d\d/);
 
     	$$self.$$.on_mount.push(function () {
     		if (path === undefined && !('path' in $$props || $$self.$$.bound[$$self.$$.props['path']])) {
@@ -22012,8 +22011,7 @@ var app = (function () {
     		is_jpg,
     		WIDTH,
     		keys,
-    		regexYYYY,
-    		regexMMDD
+    		regexYYYY
     	});
 
     	$$self.$inject_state = $$props => {
@@ -22030,12 +22028,16 @@ var app = (function () {
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*path, keys*/ 24) {
+    			// const regexMMDD = new RegExp(/^\d\d-\d\d/)
     			{
     				$$invalidate(3, keys = lodash.keys(lodash.last(path)));
     				let numbers = true;
 
     				for (const key of keys) {
-    					if (!(regexYYYY.test(key) || regexMMDD.test(key))) numbers = false;
+    					// if ( ! (regexYYYY.test(key) || regexMMDD.test(key))) numbers = false 
+    					if (key.includes('.jpg') || key.includes('.JPG')) continue;
+
+    					if (!regexYYYY.test(key)) numbers = false;
     				}
 
     				keys.sort();
@@ -22144,8 +22146,6 @@ var app = (function () {
     	let t0;
     	let button;
     	let t1;
-    	let mounted;
-    	let dispose;
     	let if_block = /*key*/ ctx[3] != "Home" && create_if_block$3(ctx);
 
     	const block = {
@@ -22176,11 +22176,6 @@ var app = (function () {
     			append_dev(span, t0);
     			append_dev(span, button);
     			append_dev(button, t1);
-
-    			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*click_handler_1*/ ctx[6], false, false, false);
-    				mounted = true;
-    			}
     		},
     		p: function update(ctx, [dirty]) {
     			if (/*key*/ ctx[3] != "Home") {
@@ -22207,8 +22202,6 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
     			if (if_block) if_block.d();
-    			mounted = false;
-    			dispose();
     		}
     	};
 
@@ -22253,7 +22246,6 @@ var app = (function () {
     	});
 
     	const click_handler = () => pop();
-    	const click_handler_1 = () => pop();
 
     	$$self.$$set = $$props => {
     		if ('stack' in $$props) $$invalidate(4, stack = $$props.stack);
@@ -22288,7 +22280,7 @@ var app = (function () {
     		}
     	};
 
-    	return [pop, WIDTH, path, key, stack, click_handler, click_handler_1];
+    	return [pop, WIDTH, path, key, stack, click_handler];
     }
 
     class NavigationHorisontal extends SvelteComponentDev {
@@ -23612,7 +23604,7 @@ var app = (function () {
 
     const { Object: Object_1, console: console_1, window: window_1 } = globals;
 
-    // (337:0) {:else}
+    // (352:0) {:else}
     function create_else_block_1(ctx) {
     	let bigpicture;
     	let current;
@@ -23653,14 +23645,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(337:0) {:else}",
+    		source: "(352:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (327:0) {#if big.file == ""}
+    // (342:0) {#if big.file == ""}
     function create_if_block(ctx) {
     	let search_1;
     	let updating_sokruta;
@@ -23880,14 +23872,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(327:0) {#if big.file == \\\"\\\"}",
+    		source: "(342:0) {#if big.file == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (334:1) {:else}
+    // (349:1) {:else}
     function create_else_block(ctx) {
     	let infinite;
     	let updating_selected;
@@ -23951,14 +23943,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(334:1) {:else}",
+    		source: "(349:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (332:1) {#if helpToggle}
+    // (347:1) {#if helpToggle}
     function create_if_block_1(ctx) {
     	let help;
     	let current;
@@ -23991,7 +23983,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(332:1) {#if helpToggle}",
+    		source: "(347:1) {#if helpToggle}",
     		ctx
     	});
 
@@ -24335,10 +24327,23 @@ var app = (function () {
     		$$invalidate(18, ymax = 0); // Viktigt! Annars syns inte nya bilder.
     		$$invalidate(0, cards = []);
     		count = 0;
+
+    		// const matches = words.match(/\d\d\d\d-\d\d-\d\d/g)
+    		// for (const i in matches) {
+    		// 	const match = matches[i]
+    		// 	console.log('match',match,match.replace('-',' '))
+    		// 	words = words.replace(match,match.replace('-',' '))
+    		// }
+    		// console.log(words)
+    		// const regexYYYYMMDD = new RegExp(/^\d\d\d\d-\d\d-\d\d/)
+    		// if (regexYYYYMMDD.test(words)) words = words.replace('-',' ') // pga datum splittrat mellan två nivåer
+    		// console.log(words)
     		words = words.length == 0 ? [] : words.split(" ");
+
     		res = [];
     		stat = {};
     		total = 0;
+    		$$invalidate(8, selected = []);
     		const start = new Date();
     		const levels = words.length == 0 ? 1 : 99;
     		recursiveSearch(node, words, path, levels);

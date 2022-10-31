@@ -19,7 +19,7 @@
 			{#if key != "Home"}
 				<button class="alive" on:click = {() => pop()}>Up</button>
 			{/if}
-			<button class="dead" on:click = {() => pop()}>{path}</button>
+			<button class="dead" >{path}</button>
 		</span>
 	</div>
 </div>

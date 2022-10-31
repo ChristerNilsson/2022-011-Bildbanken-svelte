@@ -221,11 +221,26 @@
 		ymax = 0 // Viktigt! Annars syns inte nya bilder.
 		cards = []
 		count = 0
+
+		// const matches = words.match(/\d\d\d\d-\d\d-\d\d/g)
+		// for (const i in matches) {
+		// 	const match = matches[i]
+		// 	console.log('match',match,match.replace('-',' '))
+		// 	words = words.replace(match,match.replace('-',' '))
+		// }
+		// console.log(words)
+
+		// const regexYYYYMMDD = new RegExp(/^\d\d\d\d-\d\d-\d\d/)
+		// if (regexYYYYMMDD.test(words)) words = words.replace('-',' ') // pga datum splittrat mellan två nivåer
+		// console.log(words)
+
 		words = words.length == 0 ? [] : words.split(" ")
 
 		res = []
 		stat = {}
 		total = 0
+		selected = []
+
 		const start = new Date()
 
 		const levels = words.length==0 ? 1 : 99
