@@ -228,7 +228,8 @@
 		total = 0
 		const start = new Date()
 
-		recursiveSearch(node,words,path)
+		const levels = words.length==0 ? 1 : 99
+		recursiveSearch(node,words,path,levels)
 
 		//res.sort(comp)
 		// console.log('före',res)
@@ -249,7 +250,8 @@
 	}
 
 	// rekursiv pga varierande djup i trädet
-	function recursiveSearch (node,words,path) { // node är nuvarande katalog. words är de sökta orden
+	function recursiveSearch (node,words,path,levels) { // node är nuvarande katalog. words är de sökta orden
+		if (levels==0) return
 		for (const key in node) {
 			const newPath = path + "\\" + key
 			if (is_jpg(key)) {
@@ -267,7 +269,7 @@
 					stat[s] = (stat[s] || 0) + 1
 				}
 			} else {
-				recursiveSearch(node[key], words, newPath)
+				recursiveSearch(node[key], words, newPath, levels - 1)
 			}
 		}
 	}

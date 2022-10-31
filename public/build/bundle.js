@@ -22344,7 +22344,7 @@ var app = (function () {
     			t = text(/*text0*/ ctx[1]);
     			attr_dev(div, "class", "center svelte-ywynv5");
     			set_style(div, "width", /*WIDTH*/ ctx[3] + "px");
-    			add_location(div, file$1, 43, 1, 1244);
+    			add_location(div, file$1, 43, 1, 1327);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -22419,26 +22419,26 @@ var app = (function () {
     			attr_dev(input, "placeholder", "Search");
     			set_style(input, "width", /*WIDTH*/ ctx[3] - 2 * /*GAP*/ ctx[4] + "px");
     			attr_dev(input, "class", "svelte-ywynv5");
-    			add_location(input, file$1, 31, 0, 639);
+    			add_location(input, file$1, 31, 0, 722);
     			attr_dev(div0, "class", "center svelte-ywynv5");
     			set_style(div0, "width", /*WIDTH*/ ctx[3] + "px");
-    			add_location(div0, file$1, 32, 0, 751);
+    			add_location(div0, file$1, 32, 0, 834);
     			set_style(button0, "left", "0px");
     			set_style(button0, "width", /*spreadWidth*/ ctx[5](1 / 3, /*WIDTH*/ ctx[3]) + "px");
     			attr_dev(button0, "class", "svelte-ywynv5");
-    			add_location(button0, file$1, 37, 1, 862);
+    			add_location(button0, file$1, 37, 1, 945);
     			set_style(button1, "left", /*WIDTH*/ ctx[3] / 3 + "px");
     			set_style(button1, "width", /*spreadWidth*/ ctx[5](1 / 3, /*WIDTH*/ ctx[3]) + "px");
     			attr_dev(button1, "class", "svelte-ywynv5");
-    			add_location(button1, file$1, 38, 1, 965);
+    			add_location(button1, file$1, 38, 1, 1048);
     			set_style(button2, "left", 2 * /*WIDTH*/ ctx[3] / 3 + "px");
     			set_style(button2, "width", /*spreadWidth*/ ctx[5](1 / 3, /*WIDTH*/ ctx[3]) + "px");
     			attr_dev(button2, "class", "svelte-ywynv5");
-    			add_location(button2, file$1, 39, 1, 1068);
+    			add_location(button2, file$1, 39, 1, 1151);
     			set_style(div1, "width", /*WIDTH*/ ctx[3] + "px");
     			set_style(div1, "height", "34px");
     			attr_dev(div1, "class", "svelte-ywynv5");
-    			add_location(div1, file$1, 36, 0, 817);
+    			add_location(div1, file$1, 36, 0, 900);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -22567,16 +22567,17 @@ var app = (function () {
     	let { GAP } = $$props;
     	let { spreadWidth } = $$props;
 
-    	// console.log('PELLE',WIDTH,GAP,COLS)
     	function clear() {
     		$$invalidate(0, sokruta = "");
     		document.getElementById("search").focus();
     	}
 
     	function share() {
-    		const q1 = "folder=" + stack.join("\\");
-    		const q2 = "query=" + sokruta;
-    		navigator.clipboard.writeText(location.origin + location.pathname + "?" + q1 + "&" + q2);
+    		const q1 = stack.length <= 1 ? "" : "folder=" + stack.join("\\");
+    		const q2 = sokruta == "" ? "" : "query=" + sokruta;
+    		const q = q1 == "" && q2 == "" ? "" : "?";
+    		const a = q1 != "" && q2 != "" ? "&" : "";
+    		navigator.clipboard.writeText(location.origin + location.pathname + q + q1 + a + q2);
     	}
 
     	function help() {
@@ -23611,7 +23612,7 @@ var app = (function () {
 
     const { Object: Object_1, console: console_1, window: window_1 } = globals;
 
-    // (335:0) {:else}
+    // (337:0) {:else}
     function create_else_block_1(ctx) {
     	let bigpicture;
     	let current;
@@ -23652,14 +23653,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(335:0) {:else}",
+    		source: "(337:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (325:0) {#if big.file == ""}
+    // (327:0) {#if big.file == ""}
     function create_if_block(ctx) {
     	let search_1;
     	let updating_sokruta;
@@ -23879,14 +23880,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(325:0) {#if big.file == \\\"\\\"}",
+    		source: "(327:0) {#if big.file == \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (332:1) {:else}
+    // (334:1) {:else}
     function create_else_block(ctx) {
     	let infinite;
     	let updating_selected;
@@ -23950,14 +23951,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(332:1) {:else}",
+    		source: "(334:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (330:1) {#if helpToggle}
+    // (332:1) {#if helpToggle}
     function create_if_block_1(ctx) {
     	let help;
     	let current;
@@ -23990,7 +23991,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(330:1) {#if helpToggle}",
+    		source: "(332:1) {#if helpToggle}",
     		ctx
     	});
 
@@ -24339,7 +24340,8 @@ var app = (function () {
     		stat = {};
     		total = 0;
     		const start = new Date();
-    		recursiveSearch(node, words, path);
+    		const levels = words.length == 0 ? 1 : 99;
+    		recursiveSearch(node, words, path, levels);
 
     		//res.sort(comp)
     		// console.log('före',res)
@@ -24367,8 +24369,10 @@ var app = (function () {
     	}
 
     	// rekursiv pga varierande djup i trädet
-    	function recursiveSearch(node, words, path) {
+    	function recursiveSearch(node, words, path, levels) {
     		// node är nuvarande katalog. words är de sökta orden
+    		if (levels == 0) return;
+
     		for (const key in node) {
     			const newPath = path + "\\" + key;
 
@@ -24389,7 +24393,7 @@ var app = (function () {
     					stat[s] = (stat[s] || 0) + 1;
     				}
     			} else {
-    				recursiveSearch(node[key], words, newPath);
+    				recursiveSearch(node[key], words, newPath, levels - 1);
     			}
     		}
     	}

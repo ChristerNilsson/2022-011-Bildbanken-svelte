@@ -8,17 +8,17 @@
 	export let GAP
 	export let spreadWidth
 
-	// console.log('PELLE',WIDTH,GAP,COLS)
-
 	function clear() {
 		sokruta = ""
 		document.getElementById("search").focus()
 	}
 
 	function share () {
-		const q1 = "folder=" + stack.join("\\") 
-		const q2 = "query=" + sokruta
-		navigator.clipboard.writeText(location.origin + location.pathname + "?" + q1 + "&" + q2)
+		const q1 = stack.length <= 1 ? "" : "folder=" + stack.join("\\") 
+		const q2 = sokruta == "" ? "" : "query=" + sokruta		
+		const q = q1=="" && q2=="" ? "" : "?"
+		const a = q1!="" && q2!="" ? "&" : ""
+		navigator.clipboard.writeText(location.origin + location.pathname + q + q1 + a + q2)
 	}
 
 	function help() {
