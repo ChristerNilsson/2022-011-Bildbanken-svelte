@@ -21599,7 +21599,7 @@ var app = (function () {
     			t0 = text("  • ");
     			t1 = text(t1_value);
     			set_style(div, "width", "475px");
-    			add_location(div, file$4, 26, 2, 1314);
+    			add_location(div, file$4, 26, 2, 1301);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -21652,10 +21652,10 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = "./qr.png")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "QR");
     			set_style(img, "width", "200px");
-    			add_location(img, file$4, 31, 3, 1420);
+    			add_location(img, file$4, 31, 3, 1407);
     			set_style(div0, "width", "475px");
-    			add_location(div0, file$4, 30, 2, 1389);
-    			add_location(div1, file$4, 24, 0, 1273);
+    			add_location(div0, file$4, 30, 2, 1376);
+    			add_location(div1, file$4, 24, 0, 1260);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -21729,11 +21729,11 @@ var app = (function () {
     	helpTexts.push("[Download] zips marked images");
     	helpTexts.push("[All] marks images");
     	helpTexts.push("Home is the highest level directory");
-    	helpTexts.push("Red directories are parents/grandparents to the Current dir.");
-    	helpTexts.push("The yellow directory is the Current directory");
-    	helpTexts.push("Green directories are children of the Current directory");
+    	helpTexts.push("Ancestors are shown above the Current directory");
+    	helpTexts.push("[Up] sets the Current directory to an ancestor");
+    	helpTexts.push("Directory selection is similar to Explorer");
     	helpTexts.push("Clicking a directory, makes it the Current directory");
-    	helpTexts.push("Search is done in the Current directory and below");
+    	helpTexts.push("Search is done in the tree with the Current directory as root");
     	helpTexts.push("High resolution images are draggable and zoomable");
     	helpTexts.push("[Share] copies a URL to the clipboard");
     	helpTexts.push("Search words are named A, B and C");

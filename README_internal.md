@@ -156,7 +156,8 @@ Här visas hur samma pdf kan hanteras på två olika sätt:
 fileIndex = {
 	10000 : "https://www.wasask.se/Stockholms Schackförbunds nybörjarkurs i schack.pdf",
 	10001 : "files/Stockholms Schackförbunds nybörjarkurs i schack.pdf",
-}```
+}
+```
 
 Om det handlar om en fil, så måste den även placeras i katalogen public/files.
 
@@ -164,3 +165,31 @@ Om det handlar om en fil, så måste den även placeras i katalogen public/files
 Beskrivningen av innehållet lägger man i .jpg-filnamnet och denna text blir sökbar.
 
 ![Resultatet](fileIndex.PNG)
+
+### Programmet bilder.py
+
+Detta program ser till att katalogen small återspeglar vad som finns i katalogen Home.
+Man skulle kunna återskapa small och cachen mha Home i sin helhet varje gång, men detta skulle ta timmar.
+Därför uppdateras kirurgiskt bara de filer som är aktuella.
+Döper man om en katalog i Home, kommer i princip den gamla att deletas från small och den nya återskapas från scratch.
+Man kan hantera detta manuellt, genom att själv byta namn på de båda katalogerna och även byta namnet i cachen bilder.js.
+
+Det uppdaterar även cachen bilder.js.
+
+Det finns alltså tre storheter: Home, small och cachen.
+Då får vi åtta möjligheter:
+```
+Home small cache
+0    0     0     pathen saknas överallt, allt ok
+0    0     1     rensa cachen
+0    1     0     rensa small
+0    1     1     rensa small och cachen
+1    0     0     uppdatera small och cache
+1    0     1     uppdatera small
+1    1     0     uppdatera cachen
+1    1     1     allt ok
+```
+
+* Först loopas Home igenom och nya filer läggs till i small och cachen.
+* Sedan loopas small igenom för att hitta onödiga filer.
+* Slutligen loopas cachen igenom för att rensa bort onödiga pather som ligger och skräpar i cachen.

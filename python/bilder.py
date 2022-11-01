@@ -49,11 +49,12 @@ def readrecurs(parent,level):
 			if name.name == 'bilder.js': continue
 			# print("  " * level,name)
 			if name.is_dir():
-				res[name.name] = readrecurs(parent + "\\" + name.name,level+1) # path
+				#res[name.name] = readrecurs(parent + "\\" + name.name,level+1) # path
+				readrecurs(parent + "\\" + name.name,level+1) # path
 			else: # .jpg
 				res[name.name] = makeSmall(name)
 		if len(res) > 0:
-			print('\n',len(res),'thumbnails written for',parent.split('\\')[-1])
+			print('\n',len(res),'thumbnails written for',parent)
 			with open(ROOT + '\\small' + parent + '\\bilder.js', 'w', encoding="utf8") as f:
 				dumpjson(res,f)
 	return res
