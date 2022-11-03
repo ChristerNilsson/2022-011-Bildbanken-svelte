@@ -9,9 +9,10 @@ from PIL import Image # Pillow
 
 WIDTH = 475
 
-ROOT = "C:\\github\\2022-011-Bildbanken-svelte\\public\\"
-Home = ROOT + "Home"
-small = ROOT + "small"
+ROOT = "C:\\github\\2022-011-Bildbanken-svelte\\"
+Home = ROOT + "public\\Home"
+small = ROOT + "public\\small"
+JSON = ROOT + "src\\json\\"
 
 res = {}
 
@@ -48,10 +49,13 @@ def pop(path):
 def flat(root, res={}, parent=""):
 	ensurePath(root, parent)
 	for name in [f for f in scandir(root + "\\" + parent)]:
+		namn = name.name
 		if name.is_dir():
-			flat(root, res, parent + "\\" + name.name)
-		else: # .jpg
-			res[parent + "\\" + name.name] = 1
+			flat(root, res, parent + "\\" + namn)
+		elif namn.endswith('.jpg') or namn.endswith('.JPG'):
+			res[parent + "\\" + namn] = 1
+		else:
+			print("*** Ignored file:",root + parent + '\\' + namn)
 	return res
 
 def ensurePath(root,path):
@@ -87,9 +91,11 @@ def cleanCache(node, a, path="", key=""):
 	if type(node) is list:
 		if a.get(path + key) == None:
 			delKand.append(path+key)
-			print('remove',path)
-			#patch(tree,path+key,None) # not allowed to delete in a loop
+			print('remove',path+key)
 	else:
+		if len(node) == 0:
+			delKand.append(path+key)
+			print('remove',path+key)
 		for k in node:
 			cleanCache(node[k], a, path + key + "\\", k)
 start = time.time()
@@ -100,9 +106,8 @@ b = flat(small,{})
 print('Images in Home',len(a))
 print('Images in small',len(b))
 
-if exists(ROOT + '\\bilder.js'):
-	with open(ROOT + '\\bilder.js', 'r', encoding="utf8") as f:
-		x = f.readline()
+if exists(JSON + '\\bilder.json'):
+	with open(JSON + '\\bilder.json', 'r', encoding="utf8") as f:
 		tree = json.loads(f.read())
 else:
 	tree = {}
@@ -130,8 +135,7 @@ cleanCache(tree,a)
 for item in delKand:
 	patch(tree,item,None)
 
-with open(ROOT + '\\bilder.js', 'w', encoding="utf8") as f:
-	f.write('Home=\n')
+with open(JSON + '\\bilder.json', 'w', encoding="utf8") as f:
 	dumpjson(tree,f)
 
 print(round(time.time() - start,3),'seconds')

@@ -9,6 +9,8 @@
 	import Search from "./Search.svelte"
 	import BigPicture from "./BigPicture.svelte"
 	import Infinite from "./Infinite.svelte"
+	import Home from './json/bilder.json'
+	import fileIndex from './json/file_index.json'
 
 	const range = _.range
 
@@ -32,16 +34,6 @@
 	let helpToggle = false
 	let selected = []
 	let skala = 1
-	// let Home = {}
-
-	// async function readJSON(file) {
-	// 	fetch(file)
-	// 		.then(response => response.json())
-	// 		.then(json => {
-	// 			Home = json
-	// 			console.log('reading JSON',_.size(Home))
-	// 		})
-	// }
 
 	const fileWrapper = [fileIndex]
 	
@@ -54,7 +46,7 @@
 	$: WIDTH = calcWidth(innerWidth)
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
 
-	let path  = [Home] // used for navigation
+	const path  = [Home] // used for navigation
 	let stack = ["Home"]
 	
 	let res=[]
@@ -201,6 +193,7 @@
 			const t5 = _.last(path)[key]
 			visaBig(t5[2],t5[3],t5[4],stack.concat(key).join("\\"))
 		} else {
+			console.log('push',_.last(path)[key])
 			path.push(_.last(path)[key])
 			stack.push(key)
 			path = path
@@ -336,6 +329,7 @@
 	}
 
 </script>
+
 
 <svelte:window bind:scrollY={y}/>
 

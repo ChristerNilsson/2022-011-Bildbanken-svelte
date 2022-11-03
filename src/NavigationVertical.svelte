@@ -7,13 +7,12 @@
 
 	let keys 
 	const regexYYYY = new RegExp(/^\d\d\d\d/)
-	// const regexMMDD = new RegExp(/^\d\d-\d\d/)
 
 	$: { 
 		keys = _.keys(_.last(path))
+		console.log('keys',keys)
 		let numbers = true
 		for (const key of keys) {
-			// if ( ! (regexYYYY.test(key) || regexMMDD.test(key))) numbers = false 
 			if (key.includes('.jpg') || key.includes('.JPG')) continue
 			if ( ! regexYYYY.test(key)) numbers = false 
 		}
@@ -27,16 +26,23 @@
 <div style="width:{WIDTH}px">
 	{#each keys as key } 
 		<div>
-			{#if ! is_jpg(key)}
-				<button value={key} on:click = {() => push(key)}>
-					{key.replaceAll("_"," ")}
-				</button>
-			{/if}
+			<span>
+				{#if ! is_jpg(key)}
+					<button value={key} on:click = {() => push(key)}>
+						{key.replaceAll("_"," ")}
+					</button>
+				{/if}
+			</span>
 		</div>
 	{/each}
 </div>
 
 <style>
+	span {
+		flex:1;
+		overflow:hidden;
+		white-space:nowrap;
+	}
 	div {
 		margin:0px
 	}
@@ -45,8 +51,8 @@
 		height:30px;
 		width:99%;
 		text-align:left;
-		/* border:1px black solid;  */
-		/* color:white; */
-		/* background-color:green; */
+		flex:1;
+		overflow:hidden;
+		white-space:nowrap;
 	}
 </style>
