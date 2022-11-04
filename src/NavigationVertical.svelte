@@ -1,6 +1,7 @@
 <script>
 	import _ from "lodash"
 	export let path
+	export let visibleKeys
 	export let push
 	export let is_jpg
 	export let WIDTH
@@ -9,8 +10,8 @@
 	const regexYYYY = new RegExp(/^\d\d\d\d/)
 
 	$: { 
-		keys = _.keys(_.last(path))
-		console.log('keys',keys)
+		//keys = _.keys(_.last(path))
+		keys = _.keys(visibleKeys)
 		let numbers = true
 		for (const key of keys) {
 			if (key.includes('.jpg') || key.includes('.JPG')) continue
@@ -24,12 +25,12 @@
 </script>
 
 <div style="width:{WIDTH}px">
-	{#each keys as key } 
+	{#each keys as key }
 		<div>
 			<span>
 				{#if ! is_jpg(key)}
 					<button value={key} on:click = {() => push(key)}>
-						{key.replaceAll("_"," ")}
+						{key.replaceAll("_"," ")} ({visibleKeys[key]})
 					</button>
 				{/if}
 			</span>

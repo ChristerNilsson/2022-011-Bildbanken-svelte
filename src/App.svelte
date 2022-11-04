@@ -59,6 +59,7 @@
 	let text0 = ""
 	let text1 = ""
 	let images = []
+	let visibleKeys = {} // innehåller de kataloger söksträngen finns i. T ex {"2022":7,"2021":3} Innehåller antal bilder
 
 	const is_jpg = (file) => file.includes('.jpg') || file.includes('.JPG')
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
@@ -193,7 +194,7 @@
 			const t5 = _.last(path)[key]
 			visaBig(t5[2],t5[3],t5[4],stack.concat(key).join("\\"))
 		} else {
-			console.log('push',_.last(path)[key])
+			// console.log('push',_.last(path)[key])
 			path.push(_.last(path)[key])
 			stack.push(key)
 			path = path
@@ -208,6 +209,21 @@
 		// }
 		path = path
 		stack = stack
+	}
+
+	// Gå igenom listan, plocka ut de knappar som ska synas.
+	function getVisibleKeys(bilder,level) {
+		const res = {}
+		for (const bild of bilder) {
+			const arr = bild[2].split("\\")
+			const key = arr[level]
+			if (key in res) {
+				res[key] += 1 
+			} else {
+				res[key] = 1
+			}
+		}
+		return res
 	}
 
 	function search(node,words,path) {
@@ -236,7 +252,7 @@
 
 		const start = new Date()
 
-		const levels = words.length==0 ? 1 : 99
+		const levels = 99 //words.length==0 ? 1 : 99
 		recursiveSearch(node,words,path,levels)
 
 		//res.sort(comp)
@@ -254,6 +270,7 @@
 			st.push(`${key}:${stat[key]}`) 
 			antal += stat[key]
 		}
+		visibleKeys = getVisibleKeys(res,path.split("\\").length)
 		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,res]
 	}
 
@@ -337,7 +354,7 @@
 	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle {WIDTH} {GAP} {spreadWidth} />
 	<Download bind:selected {images} {WIDTH} {spreadWidth} />
 	<NavigationHorisontal {stack} {pop} {WIDTH} />
-	<NavigationVertical {path} {push} {is_jpg} {WIDTH}/>
+	<NavigationVertical {path} {visibleKeys} {push} {is_jpg} {WIDTH}/>
 	{#if helpToggle}
 		<Help/>
 	{:else}
