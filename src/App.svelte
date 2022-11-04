@@ -73,16 +73,11 @@
 	function consumeFolder(folder) {
 		sokruta = ""
 		stack = folder.split("\\")
-		console.log('stack',stack)
 		path = [Home]
 		let pointer = Home
 		for (const key of stack.slice(1)) {
 			pointer = pointer[key]
 			path.push(pointer)
-			console.log('')
-			console.log('key',key)
-			console.log('pointer',pointer)
-			console.log('path',path)
 		}
 		path = path
 		stack = stack 
@@ -93,7 +88,6 @@
 	function consumeParameters() {
 		const queryString = window.location.search
 		const urlParams = new URLSearchParams(queryString)
-		// console.log(urlParams)
 		if (urlParams.has("image")) {
 			visaBig(urlParams.get("bs"), urlParams.get("bw"), urlParams.get("bh"), urlParams.get("image"))
 		} else {
@@ -168,7 +162,7 @@
 	}
 
 	function visaBig(bs, bw, bh, src) {
-		console.log('visaBig')
+		// console.log('visaBig')
 		document.title = _.last(src.replaceAll("_"," ").split("\\"))
 		document.body.style = "overflow:hidden"
 
@@ -194,7 +188,6 @@
 			const t5 = _.last(path)[key]
 			visaBig(t5[2],t5[3],t5[4],stack.concat(key).join("\\"))
 		} else {
-			// console.log('push',_.last(path)[key])
 			path.push(_.last(path)[key])
 			stack.push(key)
 			path = path
@@ -203,10 +196,8 @@
 	}
 
 	function pop() {
-		// while (_.last(stack) != key) {
 		path.pop()
 		stack.pop()
-		// }
 		path = path
 		stack = stack
 	}
@@ -216,12 +207,10 @@
 		const res = {}
 		for (const bild of bilder) {
 			const arr = bild[2].split("\\")
+			if (level >= arr.length) break
 			const key = arr[level]
-			if (key in res) {
-				res[key] += 1 
-			} else {
-				res[key] = 1
-			}
+			res[key] ||= 0
+			res[key] += 1
 		}
 		return res
 	}
@@ -354,7 +343,7 @@
 	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle {WIDTH} {GAP} {spreadWidth} />
 	<Download bind:selected {images} {WIDTH} {spreadWidth} />
 	<NavigationHorisontal {stack} {pop} {WIDTH} />
-	<NavigationVertical {path} {visibleKeys} {push} {is_jpg} {WIDTH}/>
+	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH}/>
 	{#if helpToggle}
 		<Help/>
 	{:else}

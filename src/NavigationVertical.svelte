@@ -1,6 +1,5 @@
 <script>
 	import _ from "lodash"
-	export let path
 	export let visibleKeys
 	export let push
 	export let is_jpg
@@ -11,6 +10,7 @@
 
 	$: { 
 		//keys = _.keys(_.last(path))
+		// console.log('AAA',visibleKeys)
 		keys = _.keys(visibleKeys)
 		let numbers = true
 		for (const key of keys) {

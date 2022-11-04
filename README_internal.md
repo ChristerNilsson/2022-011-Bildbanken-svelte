@@ -229,3 +229,7 @@ OBS: Filen ska ligga i katalogen **src**. Detta tog ett antal timmar att inse.
 1. Starta https://storage.googleapis.com/bildbanken2/index.html och kontrollera att allt är med
 	* Kan ta någon timme innan google publicerar det senaste. Orsak okänd. Möjligen viruscheck.
 
+### Alternativ datumhantering
+
+Man skulle kunna tänka sig ta bort yyyy och behålla -mm-dd turneringsnamn.  
+Då skulle man slippa en upprepning och ändå kunna söka på yyyy-mm-dd.
