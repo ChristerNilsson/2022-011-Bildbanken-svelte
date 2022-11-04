@@ -9,6 +9,8 @@
 	export let WIDTH
 	export let spreadWidth
 
+	const MAX_DOWNLOAD = 100 // Lars OH vill ha 500.
+
 	$: n = _.sumBy(selected, (value) => value ? 1 : 0)
 
 	function make(value) { selected = _.map(images, () => value) }
@@ -21,7 +23,7 @@
 	function downloadAll() { // download all files as ZIP archive
 		zip = new JSZip()
 		const fileArr = []
-		for (const i in _.range(selected.length)) {
+		for (const i in _.range(Math.min(MAX_DOWNLOAD,selected.length))) {
 			if (selected[i]==true) {
 				const path = images[i][2] + "\\" + images[i][12]
 				fileArr.push({name:path, url:path})
@@ -32,7 +34,7 @@
 
 		const arrOfFiles = fileArr.map((item) => download(item)) //create array of promises
 		Promise.all(arrOfFiles)
-			.then(() => {zip.generateAsync({ type: "blob" }).then(function (blob) { saveAs(blob, "Bildbanken.zip") })})
+			.then(() => {zip.generateAsync({ type: "blob" }).then(function (blob) { saveAs(blob, "Bildbanken " + fileArr.length + " .zip") })})
 			.catch((err) => {console.log(err)})
 	}
 
