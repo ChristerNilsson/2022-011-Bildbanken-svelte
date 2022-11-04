@@ -14,6 +14,8 @@
 
 	const range = _.range
 
+	const MAX_DOWNLOAD = 100 // Lars OH vill ha 500.
+
   let cards = [] // Varje bild tillsammans med tre rader text utgör ett Card.
 	let y = 0 // Anger var scrollern befinner sig just nu.
 	let ymax = 0 // Anger var senast laddade bild befinner sig.
@@ -341,11 +343,11 @@
 
 {#if big.file == ""}
 	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle {WIDTH} {GAP} {spreadWidth} />
-	<Download bind:selected {images} {WIDTH} {spreadWidth} />
+	<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} />
 	<NavigationHorisontal {stack} {pop} {WIDTH} />
 	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH}/>
 	{#if helpToggle}
-		<Help/>
+		<Help {MAX_DOWNLOAD} />
 	{:else}
 		<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper}/>
 	{/if}

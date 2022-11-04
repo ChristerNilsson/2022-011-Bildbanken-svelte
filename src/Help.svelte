@@ -1,4 +1,7 @@
 <script>
+
+	export let MAX_DOWNLOAD
+
 	const helpTexts = []
 	helpTexts.push("Separate words with a space or an underscore (_)")
 	helpTexts.push("Search is case sensitive")
@@ -8,7 +11,7 @@
 	helpTexts.push("Search Tournament numbers like T10370")
 	helpTexts.push("Search Member numbers like M585772")
 	helpTexts.push("[None] unmarks images")
-	helpTexts.push("[Download] zips marked images")
+	helpTexts.push(`[Download] zips upto ${MAX_DOWNLOAD} marked images`)
 	helpTexts.push("[All] marks images")
 	helpTexts.push("Home is the highest level directory")
 	helpTexts.push("Ancestors are shown to the left of the Current directory")

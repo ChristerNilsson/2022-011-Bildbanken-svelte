@@ -8,8 +8,7 @@
 	export let images
 	export let WIDTH
 	export let spreadWidth
-
-	const MAX_DOWNLOAD = 100 // Lars OH vill ha 500.
+	export let MAX_DOWNLOAD
 
 	$: n = _.sumBy(selected, (value) => value ? 1 : 0)
 
@@ -34,7 +33,7 @@
 
 		const arrOfFiles = fileArr.map((item) => download(item)) //create array of promises
 		Promise.all(arrOfFiles)
-			.then(() => {zip.generateAsync({ type: "blob" }).then(function (blob) { saveAs(blob, "Bildbanken " + fileArr.length + " .zip") })})
+			.then(() => {zip.generateAsync({ type: "blob" }).then(function (blob) { saveAs(blob, `Bildbanken ${fileArr.length} .zip`) })})
 			.catch((err) => {console.log(err)})
 	}
 
