@@ -53,7 +53,7 @@ def flat(root, res={}, parent=""):
 		if name.is_dir():
 			flat(root, res, parent + "\\" + namn)
 		elif namn.endswith('.jpg') or namn.endswith('.JPG'):
-			res[parent + "\\" + namn] = 1
+			res[parent + "\\" + namn] = name.stat().st_mtime
 		else:
 			print("*** Ignored file:",root + parent + '\\' + namn)
 	return res
@@ -115,7 +115,7 @@ else:
 antal = 0
 # utöka small och bilder.js
 for key in a.keys():
-	if key not in b:
+	if key not in b or a[key] > b[key]:
 		antal += 1
 		print('adding image',antal,round(time.time() - start,3), key)
 		b[key] = makeSmall(Home,small,key)
