@@ -1,5 +1,6 @@
 # Om bilder eller kataloger saknas i small, skapas dessa och bilder.js uppdateras
 # Se till att katalogen small existerar
+# En nyare bild i Home än i small tvingar fram en ny small.
 
 import json
 import time
@@ -7,6 +8,7 @@ from os import scandir,mkdir,remove
 from os.path import exists,getsize
 from PIL import Image # Pillow
 
+WARNING = 50 # MB. Större filer listas.
 WIDTH = 475
 
 ROOT = "C:\\github\\2022-011-Bildbanken-svelte\\"
@@ -53,7 +55,10 @@ def flat(root, res={}, parent=""):
 		if name.is_dir():
 			flat(root, res, parent + "\\" + namn)
 		elif namn.endswith('.jpg') or namn.endswith('.JPG'):
-			res[parent + "\\" + namn] = name.stat().st_mtime
+			stat = name.stat()
+			res[parent + "\\" + namn] = stat.st_mtime
+			if stat.st_size > WARNING * 1000000:
+				print("*** Size Warning:", stat.st_size, root + parent + '\\' + namn)
 		else:
 			print("*** Ignored file:",root + parent + '\\' + namn)
 	return res

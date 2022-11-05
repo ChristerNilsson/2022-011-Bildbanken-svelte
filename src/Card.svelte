@@ -37,7 +37,7 @@
 
 	function prettyPath(path) { // Tag bort eventuellt T-nummer
 		path = path.split('\\')
-		path = path.slice(1,path.length-1)
+		path = path.slice(2,path.length-1)
 		path = path.join(" • ")
 		path = path.replace(/_T\d+/,'')
 		return path.replaceAll('_', ' ')
@@ -59,30 +59,31 @@
 		on:keydown = {() =>{}}
 	/>
 	<div class="group">
-		<div class="info" style="width:{WIDTH}px">&nbsp;{prettyFilename(filename)}
-			{#if M}
-				<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">member</a>
-			{/if}
-			{#if V}
-				<a target="_blank" href="https://player.vimeo.com/video/{V}">video</a>
-			{/if}
-			{#if F}
-				<a target="_blank" href="{fileWrapper[0][F]}">file</a>
-			{/if}
+		<div class="info" style="width:{WIDTH}px">
+			&nbsp;{prettyFilename(filename)}
 		</div>
-		<div class="info" style="width:{WIDTH}px">&nbsp;{prettyPath(filename)}
-			{#if T}
-				<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={T}">result</a>
-			{/if}
+		<div class="info" style="width:{WIDTH}px">
+			&nbsp;{prettyPath(filename)}
 		</div>
-
-		<!-- <div class="info" style="width:{WIDTH}px">&nbsp;
-		</div> -->
-
 		<div class="info" style="display:flex; height:13px; width:{WIDTH}px">
 			&nbsp;{card[7]} • &nbsp;
-			<input class="largerCheckbox" type="checkbox" value="" bind:checked={selected[index]}/> &nbsp; •&nbsp;
+			<input class="largerCheckbox" type="checkbox" value="" bind:checked={selected[index]}/>
+			&nbsp; •&nbsp;
 			{card[1]}
+			•
+			{#if M}
+				<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">M</a>
+			{/if}
+			{#if V}
+				<a target="_blank" href="https://player.vimeo.com/video/{V}">V</a>
+			{/if}
+			{#if F}
+				<a target="_blank" href="{fileWrapper[0][F]}">F</a>
+			{/if}
+			{#if T}
+				<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={T}&listingtype=2">T</a>
+			{/if}
+
 			<span style="flex:2; text-align:center; white-space:nowrap;"> © Lars OA Hedlund </span>
 			<span style="flex:1; text-align:right; white-space:nowrap;"> {round(card[10]*card[11]/1024/1024,1)} MP • {card[10]} x {card[11]} • {round(card[9]/1024,0)} kB &nbsp;</span>
 		</div>	
