@@ -1,6 +1,7 @@
 <script>
 
 	import _ from "lodash"
+	import { tick } from 'svelte'
 	import Card from "./Card.svelte"
 	import Download from "./Download.svelte"
 	import Help from "./Help.svelte"
@@ -63,7 +64,7 @@
 	let images = []
 	let visibleKeys = {} // innehåller de kataloger söksträngen finns i. T ex {"2022":7,"2021":3} Innehåller antal bilder
 
-	const is_jpg = (file) => file.includes('.jpg') || file.includes('.JPG')
+	const is_jpg = (file) => file.endsWith('.jpg') || file.endsWith('.JPG')
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
 	const spreadWidth = (share,WIDTH) => Math.floor((WIDTH-2*GAP*(1/share+1))*share) - 2
 
@@ -267,6 +268,7 @@
 
 	// rekursiv pga varierande djup i trädet
 	function recursiveSearch (node,words,path,levels) { // node är nuvarande katalog. words är de sökta orden
+		tick()
 		if (levels==0) return
 		for (const key in node) {
 			const newPath = path + "\\" + key
@@ -277,7 +279,7 @@
 					const word = words[i]
 					if (word.length == 0) continue
 					count += 1
-					if (newPath.includes(word)) s += ALFABET[i]
+					if (newPath.slice(10).includes(word)) s += ALFABET[i]
 				}
 				if (s.length > 0 || words.length == 0) {
 					const [sw,sh,bs,bw,bh] = node[key] // small/big width/height/size
@@ -306,6 +308,7 @@
 		const textHeights = 50-2 //43
 		const res = images
 		for (const i in res) {
+			tick()
 			const bild = res[i]
 			let index = 0 // sök fram index för minsta kolumnen
 			for (const j in range(COLS)) {
