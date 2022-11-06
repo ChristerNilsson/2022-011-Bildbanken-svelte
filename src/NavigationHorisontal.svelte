@@ -1,7 +1,6 @@
 <script>
 	import _ from "lodash"
 	export let stack
-	export let pop
 	export let WIDTH
 
 	let path= ""
@@ -13,33 +12,28 @@
 
 </script>
 
-<div style="width:{WIDTH}px">
+<div style="width:{WIDTH-1}px">
 	<div>
 		<span>
-			{#if key != "Home"}
-				<button class="alive" on:click = {() => pop()}>Up</button>
-			{/if}
-			<button class="dead" >{path}</button>
+			<button style="width:{WIDTH-1}px">{path}</button>
 		</span>
 	</div>
 </div>
 
 <style>
 	span {
-		flex:2;
+		flex:1;
 		overflow:hidden;
 		white-space:nowrap;
 	}
-	.dead {
+	button {
 		border:0px;
 		background-color:transparent;
 		margin:2px;
 		height:30px;
 		text-align:left;
-	}
-	.alive {
-		margin:2px;
-		height:30px;
-		text-align:left;
+		flex:1;
+		overflow:hidden;
+		white-space:nowrap;
 	}
 </style>

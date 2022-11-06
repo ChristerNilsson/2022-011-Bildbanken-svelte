@@ -9,6 +9,8 @@
 	export let WIDTH
 	export let spreadWidth
 	export let MAX_DOWNLOAD
+	export let stack
+	export let pop
 
 	$: n = _.sumBy(selected, (value) => value ? 1 : 0)
 
@@ -40,9 +42,16 @@
 </script>
 
 <div style="width:{WIDTH}px; height:34px">
-	<button style="left:0px;           width:{spreadWidth(0.25,WIDTH)}px" on:click = {none}>None</button>
-	<button style="left:{WIDTH/4}px;   width:{spreadWidth(0.50,WIDTH)}px" on:click = {downloadAll}>Download {n} image(s)</button>
-	<button style="left:{3*WIDTH/4}px; width:{spreadWidth(0.25,WIDTH)}px" on:click = {all}>All</button>
+
+	{#if _.last(stack) == "Home"}
+		<button style="left:0px;          width:{spreadWidth(0.17,WIDTH)}px" on:click = {pop} disabled >Up</button>
+	{:else}
+		<button style="left:0px;          width:{spreadWidth(0.17,WIDTH)}px" on:click = {pop} >Up</button>
+	{/if}
+
+	<button style="left:{0.17*WIDTH}px; width:{spreadWidth(0.16,WIDTH)}px" on:click = {none}>None</button>
+	<button style="left:{0.33*WIDTH}px; width:{spreadWidth(0.52,WIDTH)}px" on:click = {downloadAll}>Download {n} image(s)</button>
+	<button style="left:{0.85*WIDTH}px; width:{spreadWidth(0.15,WIDTH)}px" on:click = {all}>All</button>
 </div>
 
 <style>

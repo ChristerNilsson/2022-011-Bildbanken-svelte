@@ -44,7 +44,7 @@
 	
 	const ALFABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-	const SCROLLBAR = 12+3
+	const SCROLLBAR = 0 // 12+3+1
 	const GAP = 1
 	$: WIDTH = calcWidth(innerWidth)
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
@@ -73,7 +73,7 @@
 
 	function calcWidth(innerWidth) {
 		let n = Math.floor(innerWidth/475)
-		return Math.floor((innerWidth-(n+1)*GAP-SCROLLBAR-2)/n)
+		return Math.floor((innerWidth-(n+1)*GAP-SCROLLBAR-0)/n)
 	}
 
 	function consumeFolder(folder) {
@@ -324,7 +324,7 @@
 
 {#if big.file == ""}
 	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle {WIDTH} {GAP} {spreadWidth} />
-	<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} />
+	<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 	<NavigationHorisontal {stack} {pop} {WIDTH} />
 	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH}/>
 	{#if helpToggle}

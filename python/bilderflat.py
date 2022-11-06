@@ -94,6 +94,7 @@ def makeSmall(a,b,name):
 	small = big.resize((WIDTH, round(WIDTH*big.height/big.width)))
 	ensurePath(b,name)
 	small.save(b + name)
+	# small.save(b + name + '97.jpg', quality=97)
 	patch(tree, name, [small.width, small.height, bigSize, big.width, big.height])
 
 def cleanCache(node, a, path="", key=""):
