@@ -102,18 +102,18 @@
 
 </script>
 
-<span style="top:1%">{filename}</span>
-<span style="top:3%">{path}</span>
+<button on:click={share}> Share </button>
+
+<span style="top:8%">{filename}</span>
+<span style="top:12%">{path}</span>
 {#if big.exifState >= 1}
-	<span style="top:7%"> {round(big.bw * big.bh/1024/1024,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1024)} kB </span>
+	<span style="top:20%"> {round(big.bw * big.bh/1024/1024,1)} MP • {big.bw} x {big.bh} • {round(big.bs/1024)} kB </span>
 {/if}
 {#if big.exifState == 2}
-	<span style="top:5%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
-	<span style="top:9%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
-	<span style="top:11%;"> © {exif.Copyright} </span>
+	<span style="top:16%;"> {exif.DateTimeOriginal.replace(" "," • ")} </span>
+	<span style="top:24%;"> {exif.Model} • f/{exif.FNumber} • 1/{1/exif.ExposureTime} • {exif.FocalLength} mm • ISO {exif.ISOSpeedRatings} </span>
+	<span style="top:28%;"> © {exif.Copyright} </span>
 {/if}
-
-<button on:click={share}> Share </button>
 
 <img 
 	id='picture' 
@@ -133,7 +133,7 @@
 	}
 	span {
 		position:absolute;
-		left:5%;
+		left:1%;
 	}
 </style>
 

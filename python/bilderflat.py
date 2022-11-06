@@ -14,6 +14,7 @@ WIDTH = 475
 ROOT = "C:\\github\\2022-011-Bildbanken-svelte\\"
 Home = ROOT + "public\\Home"
 small = ROOT + "public\\small"
+# progr = ROOT + "public\\progr"
 JSON = ROOT + "src\\json\\"
 
 res = {}
@@ -39,10 +40,9 @@ def frekvens(s):
 
 def dumpjson(data,f):
 	s = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
-	s = s.replace("],","],\n") # Varje key på egen rad.
-	s = s.replace("{","{\n")
-	s = s.replace('}','\n}')
-	s = s.replace('},','},\n')
+	s = s.replace("],","],\n") # Varje key (katalog,fil) på egen rad.
+	s = s.replace(":{",":\n{")
+	s = s.replace(',"',',\n"')
 	# frekvens(s)
 	f.write(s)
 
@@ -97,6 +97,10 @@ def makeSmall(a,b,name):
 	# small.save(b + name + '97.jpg', quality=97)
 	patch(tree, name, [small.width, small.height, bigSize, big.width, big.height])
 
+	# ensurePath(progr,name)
+	# big.save(progr + name, quality=95, optimize=True, progressive=True)
+
+
 def cleanCache(node, a, path="", key=""):
 	if type(node) is list:
 		if a.get(path + key) == None:
@@ -108,6 +112,20 @@ def cleanCache(node, a, path="", key=""):
 			print('remove',path+key)
 		for k in node:
 			cleanCache(node[k], a, path + key + "\\", k)
+
+def checkCache(node, a, path="", key=""):
+	if type(node) is list:
+		if a.get(path + key) == None:
+			# delKand.append(path+key)
+			print('missing A',path+key)
+	else:
+		if len(node) == 0:
+			# delKand.append(path+key)
+			print('missing B',path+key)
+		for k in node:
+			cleanCache(node[k], a, path + key + "\\", k)
+
+
 start = time.time()
 
 a = flat(Home,{})
@@ -131,19 +149,30 @@ for key in a.keys():
 			print('adding image', antal, round(time.time() - start, 3), key)
 			b[key] = makeSmall(Home,small,key)
 		else:
-			print('deleting folder', key)
-			rmdir(Home + key)
+			print('delete folder manually from Home', key)
+			#rmdir(Home + key)
 
 
 # minska small och bilder.js
 for key in b.keys():
 	if key not in a:
-		print('removing image',key)
+		print('removing image from small',key)
 		if is_jpg(key):
 			remove(small + key)
 		else:
 			rmdir(small + key)
 		patch(tree, key, None)
+
+for key in b.keys():
+	if key not in a:
+		print('removing image from small',key)
+		if is_jpg(key):
+			remove(small + key)
+		else:
+			rmdir(small + key)
+		patch(tree, key, None)
+
+#checkCache(tree,a)
 
 # remove även från bilder
 # minska bilder.js
