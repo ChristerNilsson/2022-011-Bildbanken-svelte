@@ -4,7 +4,7 @@
 
 import json
 import time
-from os import scandir,mkdir,remove
+from os import scandir,mkdir,remove,rmdir
 from os.path import exists,getsize
 from PIL import Image # Pillow
 
@@ -17,6 +17,9 @@ small = ROOT + "public\\small"
 JSON = ROOT + "src\\json\\"
 
 res = {}
+
+def is_jpg(key):
+	return key.endswith('.jpg') or key.endswith('.JPG')
 
 def frekvens(s):
 	for letter in '-,[]{}.;_"0123456789':
@@ -54,7 +57,8 @@ def flat(root, res={}, parent=""):
 		namn = name.name
 		if name.is_dir():
 			flat(root, res, parent + "\\" + namn)
-		elif namn.endswith('.jpg') or namn.endswith('.JPG'):
+			res[parent + "\\" + namn] = ""
+		elif is_jpg(namn):
 			stat = name.stat()
 			res[parent + "\\" + namn] = stat.st_mtime
 			if stat.st_size > WARNING * 1000000:
@@ -108,8 +112,8 @@ start = time.time()
 a = flat(Home,{})
 b = flat(small,{})
 
-print('Images in Home',len(a))
-print('Images in small',len(b))
+print('Images + Folders in Home', len(a))
+print('Images + Folders in small', len(b))
 
 if exists(JSON + '\\bilder.json'):
 	with open(JSON + '\\bilder.json', 'r', encoding="utf8") as f:
@@ -122,14 +126,22 @@ antal = 0
 for key in a.keys():
 	if key not in b or a[key] > b[key]:
 		antal += 1
-		print('adding image',antal,round(time.time() - start,3), key)
-		b[key] = makeSmall(Home,small,key)
+		if is_jpg(key):
+			print('adding image', antal, round(time.time() - start, 3), key)
+			b[key] = makeSmall(Home,small,key)
+		else:
+			print('deleting folder', key)
+			rmdir(Home + key)
+
 
 # minska small och bilder.js
 for key in b.keys():
 	if key not in a:
 		print('removing image',key)
-		remove(small + key)
+		if is_jpg(key):
+			remove(small + key)
+		else:
+			rmdir(small + key)
 		patch(tree, key, None)
 
 # remove även från bilder
