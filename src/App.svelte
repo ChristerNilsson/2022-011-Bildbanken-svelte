@@ -62,7 +62,10 @@
 	let text0 = ""
 	let text1 = ""
 	let images = []
-	let visibleKeys = {} // innehåller de kataloger söksträngen finns i. T ex {"2022":7,"2021":3} Innehåller antal bilder
+	let visibleKeys = {}
+
+	// innehåller de kataloger söksträngen finns i. T ex {"2022":7,"2021":3} Innehåller antal bilder
+	$: visibleKeys = getVisibleKeys(res, path.length)
 
 	const is_jpg = (file) => file.endsWith('.jpg') || file.endsWith('.JPG')
 	const round = (x,n) => Math.round(x*Math.pow(10,n))/Math.pow(10,n)
@@ -102,13 +105,13 @@
 	$: [text0,text1,images] = search(_.last(path), sokruta, stack.join('\\'))
 
 	$: { 
-		placera(images)
+		placera(images,visibleKeys)
 		images = images
 	}
 
 	function resize() {
 		WIDTH = calcWidth(innerWidth)
-		placera(images)
+		placera(images,visibleKeys)
 		images = images
 	}
 
@@ -160,12 +163,11 @@
 	assert(-40,f(1.1,    0, 400,400))
 
 	function getPath(path,dir="small") {
-		if (dir.length > 0) path = path.replace("Home",dir) //arr.splice(arr.length-1, 0, dir);
-		return path //.join("\\")
+		if (dir.length > 0) path = path.replace("Home",dir)
+		return path
 	}
 
 	function visaBig(bs, bw, bh, src) {
-		// console.log('visaBig')
 		document.title = _.last(src.replaceAll("_"," ").split("\\"))
 		document.body.style = "overflow:hidden"
 
@@ -223,18 +225,6 @@
 		cards = []
 		count = 0
 
-		// const matches = words.match(/\d\d\d\d-\d\d-\d\d/g)
-		// for (const i in matches) {
-		// 	const match = matches[i]
-		// 	console.log('match',match,match.replace('-',' '))
-		// 	words = words.replace(match,match.replace('-',' '))
-		// }
-		// console.log(words)
-
-		// const regexYYYYMMDD = new RegExp(/^\d\d\d\d-\d\d-\d\d/)
-		// if (regexYYYYMMDD.test(words)) words = words.replace('-',' ') // pga datum splittrat mellan två nivåer
-		// console.log(words)
-
 		words = words.length == 0 ? [] : words.split(" ")
 
 		res = []
@@ -244,15 +234,9 @@
 
 		const start = new Date()
 
-		const levels = 99 //words.length==0 ? 1 : 99
+		const levels = 99
 		recursiveSearch(node,words,path,levels)
-
-		//res.sort(comp)
-		// console.log('före',res)
 		res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++  [-letters.length, letters, -path, key] [-3, 'ABC', 'Home/2022/2022-09-17...', 'Pelle...jpg']
-		// res = res 
-		// console.log('efter',res)
-		//res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++
 
 		const keys = Object.keys(stat)
 		keys.sort(comp2) 
@@ -262,7 +246,6 @@
 			st.push(`${key}:${stat[key]}`) 
 			antal += stat[key]
 		}
-		visibleKeys = getVisibleKeys(res,path.split("\\").length)
 		return [st.join(' '),`found ${antal} of ${total} images in ${new Date() - start} ms`,res]
 	}
 
@@ -295,10 +278,10 @@
 	// Räknar ut vilken swimlane som är lämpligast.
 	// Uppdaterar x och y för varje bild
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
-	function placera(images) {
+	function placera(images,visibleKeys) {
 		const rows = sokruta=="" ? 4 : 5
-//		const antal = rows + _.size(stack) + countDirs(_.last(path))
-		const antal = rows + 1 + countDirs(_.last(path))
+		const antal = rows + 1 + _.size(visibleKeys)
+
 		offset = 34 * antal // 30 + 2 * margin=2
 
 		COLS = Math.floor((window.innerWidth-SCROLLBAR-GAP)/WIDTH)
@@ -323,15 +306,10 @@
 		images = images
 	}
 
-	// function getRect(id) {
-	// 	const element = document.getElementById(id)
-	// 	if (element==null) return 0
-	// 	return element.getBoundingClientRect()
-	// }
-
 	function countDirs(path) {
 		let res = 0
 		for (const name in path) {
+			console.log('countDirs',name)
 			if (! is_jpg(name)) {
 				res += 1
 			}
