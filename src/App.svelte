@@ -333,7 +333,6 @@
 		s = s.replace(/_M\d+/,'')
 		s = s.replace(/_V\d+/,'')
 		s = s.replace(/_F\d+/,'')
-		console.log('prettyFilename',s)
 		return s
 	}
 
@@ -353,5 +352,5 @@
 	{/if}
 {:else}
 	<!-- <img src="https://visitor-badge.glitch.me/badge?page_id=BildbankenBig" alt="visitor badge"/> -->
-	<BigPicture {big} {prettyFilename} {retro} />
+	<BigPicture {big} {prettyFilename} />
 {/if}

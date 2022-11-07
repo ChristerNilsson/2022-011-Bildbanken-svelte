@@ -63,7 +63,7 @@
 	div {
 		margin:0px;
 	}
-	button,img {
+	button {
 		position:absolute;
 		margin:2px;
 		height:30px;

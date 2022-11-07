@@ -17,8 +17,6 @@ small = ROOT + "public\\small"
 # progr = ROOT + "public\\progr"
 JSON = ROOT + "src\\json\\"
 
-res = {}
-
 def is_jpg(key):
 	return key.endswith('.jpg') or key.endswith('.JPG')
 
@@ -39,7 +37,7 @@ def frekvens(s):
 			print(word)
 
 def dumpjson(data,f):
-	s = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+	s = json.dumps(data, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
 	s = s.replace("],","],\n") # Varje key (katalog,fil) på egen rad.
 	s = s.replace(":{",":\n{")
 	s = s.replace(',"',',\n"')
@@ -102,6 +100,7 @@ def makeSmall(a,b,name):
 
 
 def cleanCache(node, a, path="", key=""):
+	global delKand
 	if type(node) is list:
 		if a.get(path + key) == None:
 			delKand.append(path+key)
@@ -126,61 +125,68 @@ def checkCache(node, a, path="", key=""):
 			cleanCache(node[k], a, path + key + "\\", k)
 
 
-start = time.time()
 
-a = flat(Home,{})
-b = flat(small,{})
+def loadCache():
+	global tree
+	if exists(JSON + '\\bilder.json'):
+		with open(JSON + '\\bilder.json', 'r', encoding="utf8") as f:
+			tree = json.loads(f.read())
+	else:
+		tree = {}
 
-print('Images + Folders in Home', len(a))
-print('Images + Folders in small', len(b))
-
-if exists(JSON + '\\bilder.json'):
-	with open(JSON + '\\bilder.json', 'r', encoding="utf8") as f:
-		tree = json.loads(f.read())
-else:
-	tree = {}
-
-antal = 0
 # utöka small och bilder.js
-for key in a.keys():
-	if key not in b or a[key] > b[key]:
-		antal += 1
-		if is_jpg(key):
-			print('adding image', antal, round(time.time() - start, 3), key)
-			b[key] = makeSmall(Home,small,key)
-		else:
-			print('delete folder manually from Home', key)
-			#rmdir(Home + key)
+def expandSmall():
+	global antal
+	for key in a.keys():
+		if key not in b or a[key] > b[key]:
+			antal += 1
+			if is_jpg(key):
+				print('adding image', antal, round(time.time() - start, 3), key)
+				b[key] = makeSmall(Home,small,key)
+			else:
+				print('delete folder manually from Home', key)
+				#rmdir(Home + key)
 
 
 # minska small och bilder.js
-for key in b.keys():
-	if key not in a:
-		print('removing image from small',key)
-		if is_jpg(key):
-			remove(small + key)
-		else:
-			rmdir(small + key)
-		patch(tree, key, None)
-
-for key in b.keys():
-	if key not in a:
-		print('removing image from small',key)
-		if is_jpg(key):
-			remove(small + key)
-		else:
-			rmdir(small + key)
-		patch(tree, key, None)
+def shrinkSmall():
+	for key in b.keys():
+		if key not in a:
+			print('removing image from small',key)
+			if is_jpg(key):
+				remove(small + key)
+			else:
+				rmdir(small + key)
+			patch(tree, key, None)
 
 #checkCache(tree,a)
 
 # remove även från bilder
 # minska bilder.js
 # tag bort de som inte förekommer i Home
-delKand = []
-cleanCache(tree,a)
-for item in delKand:
-	patch(tree,item,None)
+def pruneCache():
+	delKand = []
+	cleanCache(tree,a)
+	for item in delKand:
+		patch(tree,item,None)
+
+#####################################
+
+start = time.time()
+
+res = {}
+tree = {}
+
+a = flat(Home,{})
+b = flat(small,{})
+print('Images + Folders in Home', len(a))
+print('Images + Folders in small', len(b))
+
+antal = 0
+loadCache()
+expandSmall()
+shrinkSmall()
+pruneCache()
 
 with open(JSON + '\\bilder.json', 'w', encoding="utf8") as f:
 	dumpjson(tree,f)

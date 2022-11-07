@@ -2,7 +2,6 @@
 	import _ from "lodash"
 	export let big
 	export let prettyFilename
-	export let retro
 
 	const INCR = 0.08
 
