@@ -1,6 +1,8 @@
 <script>
 	import _ from "lodash"
 	export let big
+	export let prettyFilename
+	export let retro
 
 	const INCR = 0.08
 
@@ -44,7 +46,7 @@
 		const x = e.x // musens position
 		const y = e.y
 
-		function f(skala,left,x) {return (1-skala) * (x-left)}
+		const f = (skala,left,x) => (1-skala) * (x-left)
 	
 		let faktor = 1 + INCR
 		if (e.deltaY > 0) faktor = 1/faktor
@@ -88,17 +90,14 @@
 		big = big
 	}
 
-	// function mouseout(e) {
-	// 	big.mouseState = 0
-	// 	big = big
-	// }
-
 	function share () {
 		const extra = `bs=${big.bs}&bw=${big.bw}&bh=${big.bh}&image=${big.file}`
 		navigator.clipboard.writeText(location.origin + location.pathname + "?" + extra)
 	}
 
 	document.onmousemove = mousemove
+
+	document.title = prettyFilename(filename,false)
 
 </script>
 

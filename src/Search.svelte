@@ -7,6 +7,7 @@
 	export let WIDTH
 	export let GAP
 	export let spreadWidth
+	export let retro
 
 	function clear() {
 		sokruta = ""
@@ -25,6 +26,11 @@
 		helpToggle = ! helpToggle
 	}
 
+	function toggleRetro() {
+		retro = ! retro
+		console.log('retro',retro)
+	}
+
 	window.onload = () => document.getElementById("search").focus()
 
 </script>
@@ -35,9 +41,11 @@
 </div>
 
 <div style="width:{WIDTH}px; height:34px">
-	<button on:click={clear} style="left:{0}px;         width:{spreadWidth(1/3,WIDTH)}px">Clear</button>
-	<button on:click={share} style="left:{WIDTH/3}px;   width:{spreadWidth(1/3,WIDTH)}px">Share</button>
-	<button on:click={help}  style="left:{2*WIDTH/3}px; width:{spreadWidth(1/3,WIDTH)}px">Help</button>
+	<button on:click={clear}       style="left:{0}px;         width:{spreadWidth(1/4,WIDTH)}px">Clear</button>
+	<button on:click={share}       style="left:{WIDTH/4}px;   width:{spreadWidth(1/4,WIDTH)}px">Share</button>
+	<button on:click={help}        style="left:{2*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">Help</button>
+	<button on:click={toggleRetro} style="left:{3*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">R</button>
+	<!-- <img style="left:{4*WIDTH/5}px; width:{spreadWidth(1/5,WIDTH)}px" src="https://visitor-badge.glitch.me/badge?page_id=Bildbanken" alt="visitor badge" /> -->
 </div>
 
 {#if (sokruta.split(" ").length <= 3) && (sokruta.length > 0)}
@@ -55,7 +63,7 @@
 	div {
 		margin:0px;
 	}
-	button {
+	button,img {
 		position:absolute;
 		margin:2px;
 		height:30px;

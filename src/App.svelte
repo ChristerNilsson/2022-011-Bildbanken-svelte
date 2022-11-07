@@ -21,6 +21,7 @@
 	let y = 0 // Anger var scrollern befinner sig just nu.
 	let ymax = 0 // Anger var senast laddade bild befinner sig.
 	let offset = 0
+	let retro = true
 
 	$: { // infinite scroll
 		// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
@@ -168,7 +169,6 @@
 	}
 
 	function visaBig(bs, bw, bh, src) {
-		document.title = _.last(src.replaceAll("_"," ").split("\\"))
 		document.body.style = "overflow:hidden"
 
 		big.exifState = 0
@@ -317,21 +317,41 @@
 		return res
 	}
 
-</script>
+	function prettyFilename(path,retro) { // Tag bort eventuella M och V-nummer
+		let i = path.lastIndexOf('\\')
+		let s = path.slice(i+1)
+		s = s.replaceAll('_',' ')
+		if (!retro) {
+			if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf(' '))
+			const p = s.search(/\d\d\d\d-\d\d-\d\d/)
+			if (p>=0) s = s.slice(0,p)
+			s = s.replace('Pristagare ','')
+			s = s.replace(/[kK]lass ./,'')
 
+		}
+		s = s.replace('.jpg','')
+		s = s.replace(/_M\d+/,'')
+		s = s.replace(/_V\d+/,'')
+		s = s.replace(/_F\d+/,'')
+		console.log('prettyFilename',s)
+		return s
+	}
+
+</script>
 
 <svelte:window bind:scrollY={y}/>
 
 {#if big.file == ""}
-	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle {WIDTH} {GAP} {spreadWidth} />
+	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle {WIDTH} {GAP} {spreadWidth} bind:retro />
 	<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 	<NavigationHorisontal {stack} {pop} {WIDTH} />
-	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH}/>
+	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} />
 	{#if helpToggle}
 		<Help {MAX_DOWNLOAD} />
 	{:else}
-		<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper}/>
+		<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper} {retro} {prettyFilename} />
 	{/if}
 {:else}
-	<BigPicture {big} />
+	<!-- <img src="https://visitor-badge.glitch.me/badge?page_id=BildbankenBig" alt="visitor badge"/> -->
+	<BigPicture {big} {prettyFilename} {retro} />
 {/if}

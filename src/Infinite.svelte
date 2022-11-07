@@ -6,8 +6,10 @@
 	export let cards
 	export let round
 	export let fileWrapper
+	export let retro
+	export let prettyFilename
 </script>
 
 {#each cards as card,index}
-	<Card {WIDTH} {getPath} {card} bind:selected {index} {round} {fileWrapper}/>
+	<Card {WIDTH} {getPath} {card} bind:selected {index} {round} {fileWrapper} {retro} {prettyFilename} />
 {/each}

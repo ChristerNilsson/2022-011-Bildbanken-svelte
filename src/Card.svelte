@@ -7,6 +7,8 @@
 	export let index
 	export let round
 	export let fileWrapper
+	export let retro
+	export let prettyFilename
 
 	$: filename = card[2] + "\\" + card[12]
 
@@ -22,20 +24,6 @@
 		if (letter=='V') matches = path.match(/[V]\d+/)
 		if (letter=='F') matches = path.match(/[F]\d+/)
 		return matches ? matches[0].slice(1) : ""
-	}
-
-	function prettyFilename(path) { // Tag bort eventuella M och V-nummer
-		let i = path.lastIndexOf('\\')
-		let s = path.slice(i+1)
-		s = s.replaceAll('_',' ')
-		if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf(' '))
-		s = s.replace('.jpg','')
-		s = s.replace(/_M\d+/,'')
-		s = s.replace(/_V\d+/,'')
-		s = s.replace(/_F\d+/,'')
-		const p = s.search(/\d\d\d\d-\d\d-\d\d/)
-		if (p>=0) s=s.slice(0,p)
-		return s
 	}
 
 	function prettyPath(path) { // Tag bort eventuellt T-nummer
@@ -65,7 +53,7 @@
 	/>
 	<div class="group">
 		<div class="info" style="width:{WIDTH}px">
-			&nbsp;{prettyFilename(filename)}
+			&nbsp;{prettyFilename(filename,retro)}
 		</div>
 		<div class="info" style="width:{WIDTH}px">
 			&nbsp;{prettyPath(filename)}
