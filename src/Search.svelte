@@ -35,8 +35,8 @@
 </div>
 
 <div style="width:{WIDTH}px; height:34px">
-	<button on:click={share} style="left:0px;           width:{spreadWidth(1/3,WIDTH)}px">Share</button>
-	<button on:click={clear} style="left:{WIDTH/3}px;   width:{spreadWidth(1/3,WIDTH)}px">Clear</button>
+	<button on:click={clear} style="left:{0}px;         width:{spreadWidth(1/3,WIDTH)}px">Clear</button>
+	<button on:click={share} style="left:{WIDTH/3}px;   width:{spreadWidth(1/3,WIDTH)}px">Share</button>
 	<button on:click={help}  style="left:{2*WIDTH/3}px; width:{spreadWidth(1/3,WIDTH)}px">Help</button>
 </div>
 

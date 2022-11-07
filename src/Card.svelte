@@ -27,11 +27,14 @@
 	function prettyFilename(path) { // Tag bort eventuella M och V-nummer
 		let i = path.lastIndexOf('\\')
 		let s = path.slice(i+1)
+		s = s.replaceAll('_',' ')
+		if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf(' '))
 		s = s.replace('.jpg','')
 		s = s.replace(/_M\d+/,'')
 		s = s.replace(/_V\d+/,'')
 		s = s.replace(/_F\d+/,'')
-		s = s.replaceAll(/_/ig,' ')
+		const p = s.search(/\d\d\d\d-\d\d-\d\d/)
+		if (p>=0) s=s.slice(0,p)
 		return s
 	}
 
@@ -39,7 +42,9 @@
 		path = path.split('\\')
 		path = path.slice(2,path.length-1)
 		path = path.join(" • ")
+		path = path.replace(/_V\d+/,'')
 		path = path.replace(/_T\d+/,'')
+		path = path.replace(/_F\d+/,'')
 		return path.replaceAll('_', ' ')
 	}
 

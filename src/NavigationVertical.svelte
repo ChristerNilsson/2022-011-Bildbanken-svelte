@@ -22,6 +22,15 @@
 		keys = keys
 	}
 
+	function clean(s) {
+		s = s.replace(/_T\d+/,'')
+		s = s.replace(/_M\d+/,'')
+		s = s.replace(/_V\d+/,'')
+		s = s.replace(/_F\d+/,'')
+		s = s.replaceAll("_"," ")
+		return s
+	}
+
 </script>
 
 <div style="width:{WIDTH}px">
@@ -30,7 +39,7 @@
 			<span>
 				{#if ! is_jpg(key)}
 					<button value={key} on:click = {() => push(key)}>
-						{key.replaceAll("_"," ")} ({visibleKeys[key]})
+						{clean(key)} ({visibleKeys[key]})
 					</button>
 				{/if}
 			</span>

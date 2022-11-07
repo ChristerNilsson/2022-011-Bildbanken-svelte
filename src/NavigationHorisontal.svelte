@@ -3,11 +3,18 @@
 	export let stack
 	export let WIDTH
 
-	let path= ""
-	$: key = _.last(stack)
-	$: {
-		path = stack.slice(1).join(" • ").replaceAll("_"," ")
-		if (path=="") path="Home"
+	function clean(stack){
+		const n = stack.length
+		let s = ""
+		if (n==1) s = stack[0] // Home
+		if (n==2) s = stack[1] // 2222
+		if (n>=3) s = stack.slice(2).join(" • ")
+		s = s.replace(/_T\d+/,'')
+		s = s.replace(/_M\d+/,'')
+		s = s.replace(/_V\d+/,'')
+		s = s.replace(/_F\d+/,'')
+		s = s.replaceAll("_"," ")
+		return s
 	}
 
 </script>
@@ -15,7 +22,7 @@
 <div style="width:{WIDTH-1}px">
 	<div>
 		<span>
-			<button style="width:{WIDTH-1}px">{path}</button>
+			<button style="width:{WIDTH-1}px">{clean(stack)}</button>
 		</span>
 	</div>
 </div>
