@@ -20,6 +20,9 @@ JSON = ROOT + "src\\json\\"
 def is_jpg(key):
 	return key.endswith('.jpg') or key.endswith('.JPG')
 
+def is_tif(key):
+	return key.endswith('.tif') or key.endswith('.TIF')
+
 def frekvens(s):
 	for letter in '-,[]{}.;_"0123456789':
 		s = s.replace(letter,' ')
@@ -63,6 +66,12 @@ def flat(root, res={}, parent=""):
 			res[parent + "\\" + namn] = stat.st_mtime
 			if stat.st_size > WARNING * 1000000:
 				print("*** Size Warning:", stat.st_size, root + parent + '\\' + namn)
+		elif is_tif(namn):
+			print("*** TIF file converted to JPG, remove TIF manually:",root + parent + '\\' + namn)
+			big = Image.open(root + parent + "\\" + namn)
+			namn = namn.replace('.tif', '.jpg')
+			namn = namn.replace('.TIF', '.jpg')
+			big.save(root + parent + "\\" + namn, quality=100)
 		else:
 			print("*** Ignored file:",root + parent + '\\' + namn)
 	return res

@@ -330,6 +330,7 @@
 
 		}
 		s = s.replace('.jpg','')
+		s = s.replace('.JPG','')
 		s = s.replace(/_M\d+/,'')
 		s = s.replace(/_V\d+/,'')
 		s = s.replace(/_F\d+/,'')
