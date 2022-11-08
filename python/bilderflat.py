@@ -54,10 +54,12 @@ def flat(root, res={}, parent=""):
 	for name in [f for f in scandir(root + "\\" + parent)]:
 		namn = name.name
 		if name.is_dir():
-			flat(root, res, parent + "\\" + namn)
+			# print(parent + "\\" + namn)
 			res[parent + "\\" + namn] = ""
+			flat(root, res, parent + "\\" + namn)
 		elif is_jpg(namn):
 			stat = name.stat()
+			# print(parent + "\\" + namn)
 			res[parent + "\\" + namn] = stat.st_mtime
 			if stat.st_size > WARNING * 1000000:
 				print("*** Size Warning:", stat.st_size, root + parent + '\\' + namn)
@@ -143,8 +145,8 @@ def expandSmall():
 			if is_jpg(key):
 				print('adding image', antal, round(time.time() - start, 3), key)
 				b[key] = makeSmall(Home,small,key)
-			else:
-				print('delete folder manually from Home', key)
+			#else:
+			#	print('delete folder manually from Home', key)
 				#rmdir(Home + key)
 
 
@@ -170,6 +172,11 @@ def pruneCache():
 	for item in delKand:
 		patch(tree,item,None)
 
+# spegla katalogträdet, kataloger + antalet filer
+# ska kunna jämföras med cachen och lista skillnaderna
+# def getTree(root):
+
+
 #####################################
 
 start = time.time()
@@ -177,7 +184,9 @@ start = time.time()
 res = {}
 tree = {}
 
+# print('=Home=')
 a = flat(Home,{})
+# print('=small=')
 b = flat(small,{})
 print('Images + Folders in Home', len(a))
 print('Images + Folders in small', len(b))
@@ -187,8 +196,21 @@ loadCache()
 expandSmall()
 shrinkSmall()
 pruneCache()
-
 with open(JSON + '\\bilder.json', 'w', encoding="utf8") as f:
 	dumpjson(tree,f)
+
+flatCache = {}
+def flatten(node,path=''):
+	for key in node:
+		key2 = path + "\\" + key
+		flatCache[key2] = 1
+		if not type(node[key]) is list:
+			flatten(node[key],key2)
+
+# Kolla vilka pather som saknas cachen.
+flatten(tree)
+for key in a:
+	if key not in flatCache:
+		print(key)
 
 print(round(time.time() - start,3),'seconds')
