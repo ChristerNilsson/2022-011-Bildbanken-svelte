@@ -51,23 +51,32 @@ Sökning går endast mot den katalog man valt. Välj Home om du vill söka i all
 
 ![Example](help.jpg)
 
-Vi ser att 834 bilder har med Anna eller Cramling att göra. Vill du bara se Anna_Cramling, använd underscore. Sökningen tog 31 millisekunder.
+Först gjordes ut urval genom att klicka på 2022.  
+Då reducerades antalet bilder till 4936.  
 
-AB:116 innebär att båda orden förekom i 116 bilder. A:48 innebär att enbart Anna förekom i ytterligare 48 bilder. B:670 innebär att enbart Cramling förekom i 670 bilder (troligen Pia eller Dan Cramling).
+Därefter skrevs söktexten "Anna Cramling" in.  
+Det reducerade antalet bilder till 246.  
+Sökningen tog 4 millisekunder.
 
-246 av de 834 bilderna är tagna år 2022.
+Bara de turneringar som gett träff på Anna eller Cramling, visas.
 
-Varje bild är märkt med AB, A, B eller motsvarande.
+Kolumnnamnen [Date] och [Event] sorterar framsökta rader.
 
-Kryssrutan används vid Download.
+AB:9 innebär att båda orden förekom i 9 bilder.  
+A:6 innebär att enbart Anna förekom i ytterligare 6 bilder.  
+B:231 innebär att enbart Cramling förekom i 231 bilder (troligen Pia eller Dan Cramling).  
+Notera att 9+6+231 = 246.
 
-T kan man klicka på. Då får man se turneringsresultatet.
+* 0 = första framsökta bilden
+* AB innebär att båda orden förekommer i bildtexten
+* Kryssrutan används vid Download
+* T kan man klicka på. Då får man se turneringsresultatet
+* Bilden har tagits av Lars OA Hedlund
+* 2.3 MP = 2.3 miljoner pixlar
+* 2048 x 1194 = bredd och höjd
+* 1508 kb = bildens storlek i kilobytes
 
-2.3 MP = 2.3 miljoner pixlar.
+Man kan se alla 246 bilderna genom att skrolla nedåt.  
+Vill man avgränsa sig kan man t ex söka på Anna_Cramling eller klicka på Schack-SM Uppsala. 
 
-2048 x 1194 = bredd och höjd.
-
-1508 kb = bildens storlek i kilobytes.
-
-
-
+Klickar man på [Up] får man se alla år och kan då klicka på 2011 för att se hur Anna såg ut då.
