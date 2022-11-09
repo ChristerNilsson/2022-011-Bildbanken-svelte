@@ -4,21 +4,34 @@
 	export let push
 	export let is_jpg
 	export let WIDTH
+	export let spaceShip
 
 	let keys 
 	const regexYYYY = new RegExp(/^\d\d\d\d/)
 
 	$: { 
-		//keys = _.keys(_.last(path))
+		// keys = _.keys(_.last(path))
 		// console.log('AAA',visibleKeys)
 		keys = _.keys(visibleKeys)
 		let numbers = true
+		let yyyy = true
 		for (const key of keys) {
 			if (key.includes('.jpg') || key.includes('.JPG')) continue
 			if ( ! regexYYYY.test(key)) numbers = false 
+			if (key.length!=4) yyyy = false
 		}
-		keys.sort()
-		if (numbers) keys.reverse()
+
+		let index = 0
+		let rev = false
+		if (numbers && yyyy) {
+			rev = true
+		} else if (numbers && !yyyy) {
+			index = 11
+		// } else if (!numbers && !yyyy) {
+		}
+
+		keys.sort((a,b) => spaceShip(a.slice(index),b.slice(index)))
+		if (rev) keys.reverse()
 		keys = keys
 	}
 

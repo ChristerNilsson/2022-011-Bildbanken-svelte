@@ -4,6 +4,13 @@ Jag skulle vilja att bara en flik används för många bilder och en bild. Fick 
 
 Det som komplicerar är att infinite scroll används för framsökta bilder.
 
+### Kommandon
+```
+npm run dev
+npm run build
+gsutil -m rsync -d -r C:\github\2022-011-Bildbanken-svelte\public gs://bildbanken2
+```
+
 ### Info-knappen
 
 Då man klickar eller scrollar läses information in om den stora bilden (*EXIF-data*)

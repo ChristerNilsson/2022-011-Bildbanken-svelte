@@ -7,6 +7,8 @@ import time
 from os import scandir,mkdir,remove,rmdir
 from os.path import exists,getsize
 from PIL import Image # Pillow
+import shutil
+
 
 WARNING = 50 # MB. Större filer listas.
 WIDTH = 475
@@ -109,6 +111,7 @@ def makeSmall(a,b,name):
 	# ensurePath(progr,name)
 	# big.save(progr + name, quality=95, optimize=True, progressive=True)
 
+delKand = []
 
 def cleanCache(node, a, path="", key=""):
 	global delKand
@@ -167,7 +170,8 @@ def shrinkSmall():
 			if is_jpg(key):
 				remove(small + key)
 			else:
-				rmdir(small + key)
+				#rmdir(small + key)
+				shutil.rmtree(small + key)
 			patch(tree, key, None)
 
 #checkCache(tree,a)
@@ -220,6 +224,6 @@ def flatten(node,path=''):
 flatten(tree)
 for key in a:
 	if key not in flatCache:
-		print(key)
+		print('Missing in cache:',key)
 
 print(round(time.time() - start,3),'seconds')

@@ -326,8 +326,7 @@
 			const p = s.search(/\d\d\d\d-\d\d-\d\d/)
 			if (p>=0) s = s.slice(0,p)
 			s = s.replace('Pristagare ','')
-			s = s.replace(/[kK]lass ./,'')
-
+			s = s.replace(/[kK]lass [A-Z]+/,'')
 		}
 		s = s.replace('.jpg','')
 		s = s.replace('.JPG','')
@@ -345,7 +344,7 @@
 	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle {WIDTH} {GAP} {spreadWidth} bind:retro />
 	<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 	<NavigationHorisontal {stack} {pop} {WIDTH} />
-	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} />
+	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip}/>
 	{#if helpToggle}
 		<Help {MAX_DOWNLOAD} />
 	{:else}
