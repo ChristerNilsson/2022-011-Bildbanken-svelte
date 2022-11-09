@@ -280,7 +280,8 @@
 	// Uppdaterar listan cols som håller reda på nästa lediga koordinat för varje kolumn
 	function placera(images,visibleKeys) {
 		const rows = sokruta=="" ? 4 : 5
-		const antal = rows + 1 + _.size(visibleKeys)
+		let antal = rows + 1 + _.size(visibleKeys)
+		if (stack.length==2) antal+=1
 
 		offset = 34 * antal // 30 + 2 * margin=2
 
@@ -344,7 +345,7 @@
 	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle {WIDTH} {GAP} {spreadWidth} bind:retro />
 	<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 	<NavigationHorisontal {stack} {pop} {WIDTH} />
-	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip}/>
+	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} {spreadWidth}/>
 	{#if helpToggle}
 		<Help {MAX_DOWNLOAD} />
 	{:else}
