@@ -41,8 +41,8 @@
 
 {#if n==2}
 	<div style="width:{WIDTH}px">
-		<button class="header" style="left:{0.000*WIDTH}px; width:{spreadWidth(0.115,WIDTH)}px" on:click = {()=>sortera(0)}>Date</button>
-		<button class="header" style="left:{0.115*WIDTH}px; width:{spreadWidth(0.888,WIDTH)}px" on:click = {()=>sortera(1)}>Event</button>
+		<button class="header" style="left:0px; width:{90}px" on:click = {()=>sortera(0)}>Date</button>
+		<button class="header" style="left:{90}px; width:{WIDTH-90-8}px" on:click = {()=>sortera(1)}>Event</button>
 	</div>
 {/if}
 

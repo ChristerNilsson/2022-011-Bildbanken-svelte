@@ -28,7 +28,6 @@
 
 	function toggleRetro() {
 		retro = ! retro
-		console.log('retro',retro)
 	}
 
 	window.onload = () => document.getElementById("search").focus()

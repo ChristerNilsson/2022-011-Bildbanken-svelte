@@ -74,6 +74,9 @@ Sökning går endast mot den katalog man valt. Välj Home om du vill söka i all
 #### Horisontala Navigeringsknappar
 Dessa utgörs av Home, 2022 osv. Man hoppar till en katalog närmare *roten* (Home).
 
+#### Sortering av rader
+Görs med Date eller Event
+
 #### Lista med kataloger
 Dessa utgörs av 2022, 2021 osv. Man hoppar till en katalog närmare *löven* (bilderna)
 
