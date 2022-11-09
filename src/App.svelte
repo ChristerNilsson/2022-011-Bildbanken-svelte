@@ -35,7 +35,7 @@
 		}
 	}
 
-	let helpToggle = false
+	// let helpToggle = false
 	let selected = []
 	let skala = 1
 
@@ -342,15 +342,15 @@
 <svelte:window bind:scrollY={y}/>
 
 {#if big.file == ""}
-	<Search bind:sokruta {text0} {text1} {stack} bind:helpToggle {WIDTH} {GAP} {spreadWidth} bind:retro />
+	<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} bind:retro />
 	<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 	<NavigationHorisontal {stack} {pop} {WIDTH} />
 	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} {spreadWidth}/>
-	{#if helpToggle}
+	<!-- {#if helpToggle}
 		<Help {MAX_DOWNLOAD} />
-	{:else}
-		<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper} {retro} {prettyFilename} />
-	{/if}
+	{:else} -->
+	<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper} {retro} {prettyFilename} />
+	<!-- {/if} -->
 {:else}
 	<!-- <img src="https://visitor-badge.glitch.me/badge?page_id=BildbankenBig" alt="visitor badge"/> -->
 	<BigPicture {big} {prettyFilename} />

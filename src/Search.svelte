@@ -3,7 +3,7 @@
 	export let text0
 	export let text1
 	export let stack
-	export let helpToggle
+	// export let helpToggle
 	export let WIDTH
 	export let GAP
 	export let spreadWidth
@@ -23,7 +23,8 @@
 	}
 
 	function help() {
-		helpToggle = ! helpToggle
+		//helpToggle = ! helpToggle
+		window.open("https://github.com/ChristerNilsson/2022-011-Bildbanken-svelte#readme")
 	}
 
 	function toggleRetro() {

@@ -6,7 +6,7 @@
 	export let WIDTH
 	export let spaceShip
 	export let stack
-	export let spreadWidth
+	// export let spreadWidth
 
 	function sortera(i) {
 		sortIndex = i
