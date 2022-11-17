@@ -9,6 +9,8 @@ Det som komplicerar är att infinite scroll används för framsökta bilder.
 npm run dev
 npm run build
 gsutil -m rsync -d -r C:\github\2022-011-Bildbanken-svelte\public gs://bildbanken2
+https://console.cloud.google.com/billing/01CC24-E15D8C-3CC9BD/reports;savedView=7347e53f-a528-477a-8f5d-6ea4053eb201?project=project-id-9963945262588989747
+https://storage.googleapis.com/bildbanken2/index.html
 ```
 
 ### Info-knappen

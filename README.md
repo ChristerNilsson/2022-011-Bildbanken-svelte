@@ -2,7 +2,7 @@
 
 ### Introduktion
 
-Detta program används för att hitta bland fotografier från tio års fotograferande inom den svenska schackvärlden av Lars OA Hedlund.  
+Denna databas innehåller cirka 50.000 fotografier från den svenska schackvärlden, tagna av Lars OA Hedlund, sedan 2011.  
 När du startar ser du alla bilder, med de senaste högst upp.  
 Du kan avgränsa sökandet på två sätt:
 
@@ -13,8 +13,9 @@ Du kan avgränsa sökandet på två sätt:
 	4. Klass
 	5. Grupp
 
-2. Genom att skriva in ett eller flera ord i sökrutan längst upp.
-	Skriv du flera ord, kommer bilderna högre upp ju fler träffar orden får.
+
+2. Genom att skriva in ett eller flera ord i sökrutan längst upp.  
+	Skriver du flera ord, kommer bilderna högre upp ju fler träffar orden får.  
 	(Man kan säga att OCH kommer före ELLER)
 
 	* [Clear] rensar sökrutan
@@ -51,7 +52,7 @@ Sökning går endast mot den katalog man valt. Välj Home om du vill söka i all
 
 ![Example](help.jpg)
 
-Först gjordes ut urval genom att klicka på 2022.  
+Först gjordes ett urval genom att klicka på 2022.  
 Då reducerades antalet bilder till 4936.  
 
 Därefter skrevs söktexten "Anna Cramling" in.  
@@ -80,3 +81,5 @@ Man kan se alla 246 bilderna genom att skrolla nedåt.
 Vill man avgränsa sig kan man t ex söka på Anna_Cramling eller klicka på Schack-SM Uppsala. 
 
 Klickar man på [Up] får man se alla år och kan då klicka på 2011 för att se hur Anna såg ut då.
+
+Klicka på en bild för att se den i högsta upplösningen.
