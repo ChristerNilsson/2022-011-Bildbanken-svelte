@@ -7,7 +7,6 @@
 	export let index
 	export let round
 	export let fileWrapper
-	export let retro
 	export let prettyFilename
 
 	$: filename = card[2] + "\\" + card[12]
@@ -53,7 +52,7 @@
 	/>
 	<div class="group">
 		<div class="info" style="width:{WIDTH}px">
-			&nbsp;{prettyFilename(filename,retro)}
+			&nbsp;{prettyFilename(filename)}
 		</div>
 		<div class="info" style="width:{WIDTH}px">
 			&nbsp;{prettyPath(filename)}

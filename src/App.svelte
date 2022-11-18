@@ -21,7 +21,7 @@
 	let y = 0 // Anger var scrollern befinner sig just nu.
 	let ymax = 0 // Anger var senast laddade bild befinner sig.
 	let offset = 0
-	let retro = false
+	// let retro = false
 
 	$: { // infinite scroll
 		// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
@@ -318,10 +318,10 @@
 		return res
 	}
 
-	function prettyFilename(path,retro) { // Tag bort eventuella M och V-nummer
+	function prettyFilename(path) { // Tag bort eventuella M och V-nummer
 		let i = path.lastIndexOf('\\')
 		let s = path.slice(i+1)
-		if (!retro) {
+		if (true) { // !retro
 			if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf('_'))
 			const p = s.search(/\d\d\d\d-\d\d-\d\d/)
 			if (p>=0) s = s.slice(0,p)
@@ -342,11 +342,11 @@
 <svelte:window bind:scrollY={y}/>
 
 {#if big.file == ""}
-	<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} bind:retro />
+	<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} />
 	<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 	<NavigationHorisontal {stack} {WIDTH} />
 	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
-	<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper} {retro} {prettyFilename} />
+	<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper} {prettyFilename} />
 {:else}
 	<BigPicture {big} {prettyFilename} />
 {/if}
