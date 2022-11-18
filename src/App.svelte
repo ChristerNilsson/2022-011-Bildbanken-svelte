@@ -79,7 +79,8 @@
 	function consumeFolder(folder) {
 		sokruta = ""
 		stack = folder.split("\\")
-		path = [Home]
+		path.length = 0 // clear
+		path.push(Home)
 		let pointer = Home
 		for (const key of stack.slice(1)) {
 			pointer = pointer[key]
@@ -343,8 +344,8 @@
 {#if big.file == ""}
 	<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} bind:retro />
 	<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
-	<NavigationHorisontal {stack} {pop} {WIDTH} />
-	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} {spreadWidth}/>
+	<NavigationHorisontal {stack} {WIDTH} />
+	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
 	<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper} {retro} {prettyFilename} />
 {:else}
 	<BigPicture {big} {prettyFilename} />
