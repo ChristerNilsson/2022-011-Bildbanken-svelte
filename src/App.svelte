@@ -225,7 +225,7 @@
 		count = 0
 
 		words = words.toLowerCase()
-		path = path.toLowerCase()
+		// path = path.toLowerCase()
 		words = words.length == 0 ? [] : words.split(" ")
 
 		res = []
@@ -255,15 +255,16 @@
 		tick()
 		if (levels==0) return
 		for (const key in node) {
-			const newPath = path + "\\" + key.toLowerCase()
+			const newPath = path + "\\" + key
 			if (is_jpg(key)) {
 				total += 1
 				let s = ''
+				const newpath = newPath.toLowerCase()
 				for (const i in range(words.length)) {
 					const word = words[i]
 					if (word.length == 0) continue
 					count += 1
-					if (newPath.slice(10).includes(word)) s += ALFABET[i]
+					if (newpath.slice(10).includes(word)) s += ALFABET[i]
 				}
 				if (s.length > 0 || words.length == 0) {
 					const [sw,sh,bs,bw,bh] = node[key] // small/big width/height/size

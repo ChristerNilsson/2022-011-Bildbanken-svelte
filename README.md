@@ -41,7 +41,7 @@ Dessa ord, avgränsade av blanktecken, matchas mot texterna i kataloger och filn
 De kombineras automatiskt med OCH och ELLER  
 Underscore (_) kan användas för att binda ihop ord, t ex Numa_Karlsson  
 
-Sökningen kräver att man anger rätt VERSALER och gemener, t ex ger varken "KARLSSON" eller "karlsson" någon träff, däremot "Karlsson"  
+Sökningen är inte känslig för VERSALER och gemener.
 De ord man anger kan vara delord, även enstaka tecken, och de kan stå var som helst i orden. T ex kommer "sson" att matcha ett antal Karlsson och Nilsson  
 
 Tom söksträng innebär att alla bilder matchar.
