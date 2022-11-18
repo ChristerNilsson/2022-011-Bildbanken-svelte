@@ -21,7 +21,6 @@
 	let y = 0 // Anger var scrollern befinner sig just nu.
 	let ymax = 0 // Anger var senast laddade bild befinner sig.
 	let offset = 0
-	// let retro = false
 
 	$: { // infinite scroll
 		// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
@@ -225,6 +224,8 @@
 		cards = []
 		count = 0
 
+		words = words.toLowerCase()
+		path = path.toLowerCase()
 		words = words.length == 0 ? [] : words.split(" ")
 
 		res = []
@@ -235,7 +236,7 @@
 		const start = new Date()
 
 		const levels = 99
-		recursiveSearch(node,words,path,levels)
+		recursiveSearch(node, words, path, levels)
 		res.sort((a,b) => multiSort(a,b,[1,2,-3,13])) // OBS: index++  [-letters.length, letters, -path, key] [-3, 'ABC', 'Home/2022/2022-09-17...', 'Pelle...jpg']
 
 		const keys = Object.keys(stat)
@@ -254,7 +255,7 @@
 		tick()
 		if (levels==0) return
 		for (const key in node) {
-			const newPath = path + "\\" + key
+			const newPath = path + "\\" + key.toLowerCase()
 			if (is_jpg(key)) {
 				total += 1
 				let s = ''

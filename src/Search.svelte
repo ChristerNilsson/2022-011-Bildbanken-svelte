@@ -3,11 +3,9 @@
 	export let text0
 	export let text1
 	export let stack
-	// export let helpToggle
 	export let WIDTH
 	export let GAP
 	export let spreadWidth
-	export let retro
 
 	function clear() {
 		sokruta = ""
@@ -23,12 +21,7 @@
 	}
 
 	function help() {
-		//helpToggle = ! helpToggle
 		window.open("https://github.com/ChristerNilsson/2022-011-Bildbanken-svelte#readme")
-	}
-
-	function toggleRetro() {
-		retro = ! retro
 	}
 
 	window.onload = () => document.getElementById("search").focus()
@@ -44,7 +37,6 @@
 	<button on:click={clear}       style="left:{0}px;         width:{spreadWidth(1/3,WIDTH)}px">Clear</button>
 	<button on:click={share}       style="left:{WIDTH/3}px;   width:{spreadWidth(1/3,WIDTH)}px">Share</button>
 	<button on:click={help}        style="left:{2*WIDTH/3}px; width:{spreadWidth(1/3,WIDTH)}px">Help</button>
-	<!-- <button on:click={toggleRetro} style="left:{3*WIDTH/4}px; width:{spreadWidth(1/4,WIDTH)}px">R</button> -->
 </div>
 
 {#if (sokruta.split(" ").length <= 3) && (sokruta.length > 0)}
