@@ -21,7 +21,7 @@
 	let y = 0 // Anger var scrollern befinner sig just nu.
 	let ymax = 0 // Anger var senast laddade bild befinner sig.
 	let offset = 0
-	let retro = true
+	let retro = false
 
 	$: { // infinite scroll
 		// Om y + skärmens dubbla höjd överstiger senaste bilds underkant läses 20 nya bilder in.
@@ -35,7 +35,6 @@
 		}
 	}
 
-	// let helpToggle = false
 	let selected = []
 	let skala = 1
 
@@ -321,9 +320,8 @@
 	function prettyFilename(path,retro) { // Tag bort eventuella M och V-nummer
 		let i = path.lastIndexOf('\\')
 		let s = path.slice(i+1)
-		s = s.replaceAll('_',' ')
 		if (!retro) {
-			if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf(' '))
+			if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf('_'))
 			const p = s.search(/\d\d\d\d-\d\d-\d\d/)
 			if (p>=0) s = s.slice(0,p)
 			s = s.replace('Pristagare ','')
@@ -334,6 +332,7 @@
 		s = s.replace(/_M\d+/,'')
 		s = s.replace(/_V\d+/,'')
 		s = s.replace(/_F\d+/,'')
+		s = s.replaceAll('_',' ')
 		return s
 	}
 
@@ -346,12 +345,7 @@
 	<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 	<NavigationHorisontal {stack} {pop} {WIDTH} />
 	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} {spreadWidth}/>
-	<!-- {#if helpToggle}
-		<Help {MAX_DOWNLOAD} />
-	{:else} -->
 	<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper} {retro} {prettyFilename} />
-	<!-- {/if} -->
 {:else}
-	<!-- <img src="https://visitor-badge.glitch.me/badge?page_id=BildbankenBig" alt="visitor badge"/> -->
 	<BigPicture {big} {prettyFilename} />
 {/if}

@@ -6,25 +6,26 @@
 	export let WIDTH
 	export let spaceShip
 	export let stack
-	// export let spreadWidth
 
-	function sortera(i) {
-		sortIndex = i
-		let index = i==1 ? 11 : 0
-		// keys = _.keys(visibleKeys)
-		keys.sort((a,b) => spaceShip(a.slice(index),b.slice(index)))
-		if (i==0) keys.reverse()
-		// keys = keys
+	function sortera(keys,i) {
+		if (n==1) sortIndex = 0
+		if (n==2) sortIndex = i
+		if (n==3) sortIndex = 0
+
+		let pos = sortIndex==1 ? 11 : 0
+		// console.log('')
+		// console.log('sortIndex',sortIndex)
+		// console.log('n',n)
+		// console.log('stack',stack)
+		// console.log('pos',pos)
+		keys.sort((a,b) => spaceShip(a.slice(pos),b.slice(pos)))
+		if (n<=2 && sortIndex == 0) keys.reverse()
+		return keys
 	}
 
 	$: n = stack.length
-	let sortIndex = n==2 ? 1 : 0
-	let keys
-	$: {
-		keys = _.keys(visibleKeys)
-		sortera(sortIndex)
-		// keys = keys 
-	}
+	let sortIndex = 0
+	$: keys = sortera(_.keys(visibleKeys),sortIndex)
 	
 	function clean(s) {
 		s = s.replace(/_T\d+/,'')
@@ -39,12 +40,12 @@
 
 <div style="width:{WIDTH}px">
 
-{#if n==2}
-	<div style="width:{WIDTH}px">
-		<button class="header" style="left:0px; width:{90}px" on:click = {()=>sortera(0)}>Date</button>
-		<button class="header" style="left:{90}px; width:{WIDTH-90-8}px" on:click = {()=>sortera(1)}>Event</button>
-	</div>
-{/if}
+	{#if n==2}
+		<div style="width:{WIDTH}px">
+			<button class="header" style="left:0px; width:{90}px" on:click = {()=>keys=sortera(keys,0)}>Date</button>
+			<button class="header" style="left:{90}px; width:{WIDTH-90-8}px" on:click = {()=>keys=sortera(keys,1)}>Event</button>
+		</div>
+	{/if}
 
 	{#each keys as key }
 		<div>
