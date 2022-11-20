@@ -1,9 +1,11 @@
 /node_modules/
+build
+/json/
 Home
 small
 big
 zip
 *.pdf
 .DS_Store
-Gigantisk
+/Gigantisk/
 .vercel
