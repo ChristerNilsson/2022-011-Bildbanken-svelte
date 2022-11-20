@@ -433,3 +433,17 @@ Just nu läser man in fler och fler bilder. Egentligen bör man kasta bort bilde
 Q: Varför utnyttjas inte hela skärmen för bilderna?
 A: Kontrollera att browserns Zoom är inställd på 100%
 ```
+
+### Misslyckat försök att få ett mera responsivt UI.
+Idag kan man uppleva en viss fördröjning när man skriver snabbt.  
+Idén var att dela upp sökandet i mindre batchar, t ex 47 st a 1000 bilder.  
+Efter varje batch, sätts en timeout.  
+Detta för att släppa fram en tangenttryckning till sökrutan.  
+Om en tangent finns, starta om sökandet.  
+Finns ingen tangent, fortsätter sökandet pga timeouten.  
+
+Ej lösta problem:
+* Tar tredubbla tiden
+* Missar sist inskrivna tecken
+* Visar inte alla vertikala knappar.
+* Det positiva: inskrivningen gick smärtfritt.
