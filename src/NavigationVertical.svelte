@@ -13,11 +13,6 @@
 		if (n==3) sortIndex = 0
 
 		let pos = sortIndex==1 ? 11 : 0
-		// console.log('')
-		// console.log('sortIndex',sortIndex)
-		// console.log('n',n)
-		// console.log('stack',stack)
-		// console.log('pos',pos)
 		keys.sort((a,b) => spaceShip(a.slice(pos),b.slice(pos)))
 		if (n<=2 && sortIndex == 0) keys.reverse()
 		return keys

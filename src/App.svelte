@@ -10,8 +10,14 @@
 	import Search from "./Search.svelte"
 	import BigPicture from "./BigPicture.svelte"
 	import Infinite from "./Infinite.svelte"
-	import Home from './json/bilder.json'
 	import fileIndex from './json/file_index.json'
+
+	let Home
+	async function getJSON() {
+		let response = await fetch("./json/bilder.json")
+		return await response.json()
+	}
+	const promise = getJSON()
 
 	const range = _.range
 
@@ -48,8 +54,8 @@
 	$: WIDTH = calcWidth(innerWidth)
 	$: COLS = Math.floor((innerWidth-SCROLLBAR-GAP)/WIDTH)
 
-	const path  = [Home] // used for navigation
-	let stack = ["Home"]
+	let path=[] // = [Home] // used for navigation
+	let stack=[] //= ["Home"]
 	
 	let res=[]
 	let stat={}
@@ -102,7 +108,7 @@
 		}
 	}
 
-	$: [text0,text1,images] = search(_.last(path), sokruta, stack.join('\\'))
+	$: [text0,text1,images] = search(_.last(path), sokruta, stack.join('\\'), Home)
 
 	$: { 
 		placera(images,visibleKeys)
@@ -339,42 +345,30 @@
 		return s
 	}
 
-	// let result = 0
-	// const N = 100000
-	// let timeoutID
-	// let lastValue = ""
-
-	// function keyup(e) {
-	// 	if (e.target.value == lastValue) return
-	// 	lastValue = e.target.value
-	// 	console.log(e)
-	// 	clearTimeout(timeoutID)
-	// 	result = 0
-	// 	if (e.target.value != "") think(0,N)
-	// }
-
-	// function think(a,b) {
-	// 	if (b>100*N) return
-	// 	for (const i of range(a,b)) result += i+1
-	// 	timeoutID = setTimeout(() => think(a+N,b+N), 0)
-	// }
+	function setHome(data) {
+		Home = data
+		path = [Home]
+		stack = ["Home"]
+		// console.log('path',path)
+		// console.log('stack',stack)
+		return ""
+	}
 
 </script>
 
 <svelte:window bind:scrollY={y}/>
 
-{#if big.file == ""}
-	<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} />
-	<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
-	<NavigationHorisontal {stack} {WIDTH} />
-	<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
-	<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper} {prettyFilename} />
-{:else}
-	<BigPicture {big} {prettyFilename} />
-{/if}
-
-
-<!-- <input on:keyup={keyup}>
-<div>
-	{result}
-</div> -->
+{#await promise }
+	<p>Loading...</p>
+{:then data}
+	{setHome(data)}
+	{#if big.file == ""}
+		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} />
+		<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
+		<NavigationHorisontal {stack} {WIDTH} />
+		<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
+		<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper} {prettyFilename} />
+	{:else}
+		<BigPicture {big} {prettyFilename} />
+	{/if}
+{/await}
