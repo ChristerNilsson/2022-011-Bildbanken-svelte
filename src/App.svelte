@@ -60,6 +60,7 @@
 	let res=[]
 	let stat={}
 	let total=0
+	let buttons = false
 
 	let sokruta = ""
 	let big = {file:""}
@@ -290,6 +291,7 @@
 		const rows = sokruta=="" ? 4 : 5
 		let antal = rows + 1 + _.size(visibleKeys)
 		if (stack.length==2) antal+=1
+		if (stack.length!=2 && buttons) antal+=1
 
 		offset = 34 * antal // 30 + 2 * margin=2
 
@@ -366,7 +368,7 @@
 		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} />
 		<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 		<NavigationHorisontal {stack} {WIDTH} />
-		<NavigationVertical {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
+		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
 		<Infinite {WIDTH} {getPath} bind:selected {cards} {round} {fileWrapper} {prettyFilename} />
 	{:else}
 		<BigPicture {big} {prettyFilename} />

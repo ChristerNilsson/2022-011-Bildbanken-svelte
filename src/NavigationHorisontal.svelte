@@ -9,10 +9,13 @@
 		if (n==1) s = stack[0] // Home
 		if (n==2) s = stack[1] // 2222
 		if (n>=3) s = stack.slice(2).join(" • ")
-		s = s.replace(/_T\d+/,'')
-		s = s.replace(/_M\d+/,'')
-		s = s.replace(/_V\d+/,'')
-		s = s.replace(/_F\d+/,'')
+		s = s.replaceAll(/_M\d+/g,'')
+		s = s.replaceAll(/_T\d+/g,'')
+		s = s.replaceAll(/_V\d+/g,'')
+		s = s.replaceAll(/_F\d+/g,'') // deprecated
+		s = s.replaceAll(/_L\d+/g,'')
+		s = s.replaceAll(/_I\d+/g,'')
+		s = s.replaceAll(/_R\d+/g,'')
 		s = s.replaceAll("_"," ")
 		return s
 	}

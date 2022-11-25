@@ -17,7 +17,7 @@ ROOT = "C:\\github\\2022-011-Bildbanken-svelte\\"
 Home = ROOT + "public\\Home"
 small = ROOT + "public\\small"
 # progr = ROOT + "public\\progr"
-JSON = ROOT + "src\\json\\"
+JSON = ROOT + "public\\json\\"
 
 def is_jpg(key):
 	return key.endswith('.jpg') or key.endswith('.JPG')
@@ -168,10 +168,20 @@ def shrinkSmall():
 		if key not in a:
 			print('removing image from small',key)
 			if is_jpg(key):
-				remove(small + key)
+				try:
+					remove(small + key)
+				except:
+					pass
+					# print('Failed remove',small + key)
 			else:
-				#rmdir(small + key)
-				shutil.rmtree(small + key)
+				try:
+					rmdir(small + key)
+				except:
+					print('Failed rmdir', small + key)
+				try:
+					shutil.rmtree(small + key)
+				except:
+					print('Failed shutil.rmtree', small + key)
 			patch(tree, key, None)
 
 #checkCache(tree,a)
@@ -221,9 +231,9 @@ def flatten(node,path=''):
 			flatten(node[key],key2)
 
 # Kolla vilka pather som saknas cachen.
-flatten(tree)
-for key in a:
-	if key not in flatCache:
-		print('Missing in cache:',key)
+# flatten(tree)
+# for key in a:
+# 	if key not in flatCache:
+# 		print('Missing in cache:',key)
 
 print(round(time.time() - start,3),'seconds')

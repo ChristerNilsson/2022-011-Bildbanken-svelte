@@ -447,3 +447,12 @@ Ej lösta problem:
 * Missar sist inskrivna tecken
 * Visar inte alla vertikala knappar.
 * Det positiva: inskrivningen gick smärtfritt.
+
+### Kopplade länkar
+* M Member (member.schack.se)
+* T Tournament (vanligast resultatet)
+* V Video
+* F File (deprecated!)
+* L Link (ersätter F)
+* I Invite (oftast pdf)
+* R Result (oftast pdf)

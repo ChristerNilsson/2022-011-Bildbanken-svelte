@@ -6,15 +6,19 @@
 	export let WIDTH
 	export let spaceShip
 	export let stack
+	export let buttons
+
+	buttons = false
 
 	function sortera(keys,i) {
-		if (n==1) sortIndex = 0
-		if (n==2) sortIndex = i
-		if (n==3) sortIndex = 0
+		const path = stack.join("\\")
+		buttons = (n == 2 && path != "Home\\0000 Klubbar") 
+		sortIndex = buttons ? i : 0
 
 		let pos = sortIndex==1 ? 11 : 0
 		keys.sort((a,b) => spaceShip(a.slice(pos),b.slice(pos)))
-		if (n<=2 && sortIndex == 0) keys.reverse()
+		if (n==1) keys.reverse()
+		if (n==2 && buttons && sortIndex==0) keys.reverse()
 		return keys
 	}
 
@@ -23,10 +27,13 @@
 	$: keys = sortera(_.keys(visibleKeys),sortIndex)
 	
 	function clean(s) {
-		s = s.replace(/_T\d+/,'')
-		s = s.replace(/_M\d+/,'')
-		s = s.replace(/_V\d+/,'')
-		s = s.replace(/_F\d+/,'')
+		s = s.replaceAll(/_M\d+/g,'')
+		s = s.replaceAll(/_T\d+/g,'')
+		s = s.replaceAll(/_V\d+/g,'')
+		s = s.replaceAll(/_F\d+/g,'') // deprecated
+		s = s.replaceAll(/_L\d+/g,'')
+		s = s.replaceAll(/_I\d+/g,'')
+		s = s.replaceAll(/_R\d+/g,'')
 		s = s.replaceAll("_"," ")
 		return s
 	}
@@ -35,7 +42,7 @@
 
 <div style="width:{WIDTH}px">
 
-	{#if n==2}
+	{#if buttons}
 		<div style="width:{WIDTH}px">
 			<button class="header" style="left:0px; width:{90}px" on:click = {()=>keys=sortera(keys,0)}>Date</button>
 			<button class="header" style="left:{90}px; width:{WIDTH-90-8}px" on:click = {()=>keys=sortera(keys,1)}>Event</button>

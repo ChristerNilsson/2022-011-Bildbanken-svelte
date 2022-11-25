@@ -11,27 +11,39 @@
 
 	$: filename = card[2] + "\\" + card[12]
 
-	$: M = getNumber(filename,'M')
-	$: T = getNumber(filename,'T')
-	$: V = getNumber(filename,'V')
-	$: F = getNumber(filename,'F')
+	$: MS = getNumbers(filename,'M')
+	$: TS = getNumbers(filename,'T')
+	$: VS = getNumbers(filename,'V')
+	$: FS = getNumbers(filename,'F')
+	$: LS = getNumbers(filename,'L')
+	$: IS = getNumbers(filename,'I')
+	$: RS = getNumbers(filename,'R')
 
-	function getNumber(path,letter) { // Används för filnummer = MTVP
-		let matches 
-		if (letter=='M') matches = path.match(/[M]\d+/)
-		if (letter=='T') matches = path.match(/[T]\d+/)
-		if (letter=='V') matches = path.match(/[V]\d+/)
-		if (letter=='F') matches = path.match(/[F]\d+/)
-		return matches ? matches[0].slice(1) : ""
+	function getNumbers(path,letter) { // Används för filnummer = MTV FLIR member tournament video file (deprecated) link invite result
+		let matches
+		if (letter=='M') matches = path.matchAll(/[M]\d+/g)
+		if (letter=='T') matches = path.matchAll(/[T]\d+/g)
+		if (letter=='V') matches = path.matchAll(/[V]\d+/g)
+		if (letter=='F') matches = path.matchAll(/[F]\d+/g) // deprecated
+		if (letter=='L') matches = path.matchAll(/[L]\d+/g)
+		if (letter=='I') matches = path.matchAll(/[I]\d+/g)
+		if (letter=='R') matches = path.matchAll(/[R]\d+/g)
+		if (! matches) return []
+		matches = [...matches]
+		return _.map(matches, (match) => match[0].slice(1)) // skippa bokstaven
 	}
 
 	function prettyPath(path) { // Tag bort eventuellt T-nummer
 		path = path.split('\\')
 		path = path.slice(2,path.length-1)
 		path = path.join(" • ")
-		path = path.replace(/_V\d+/,'')
-		path = path.replace(/_T\d+/,'')
-		path = path.replace(/_F\d+/,'')
+		path = path.replaceAll(/_M\d+/g,'')
+		path = path.replaceAll(/_T\d+/g,'')
+		path = path.replaceAll(/_V\d+/g,'')
+		path = path.replaceAll(/_F\d+/g,'') // deprecated
+		path = path.replaceAll(/_L\d+/g,'')
+		path = path.replaceAll(/_I\d+/g,'')
+		path = path.replaceAll(/_R\d+/g,'')
 		return path.replaceAll('_', ' ')
 	}
 
@@ -66,18 +78,27 @@
 
 			&nbsp;&nbsp;<input class="largerCheckbox" type="checkbox" value="" bind:checked={selected[index]}/> 
 
-			{#if M}
-				&nbsp;&nbsp;<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">M</a>
-			{/if}
-			{#if V}
-				&nbsp;&nbsp;<a target="_blank" href="https://player.vimeo.com/video/{V}">V</a>
-			{/if}
-			{#if F}
-				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][F]}">F</a>
-			{/if}
-			{#if T}
-				&nbsp;&nbsp;<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={T}&listingtype=2">T</a>
-			{/if}
+			{#each MS as M}
+				&nbsp;&nbsp;<a target="_blank" href="https://member.schack.se/ViewPlayerRatingDiagram?memberid={M}">Member</a>
+			{/each}
+			{#each TS as T}
+				&nbsp;&nbsp;<a target="_blank" href="https://member.schack.se/ShowTournamentServlet?id={T}&listingtype=2">Result</a>
+			{/each}
+			{#each VS as V}
+				&nbsp;&nbsp;<a target="_blank" href="https://player.vimeo.com/video/{V}">Video</a>
+			{/each}
+			{#each FS as F}
+				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][F]}">Result</a> <!-- deprecated -->
+			{/each}
+			{#each LS as L}
+				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][L]}">Link</a>
+			{/each}
+			{#each IS as I}
+				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][I]}">Invite</a>
+			{/each}
+			{#each RS as R}
+				&nbsp;&nbsp;<a target="_blank" href="{fileWrapper[0][R]}">Result</a>
+			{/each}
 
 			<span style="flex:2; text-align:center; white-space:nowrap;"> © Lars OA Hedlund </span>
 			<span style="flex:1; text-align:right; white-space:nowrap;"> {round(card[10]*card[11]/1024/1024,1)} MP • {card[10]} x {card[11]} • {round(card[9]/1024,0)} kB &nbsp;</span>
