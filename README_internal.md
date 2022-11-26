@@ -398,6 +398,70 @@ Starta Pythonprogrammet bilder.py. Följande kommer att ske:
 	* Detta kan framtvingas genom att ta bort katalogen small
 	* Vill man bara skapa om vissa kataloger tar man bort dessa i small.
 
+Utskrift då allt är uppdaterat.
+Den ignorerade filen kan man ta bort eller flytta till "files" + registrera i "file_index.json".
+```
+*** Ignored file: C:\github\2022-011-Bildbanken-svelte\public\Home\0000 Klubbar\Wasa SK\KM i blixt Wasa 2022-11-10\KM_i_blixt_för_Wasa_SK.pdf
+
+Home:  1450 folders + 43720 files
+Small: 1450 folders + 43720 files
+Cache: 1450 folders + 43720 files
+
+Compare Home vs Small
+  Small: missing 0 folders + 0 files
+  Small: surplus 0 folders + 0 files
+
+Compare Home vs Cache
+  Cache: missing 0 folders + 0 files
+  Cache: surplus 0 folders + 0 files
+
+Small missing:
+Small surplus:
+Cache missing:
+Cache surplus:
+
+Update Small and Cache? (NO/Yes)
+```
+
+Utskrift efter ändring av ett katalognamn.  
+Här har man tagit bort texten "Stockholm" i en katalog i Home.  
+Small saknar katalogen "", men har katalogen "Stockholm" som ska bort.  
+En exempelfil visas, av egentliga 60.  
+Uppdatera genom att skriva in 'Y' och trycka på Enter.
+Observera att Home styr, Small och Cache följer.  
+Pythonprogrammet ändrar aldrig i Home.  
+Vill man tvinga fram en ändring i Small eller Cache, tag bort aktuella filer eller kataloger i Small.  
+```
+*** Ignored file: C:\github\2022-011-Bildbanken-svelte\public\Home\0000 Klubbar\Wasa SK\KM i blixt Wasa 2022-11-10\KM_i_blixt_för_Wasa_SK.pdf
+
+Home:  1450 folders + 43720 files
+Small: 1450 folders + 43720 files
+Cache: 1450 folders + 43720 files
+
+Compare Home vs Small
+  Small: missing 1 folders + 60 files
+  Small: surplus 1 folders + 60 files
+
+Compare Home vs Cache
+  Cache: missing 1 folders + 60 files
+  Cache: surplus 1 folders + 60 files
+
+Small missing:
+   \2022\2022-11-24 Näringslivet möter förorten_L10027
+   \2022\2022-11-24 Näringslivet möter förorten_L10027\Vy-NMF_01.Mikael_och_Pratyush_Copperstone_2022-11-24.jpg
+Small surplus:
+   \2022\2022-11-24 Näringslivet möter förorten Stockholm_L10027
+   \2022\2022-11-24 Näringslivet möter förorten Stockholm_L10027\Vy-NMF_01.Mikael_och_Pratyush_Copperstone_2022-11-24.jpg
+Cache missing:
+   \2022\2022-11-24 Näringslivet möter förorten_L10027
+   \2022\2022-11-24 Näringslivet möter förorten_L10027\Vy-NMF_01.Mikael_och_Pratyush_Copperstone_2022-11-24.jpg
+Cache surplus:
+   \2022\2022-11-24 Näringslivet möter förorten Stockholm_L10027
+   \2022\2022-11-24 Näringslivet möter förorten Stockholm_L10027\Vy-NMF_01.Mikael_och_Pratyush_Copperstone_2022-11-24.jpg
+
+Update Small and Cache? (NO/Yes)
+```
+
 ### Tidsuppskattningar.
 
 Att söka genom texten för en bild, inklusive path + bildtext, tar cirka 4 mikrosekunder.

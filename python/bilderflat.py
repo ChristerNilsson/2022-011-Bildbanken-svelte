@@ -1,14 +1,10 @@
-# Om bilder eller kataloger saknas i small, skapas dessa och bilder.js uppdateras
+# Om bilder eller kataloger saknas i Small, skapas dessa och Cache uppdateras
 # Se till att katalogen small existerar
-# En nyare bild i Home än i small tvingar fram en ny small.
 
 import json
-import time
 from os import scandir,mkdir,remove,rmdir
 from os.path import exists,getsize
 from PIL import Image # Pillow
-import shutil
-
 
 WARNING = 50 # MB. Större filer listas.
 WIDTH = 475
@@ -19,11 +15,9 @@ small = ROOT + "public\\small"
 # progr = ROOT + "public\\progr"
 JSON = ROOT + "public\\json\\"
 
-def is_jpg(key):
-	return key.endswith('.jpg') or key.endswith('.JPG')
+def is_jpg(key): return key.endswith('.jpg') or key.endswith('.JPG')
 
-def is_tif(key):
-	return key.endswith('.tif') or key.endswith('.TIF')
+def is_tif(key): return key.endswith('.tif') or key.endswith('.TIF')
 
 def frekvens(s):
 	for letter in '-,[]{}.;_"0123456789':
@@ -49,44 +43,40 @@ def dumpjson(data,f):
 	# frekvens(s)
 	f.write(s)
 
-def pop(path):
-	arr = path.split('\\')
-	arr.pop()
-	return "\\".join(arr)
+# def pop(path):
+# 	arr = path.split('\\')
+# 	arr.pop()
+# 	return "\\".join(arr)
 
-def flat(root, res={}, parent=""):
-	ensurePath(root, parent)
-	for name in [f for f in scandir(root + "\\" + parent)]:
-		namn = name.name
-		if name.is_dir():
-			# print(parent + "\\" + namn)
-			res[parent + "\\" + namn] = ""
-			flat(root, res, parent + "\\" + namn)
-		elif is_jpg(namn):
-			stat = name.stat()
-			# print(parent + "\\" + namn)
-			res[parent + "\\" + namn] = stat.st_mtime
-			if stat.st_size > WARNING * 1000000:
-				print("*** Size Warning:", stat.st_size, root + parent + '\\' + namn)
-		elif is_tif(namn):
-			print("*** TIF file converted to JPG, remove TIF manually:",root + parent + '\\' + namn)
-			big = Image.open(root + parent + "\\" + namn)
-			namn = namn.replace('.tif', '.jpg')
-			namn = namn.replace('.TIF', '.jpg')
-			big.save(root + parent + "\\" + namn, quality=100)
-		else:
-			print("*** Ignored file:",root + parent + '\\' + namn)
-	return res
+# def dump(a):
+# 	for key in a:
+# 		print(key,a[key])
+
+def loadCache():
+	if not exists(JSON + '\\bilder.json'): return {}
+	with open(JSON + '\\bilder.json', 'r', encoding="utf8") as f:
+		return json.loads(f.read())
+
+def pruneCache():
+	antal = {'files':0, 'folders':0}
+	keys = list(c.keys())
+	keys = reversed(keys)
+	for key in keys:
+		if key not in a:
+			if is_jpg(key):
+				antal['files'] += 1
+			else:
+				antal['folders'] += 1
+			patch(cache, key, None)
+	return antal
+
+#####################################
 
 def ensurePath(root,path):
 	arr = path.split("\\")
 	for i in range(len(arr)):
 		p = root + "\\" + "\\".join(arr[0:i])
 		if not exists(p): mkdir(p)
-
-def dump(a):
-	for key in a:
-		print(key,a[key])
 
 def patch(tree,path,data):
 	arr = path.split("\\")
@@ -105,135 +95,148 @@ def makeSmall(a,b,name):
 	small = big.resize((WIDTH, round(WIDTH*big.height/big.width)))
 	ensurePath(b,name)
 	small.save(b + name)
-	# small.save(b + name + '97.jpg', quality=97)
-	patch(tree, name, [small.width, small.height, bigSize, big.width, big.height])
+	patch(cache, name, [small.width, small.height, bigSize, big.width, big.height])
+	return [small.width, small.height, bigSize, big.width, big.height]
 
-	# ensurePath(progr,name)
-	# big.save(progr + name, quality=95, optimize=True, progressive=True)
-
-delKand = []
-
-def cleanCache(node, a, path="", key=""):
-	global delKand
-	if type(node) is list:
-		if a.get(path + key) == None:
-			delKand.append(path+key)
-			print('remove',path+key)
-	else:
-		if len(node) == 0:
-			delKand.append(path+key)
-			print('remove',path+key)
-		for k in node:
-			cleanCache(node[k], a, path + key + "\\", k)
-
-def checkCache(node, a, path="", key=""):
-	if type(node) is list:
-		if a.get(path + key) == None:
-			# delKand.append(path+key)
-			print('missing A',path+key)
-	else:
-		if len(node) == 0:
-			# delKand.append(path+key)
-			print('missing B',path+key)
-		for k in node:
-			cleanCache(node[k], a, path + key + "\\", k)
-
-
-
-def loadCache():
-	global tree
-	if exists(JSON + '\\bilder.json'):
-		with open(JSON + '\\bilder.json', 'r', encoding="utf8") as f:
-			tree = json.loads(f.read())
-	else:
-		tree = {}
-
-# utöka small och bilder.js
+# utöka small och cache
 def expandSmall():
-	global antal
+	antal = {'files':0, 'folders':0}
 	for key in a.keys():
-		if key not in b or a[key] > b[key]:
-			antal += 1
+		if key not in b:
 			if is_jpg(key):
-				print('adding image', antal, round(time.time() - start, 3), key)
+				antal['files'] += 1
+				print('.', end="")
 				b[key] = makeSmall(Home,small,key)
-			#else:
-			#	print('delete folder manually from Home', key)
-				#rmdir(Home + key)
-
-
-# minska small och bilder.js
-def shrinkSmall():
-	for key in b.keys():
-		if key not in a:
-			print('removing image from small',key)
-			if is_jpg(key):
-				try:
-					remove(small + key)
-				except:
-					pass
-					# print('Failed remove',small + key)
 			else:
-				try:
-					rmdir(small + key)
-				except:
-					print('Failed rmdir', small + key)
-				try:
-					shutil.rmtree(small + key)
-				except:
-					print('Failed shutil.rmtree', small + key)
-			patch(tree, key, None)
+				print('D', end="")
+				antal['folders'] += 1
+	print()
+	return antal
 
-#checkCache(tree,a)
+# minska small och cache
+def shrinkSmall():
+	antal = {'files':0, 'folders':0, 'keys':0}
+	keys = list(b.keys())
+	keys = reversed(keys)
+	for key in keys:
+		if key not in a:
+			small0 = small + key
+			if is_jpg(key):
+				remove(small0)
+				antal['files'] += 1
+			else:
+				rmdir(small0)
+				antal['folders'] += 1
+			if key in cache:
+				del cache[key]
+				antal['keys'] += 1
+	return antal
 
-# remove även från bilder
-# minska bilder.js
-# tag bort de som inte förekommer i Home
-def pruneCache():
-	delKand = []
-	cleanCache(tree,a)
-	for item in delKand:
-		patch(tree,item,None)
+# def getInfo(path):
+# 	info = Image.open(path)
+# 	size = getsize(path)
+# 	return [info.width, info.height, size]
 
-# spegla katalogträdet, kataloger + antalet filer
-# ska kunna jämföras med cachen och lista skillnaderna
-# def getTree(root):
+def flat(root, res={}, path=""):
+	ensurePath(root, path)
+	for name in [f for f in scandir(root + "\\" + path)]:
+		namn = name.name
+		path1 = path + "\\" + namn
+		if name.is_dir():
+			res[path1] = ""
+			flat(root, res, path1)
+		elif is_jpg(namn):
+			res[path1] = ""
+		else:
+			print("*** Ignored file:",root + path1)
+	return res
 
-
-#####################################
-
-start = time.time()
-
-res = {}
-tree = {}
-
-# print('=Home=')
-a = flat(Home,{})
-# print('=small=')
-b = flat(small,{})
-print('Images + Folders in Home', len(a))
-print('Images + Folders in small', len(b))
-
-antal = 0
-loadCache()
-expandSmall()
-shrinkSmall()
-pruneCache()
-with open(JSON + '\\bilder.json', 'w', encoding="utf8") as f:
-	dumpjson(tree,f)
-
-flatCache = {}
-def flatten(node,path=''):
+def flatten(node, res={}, path=''):
 	for key in node:
-		key2 = path + "\\" + key
-		flatCache[key2] = 1
+		path1 = path + "\\" + key
+		res[path1] = ""
 		if not type(node[key]) is list:
-			flatten(node[key],key2)
+			flatten(node[key],res, path1)
+	return res
 
-# Kolla vilka pather som saknas cachen.
-# flatten(tree)
-# for key in a:
-# 	if key not in flatCache:
-# 		print('Missing in cache:',key)
+def compare(a,b,message):
+	res = {}
+	cfiles = 0
+	cfolders = 0
+	for path in a:
+		if path not in b:
+			if is_jpg(path):
+				if cfiles==0: res[path] = 0
+				cfiles += 1
+			else:
+				res[path] = 0
+				cfolders += 1
+	print('  ' + message, cfolders, 'folders +', cfiles, 'files')
+	return res
 
-print(round(time.time() - start,3),'seconds')
+def compare2(message,x,y):
+	res = {}
+	print('\nCompare Home vs', message)
+	res['missing'] = compare(x, y, message + ': missing')
+	res['surplus'] = compare(y, x, message + ': surplus')
+	return res
+
+def countFolders(arr):
+	antal = 0
+	for key in arr:
+		if not is_jpg(key): antal += 1
+	return antal
+
+######################
+
+cache = loadCache()
+
+a = flat(Home, {})
+b = flat(small, {})
+c = flatten(cache, {})
+
+print()
+ca = countFolders(a)
+cb = countFolders(b)
+cc = countFolders(c)
+print('Home: ', ca, 'folders +', len(a) - ca,'files')
+print('Small:', cb, 'folders +', len(b) - cb,'files')
+print('Cache:', cc, 'folders +', len(c) - cc,'files')
+
+def dialog():
+
+	resSmall = compare2('Small',a,b)
+	resCache = compare2('Cache',a,c)
+
+	print()
+	print('Small missing:')
+	for key in resSmall['missing'].keys(): print('  ', key)
+	print('Small surplus:')
+	for key in resSmall['surplus'].keys(): print('  ', key)
+	print('Cache missing:')
+	for key in resCache['missing'].keys(): print('  ', key)
+	print('Cache surplus:')
+	for key in resCache['surplus'].keys(): print('  ', key)
+
+	print()
+	update = input('Update Small and Cache? (NO/Yes)').upper()
+	update = update.startswith('Y')
+
+	if update:
+
+		antal = expandSmall()
+		if antal['files'] > 0:   print('Small: Added', antal['files'], 'files')
+		if antal['folders'] > 0: print('Small: Added', antal['folders'],  'folders')
+
+		antal = shrinkSmall()
+		if antal['files'] > 0:   print('Small: Deleted', antal['files'], 'files')
+		if antal['folders'] > 0: print('Small: Deleted', antal['folders'], 'folders')
+		if antal['keys'] > 0:    print('Cache: Deleted', antal['keys'], 'keys')
+
+		antal = pruneCache()
+		if antal['files'] > 0:   print('Cache: Pruned', antal['files'],   'files')
+		if antal['folders'] > 0: print('Cache: Pruned', antal['folders'], 'folders')
+
+		with open(JSON + '\\bilder.json', 'w', encoding="utf8") as f: dumpjson(cache,f)
+
+dialog()
