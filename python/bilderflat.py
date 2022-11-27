@@ -1,6 +1,7 @@
 # Om bilder eller kataloger saknas i Small, skapas dessa och Cache uppdateras
 # Se till att katalogen small existerar
 
+import time
 import json
 from os import scandir,mkdir,remove,rmdir
 from os.path import exists,getsize
@@ -98,7 +99,7 @@ def makeSmall(a,b,name):
 	patch(cache, name, [small.width, small.height, bigSize, big.width, big.height])
 	return [small.width, small.height, bigSize, big.width, big.height]
 
-# utöka small och cache
+# utöka Small och Cache
 def expandSmall():
 	antal = {'files':0, 'folders':0}
 	for key in a.keys():
@@ -113,7 +114,7 @@ def expandSmall():
 	print()
 	return antal
 
-# minska small och cache
+# minska Small och Cache
 def shrinkSmall():
 	antal = {'files':0, 'folders':0, 'keys':0}
 	keys = list(b.keys())
@@ -148,7 +149,7 @@ def flat(root, res={}, path=""):
 		elif is_jpg(namn):
 			res[path1] = ""
 		else:
-			print("*** Ignored file:",root + path1)
+			print("*** Ignored file:", "public\\Home" + path1)
 	return res
 
 def flatten(node, res={}, path=''):
@@ -171,14 +172,14 @@ def compare(a,b,message):
 			else:
 				res[path] = 0
 				cfolders += 1
-	print('  ' + message, cfolders, 'folders +', cfiles, 'files')
+	if cfolders > 0 or cfiles > 0:
+		print(message, cfolders, 'folders +', cfiles, 'files')
 	return res
 
 def compare2(message,x,y):
 	res = {}
-	print('\nCompare Home vs', message)
-	res['missing'] = compare(x, y, message + ': missing')
-	res['surplus'] = compare(y, x, message + ': surplus')
+	res['missing'] = compare(x, y, 'Home vs ' + message + ': missing')
+	res['surplus'] = compare(y, x, 'Home vs ' + message + ': surplus')
 	return res
 
 def countFolders(arr):
@@ -205,18 +206,18 @@ print('Cache:', cc, 'folders +', len(c) - cc,'files')
 
 def dialog():
 
+	print()
 	resSmall = compare2('Small',a,b)
 	resCache = compare2('Cache',a,c)
 
 	print()
-	print('Small missing:')
-	for key in resSmall['missing'].keys(): print('  ', key)
-	print('Small surplus:')
-	for key in resSmall['surplus'].keys(): print('  ', key)
-	print('Cache missing:')
-	for key in resCache['missing'].keys(): print('  ', key)
-	print('Cache surplus:')
-	for key in resCache['surplus'].keys(): print('  ', key)
+	for key in resSmall['missing'].keys(): print('Small missing:', key)
+	print()
+	for key in resSmall['surplus'].keys(): print('Small surplus:', key)
+	print()
+	for key in resCache['missing'].keys(): print('Cache missing:', key)
+	print()
+	for key in resCache['surplus'].keys(): print('Cache surplus:', key)
 
 	print()
 	update = input('Update Small and Cache? (NO/Yes)').upper()
@@ -224,19 +225,19 @@ def dialog():
 
 	if update:
 
+		start = time.time()
+		print()
 		antal = expandSmall()
-		if antal['files'] > 0:   print('Small: Added', antal['files'], 'files')
-		if antal['folders'] > 0: print('Small: Added', antal['folders'],  'folders')
-
+		print()
+		if antal['folders'] > 0 or antal['files'] > 0: print('Small: Added',   antal['folders'],'folders and', antal['files'], 'files')
 		antal = shrinkSmall()
-		if antal['files'] > 0:   print('Small: Deleted', antal['files'], 'files')
-		if antal['folders'] > 0: print('Small: Deleted', antal['folders'], 'folders')
-		if antal['keys'] > 0:    print('Cache: Deleted', antal['keys'], 'keys')
-
+		if antal['folders'] > 0 or antal['files'] > 0: print('Small: Deleted', antal['folders'],'folders and', antal['files'], 'files')
+		if antal['keys'] > 0: print('Cache: Deleted', antal['keys'], 'keys')
 		antal = pruneCache()
-		if antal['files'] > 0:   print('Cache: Pruned', antal['files'],   'files')
-		if antal['folders'] > 0: print('Cache: Pruned', antal['folders'], 'folders')
+		if antal['folders'] > 0 or antal['files'] > 0: print('Cache: Pruned',  antal['folders'], 'folders and', antal['files'], 'files')
 
 		with open(JSON + '\\bilder.json', 'w', encoding="utf8") as f: dumpjson(cache,f)
+		print()
+		print(round(time.time() - start,3),'seconds')
 
 dialog()
