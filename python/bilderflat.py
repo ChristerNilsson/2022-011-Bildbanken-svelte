@@ -202,15 +202,18 @@ def countFolders(arr):
 
 hash = {}
 letters = list("+!§()0123456789_,.-¤")
+stoppord = 'aasen adepterr adersson jpg lowres och på adrian allan alsamarrai amalie amen analyse anmästearen anzambi autografskrvning ble blixte calm campo cat ceremonie coh dah dax deltagran do during ea edvin eisler ellen enricsson entre exteriöre frisys fö föräldrarl fötäldrar galleriet ggr gm hampus hanna hasselbacken his hurry huvudnonader idar ingertz interiiör interiö interiöri intervjuvar intrvjuas istället jadoube joakim jonathan jouni jubileuml junioer juniotturneringen jöberg kafeet kafffet kankse khalili klari koentatorsrummet kollar kollekt kommentatorr kommentatorrummet kommentatorsrummeti kommentatro kommenttorsrummet kommpisar kompisarpg lagdledare lagledate larsson lennart lexander linnea linus livesändningl livesåndning lokander lottnig lågstadet lögdahl mallanstadiet malmö mediaansvari miniior morellr mourad muntean mästartklassen näringsllivet oc ocb ocg ochh ocj oh olk ollefsén ostafiev ove pannka pch pettersson prisutdelnineng prisutdelningl prisutdelningr prize producenr profiiler publiparti qi radd raden resultatapportering resultatrapporteing reultatrapportering reultatredovisning rmorgondagens rondpausl rånby santiago sara schackinstruktio schackyouga seo severingen sgnerer simultanspell sk slutforsering snabbschacksdm solemn solomia some spealre spelaregistrering speling spellokaleni spleare sponsorerrond steinitz stromästarna stsningsgruppen ter the thordur tran trino triumvirat truskavetska träder tuomainen utanföt vallatorpsskolan vatn vede ver veteranallmän vilolaäge waeli wedberg wernberg with wweb xunming xxxxx åskådarei åskådarer åsådare af amassadör emanuel exteriörr klaas klas kolobok line livesädningen lottnib ooch prisutdelnigen pågåender shah sllutspel stasik to träbingsparti årfest års årsjubileum rondl tränongsparti vt it problemlösnings ron xuanming la mter and bokförsälning rrond highres cafeét veterner avlutningen of ans gr an'.split(' ')
 
 def flatWords(node):
 	for key in node:
 		words = key
-		for letter in letters: words = words.replace(letter," ")
+		for letter in letters:
+			words = words.replace(letter," ")
 		for word in words.split(' '):
-			if word.lower() == word:
+			wordLower = word.lower()
+			if len(word) > 1 and wordLower not in stoppord and wordLower == word:
 				hash[word] = hash[word]+1 if word in hash else 1
-		if not type(node[key]) is list: flatWords(node[key])
+		if type(node[key]) is dict: flatWords(node[key])
 
 def convert(hash):
 	arr = []
@@ -230,7 +233,7 @@ keys = convert(hash)
 print(len(keys),'words in', round(time.time()-start,3),'seconds')
 print()
 for [count,key] in keys:
-	print(key+':'+str(count))
+	print(key + ':' + str(count))
 
 a = flat(Home, {})
 b = flat(small, {})
