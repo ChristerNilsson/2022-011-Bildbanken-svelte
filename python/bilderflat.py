@@ -211,14 +211,15 @@ def flatWords(node):
 			words = words.replace(letter," ")
 		for word in words.split(' '):
 			wordLower = word.lower()
-			if len(word) > 1 and wordLower not in stoppord and wordLower == word:
+			if len(word) > 1 and wordLower == word:
 				hash[word] = hash[word]+1 if word in hash else 1
 		if type(node[key]) is dict: flatWords(node[key])
 
 def convert(hash):
 	arr = []
 	for key in hash.keys():
-		arr.append([hash[key],key])
+		if key not in stoppord:
+			arr.append([hash[key],key])
 	arr = sorted(arr)
 	return arr
 
@@ -227,13 +228,13 @@ def convert(hash):
 
 cache = loadCache()
 
-start = time.time()
-flatWords(cache)
-keys = convert(hash)
-print(len(keys),'words in', round(time.time()-start,3),'seconds')
-print()
-for [count,key] in keys:
-	print(key + ':' + str(count))
+# start = time.time()
+# flatWords(cache)
+# keys = convert(hash)
+# print(len(keys),'words in', round(time.time()-start,3),'seconds')
+# print()
+# for [count,key] in keys:
+# 	print(key + ':' + str(count))
 
 a = flat(Home, {})
 b = flat(small, {})

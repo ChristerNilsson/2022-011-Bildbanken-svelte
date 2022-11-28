@@ -365,7 +365,7 @@
 {:then data}
 	{setHome(data)}
 	{#if big.file == ""}
-		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} />
+		<Search bind:sokruta {text0} {text1} {stack} {WIDTH} {GAP} {spreadWidth} {path} {_} {is_jpg} />
 		<Download bind:selected {images} {WIDTH} {spreadWidth} {MAX_DOWNLOAD} {stack} {pop}/>
 		<NavigationHorisontal {stack} {WIDTH} />
 		<NavigationVertical bind:buttons {visibleKeys} {push} {is_jpg} {WIDTH} {spaceShip} {stack} />
