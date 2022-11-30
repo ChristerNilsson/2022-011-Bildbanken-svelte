@@ -331,13 +331,13 @@
 	function prettyFilename(path) { // Tag bort eventuella M och V-nummer
 		let i = path.lastIndexOf('\\')
 		let s = path.slice(i+1)
-		if (true) { // !retro
-			if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf('_'))
-			const p = s.search(/\d\d\d\d-\d\d-\d\d/)
-			if (p>=0) s = s.slice(0,p)
-			s = s.replace('Pristagare ','')
-			s = s.replace(/[kK]lass [A-Z]+/,'')
-		}
+		// if (true) { // !retro
+			// if (s.startsWith('Vy-')) s = s.slice(1+s.indexOf('_'))
+			// const p = s.search(/\d\d\d\d-\d\d-\d\d/)
+			// if (p>=0) s = s.slice(0,p)
+			// s = s.replace('Pristagare ','')
+			// s = s.replace(/[kK]lass [A-Z]+/,'')
+		// }
 		s = s.replace('.jpg','')
 		s = s.replace('.JPG','')
 		s = s.replace(/_M\d+/,'')

@@ -20,9 +20,8 @@ Du kan avgränsa sökandet på två sätt:
 
 	* [Clear] rensar sökrutan
 	* [Share] kopierar aktuell URL till klippbordet
-	* [Keywords] Skapar en textfil med aktuell katalogs sökord samt deras frekvens
+	* [Keywords] Laddar ner en textfil med aktuell katalogs sökord samt deras frekvens
 	* [Help] visar denna sida
-	* [R] rensar bort redundans
 	* [Up] går till närmast högre liggande katalog
 	* [None] avmarkerar alla bilder
 	* [Download] hämtar alla markerade bilder i en zipfil

@@ -5,6 +5,7 @@ import json
 from os import scandir, mkdir, remove, rmdir
 from os.path import exists, getsize
 from PIL import Image
+import hashlib
 
 WIDTH = 475
 
@@ -95,6 +96,12 @@ def patch(tree,path,data):
 
 
 def makeSmall(a,b,name):
+
+	# with open(a+name,"rb") as f:
+	# 	data = f.read()
+	# 	md5hash = hashlib.md5(data).hexdigest()
+	# 	print(md5hash)
+
 	big = Image.open(a+name)
 	bigSize = getsize(a+name)
 	small = big.resize((WIDTH, round(WIDTH*big.height/big.width)))
